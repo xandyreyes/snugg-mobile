@@ -1,0 +1,4 @@
+#Sat Sep 05 14:55:35 PST 2020
+base.0=/Users/xandy/Documents/Snugg/SnuggMobile/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
