@@ -322,7 +322,11 @@ PODS:
     - React
   - RNReanimated (1.13.0):
     - React
+  - RNRectangleScanner (1.0.10):
+    - React
   - RNScreens (2.10.1):
+    - React
+  - RNSVG (12.1.0):
     - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -388,7 +392,9 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNRectangleScanner (from `../node_modules/react-native-rectangle-scanner/ios`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -483,8 +489,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNRectangleScanner:
+    :path: "../node_modules/react-native-rectangle-scanner/ios"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -538,7 +548,9 @@ SPEC CHECKSUMS:
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
   RNPermissions: 477d88d0be7ecb0a7b344e4d5fbb0352de104626
   RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
+  RNRectangleScanner: 0bb9b67ed46f3558c8f956968b6c637946c3e78a
   RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
+  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

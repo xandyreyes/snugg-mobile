@@ -1,0 +1,1 @@
+../../../../../node_modules/react-native-rectangle-scanner/ios/RNRectangleScannerManager.h
