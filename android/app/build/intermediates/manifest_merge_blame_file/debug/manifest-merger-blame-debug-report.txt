@@ -32,52 +32,65 @@
 18    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 18-->[com.facebook.flipper:flipper:0.37.0] /Users/xandy/.gradle/caches/transforms-2/files-2.1/81c7bc1e6fbd1ec2284cfce0fac5357c/flipper-0.37.0/AndroidManifest.xml:16:5-76
 18-->[com.facebook.flipper:flipper:0.37.0] /Users/xandy/.gradle/caches/transforms-2/files-2.1/81c7bc1e6fbd1ec2284cfce0fac5357c/flipper-0.37.0/AndroidManifest.xml:16:22-73
-19
-20    <application
-20-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:11:5-30:19
-21        android:name="com.snuggmobile.MainApplication"
-21-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:12:7-38
-22        android:allowBackup="false"
-22-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:16:7-34
-23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-23-->[androidx.core:core:1.1.0] /Users/xandy/.gradle/caches/transforms-2/files-2.1/b42092715113546b31744f18fd918acc/core-1.1.0/AndroidManifest.xml:24:18-86
-24        android:debuggable="true"
-25        android:icon="@mipmap/ic_launcher"
-25-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:14:7-41
-26        android:label="@string/app_name"
-26-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:13:7-39
-27        android:roundIcon="@mipmap/ic_launcher_round"
-27-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:15:7-52
-28        android:theme="@style/AppTheme"
-28-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:17:7-38
-29        android:usesCleartextTraffic="true" >
-29-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/debug/AndroidManifest.xml:7:18-53
-30        <activity
-30-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:18:7-28:18
-31            android:name="com.snuggmobile.MainActivity"
-31-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:19:9-37
-32            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-32-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:21:9-86
-33            android:label="@string/app_name"
-33-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:20:9-41
-34            android:launchMode="singleTask"
-34-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:22:9-40
-35            android:windowSoftInputMode="adjustResize" >
-35-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:23:9-51
-36            <intent-filter>
-36-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:24:9-27:25
-37                <action android:name="android.intent.action.MAIN" />
-37-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:25:13-65
-37-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:25:21-62
-38
-39                <category android:name="android.intent.category.LAUNCHER" />
-39-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:26:13-73
-39-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:26:23-70
-40            </intent-filter>
-41        </activity>
-42        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-42-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:29:7-84
-42-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:29:17-81
-43    </application>
-44
-45</manifest>
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->[:react-native-rectangle-scanner] /Users/xandy/Documents/Snugg/SnuggMobile/node_modules/react-native-rectangle-scanner/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-81
+19-->[:react-native-rectangle-scanner] /Users/xandy/Documents/Snugg/SnuggMobile/node_modules/react-native-rectangle-scanner/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-78
+20    <uses-permission android:name="android.permission.FLASHLIGHT" />
+20-->[:react-native-rectangle-scanner] /Users/xandy/Documents/Snugg/SnuggMobile/node_modules/react-native-rectangle-scanner/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-69
+20-->[:react-native-rectangle-scanner] /Users/xandy/Documents/Snugg/SnuggMobile/node_modules/react-native-rectangle-scanner/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:22-66
+21
+22    <uses-feature android:name="android.hardware.camera" />
+22-->[:react-native-rectangle-scanner] /Users/xandy/Documents/Snugg/SnuggMobile/node_modules/react-native-rectangle-scanner/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-60
+22-->[:react-native-rectangle-scanner] /Users/xandy/Documents/Snugg/SnuggMobile/node_modules/react-native-rectangle-scanner/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:19-57
+23    <uses-feature android:name="android.hardware.camera.autofocus" />
+23-->[:react-native-rectangle-scanner] /Users/xandy/Documents/Snugg/SnuggMobile/node_modules/react-native-rectangle-scanner/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-70
+23-->[:react-native-rectangle-scanner] /Users/xandy/Documents/Snugg/SnuggMobile/node_modules/react-native-rectangle-scanner/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:19-67
+24
+25    <application
+25-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:11:5-30:19
+26        android:name="com.snuggmobile.MainApplication"
+26-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:12:7-38
+27        android:allowBackup="false"
+27-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:16:7-34
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.1.0] /Users/xandy/.gradle/caches/transforms-2/files-2.1/b42092715113546b31744f18fd918acc/core-1.1.0/AndroidManifest.xml:24:18-86
+29        android:debuggable="true"
+30        android:icon="@mipmap/ic_launcher"
+30-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:14:7-41
+31        android:label="@string/app_name"
+31-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:13:7-39
+32        android:roundIcon="@mipmap/ic_launcher_round"
+32-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:15:7-52
+33        android:theme="@style/AppTheme"
+33-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:17:7-38
+34        android:usesCleartextTraffic="true" >
+34-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/debug/AndroidManifest.xml:7:18-53
+35        <activity
+35-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:18:7-28:18
+36            android:name="com.snuggmobile.MainActivity"
+36-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:19:9-37
+37            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+37-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:21:9-86
+38            android:label="@string/app_name"
+38-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:20:9-41
+39            android:launchMode="singleTask"
+39-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:22:9-40
+40            android:windowSoftInputMode="adjustResize" >
+40-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:23:9-51
+41            <intent-filter>
+41-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:24:9-27:25
+42                <action android:name="android.intent.action.MAIN" />
+42-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:25:13-65
+42-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:25:21-62
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:26:13-73
+44-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:26:23-70
+45            </intent-filter>
+46        </activity>
+47        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+47-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:29:7-84
+47-->/Users/xandy/Documents/Snugg/SnuggMobile/android/app/src/main/AndroidManifest.xml:29:17-81
+48    </application>
+49
+50</manifest>

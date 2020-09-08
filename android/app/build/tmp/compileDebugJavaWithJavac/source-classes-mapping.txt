@@ -50,6 +50,21 @@ com/facebook/imagepipelinebase/R.java
  com.facebook.imagepipelinebase.R$styleable
 androidx/lifecycle/livedata/core/R.java
  androidx.lifecycle.livedata.core.R
+com/rectanglescanner/R.java
+ com.rectanglescanner.R
+ com.rectanglescanner.R$anim
+ com.rectanglescanner.R$attr
+ com.rectanglescanner.R$bool
+ com.rectanglescanner.R$color
+ com.rectanglescanner.R$dimen
+ com.rectanglescanner.R$drawable
+ com.rectanglescanner.R$id
+ com.rectanglescanner.R$integer
+ com.rectanglescanner.R$layout
+ com.rectanglescanner.R$string
+ com.rectanglescanner.R$style
+ com.rectanglescanner.R$styleable
+ com.rectanglescanner.R$xml
 com/facebook/imagepipeline/R.java
  com.facebook.imagepipeline.R
  com.facebook.imagepipeline.R$attr
@@ -189,6 +204,21 @@ com/facebook/flipper/plugins/fresco/R.java
  com.facebook.flipper.plugins.fresco.R$string
  com.facebook.flipper.plugins.fresco.R$style
  com.facebook.flipper.plugins.fresco.R$styleable
+com/reactnativecommunity/rnpermissions/R.java
+ com.reactnativecommunity.rnpermissions.R
+ com.reactnativecommunity.rnpermissions.R$anim
+ com.reactnativecommunity.rnpermissions.R$attr
+ com.reactnativecommunity.rnpermissions.R$bool
+ com.reactnativecommunity.rnpermissions.R$color
+ com.reactnativecommunity.rnpermissions.R$dimen
+ com.reactnativecommunity.rnpermissions.R$drawable
+ com.reactnativecommunity.rnpermissions.R$id
+ com.reactnativecommunity.rnpermissions.R$integer
+ com.reactnativecommunity.rnpermissions.R$layout
+ com.reactnativecommunity.rnpermissions.R$string
+ com.reactnativecommunity.rnpermissions.R$style
+ com.reactnativecommunity.rnpermissions.R$styleable
+ com.reactnativecommunity.rnpermissions.R$xml
 androidx/interpolator/R.java
  androidx.interpolator.R
 com/snuggmobile/MainActivity.java
@@ -205,6 +235,21 @@ androidx/core/R.java
  androidx.core.R$string
  androidx.core.R$style
  androidx.core.R$styleable
+com/horcrux/svg/R.java
+ com.horcrux.svg.R
+ com.horcrux.svg.R$anim
+ com.horcrux.svg.R$attr
+ com.horcrux.svg.R$bool
+ com.horcrux.svg.R$color
+ com.horcrux.svg.R$dimen
+ com.horcrux.svg.R$drawable
+ com.horcrux.svg.R$id
+ com.horcrux.svg.R$integer
+ com.horcrux.svg.R$layout
+ com.horcrux.svg.R$string
+ com.horcrux.svg.R$style
+ com.horcrux.svg.R$styleable
+ com.horcrux.svg.R$xml
 androidx/activity/R.java
  androidx.activity.R
  androidx.activity.R$attr
@@ -279,18 +324,11 @@ com/swmansion/rnscreens/R.java
  com.swmansion.rnscreens.R$style
  com.swmansion.rnscreens.R$styleable
  com.swmansion.rnscreens.R$xml
-androidx/viewpager2/R.java
- androidx.viewpager2.R
- androidx.viewpager2.R$attr
- androidx.viewpager2.R$color
- androidx.viewpager2.R$dimen
- androidx.viewpager2.R$drawable
- androidx.viewpager2.R$id
- androidx.viewpager2.R$integer
- androidx.viewpager2.R$layout
- androidx.viewpager2.R$string
- androidx.viewpager2.R$style
- androidx.viewpager2.R$styleable
+org/opencv/R.java
+ org.opencv.R
+ org.opencv.R$attr
+ org.opencv.R$id
+ org.opencv.R$styleable
 androidx/cursoradapter/R.java
  androidx.cursoradapter.R
 com/facebook/fresco/memorytypes/nativememory/R.java
@@ -471,18 +509,18 @@ com/facebook/flipper/plugins/network/R.java
  com.facebook.flipper.plugins.network.R$string
  com.facebook.flipper.plugins.network.R$style
  com.facebook.flipper.plugins.network.R$styleable
-androidx/vectordrawable/animated/R.java
- androidx.vectordrawable.animated.R
- androidx.vectordrawable.animated.R$attr
- androidx.vectordrawable.animated.R$color
- androidx.vectordrawable.animated.R$dimen
- androidx.vectordrawable.animated.R$drawable
- androidx.vectordrawable.animated.R$id
- androidx.vectordrawable.animated.R$integer
- androidx.vectordrawable.animated.R$layout
- androidx.vectordrawable.animated.R$string
- androidx.vectordrawable.animated.R$style
- androidx.vectordrawable.animated.R$styleable
+androidx/viewpager2/R.java
+ androidx.viewpager2.R
+ androidx.viewpager2.R$attr
+ androidx.viewpager2.R$color
+ androidx.viewpager2.R$dimen
+ androidx.viewpager2.R$drawable
+ androidx.viewpager2.R$id
+ androidx.viewpager2.R$integer
+ androidx.viewpager2.R$layout
+ androidx.viewpager2.R$string
+ androidx.viewpager2.R$style
+ androidx.viewpager2.R$styleable
 com/facebook/fresco/ui/common/R.java
  com.facebook.fresco.ui.common.R
 com/facebook/drawee/R.java
@@ -499,6 +537,8 @@ com/facebook/drawee/R.java
  com.facebook.drawee.R$styleable
 org/webkit/androidjsc/R.java
  org.webkit.androidjsc.R
+com/BV/LinearGradient/R.java
+ com.BV.LinearGradient.R
 com/facebook/nativeimagetranscoder/R.java
  com.facebook.nativeimagetranscoder.R
  com.facebook.nativeimagetranscoder.R$attr
@@ -540,6 +580,7 @@ com/snuggmobile/R.java
  com.snuggmobile.R$layout
  com.snuggmobile.R$mipmap
  com.snuggmobile.R$plurals
+ com.snuggmobile.R$raw
  com.snuggmobile.R$string
  com.snuggmobile.R$style
  com.snuggmobile.R$styleable
@@ -561,25 +602,35 @@ com/swmansion/gesturehandler/react/R.java
  com.swmansion.gesturehandler.react.R$style
  com.swmansion.gesturehandler.react.R$styleable
  com.swmansion.gesturehandler.react.R$xml
-com/BV/LinearGradient/R.java
- com.BV.LinearGradient.R
+androidx/vectordrawable/animated/R.java
+ androidx.vectordrawable.animated.R
+ androidx.vectordrawable.animated.R$attr
+ androidx.vectordrawable.animated.R$color
+ androidx.vectordrawable.animated.R$dimen
+ androidx.vectordrawable.animated.R$drawable
+ androidx.vectordrawable.animated.R$id
+ androidx.vectordrawable.animated.R$integer
+ androidx.vectordrawable.animated.R$layout
+ androidx.vectordrawable.animated.R$string
+ androidx.vectordrawable.animated.R$style
+ androidx.vectordrawable.animated.R$styleable
 com/snuggmobile/MainApplication.java
  com.snuggmobile.MainApplication
  com.snuggmobile.MainApplication$1
-com/reactnativecommunity/rnpermissions/R.java
- com.reactnativecommunity.rnpermissions.R
- com.reactnativecommunity.rnpermissions.R$anim
- com.reactnativecommunity.rnpermissions.R$attr
- com.reactnativecommunity.rnpermissions.R$bool
- com.reactnativecommunity.rnpermissions.R$color
- com.reactnativecommunity.rnpermissions.R$dimen
- com.reactnativecommunity.rnpermissions.R$drawable
- com.reactnativecommunity.rnpermissions.R$id
- com.reactnativecommunity.rnpermissions.R$integer
- com.reactnativecommunity.rnpermissions.R$layout
- com.reactnativecommunity.rnpermissions.R$string
- com.reactnativecommunity.rnpermissions.R$style
- com.reactnativecommunity.rnpermissions.R$styleable
- com.reactnativecommunity.rnpermissions.R$xml
+com/oblador/vectoricons/R.java
+ com.oblador.vectoricons.R
+ com.oblador.vectoricons.R$anim
+ com.oblador.vectoricons.R$attr
+ com.oblador.vectoricons.R$bool
+ com.oblador.vectoricons.R$color
+ com.oblador.vectoricons.R$dimen
+ com.oblador.vectoricons.R$drawable
+ com.oblador.vectoricons.R$id
+ com.oblador.vectoricons.R$integer
+ com.oblador.vectoricons.R$layout
+ com.oblador.vectoricons.R$string
+ com.oblador.vectoricons.R$style
+ com.oblador.vectoricons.R$styleable
+ com.oblador.vectoricons.R$xml
 com/facebook/react/PackageList.java
  com.facebook.react.PackageList

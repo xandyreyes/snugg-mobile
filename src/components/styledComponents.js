@@ -75,3 +75,7 @@ export const BackImage = styled.Image`
         tint-color: white;
     `}
 `;
+
+export const Row = styled.View`
+    flex-direction: row;
+`;

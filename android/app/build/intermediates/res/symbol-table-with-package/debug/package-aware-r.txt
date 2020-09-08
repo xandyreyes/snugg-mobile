@@ -168,6 +168,7 @@ attr buttonStyle
 attr buttonStyleSmall
 attr buttonTint
 attr buttonTintMode
+attr camera_id
 attr cardBackgroundColor
 attr cardCornerRadius
 attr cardElevation
@@ -558,6 +559,7 @@ attr showDividers
 attr showMotionSpec
 attr showText
 attr showTitle
+attr show_fps
 attr shrinkMotionSpec
 attr singleChoiceItemLayout
 attr singleLine
@@ -1348,6 +1350,8 @@ drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable node_modules_reactnavigation_stack_src_views_assets_backicon
+drawable node_modules_reactnavigation_stack_src_views_assets_backiconmask
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1361,6 +1365,15 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable redbox_top_border_background
+drawable src_assets_images_back
+drawable src_assets_images_captureid
+drawable src_assets_images_enable_location
+drawable src_assets_images_forgot_password
+drawable src_assets_images_login
+drawable src_assets_images_logo_with_text
+drawable src_assets_images_reset_password
+drawable src_assets_images_signup
+drawable src_assets_images_welcome
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1436,8 +1449,10 @@ id add
 id alertTitle
 id all
 id always
+id any
 id async
 id auto
+id back
 id beginning
 id blocking
 id bottom
@@ -1502,6 +1517,7 @@ id focusCrop
 id forever
 id fps_text
 id fragment_container_view_tag
+id front
 id ghost_view
 id ghost_view_holder
 id group_divider
@@ -1628,6 +1644,7 @@ id start
 id stretch
 id submenuarrow
 id submit_area
+id surfaceView
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -1736,6 +1753,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_rectangle_scanner
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -1810,6 +1828,15 @@ layout text_view_without_line_height
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
+raw app
+raw node_modules_csscolorkeywords_colors
+raw node_modules_cssselect_lib_procedure
+raw node_modules_csstree_dist_defaultsyntax
+raw node_modules_domserializer_foreignnames
+raw node_modules_entities_lib_maps_decode
+raw node_modules_entities_lib_maps_entities
+raw node_modules_entities_lib_maps_legacy
+raw node_modules_entities_lib_maps_xml
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -2662,6 +2689,7 @@ styleable BottomAppBar backgroundTint elevation fabAlignmentMode fabAnimationMod
 styleable BottomNavigationView backgroundTint elevation itemBackground itemHorizontalTranslationEnabled itemIconSize itemIconTint itemRippleColor itemTextAppearanceActive itemTextAppearanceInactive itemTextColor labelVisibilityMode menu
 styleable BottomSheetBehavior_Layout android_elevation backgroundTint behavior_expandedOffset behavior_fitToContents behavior_halfExpandedRatio behavior_hideable behavior_peekHeight behavior_saveFlags behavior_skipCollapsed shapeAppearance shapeAppearanceOverlay
 styleable ButtonBarLayout allowStacking
+styleable CameraBridgeViewBase camera_id show_fps
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_textAppearance android_textColor android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipMinTouchTargetSize chipStartPadding chipStrokeColor chipStrokeWidth chipSurfaceColor closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible ensureMinTouchTargetSize hideMotionSpec iconEndPadding iconStartPadding rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection

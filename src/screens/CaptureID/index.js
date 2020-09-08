@@ -40,7 +40,7 @@ export default ({ navigation }) => {
                         </InstructionContainer>
                         <ButtonContainer>
                             <Center>
-                                <Button text="CAPTURE ID" />
+                                <Button text="CAPTURE ID" onPress={() => navigation.navigate("CameraCapture")} />
                             </Center>
                         </ButtonContainer>
                     </ContentContainer>

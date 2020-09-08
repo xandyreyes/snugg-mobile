@@ -21,10 +21,16 @@ import com.BV.LinearGradient.LinearGradientPackage;
 import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 // react-native-reanimated
 import com.swmansion.reanimated.ReanimatedPackage;
+// react-native-rectangle-scanner
+import com.rectanglescanner.RectangleScannerPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
+// react-native-svg
+import com.horcrux.svg.SvgPackage;
+// react-native-vector-icons
+import com.oblador.vectoricons.VectorIconsPackage;
 
 public class PackageList {
   private Application application;
@@ -75,8 +81,11 @@ public class PackageList {
       new LinearGradientPackage(),
       new RNPermissionsPackage(),
       new ReanimatedPackage(),
+      new RectangleScannerPackage(),
       new SafeAreaContextPackage(),
-      new RNScreensPackage()
+      new RNScreensPackage(),
+      new SvgPackage(),
+      new VectorIconsPackage()
     ));
   }
 }
