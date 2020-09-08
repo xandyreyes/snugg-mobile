@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, SafeAreaView, TouchableOpacity } from 'react-native';
+import { signUpAPI } from 'src/api/auth'
 import Button from 'src/components/Button';
 import {
     Center,
@@ -29,18 +30,24 @@ export default ({ navigation }) => {
         email: '',
         contact_number: '',
         password: '',
-        user_type_id: UserType.buyer
+        password_confirmation: '',
+        user_type: UserType.buyer
     }
 
     const [info, setInfo] = useState(registerData)
 
     const goBack = () => navigation.goBack();
 
-    const signUp = () => {
-        if (info.user_type_id === UserType.broker) {
+    const signUp = async () => {
+        if (info.user_type === UserType.broker) {
             navigation.navigate("Capture")
         } else {
-            navigation.navigate("EnableLocation")
+            try {
+                const response = await signUpAPI(registerData)
+            } catch (e) {
+                console.log('[ERROR SIGN UP]', e.response.data)
+            }
+            
         }
     };
 
@@ -65,6 +72,11 @@ export default ({ navigation }) => {
                     <Input 
                         placeholder="Password" 
                         onChangeText={text => onChangeText(text, "password")}
+                        secureTextEntry={true}
+                    />
+                    <Input 
+                        placeholder="Confirm Password" 
+                        onChangeText={text => onChangeText(text, "password_confirmation")}
                         secureTextEntry={true}
                     />
                     <RegisterAsContainer>

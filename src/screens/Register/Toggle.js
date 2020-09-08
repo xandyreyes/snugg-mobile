@@ -25,7 +25,7 @@ export default ({ onChangeToggle, registerAs }) => {
             }
         ).start();
         select('Buyer');
-        onChangeToggle(UserType.buyer, "user_type_id");
+        onChangeToggle(UserType.buyer, "user_type");
     }
 
     const selectBroker = () => {
@@ -38,7 +38,7 @@ export default ({ onChangeToggle, registerAs }) => {
             }
         ).start();
         select('Broker');
-        onChangeToggle(UserType.broker, "user_type_id");
+        onChangeToggle(UserType.broker, "user_type");
     }
 
     return(
