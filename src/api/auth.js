@@ -9,3 +9,13 @@ export const signUpAPI = async (body) => {
     }
     return response.data;
 }
+
+export const loginAPI = async (body) => {
+    let response = null;
+    try {
+        response = await backendAPI.post('/auth/login', body)
+    } catch (e) {
+        return Promise.reject(e);
+    }
+    return response.data;
+}
