@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from 'mobx-react';
+import { View } from 'react';
+import { Store } from 'src/store';
 import CameraCapture from './CameraCapture';
 import CaptureID from './CaptureID';
 import EnableLocation from './EnableLocation';
@@ -14,17 +17,28 @@ import Welcome from './Welcome';
 const Stack = createStackNavigator();
 
 export default () => {
+
+    useEffect(() => {
+        Store.hydrate()
+    }, [])
+
+    useEffect(() => {
+        console.log({ Store: Store.User })
+    }, [Store.User.access_token])
+
     return(
-        <Stack.Navigator>
-            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-            <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
-            <Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />
-            <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
-            <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerShown: false }} />
-            <Stack.Screen name="EnableLocation" component={EnableLocation} options={{ headerShown: false }} />
-            <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
-            <Stack.Screen name="CameraCapture" component={CameraCapture} options={{ headerShown: false }} />
-            <Stack.Screen name="PreviewID" component={PreviewID} options={{ headerShown: false }} />
-        </Stack.Navigator>
+        <Provider store={Store}>
+            <Stack.Navigator>
+                <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+                <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+                <Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />
+                <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
+                <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerShown: false }} />
+                <Stack.Screen name="EnableLocation" component={EnableLocation} options={{ headerShown: false }} />
+                <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
+                <Stack.Screen name="CameraCapture" component={CameraCapture} options={{ headerShown: false }} />
+                <Stack.Screen name="PreviewID" component={PreviewID} options={{ headerShown: false }} />
+            </Stack.Navigator>
+        </Provider>
     )
 }

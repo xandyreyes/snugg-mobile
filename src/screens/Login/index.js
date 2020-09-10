@@ -3,6 +3,7 @@ import { Alert, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } f
 import { loginAPI } from 'src/api/auth';
 import Button from 'src/components/Button';
 import { Header, Input } from 'src/components/styledComponents';
+import { Store } from 'src/store';
 import images from './images';
 import {
     Center,
@@ -34,10 +35,26 @@ export default ({ navigation }) => {
         }
         loginAPI(data)
             .then( res => {
-                console.log(res)
+                Store.User.setUser(res)
+                if (Store.User.access_token) {
+                    navigation.navigate('EnableLocation')
+                }
             })
-            .catch( e => {
-                console.log(e.response)
+            .catch( error => {
+                if (!error.response) {
+                    Alert.alert(
+                        'Network Error',
+                        'Something went wrong.'
+                    )
+                } else {
+                    const code = error.response.status
+                    if (code === 401) {
+                        Alert.alert(
+                            'Unable to login',
+                            'Please make sure your login information are correct.'
+                        )
+                    }
+                }
             })
     }
 
