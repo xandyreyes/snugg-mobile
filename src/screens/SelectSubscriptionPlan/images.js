@@ -1,3 +1,3 @@
 export default {
-    subscription: require('src/assets/images/subscription.png')
+	subscription: require('src/assets/images/subscription.png')
 }

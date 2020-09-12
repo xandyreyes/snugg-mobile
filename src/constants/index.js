@@ -1,5 +1,5 @@
 export const UserType = {
-    buyer: 2,
-    broker: 1,
-    admin: 0
+	buyer: 2,
+	broker: 1,
+	admin: 0
 }

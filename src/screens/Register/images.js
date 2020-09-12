@@ -1,3 +1,3 @@
 export default {
-    signup: require('src/assets/images/signup.png'),
+	signup: require('src/assets/images/signup.png'),
 }

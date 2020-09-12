@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 import {
-    ButtonSecondary,
-    ButtonTextSecondary
-} from './styledComponents';
+	ButtonSecondary,
+	ButtonTextSecondary
+} from './styledComponents'
 
 export default ({ text, width }) => {
-    return(
-        <ButtonSecondary width={width}>
-            <ButtonTextSecondary>{text}</ButtonTextSecondary>
-        </ButtonSecondary>
-    )
+	return(
+		<ButtonSecondary width={width}>
+			<ButtonTextSecondary>{text}</ButtonTextSecondary>
+		</ButtonSecondary>
+	)
 }

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Button = styled.TouchableOpacity`
     border-radius: 30px;
@@ -8,7 +8,7 @@ export const Button = styled.TouchableOpacity`
     align-items: center;
     padding-horizontal: ${p => !p.width ? '50px' : '0'};
     width: ${p => p.width ? `${p.width}px` : 'auto'};
-`;
+`
 
 export const ButtonText = styled.Text`
     font-family: Raleway;
@@ -17,7 +17,7 @@ export const ButtonText = styled.Text`
     font-size: 14px;
     line-height: 16px;
     color: #FFFFFF;
-`;
+`
 
 export const ButtonSecondary = styled.TouchableOpacity`
     border-radius: 30px;
@@ -26,7 +26,7 @@ export const ButtonSecondary = styled.TouchableOpacity`
     padding-vertical: 13px;
     align-items: center;
     width: ${p => p.width ? `${p.width}px` : 'auto'};
-`;
+`
 
 export const ButtonTextSecondary = styled.Text`
     font-family: Raleway;
@@ -35,7 +35,7 @@ export const ButtonTextSecondary = styled.Text`
     font-size: 14px;
     line-height: 16px;
     color: #EC7050;
-`;
+`
 
 export const Input = styled.TextInput`
     background: rgba(0, 0, 0, 0.05);
@@ -45,19 +45,19 @@ export const Input = styled.TextInput`
     font-size: 14px;
     color: #17365D;
     margin-top: 15px;
-`;
+`
 
 export const Header = styled.Text`
     font-family: Raleway;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
-    color: ${ p => p.variant === "secondary" ? "#EC7050" : "#17365D"};
-`;
+    color: ${ p => p.variant === 'secondary' ? '#EC7050' : '#17365D'};
+`
 
 export const Center = styled.View`
     align-items: center;
-`;
+`
 
 export const Modal = styled.View`
     background: white;
@@ -65,17 +65,17 @@ export const Modal = styled.View`
     border-radius: 30px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     width: 85%;
-`;
+`
 
 export const BackImage = styled.Image`
     height: 23.62px;
     width: 13.5px;
     resize-mode: contain;
-    ${p => p.color === "white" && `
+    ${p => p.color === 'white' && `
         tint-color: white;
     `}
-`;
+`
 
 export const Row = styled.View`
     flex-direction: row;
-`;
+`
