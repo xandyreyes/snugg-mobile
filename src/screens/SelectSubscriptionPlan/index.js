@@ -55,13 +55,19 @@ export default ({ navigation }) => {
         setModalVisibility(true)
     }
 
+    const onPressSubscribe = () => {
+        // TODO: Complete register api
+        setModalVisibility(false)
+        navigation.navigate('Welcome')
+    }
+
     return(
         <Container start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#FFF', '#FFF', '#E8E8E8']}>
             <SelectedModal 
                 visible={visible}
                 close={() => setModalVisibility(false)}
                 subscription={subscription ? subscription : subscriptions[0]}
-                onSubscribe={() => alert('Subscribe!')}
+                onSubscribe={onPressSubscribe}
             />
             <SafeAreaView>
                 <BackContainer>
@@ -77,6 +83,7 @@ export default ({ navigation }) => {
                 <ItemsContainer>
                     { subscriptions.map((sub, index) => (
                         <SubscriptionItem
+                            key={index}
                             id={sub.id}
                             index={index}
                             name={sub.name}

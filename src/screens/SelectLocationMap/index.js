@@ -12,7 +12,7 @@ import {
 } from './styledComponents'
 import TextBox from './TextBox'
 
-export default () => {
+export default ({ navigation }) => {
 
     const [coordinate, setCoordinate] = useState({
         latitude: 37.78825,
@@ -20,10 +20,21 @@ export default () => {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
     })
+    const [initialRegion, setInitialRegion] = useState({
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    })
 
     useEffect(() => {
+        // TODO: Get user's current location and set it as the initial region and Marker coordinate
         Geolocation.getCurrentPosition(info => console.log(info));
     }, [])
+
+    const onPressNext = () => {
+        navigation.navigate('SelectSubscriptionPlan')
+    }
 
     return(
         <Container>
@@ -33,7 +44,7 @@ export default () => {
                     width: '100%',
                     height: '100%'
                 }}
-                initialRegion={coordinate}
+                initialRegion={initialRegion}
             >
                 <Marker 
                     draggable 
@@ -44,13 +55,13 @@ export default () => {
             <SafeAreaView>
                 <TopBar>
                     <BackContainer>
-                        <Back />
+                        <Back navigation={navigation}/>
                     </BackContainer>
                     <Header>Enter your location</Header>
                 </TopBar>
                 <TextBox />
             </SafeAreaView>
-            <ButtonContainer />
+            <ButtonContainer onPress={onPressNext} />
         </Container>
     )
 }

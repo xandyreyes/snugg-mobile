@@ -19,6 +19,7 @@ const samplePhoto = "https://www.dmv.pa.gov/REALID/PublishingImages/Pages/REAL-I
 export default ({ navigation, route }) => {
     
     const uploadPhoto = () => {
+        // TODO: Upload photo to GCP Storage and pass image url
         navigation.navigate('SelectLocationMap')
     }
     

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'mobx-react';
-import { View } from 'react';
 import { Store } from 'src/store';
 import CameraCapture from './CameraCapture';
 import CaptureID from './CaptureID';

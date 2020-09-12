@@ -44,6 +44,7 @@ export default ({ navigation }) => {
         } else {
             try {
                 const response = await signUpAPI(registerData)
+                console.log(response, '[RESPONSE]')
             } catch (e) {
                 console.log('[ERROR SIGN UP]', e.response.data)
             }

@@ -5,11 +5,11 @@ import {
     ButtonContainer
 } from './styledComponents'
 
-export default () => {
+export default ({ onPress }) => {
     return(
         <ButtonContainer>
             <SafeAreaView>
-                <Button text="NEXT" width={150} />
+                <Button text="NEXT" width={150} onPress={onPress} />
             </SafeAreaView>
         </ButtonContainer>
     )

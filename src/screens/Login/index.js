@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
 import { loginAPI } from 'src/api/auth';
 import Button from 'src/components/Button';
 import { Header, Input } from 'src/components/styledComponents';
