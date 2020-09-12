@@ -1,6 +1,0 @@
-module Pods_SnuggMobile {
-  umbrella header "Pods-SnuggMobile-umbrella.h"
-
-  export *
-  module * { export * }
-}
