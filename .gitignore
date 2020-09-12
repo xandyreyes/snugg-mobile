@@ -41,9 +41,20 @@ build/Release
 node_modules/
 jspm_packages/
 
+# CocoaPods
+/template/ios/Pods/
+/template/ios/Podfile.lock
+/packages/rn-tester/Gemfile.lock
+
+# OS X
+.DS_Store
+
 # Xcode
-#
-build/
+!**/*.xcodeproj
+!**/*.pbxproj
+!**/*.xcworkspacedata
+!**/*.xcsettings
+!**/*.xcscheme
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -60,15 +71,22 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
-Pods/
 
+# Gradle
+/build/
+/packages/react-native-codegen/android/build/
+/packages/react-native-codegen/android/gradlePlugin-build/gradlePlugin/build
+/packages/rn-tester/android/app/build/
+/packages/rn-tester/android/app/gradle/
+/packages/rn-tester/android/app/gradlew
+/packages/rn-tester/android/app/gradlew.bat
+/ReactAndroid/build/
+/ReactAndroid/gradle/
+/ReactAndroid/gradlew
+/ReactAndroid/gradlew.bat
 
-# Android/IJ
-#
-*.iml
-.idea
-.gradle
-local.properties   
+# Root dir shouldn't have Xcode project
+/*.xcodeproj
 
 # TypeScript v1 declaration files
 typings/
