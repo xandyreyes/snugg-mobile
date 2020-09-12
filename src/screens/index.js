@@ -12,6 +12,8 @@ import Login from './Login';
 import PreviewID from './PreviewID';
 import Register from './Register';
 import ResetPassword from './ResetPassword';
+import SelectLocationMap from './SelectLocationMap';
+import SelectSubscriptionPlan from './SelectSubscriptionPlan';
 import Welcome from './Welcome';
 
 const Stack = createStackNavigator();
@@ -28,7 +30,7 @@ export default () => {
 
     return(
         <Provider store={Store}>
-            <Stack.Navigator>
+            <Stack.Navigator initialRouteName={"Login"}>
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
                 <Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />
@@ -38,6 +40,8 @@ export default () => {
                 <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
                 <Stack.Screen name="CameraCapture" component={CameraCapture} options={{ headerShown: false }} />
                 <Stack.Screen name="PreviewID" component={PreviewID} options={{ headerShown: false }} />
+                <Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
+                <Stack.Screen name="SelectSubscriptionPlan" component={SelectSubscriptionPlan} options={{ headerShown: false }} />
             </Stack.Navigator>
         </Provider>
     )

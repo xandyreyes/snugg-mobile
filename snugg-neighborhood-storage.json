@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "snugg-neighborhood",
+  "private_key_id": "d5fea8bc04f5b8e15ab66e9a181de63cae543d31",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCioZBLxkMOANqf\nMiHWF8VmYPPeW6nieUkoTdac1KmohqZeOiaotlElFZMZAVE/6jOBBYrABKe2TjLA\nE5LDgQg+0EZFuMO/n5azlAZgMRD9JywjLO18L7kZZ2Kcqc4oIDGLwJtFpsK1w64g\n8zoUKsIxonHeGT0WDFH3ptsmIpJ0YAIbpLtRDwNrcgukQb6rLsecNrPnbJl+BFe1\nBwhVCL9zNAK0Pw+QBVqcd107FOsdGy1ZRaLDMcM/3L7rSDe03cEIB5UIHIms8lSf\nBWAmD+r35tpDxXwmDCREw7LutsfRTmZtZ0+/8fRr2AlkyiJu49TwM9dHu+0BKYdd\nQtQ2shy3AgMBAAECggEACwB2BAJGEADzyTg5fMO/6WSeqsi1ren5jn3xikuCrLFr\nOM2jRt+KjsEuYc8qgXHlCRHoaIQIGnegzEimsY4dki5Byr6sk16G8eAOLFy1YwLO\n5BRKfo+17GeHjsSX+zPuVh9yAZy96FD0CyuZHrsjxvrPzDAV51NvChtiEOre0HuA\niAY6KXIooT1FIWEsFZpBkiwM48A8jb7KxGtAalqHh5SIIjiGNU+81GqTUCXzxoYh\n6ilT4VAf0AJO6xyPLe8AXK5byTVQIRw3qDA6af2LuKEYnLTK7BslWrNPfslb2une\n7oxPoVg0nTWyvKdWWDxqr35s+mgsBBQmaM3tCLc/uQKBgQDcoZALxMIP4Ni8o2Ke\nIOxp4mWAgrr7gMkQqJE6ymt5hctmjCS9r4sEEI9UrtdSKUibQbmuQIrQf7Jmrpyx\ndYtHyRmyB3rRzvpvnMHUBexvD4h0qS21je5OaCmWnQTWEkeCOt99jzvPhcj7r3GX\nWUQDTNU3iOtyys2hkBeJTwi9DwKBgQC8s8AVKhAHaR06aOBtqvNV/hcfe9dVhhbm\nM+0Fbgj/eb9a832VL1P10cen2HlOqyFkbgfPSZLgJmQXT37JSVR6PuqgTm8AR7tk\n6cmtMv5mvC15rkJ0Sd83XkgMNBTvZFRrUZxWjiXZSkf9jJNak6kP6xQ5jSW8+gml\nBHAaC/512QKBgDqqMvUOIlO6g6bVAtntAy+8ZSTgnftV6SCm0ccCH8W2T7k6tmJB\nlQNFq/bmbpaIJ6gwt8CfpMl/yt4Gu99r09cIn+54kq3LDUg0NE2+LXnydWQfv+mw\njZcHl1dW9Pw+7Aiyws5OEadCeYiCw/9sWutNuLwFiiWBy1+UQs3d2AL9AoGACZaQ\nkgK7IcVDiO4/SRNAngP1JNJkFKJlk3jb+ESpDGIhSPvKS8RF3d206WBkeYzUe4fj\nubKhVeZde5m8dXnWYwfDYDXcCgWbDfubFcPbjVjObrpeAg6m2uddfdE/pxJP/8v7\nx6IdZjcSBV4ZNqb+FiL5uhrj6gBCcTISiCBH47ECgYAqsrNOHTndbUUuDgCEPMPp\nFjMxrwL9if1glXPIfOs54aR7dIPyqc9TH/8mxGNNhDbQwPCI6rRfnHCoqvrPSZoo\nAMvfSc8fedP+F8vkmZmpljh/1zFRSCBOzfE2UbbQKyOGwi7oObkLYTZfYzta1rVR\nGwaCyzxhBSFshOcFeyLkmg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "snugg-mobile-storage@snugg-neighborhood.iam.gserviceaccount.com",
+  "client_id": "105433132096928126078",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/snugg-mobile-storage%40snugg-neighborhood.iam.gserviceaccount.com"
+}

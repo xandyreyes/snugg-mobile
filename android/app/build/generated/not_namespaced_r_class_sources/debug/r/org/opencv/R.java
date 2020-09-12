@@ -12,20 +12,20 @@ public final class R {
     public static final class attr {
         private attr() {}
 
-        public static final int camera_id = 0x7f03006e;
-        public static final int show_fps = 0x7f0301f5;
+        public static final int camera_id = 0x7f030077;
+        public static final int show_fps = 0x7f030209;
     }
     public static final class id {
         private id() {}
 
-        public static final int any = 0x7f080048;
-        public static final int back = 0x7f08004b;
-        public static final int front = 0x7f08008c;
+        public static final int any = 0x7f08004b;
+        public static final int back = 0x7f08004e;
+        public static final int front = 0x7f080090;
     }
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] CameraBridgeViewBase = { 0x7f03006e, 0x7f0301f5 };
+        public static final int[] CameraBridgeViewBase = { 0x7f030077, 0x7f030209 };
         public static final int CameraBridgeViewBase_camera_id = 0;
         public static final int CameraBridgeViewBase_show_fps = 1;
     }

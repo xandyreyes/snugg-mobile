@@ -162,6 +162,8 @@ com/facebook/react/R.java
  com.facebook.react.R$style
  com.facebook.react.R$styleable
  com.facebook.react.R$xml
+com/google/android/gms/places_placereport/R.java
+ com.google.android.gms.places_placereport.R
 com/facebook/nativefilters/R.java
  com.facebook.nativefilters.R
  com.facebook.nativefilters.R$attr
@@ -221,6 +223,11 @@ com/reactnativecommunity/rnpermissions/R.java
  com.reactnativecommunity.rnpermissions.R$xml
 androidx/interpolator/R.java
  androidx.interpolator.R
+com/google/android/gms/maps/R.java
+ com.google.android.gms.maps.R
+ com.google.android.gms.maps.R$attr
+ com.google.android.gms.maps.R$id
+ com.google.android.gms.maps.R$styleable
 com/snuggmobile/MainActivity.java
  com.snuggmobile.MainActivity
 androidx/core/R.java
@@ -235,6 +242,10 @@ androidx/core/R.java
  androidx.core.R$string
  androidx.core.R$style
  androidx.core.R$styleable
+com/google/android/gms/common/R.java
+ com.google.android.gms.common.R
+ com.google.android.gms.common.R$integer
+ com.google.android.gms.common.R$string
 com/horcrux/svg/R.java
  com.horcrux.svg.R
  com.horcrux.svg.R$anim
@@ -274,6 +285,29 @@ androidx/recyclerview/R.java
  androidx.recyclerview.R$string
  androidx.recyclerview.R$style
  androidx.recyclerview.R$styleable
+com/oblador/vectoricons/R.java
+ com.oblador.vectoricons.R
+ com.oblador.vectoricons.R$anim
+ com.oblador.vectoricons.R$attr
+ com.oblador.vectoricons.R$bool
+ com.oblador.vectoricons.R$color
+ com.oblador.vectoricons.R$dimen
+ com.oblador.vectoricons.R$drawable
+ com.oblador.vectoricons.R$id
+ com.oblador.vectoricons.R$integer
+ com.oblador.vectoricons.R$layout
+ com.oblador.vectoricons.R$string
+ com.oblador.vectoricons.R$style
+ com.oblador.vectoricons.R$styleable
+ com.oblador.vectoricons.R$xml
+com/google/android/gms/base/R.java
+ com.google.android.gms.base.R
+ com.google.android.gms.base.R$attr
+ com.google.android.gms.base.R$color
+ com.google.android.gms.base.R$drawable
+ com.google.android.gms.base.R$id
+ com.google.android.gms.base.R$string
+ com.google.android.gms.base.R$styleable
 androidx/drawerlayout/R.java
  androidx.drawerlayout.R
  androidx.drawerlayout.R$attr
@@ -403,6 +437,21 @@ androidx/appcompat/R.java
  androidx.appcompat.R$string
  androidx.appcompat.R$style
  androidx.appcompat.R$styleable
+com/reactnativecommunity/asyncstorage/R.java
+ com.reactnativecommunity.asyncstorage.R
+ com.reactnativecommunity.asyncstorage.R$anim
+ com.reactnativecommunity.asyncstorage.R$attr
+ com.reactnativecommunity.asyncstorage.R$bool
+ com.reactnativecommunity.asyncstorage.R$color
+ com.reactnativecommunity.asyncstorage.R$dimen
+ com.reactnativecommunity.asyncstorage.R$drawable
+ com.reactnativecommunity.asyncstorage.R$id
+ com.reactnativecommunity.asyncstorage.R$integer
+ com.reactnativecommunity.asyncstorage.R$layout
+ com.reactnativecommunity.asyncstorage.R$string
+ com.reactnativecommunity.asyncstorage.R$style
+ com.reactnativecommunity.asyncstorage.R$styleable
+ com.reactnativecommunity.asyncstorage.R$xml
 com/snuggmobile/ReactNativeFlipper.java
  com.snuggmobile.ReactNativeFlipper
  com.snuggmobile.ReactNativeFlipper$1
@@ -422,6 +471,34 @@ androidx/customview/R.java
  androidx.customview.R$string
  androidx.customview.R$style
  androidx.customview.R$styleable
+com/google/maps/android/R.java
+ com.google.maps.android.R
+ com.google.maps.android.R$attr
+ com.google.maps.android.R$color
+ com.google.maps.android.R$drawable
+ com.google.maps.android.R$id
+ com.google.maps.android.R$integer
+ com.google.maps.android.R$layout
+ com.google.maps.android.R$raw
+ com.google.maps.android.R$string
+ com.google.maps.android.R$style
+ com.google.maps.android.R$styleable
+com/airbnb/android/react/maps/R.java
+ com.airbnb.android.react.maps.R
+ com.airbnb.android.react.maps.R$anim
+ com.airbnb.android.react.maps.R$attr
+ com.airbnb.android.react.maps.R$bool
+ com.airbnb.android.react.maps.R$color
+ com.airbnb.android.react.maps.R$dimen
+ com.airbnb.android.react.maps.R$drawable
+ com.airbnb.android.react.maps.R$id
+ com.airbnb.android.react.maps.R$integer
+ com.airbnb.android.react.maps.R$layout
+ com.airbnb.android.react.maps.R$raw
+ com.airbnb.android.react.maps.R$string
+ com.airbnb.android.react.maps.R$style
+ com.airbnb.android.react.maps.R$styleable
+ com.airbnb.android.react.maps.R$xml
 com/swmansion/reanimated/R.java
  com.swmansion.reanimated.R
  com.swmansion.reanimated.R$anim
@@ -565,6 +642,8 @@ androidx/viewpager/R.java
  androidx.viewpager.R$styleable
 com/snuggmobile/BuildConfig.java
  com.snuggmobile.BuildConfig
+com/google/android/gms/location/R.java
+ com.google.android.gms.location.R
 com/snuggmobile/R.java
  com.snuggmobile.R
  com.snuggmobile.R$anim
@@ -585,6 +664,8 @@ com/snuggmobile/R.java
  com.snuggmobile.R$style
  com.snuggmobile.R$styleable
  com.snuggmobile.R$xml
+com/google/android/gms/tasks/R.java
+ com.google.android.gms.tasks.R
 androidx/lifecycle/viewmodel/savedstate/R.java
  androidx.lifecycle.viewmodel.savedstate.R
 com/swmansion/gesturehandler/react/R.java
@@ -617,20 +698,20 @@ androidx/vectordrawable/animated/R.java
 com/snuggmobile/MainApplication.java
  com.snuggmobile.MainApplication
  com.snuggmobile.MainApplication$1
-com/oblador/vectoricons/R.java
- com.oblador.vectoricons.R
- com.oblador.vectoricons.R$anim
- com.oblador.vectoricons.R$attr
- com.oblador.vectoricons.R$bool
- com.oblador.vectoricons.R$color
- com.oblador.vectoricons.R$dimen
- com.oblador.vectoricons.R$drawable
- com.oblador.vectoricons.R$id
- com.oblador.vectoricons.R$integer
- com.oblador.vectoricons.R$layout
- com.oblador.vectoricons.R$string
- com.oblador.vectoricons.R$style
- com.oblador.vectoricons.R$styleable
- com.oblador.vectoricons.R$xml
+com/reactnativecommunity/geolocation/R.java
+ com.reactnativecommunity.geolocation.R
+ com.reactnativecommunity.geolocation.R$anim
+ com.reactnativecommunity.geolocation.R$attr
+ com.reactnativecommunity.geolocation.R$bool
+ com.reactnativecommunity.geolocation.R$color
+ com.reactnativecommunity.geolocation.R$dimen
+ com.reactnativecommunity.geolocation.R$drawable
+ com.reactnativecommunity.geolocation.R$id
+ com.reactnativecommunity.geolocation.R$integer
+ com.reactnativecommunity.geolocation.R$layout
+ com.reactnativecommunity.geolocation.R$string
+ com.reactnativecommunity.geolocation.R$style
+ com.reactnativecommunity.geolocation.R$styleable
+ com.reactnativecommunity.geolocation.R$xml
 com/facebook/react/PackageList.java
  com.facebook.react.PackageList

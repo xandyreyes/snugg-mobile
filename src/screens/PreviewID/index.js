@@ -17,7 +17,11 @@ import {
 const samplePhoto = "https://www.dmv.pa.gov/REALID/PublishingImages/Pages/REAL-ID-Images/Adult_DL_Fully150dpi.jpg"
 
 export default ({ navigation, route }) => {
-    console.log({ route }, 'hi')
+    
+    const uploadPhoto = () => {
+        navigation.navigate('SelectLocationMap')
+    }
+    
     return(
         <Container start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#FFF', '#FFF', '#E8E8E8']}>
             <SafeAreaView style={{ flex: 1 }}>
@@ -31,7 +35,7 @@ export default ({ navigation, route }) => {
                     <Image source={{uri: route.params.croppedImage ? route.params.croppedImage : samplePhoto }} />
                     <ButtonsContainer>
                         <Row>
-                            <Button text="SUBMIT PHOTO"/>
+                            <Button text="SUBMIT PHOTO" onPress={uploadPhoto}/>
                         </Row>
                     </ButtonsContainer>
                 </ContentContainer>
