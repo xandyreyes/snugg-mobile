@@ -24,8 +24,8 @@ export const NoteText = styled.Text`
 
 export const Image = styled.Image`
     width: 350px;
-    height: 350px;
-    resize-mode: cover;
+    height: 500px;
+    resize-mode: contain;
 `
 
 export const ButtonsContainer = styled.View`
