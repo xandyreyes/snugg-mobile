@@ -50,12 +50,12 @@ export default ({ navigation }) => {
 			info.first_name === '' || info.middle_name === '' || info.last_name === '' ||
 			info.email === '' || info.contact_number === '' || info.password === ''
 		) {
-			Alert.alert('Fill up form', 'You need to fill up the form in order to proceed')
+			Alert.alert('Fill up form', 'You need to fill in the form in order to proceed')
 			return
 		}
 
 		if(info.password !== info.password_confirmation) {
-			Alert.alert('Password Mismatch', 'Password you fill up don\'t match. Please try again')
+			Alert.alert('Password Mismatch', 'Passwords you filled in don\'t match. Please try again')
 			return
 		}
   

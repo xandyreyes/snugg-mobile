@@ -8,6 +8,7 @@ import {
 	Input,
 	Modal
 } from 'src/components/styledComponents'
+import validateEmail from 'src/utils/validateEmail'
 import images from './images'
 import {
 	BackButtonContainer,
@@ -25,12 +26,12 @@ export default ({ navigation }) => {
 
 	const sendEmail = async () => {
 		if(email === '') {
-			Alert.alert('Invalid Email', 'Please put your email in the field.')
+			Alert.alert('Invalid Email', 'You email is required to continue.')
 			return
 		}
 
 		if(!validateEmail(email)) {
-			Alert.alert('Invalid Email', 'You enter invalid email.')
+			Alert.alert('Invalid Email', 'You entered an invalid email.')
 			return
 		}
 
@@ -57,11 +58,6 @@ export default ({ navigation }) => {
 					: 'Password reset link already sent.'
 			)
 		}
-	}
-  
-	const validateEmail = e => {
-		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-		return re.test(e)
 	}
 
 	return(
