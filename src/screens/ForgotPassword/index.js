@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { KeyboardAvoidingView, SafeAreaView, Platform, Alert } from 'react-native'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
+import Loading from 'src/components/Loading'
 import {
 	Center,
 	Header,
@@ -23,23 +24,24 @@ import { forgotPasswordAPI } from '../../api/auth'
 export default ({ navigation }) => {
 
 	const [email, setEmail] = useState('')
+	const [loading, setLoading] = useState(false)
 
 	const sendEmail = async () => {
 		if(email === '') {
 			Alert.alert('Invalid Email', 'You email is required to continue.')
 			return
 		}
-
 		if(!validateEmail(email)) {
 			Alert.alert('Invalid Email', 'You entered an invalid email.')
 			return
 		}
-
+		setLoading(true)
 		try {
 			await forgotPasswordAPI({email})
+			setLoading(false)
 			Alert.alert(
 				'Email Sent!',
-				'Password reset link has been sent to your email. Lorem ipsum dolor',
+				'The password reset link has been sent to your email.',
 				[
 					{
 						cancelable: false
@@ -50,6 +52,7 @@ export default ({ navigation }) => {
 				]
 			)
 		} catch(e) {
+			setLoading(false)
 			console.log('[ERROR FORGOT PASSWORD]', e.response.data)
 			Alert.alert(
 				'Error',
@@ -62,6 +65,7 @@ export default ({ navigation }) => {
 
 	return(
 		<Container start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#284972', '#17365D', '#0A264A']}>
+			{ loading && (<Loading />) }
 			<SafeAreaView style={{ flex: 1 }}>
 				<KeyboardAvoidingView 
 					behavior={Platform.OS == 'ios' ? 'padding' : 'height'} 

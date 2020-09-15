@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import { signUpAPI } from 'src/api/auth'
 import Button from 'src/components/Button'
+import Loading from 'src/components/Loading'
 import {
 	Center,
 	Header,
@@ -42,6 +43,7 @@ export default ({ navigation }) => {
 	}
 
 	const [info, setInfo] = useState(registerData)
+	const [loading, setLoading] = useState(false)
 
 	const goBack = () => navigation.goBack()
 
@@ -60,25 +62,40 @@ export default ({ navigation }) => {
 		}
   
 		try {
+			setLoading(true)
 			if(info.user_type === UserType.broker) {
 				info.subscription_type = SubscriptionType.trial
 			}
-      
 			const response = await signUpAPI(info)
-
-			Alert.alert(
-				'Email Confirmation',
-				response.message,
-				[  
-					{  
-						cancelable: false
-					}, {
-						text: 'OK',
-						onPress: checkUserType
-					}
-				]  
-			)
+			if (response.data) {
+				Alert.alert(
+					'Email Confirmation',
+					response.message,
+					[  
+						{  
+							cancelable: false
+						}, {
+							text: 'OK',
+							onPress: checkUserType
+						}
+					]  
+				)
+			} else {
+				Alert.alert(
+					'Something went wrong',
+					response.message,
+					[  
+						{  
+							cancelable: false
+						}, {
+							text: 'OK'
+						}
+					]  
+				)
+			}
+			setLoading(false)
 		} catch (e) {
+			setLoading(false)
 			const errData = Object.entries(e.response.data.errors).map(obj => {
 				return obj[1].join('\n')
 			})
@@ -102,6 +119,9 @@ export default ({ navigation }) => {
 
 	return(
 		<SafeAreaView style={{ flex: 1 }}>
+			{ loading && (
+				<Loading />
+			) }
 			<KeyboardAvoidingView 
 				behavior={Platform.OS == 'ios' ? 'padding' : 'height'} 
 				flex={1}
