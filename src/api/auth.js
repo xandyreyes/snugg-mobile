@@ -19,3 +19,13 @@ export const loginAPI = async (body) => {
 	}
 	return response.data
 }
+
+export const forgotPasswordAPI = async (body) => {
+	let response = null
+	try {
+		response = await backendAPI.post('/password/email', body)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}

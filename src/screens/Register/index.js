@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
-import { KeyboardAvoidingView, Platform, SafeAreaView, TouchableOpacity } from 'react-native'
+import {
+	KeyboardAvoidingView,
+	Platform,
+	SafeAreaView,
+	TouchableOpacity,
+	Alert
+} from 'react-native'
 import { signUpAPI } from 'src/api/auth'
 import Button from 'src/components/Button'
 import {
@@ -7,7 +13,8 @@ import {
 	Header,
 	Input
 } from 'src/components/styledComponents'
-import { UserType } from 'src/constants'
+import { SubscriptionType, UserType } from 'src/constants'
+import images from './images'
 import { 
 	ButtonContainer,
 	Container,
@@ -18,7 +25,6 @@ import {
 	Text,
 	TNC
 } from './styledComponents'
-import images from './images'
 import Toggle from './Toggle'
 
 export default ({ navigation }) => {
@@ -29,6 +35,7 @@ export default ({ navigation }) => {
 		last_name: '',
 		email: '',
 		contact_number: '',
+		address: '',
 		password: '',
 		password_confirmation: '',
 		user_type: UserType.buyer
@@ -39,22 +46,58 @@ export default ({ navigation }) => {
 	const goBack = () => navigation.goBack()
 
 	const signUp = async () => {
-		if (info.user_type === UserType.broker) {
-			navigation.navigate('Capture')
-		} else {
-			try {
-				const response = await signUpAPI(registerData)
-				console.log(response, '[RESPONSE]')
-			} catch (e) {
-				console.log('[ERROR SIGN UP]', e.response.data)
+		if(
+			info.first_name === '' || info.middle_name === '' || info.last_name === '' ||
+			info.email === '' || info.contact_number === '' || info.password === ''
+		) {
+			Alert.alert('Fill up form', 'You need to fill up the form in order to proceed')
+			return
+		}
+
+		if(info.password !== info.password_confirmation) {
+			Alert.alert('Password Mismatch', 'Password you fill up don\'t match. Please try again')
+			return
+		}
+  
+		try {
+			if(info.user_type === UserType.broker) {
+				info.subscription_type = SubscriptionType.trial
 			}
-            
+      
+			const response = await signUpAPI(info)
+
+			Alert.alert(
+				'Email Confirmation',
+				response.message,
+				[  
+					{  
+						cancelable: false
+					}, {
+						text: 'OK',
+						onPress: checkUserType
+					}
+				]  
+			)
+		} catch (e) {
+			const errData = Object.entries(e.response.data.errors).map(obj => {
+				return obj[1].join('\n')
+			})
+			Alert.alert(e.response.data.message, errData.join('\n'))
+			console.log('[ERROR SIGN UP]', e.response.data)
 		}
 	}
 
 	const onChangeText = (text, field) => {
 		info[field] = text
 		setInfo(info)
+	}
+  
+	const checkUserType = () => {
+		navigation.navigate(
+			info.user_type === UserType.buyer
+				? 'EnableLocation'
+				: 'Capture'
+		)
 	}
 
 	return(
@@ -70,6 +113,7 @@ export default ({ navigation }) => {
 					<Input placeholder="Last Name" onChangeText={text => onChangeText(text, 'last_name')}/>
 					<Input placeholder="Email" onChangeText={text => onChangeText(text, 'email')} keyboardType="email-address"/>
 					<Input placeholder="Phone Number" onChangeText={text => onChangeText(text, 'contact_number')} keyboardType="numeric"/>
+					<Input placeholder="Address" onChangeText={text => onChangeText(text, 'address')}/>
 					<Input 
 						placeholder="Password" 
 						onChangeText={text => onChangeText(text, 'password')}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Alert } from 'react-native'
 import { getNearbyAutocomplete } from 'src/api/googlePlacesAPI'
 import { Row } from 'src/components/styledComponents'
