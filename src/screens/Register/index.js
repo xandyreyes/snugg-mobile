@@ -69,21 +69,12 @@ export default ({ navigation }) => {
 			}
 			const response = await signUpAPI(info)
 			if (response.data) {
-				const data = {
-					email: info.email,
-					password: info.password
-				}
-				const loginRes = await loginAPI(data)
-				if (loginRes.accessToken) {
-					Store.User.setUser(loginRes)
-				}
+				Store.User.setData(response.data)
 				Alert.alert(
 					'Email Confirmation',
 					response.message,
-					[  
-						{  
-							cancelable: false
-						}, {
+					[
+						{
 							text: 'OK',
 							onPress: checkUserType
 						}
@@ -93,10 +84,8 @@ export default ({ navigation }) => {
 				Alert.alert(
 					'Something went wrong',
 					response.message,
-					[  
-						{  
-							cancelable: false
-						}, {
+					[
+						{
 							text: 'OK'
 						}
 					]  
@@ -118,12 +107,33 @@ export default ({ navigation }) => {
 		setInfo(info)
 	}
   
-	const checkUserType = () => {
-		navigation.navigate(
-			info.user_type === UserType.buyer
-				? 'EnableLocation'
-				: 'Capture'
-		)
+	const checkUserType = async () => {
+		try {
+			// const data = {
+			// 	email: info.email,
+			// 	password: info.password
+			// }
+			// const loginRes = await loginAPI(data)
+			// if (loginRes.accessToken) {
+			// 	Store.User.setUser(loginRes)
+			// }
+			navigation.navigate(
+				info.user_type === UserType.buyer
+					? 'EnableLocation'
+					: 'Capture'
+			)
+		} catch (err) {
+			console.log(err, '[LOGIN AFTER SIGN UP ERROR]')
+			Alert.alert(
+				'Error', 
+				err.response.data.message,
+				[
+					{
+						text: 'OK'
+					}
+				]  
+			)
+		}
 	}
 
 	return(
