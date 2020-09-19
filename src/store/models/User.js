@@ -26,6 +26,13 @@ export const User = types
 			self.expires_at = user.expires_at
 			self.data = user.data
 		},
+		setData: (user) => {
+			self.data = user.data
+		},
+		setToken: (user) => {
+			self.access_token = user.access_token
+			self.expires_at = user.expires_at
+		},
 		hydrate: flow(function*() {
 			const data = yield AsyncStorage.getItem('User')
 			if (data) {

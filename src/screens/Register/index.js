@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import {
+	Alert,
 	KeyboardAvoidingView,
 	Platform,
 	SafeAreaView,
-	TouchableOpacity,
-	Alert
+	TouchableOpacity
 } from 'react-native'
-import { signUpAPI } from 'src/api/auth'
+import { loginAPI, signUpAPI } from 'src/api/auth'
 import Button from 'src/components/Button'
 import Loading from 'src/components/Loading'
 import {
@@ -15,6 +15,7 @@ import {
 	Input
 } from 'src/components/styledComponents'
 import { SubscriptionType, UserType } from 'src/constants'
+import { Store } from 'src/store'
 import images from './images'
 import { 
 	ButtonContainer,
@@ -23,8 +24,8 @@ import {
 	LoginContainer,
 	LoginTextTouchable,
 	RegisterAsContainer,
-	Text,
-	TNC
+	TNC,
+	Text
 } from './styledComponents'
 import Toggle from './Toggle'
 
@@ -68,6 +69,14 @@ export default ({ navigation }) => {
 			}
 			const response = await signUpAPI(info)
 			if (response.data) {
+				const data = {
+					email: info.email,
+					password: info.password
+				}
+				const loginRes = await loginAPI(data)
+				if (loginRes.accessToken) {
+					Store.User.setUser(loginRes)
+				}
 				Alert.alert(
 					'Email Confirmation',
 					response.message,
