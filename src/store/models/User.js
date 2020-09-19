@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage'
-import { types, flow, applySnapshot } from 'mobx-state-tree'
+import { applySnapshot, flow, types } from 'mobx-state-tree'
 
 export const User = types
 	.model('User', {
@@ -15,13 +15,16 @@ export const User = types
 				contact_number: types.maybeNull(types.number),
 				address: types.maybeNull(types.string),
 				lat: types.maybeNull(types.string),
-				lon: types.maybeNull(types.string)
+				lon: types.maybeNull(types.string),
+				device_id: types.maybeNull(types.number)
 			})
 		)
 	})
 	.actions( self => ({
 		setUser: (user) => {
 			self.access_token = user.access_token
+			self.expires_at = user.expires_at
+			self.data = user.data
 		},
 		hydrate: flow(function*() {
 			const data = yield AsyncStorage.getItem('User')
