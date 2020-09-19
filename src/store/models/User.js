@@ -26,8 +26,8 @@ export const User = types
 			self.expires_at = user.expires_at
 			self.data = user.data
 		},
-		setData: (user) => {
-			self.data = user.data
+		setData: (data) => {
+			self.data = data
 		},
 		setToken: (user) => {
 			self.access_token = user.access_token

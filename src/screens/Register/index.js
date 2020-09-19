@@ -69,7 +69,20 @@ export default ({ navigation }) => {
 			}
 			const response = await signUpAPI(info)
 			if (response.data) {
-				Store.User.setData(response.data)
+				const { firstname, middlename, lastname, lat, lon, address, contact_number, device_id, email, type_id } = response.data
+				const data = {
+					firstname,
+					middlename,
+					lastname,
+					lat,
+					lon,
+					address,
+					device_id,
+					email,
+					type_id,
+					contact_number: parseInt(contact_number)
+				}
+				Store.User.setData(data)
 				Alert.alert(
 					'Email Confirmation',
 					response.message,
