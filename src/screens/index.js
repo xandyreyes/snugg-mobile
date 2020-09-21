@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Provider } from 'mobx-react'
 import { Store } from 'src/store'
+import AddListing from './AddListing'
 import BrokerDashboard from './BrokerDashboard'
 import CameraCapture from './CameraCapture'
 import CaptureID from './CaptureID'
@@ -31,7 +32,7 @@ export default () => {
 
 	return(
 		<Provider store={Store}>
-			<Stack.Navigator initialRouteName={'Login'}>
+			<Stack.Navigator initialRouteName={'BrokerDashboard'}>
 				<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 				<Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
 				<Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />
@@ -44,6 +45,7 @@ export default () => {
 				<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
 				<Stack.Screen name="SelectSubscriptionPlan" component={SelectSubscriptionPlan} options={{ headerShown: false }} />
 				<Stack.Screen name="BrokerDashboard" component={BrokerDashboard} options={{ headerShown: false }} />
+				<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
 			</Stack.Navigator>
 		</Provider>
 	)

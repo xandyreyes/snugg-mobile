@@ -3,9 +3,9 @@ import { Animated, Dimensions } from 'react-native'
 import { UserType } from 'src/constants'
 import {
 	ButtonTouchable,
+	SelectedContainer,
 	ToggleContainer,
-	ToggleText,
-	SelectedContainer
+	ToggleText
 } from './styledComponents'
 
 const width = Dimensions.get('window').width

@@ -96,3 +96,81 @@ export const LoadingImage = styled.Image`
     resize-mode: contain;
     position: absolute;
 `
+
+export const TextInputContainer = styled.View`
+    width: 100%;
+`
+
+export const Label = styled.Text`
+    color: #17365D;
+    font-family: Raleway-Regular;
+    font-size: 12px;
+    text-align: left;
+`
+
+export const TextInput = styled.TextInput`
+    background: white;
+    height: 40px;
+    width: 100%;
+    border: 1px solid #DEDEDE;
+    border-radius: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+`
+
+export const ToggleContainer = styled.View`
+    width: 100%;
+    background: #E3E3E3;
+    border-radius: 8px;
+    height: 40px;
+    flex-direction: row;
+    margin-bottom: 15px;
+`
+
+export const SelectedContainer = styled.View`
+    border-radius: 8px;
+    background: #17365D;
+    width: 50%;
+    height: 40px;
+    z-index: 1;
+    position: absolute;
+`
+
+export const ButtonTouchable = styled.TouchableOpacity`
+    padding: 13px 0;
+    text-align: center;
+    justify-content: center;
+    width: 50%;
+    height: 40px;
+    z-index: 2;
+`
+
+export const ToggleText = styled.Text`
+    font-family: Raleway;
+    font-size: 12px;
+    color: ${p => p.selected ? 'white' : '#17365D'};
+    text-align: center;
+`
+
+export const CheckboxContainer = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: center;
+    margin-vertical: 4px;
+`
+
+export const CheckboxTouchable = styled.View`
+    background: white;
+    border: 1px solid #DEDEDE;
+    border-radius: 3px;
+    height: 13px;
+    width: 13px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+`
+
+export const CheckedView = styled.Image`
+    resize-mode: contain;
+    height: 8px;
+    width: 8px;
+`
