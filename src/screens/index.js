@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
+// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Provider } from 'mobx-react'
 import { Store } from 'src/store'
+import BrokerDashboard from './BrokerDashboard'
 import CameraCapture from './CameraCapture'
 import CaptureID from './CaptureID'
 import EnableLocation from './EnableLocation'
@@ -15,6 +17,7 @@ import SelectSubscriptionPlan from './SelectSubscriptionPlan'
 import Welcome from './Welcome'
 
 const Stack = createStackNavigator()
+// const Tab = createMaterialTopTabNavigator()
 
 export default () => {
 
@@ -40,6 +43,7 @@ export default () => {
 				<Stack.Screen name="PreviewID" component={PreviewID} options={{ headerShown: false }} />
 				<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
 				<Stack.Screen name="SelectSubscriptionPlan" component={SelectSubscriptionPlan} options={{ headerShown: false }} />
+				<Stack.Screen name="BrokerDashboard" component={BrokerDashboard} options={{ headerShown: false }} />
 			</Stack.Navigator>
 		</Provider>
 	)

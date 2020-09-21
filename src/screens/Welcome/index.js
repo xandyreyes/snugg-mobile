@@ -1,6 +1,8 @@
 import React from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Platform } from 'react-native'
+import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
 import Button from 'src/components/Button'
+import { UserType } from 'src/constants'
+import { Store } from 'src/store'
 import {
 	Center,
 	Header,
@@ -16,10 +18,19 @@ import {
 	Text
 } from './styledComponents'
 
-export default () => {
+export default ({ navigation }) => {
 
 	const start = () => {
-		alert('Start')
+		const { User } = Store
+		if (User.data && User.data.type_id === UserType.broker) {
+			navigation.navigate('BrokerDashboard')
+		} 
+		if (User.data && User.data.type_id === UserType.buyer) {
+			alert('Start as Buyer')
+		} 
+		if (User.data && User.data.type_id === UserType.admin) {
+			alert('Start as Admin')
+		}
 	}
 
 	return(

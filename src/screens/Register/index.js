@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import {
+	Alert,
 	KeyboardAvoidingView,
 	Platform,
 	SafeAreaView,
-	TouchableOpacity,
-	Alert
+	TouchableOpacity
 } from 'react-native'
-import { signUpAPI } from 'src/api/auth'
+import { loginAPI, signUpAPI } from 'src/api/auth'
 import Button from 'src/components/Button'
+import Loading from 'src/components/Loading'
 import {
 	Center,
 	Header,
 	Input
 } from 'src/components/styledComponents'
-import { UserType } from 'src/constants'
+import { SubscriptionType, UserType } from 'src/constants'
+import { Store } from 'src/store'
+import images from './images'
 import { 
 	ButtonContainer,
 	Container,
@@ -21,10 +24,9 @@ import {
 	LoginContainer,
 	LoginTextTouchable,
 	RegisterAsContainer,
-	Text,
-	TNC
+	TNC,
+	Text
 } from './styledComponents'
-import images from './images'
 import Toggle from './Toggle'
 
 export default ({ navigation }) => {
@@ -42,58 +44,69 @@ export default ({ navigation }) => {
 	}
 
 	const [info, setInfo] = useState(registerData)
+	const [loading, setLoading] = useState(false)
 
 	const goBack = () => navigation.goBack()
 
 	const signUp = async () => {
-		// if (info.user_type === UserType.broker) {
-		// 	navigation.navigate('Capture')
-		// } else {
-		// 	try {
-		//     const response = await signUpAPI(info)
-		//     Store.User.registerUser(response)
-		//     Alert.alert('Email Confirmation', response.message);
-		// 		console.log(response, '[RESPONSE]')
-		// 	} catch (e) {
-		//     const errData = Object.entries(e.response.data.errors).map(obj => {
-		//       return obj[1].join('\n');
-		//     });
-		//     Alert.alert(e.response.data.message, errData.join('\n'));
-		// 		console.log('[ERROR SIGN UP]', e.response.data)
-		// 	}
-            
-		// }
-
-		if(info.first_name === '' || info.middle_name === '' || info.last_name === '' ||
-      info.email === '' || info.contact_number === '' || info.password === '') {
-			Alert.alert('Fill up form', 'You need to fill up the form in order to proceed')
+		if(
+			info.first_name === '' || info.middle_name === '' || info.last_name === '' ||
+			info.email === '' || info.contact_number === '' || info.password === ''
+		) {
+			Alert.alert('Fill up form', 'You need to fill in the form in order to proceed')
 			return
 		}
 
 		if(info.password !== info.password_confirmation) {
-			Alert.alert('Password Mismatch', 'Password you fill up don\'t match. Please try again')
+			Alert.alert('Password Mismatch', 'Passwords you filled in don\'t match. Please try again')
 			return
 		}
   
 		try {
-			if(info.user_type === UserType.broker)
-				info.subscription_type = 1
-      
+			setLoading(true)
+			if(info.user_type === UserType.broker) {
+				info.subscription_type = SubscriptionType.trial
+			}
 			const response = await signUpAPI(info)
-
-			Alert.alert(
-				'Email Confirmation',
-				response.message,
-				[  
-					{  
-						cancelable: false
-					}, {
-						text: 'OK',
-						onPress: checkUserType
-					}
-				]  
-			)
+			if (response.data) {
+				const { firstname, middlename, lastname, lat, lon, address, contact_number, device_id, email, type_id } = response.data
+				const data = {
+					firstname,
+					middlename,
+					lastname,
+					lat,
+					lon,
+					address,
+					device_id,
+					email,
+					type_id,
+					contact_number: parseInt(contact_number)
+				}
+				Store.User.setData(data)
+				Alert.alert(
+					'Email Confirmation',
+					response.message,
+					[
+						{
+							text: 'OK',
+							onPress: checkUserType
+						}
+					]  
+				)
+			} else {
+				Alert.alert(
+					'Something went wrong',
+					response.message,
+					[
+						{
+							text: 'OK'
+						}
+					]  
+				)
+			}
+			setLoading(false)
 		} catch (e) {
+			setLoading(false)
 			const errData = Object.entries(e.response.data.errors).map(obj => {
 				return obj[1].join('\n')
 			})
@@ -107,16 +120,40 @@ export default ({ navigation }) => {
 		setInfo(info)
 	}
   
-	const checkUserType = () => {
-		navigation.navigate(
-			info.user_type === UserType.buyer
-				? 'EnableLocation'
-				: 'Capture'
-		)
+	const checkUserType = async () => {
+		try {
+			// const data = {
+			// 	email: info.email,
+			// 	password: info.password
+			// }
+			// const loginRes = await loginAPI(data)
+			// if (loginRes.accessToken) {
+			// 	Store.User.setUser(loginRes)
+			// }
+			navigation.navigate(
+				info.user_type === UserType.buyer
+					? 'EnableLocation'
+					: 'Capture'
+			)
+		} catch (err) {
+			console.log(err, '[LOGIN AFTER SIGN UP ERROR]')
+			Alert.alert(
+				'Error', 
+				err.response.data.message,
+				[
+					{
+						text: 'OK'
+					}
+				]  
+			)
+		}
 	}
 
 	return(
 		<SafeAreaView style={{ flex: 1 }}>
+			{ loading && (
+				<Loading />
+			) }
 			<KeyboardAvoidingView 
 				behavior={Platform.OS == 'ios' ? 'padding' : 'height'} 
 				flex={1}

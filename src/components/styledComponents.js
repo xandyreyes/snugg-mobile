@@ -79,3 +79,20 @@ export const BackImage = styled.Image`
 export const Row = styled.View`
     flex-direction: row;
 `
+
+export const LoadingOverlay = styled.View`
+    background: rgba(255,255,255,0.3);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+`
+
+export const LoadingImage = styled.Image`
+    height: 30px;
+    width: 30px;
+    resize-mode: contain;
+    position: absolute;
+`

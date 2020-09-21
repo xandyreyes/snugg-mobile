@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Alert, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native'
 import { loginAPI } from 'src/api/auth'
 import Button from 'src/components/Button'
+import Loading from 'src/components/Loading'
 import { Header, Input } from 'src/components/styledComponents'
 import { Store } from 'src/store'
 import images from './images'
@@ -24,8 +25,9 @@ export default ({ navigation }) => {
 	}
 
 	const [data, setData] = useState(initialData)
+	const [loading, setLoading] = useState(false)
 
-	const login = () => {
+	const login = async () => {
 		if (data.email === '' || data.password === '') {
 			Alert.alert(
 				'Both fields are required!',
@@ -33,29 +35,31 @@ export default ({ navigation }) => {
 			)
 			return
 		}
-		loginAPI(data)
-			.then( res => {
+		setLoading(true)
+		try {
+			const res = await loginAPI(data)
+			setLoading(false)
+			if (res.access_token) {
 				Store.User.setUser(res)
-				if (Store.User.access_token) {
-					navigation.navigate('EnableLocation')
-				}
-			})
-			.catch( error => {
-				if (!error.response) {
+				navigation.navigate('EnableLocation')
+			}
+		} catch (error) {
+			setLoading(false)
+			if (!error.response) {
+				Alert.alert(
+					'Network Error',
+					'Something went wrong.'
+				)
+			} else {
+				const code = error.response.status
+				if (code === 401) {
 					Alert.alert(
-						'Network Error',
-						'Something went wrong.'
+						'Unable to login',
+						'Please make sure your login information are correct.'
 					)
-				} else {
-					const code = error.response.status
-					if (code === 401) {
-						Alert.alert(
-							'Unable to login',
-							'Please make sure your login information are correct.'
-						)
-					}
 				}
-			})
+			}
+		}
 	}
 
 	const changeText = (field, value) => {
@@ -68,6 +72,7 @@ export default ({ navigation }) => {
 			behavior={Platform.OS == 'ios' ? 'padding' : 'height'} 
 			flex={1}
 		>
+			{ loading && (<Loading />) }
 			<Container>
 				<Illustrations>
 					<Logo source={images.logo} />

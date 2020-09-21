@@ -26,19 +26,19 @@ const subscriptions = [
 		price: 250
 	},
 	{
-		id: 2,
+		id: 3,
 		name: 'Sales',
 		no_of_listing: 30,
 		price: 500
 	},
 	{
-		id: 3,
+		id: 4,
 		name: 'Agency',
 		no_of_listing: 50,
 		price: 750
 	},
 	{
-		id: 3,
+		id: 5,
 		name: 'Developer',
 		no_of_listing: null,
 		price: 1000
