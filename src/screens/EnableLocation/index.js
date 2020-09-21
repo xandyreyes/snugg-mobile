@@ -1,6 +1,6 @@
 import React from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Platform } from 'react-native'
-import { check, PERMISSIONS, request } from 'react-native-permissions'
+import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
+import { PERMISSIONS, check, request } from 'react-native-permissions'
 import Button from 'src/components/Button'
 import {
 	Center,

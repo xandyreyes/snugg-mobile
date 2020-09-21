@@ -12,6 +12,7 @@ export const BackContainer = styled.View`
 export const ContentContainer = styled.View`
     flex: 0.92;
     align-items: center;
+    flex-direction: column;
 `
 
 export const NoteText = styled.Text`
@@ -22,12 +23,35 @@ export const NoteText = styled.Text`
     padding: 30px;
 `
 
+export const ImageContainer = styled.View`
+    flex: 1;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+`
+
 export const Image = styled.Image`
-    width: 350px;
-    height: 500px;
+    width: 87%;
+    height: 100%;
     resize-mode: contain;
 `
 
 export const ButtonsContainer = styled.View`
-    margin-top: 30px;
+    margin-top: 20px;
+`
+
+export const ModalContainer = styled.View`
+    flex: 1;
+    background-color: #00000060;
+    align-items: center;
+    justify-content: center;
+`
+
+export const LoadingContainer = styled.View`
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
 `

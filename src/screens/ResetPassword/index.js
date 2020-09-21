@@ -1,5 +1,5 @@
 import React from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Platform } from 'react-native'
+import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
 import {

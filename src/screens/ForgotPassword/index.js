@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Platform, Alert } from 'react-native'
+import { Alert, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
 import Loading from 'src/components/Loading'
@@ -63,11 +63,6 @@ export default ({ navigation }) => {
 		}
 	}
   
-	const validateEmail = e => {
-		const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-		return re.test(e)
-	}
-
 	return(
 		<Container start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#284972', '#17365D', '#0A264A']}>
 			{ loading && (<Loading />) }
