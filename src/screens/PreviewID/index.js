@@ -1,5 +1,11 @@
-import React from 'react'
-import { SafeAreaView } from 'react-native'
+import React, {useState} from 'react'
+import {
+	ActivityIndicator,
+	Modal,
+	Platform,
+	SafeAreaView
+} from 'react-native'
+import { createPRCRef, uploadPRCID } from 'src/api/imageUpload'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
 import {
@@ -11,34 +17,68 @@ import {
 	Container,
 	ContentContainer,
 	Image,
+	ImageContainer,
+	LoadingContainer,
+	ModalContainer,
 	NoteText
 } from './styledComponents'
 
 const samplePhoto = 'https://www.dmv.pa.gov/REALID/PublishingImages/Pages/REAL-ID-Images/Adult_DL_Fully150dpi.jpg'
 
 export default ({ navigation, route }) => {
+	const [loading, setLoading] = useState(false)
     
-	const uploadPhoto = () => {
-		// TODO: Upload photo to GCP Storage and pass image url
-		navigation.navigate('SelectLocationMap', {
-			title: 'Enter your location',
-			onNext: (nav) => {
-				nav.navigate('SelectSubscriptionPlan')
-			}
-		})
+	const uploadPhoto = async () => {
+		const uri = route.params.croppedImage
+		const filename = uri.substring(uri.lastIndexOf('/') + 1)
+		const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+    
+		setLoading(true)
+
+		try {
+			const PRCInstance = createPRCRef(filename)
+			await uploadPRCID(PRCInstance, uploadUri)
+			const url = await PRCInstance.getDownloadURL()
+			console.log(url, '[URL]')
+			setLoading(false)
+			navigation.navigate('SelectLocationMap', {
+				title: 'Enter your location',
+				onNext: (nav) => {
+					nav.navigate('SelectSubscriptionPlan')
+				}
+			})
+		} catch(e) {
+			console.log(e.response, '[UPLOAD PHOTO ERROR]')
+		}
+
+	}
+  
+	const LoadingModal = () => {
+		return (
+			<Modal animationType="fade" visible={loading} transparent={true} onRequestClose={() => setLoading(false)}>
+				<ModalContainer>
+					<LoadingContainer>
+						<ActivityIndicator color="#17365D" size="large" />
+					</LoadingContainer>
+				</ModalContainer>
+			</Modal>
+		)
 	}
     
 	return(
 		<Container start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#FFF', '#FFF', '#E8E8E8']}>
+			<LoadingModal />
 			<SafeAreaView style={{ flex: 1 }}>
 				<BackContainer>
 					<Back navigation={navigation} />
 				</BackContainer>
 				<ContentContainer>
 					<NoteText>
-                        Please make sure that the details are clear and readable before submitting the photo.
+            Please make sure that the details are clear and readable before submitting the photo.
 					</NoteText>
-					<Image source={{uri: route.params.croppedImage ? route.params.croppedImage : samplePhoto }} />
+					<ImageContainer>
+						<Image source={{uri: route.params.croppedImage ? route.params.croppedImage : samplePhoto }} />
+					</ImageContainer>
 					<ButtonsContainer>
 						<Row>
 							<Button text="SUBMIT PHOTO" onPress={uploadPhoto}/>

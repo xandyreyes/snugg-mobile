@@ -62,7 +62,7 @@ export default ({ navigation }) => {
 			)
 		}
 	}
-
+  
 	return(
 		<Container start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#284972', '#17365D', '#0A264A']}>
 			{ loading && (<Loading />) }
@@ -83,7 +83,7 @@ export default ({ navigation }) => {
 								</HeaderContainer>
 								<HeaderContainer>
 									<Text>
-										Enter your registered email to reset your password
+                    Enter your registered email to reset your password
 									</Text>
 								</HeaderContainer>
 								<HeaderContainer style={{ width: '100%' }}>

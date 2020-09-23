@@ -6,7 +6,7 @@ import {
 	SafeAreaView,
 	TouchableOpacity
 } from 'react-native'
-import { loginAPI, signUpAPI } from 'src/api/auth'
+import { signUpAPI } from 'src/api/auth'
 import Button from 'src/components/Button'
 import Loading from 'src/components/Loading'
 import {
