@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Platform, Alert } from 'react-native'
+import { Alert, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
 import Loading from 'src/components/Loading'

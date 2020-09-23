@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage'
-import { types, flow, onSnapshot } from 'mobx-state-tree'
+import { flow, onSnapshot, types } from 'mobx-state-tree'
 
 import { User } from './models/User'
 

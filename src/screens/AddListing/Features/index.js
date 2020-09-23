@@ -1,5 +1,6 @@
 import React from 'react'
 import Checkbox from 'src/components/Checkbox'
+import { Features } from 'src/constants'
 import {
 	Column,
 	Container,
@@ -9,10 +10,10 @@ import {
 	Header
 } from '../styledComponents'
 
-export default () => {
+export default ({ selected, onSelect }) => {
 
-	const check = () => {
-		console.log('check')
+	const onToggleCheck = val => {
+		onSelect(val)
 	}
 
 	return (
@@ -20,17 +21,24 @@ export default () => {
 			<Header style={{ marginBottom: 9 }}>Features</Header>
 			<Row>
 				<Column>
-					<Checkbox label='Air conditioning' checked={true} onPress={check}/>
-					<Checkbox label='Concrete Flooring' checked={true} onPress={check}/>
-					<Checkbox label='Internet' checked={true} onPress={check}/>
-					<Checkbox label='Lorem Ipsum' checked={true} onPress={check}/>
-					<Checkbox label='Lorem Ipsum' checked={true} onPress={check}/>
+					{ Features.slice(0, parseInt(Features.length/2)).map((val, index) => (
+						<Checkbox 
+							key={`${val}-${index}`}
+							label={val}
+							checked={selected.includes(val)} 
+							onPress={() => onToggleCheck(val)}
+						/>
+					))}
 				</Column>
 				<Column>
-					<Checkbox label='Lorem Ipsum' checked={true} onPress={check}/>
-					<Checkbox label='Lorem Ipsum' checked={true} onPress={check}/>
-					<Checkbox label='Lorem Ipsum' checked={true} onPress={check}/>
-					<Checkbox label='Lorem Ipsum' checked={true} onPress={check}/>
+					{ Features.slice(parseInt(Features.length/2), Features.length).map((val, index) => (
+						<Checkbox 
+							key={`${val}-${index}`}
+							label={val}
+							checked={selected.includes(val)} 
+							onPress={() => onToggleCheck(val)}
+						/>
+					))}
 				</Column>
 			</Row>
 		</Container>

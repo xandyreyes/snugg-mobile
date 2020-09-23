@@ -12,3 +12,18 @@ export const SubscriptionType = {
 	agency: 4,
 	developer: 5
 }
+
+export const Features = [
+	'Air Conditioining',
+	'Concrete Flooring',
+	'Internet',
+	'Appliances',
+	'Fully Furnished',
+	'Outdoor Kitchen',
+	'Balcony',
+	'Garage',
+	'Pool',
+	'Bedding',
+	'Heating',
+	'Trees and Landscaping'
+]

@@ -19,9 +19,7 @@ import {
 } from './styledComponents'
 import TextBox from './TextBox'
 
-export default ({ navigation, route }) => {
-
-	const { title, onNext } = route.params
+export default ({ navigation }) => {
 
 	const [sessionToken, setSessionToken] = useState(null)
 	const [results, setResults] = useState([])
@@ -47,7 +45,7 @@ export default ({ navigation, route }) => {
 	}, [])
 
 	const onPressNext = () => {
-		onNext(navigation)
+		navigation.navigate('SelectSubscriptionPlan')
 	}
 
 	const createSessionToken = () => {
@@ -125,7 +123,7 @@ export default ({ navigation, route }) => {
 					<BackContainer>
 						<Back navigation={navigation}/>
 					</BackContainer>
-					<Header>{title}</Header>
+					<Header>Enter your location</Header>
 				</TopBar>
 				<TextBox value={textValue} onChangeText={setTextValue} region={region} onFocus={createSessionToken} sessionToken={sessionToken} setResults={setResults} />
 			</SafeAreaView>

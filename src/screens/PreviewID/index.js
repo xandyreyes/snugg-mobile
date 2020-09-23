@@ -20,7 +20,12 @@ export default ({ navigation, route }) => {
     
 	const uploadPhoto = () => {
 		// TODO: Upload photo to GCP Storage and pass image url
-		navigation.navigate('SelectLocationMap')
+		navigation.navigate('SelectLocationMap', {
+			title: 'Enter your location',
+			onNext: (nav) => {
+				nav.navigate('SelectSubscriptionPlan')
+			}
+		})
 	}
     
 	return(

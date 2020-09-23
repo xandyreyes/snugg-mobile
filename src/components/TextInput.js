@@ -5,11 +5,11 @@ import {
 	TextInputContainer
 } from './styledComponents'
 
-export default ({ label, onChangeText }) => {
+export default ({ label, onChangeText, value }) => {
 	return(
 		<TextInputContainer>
 			<Label>{label}</Label>
-			<TextInput onChangeText={onChangeText} />
+			<TextInput value={value} onChangeText={onChangeText} />
 		</TextInputContainer>
 	)
 }

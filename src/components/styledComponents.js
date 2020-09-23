@@ -116,6 +116,8 @@ export const TextInput = styled.TextInput`
     border-radius: 8px;
     margin-top: 5px;
     margin-bottom: 15px;
+    padding-horizontal: 8px;
+    font-family: Raleway-Regular;
 `
 
 export const ToggleContainer = styled.View`
