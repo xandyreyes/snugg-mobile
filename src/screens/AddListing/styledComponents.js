@@ -69,3 +69,17 @@ export const ButtonText = styled.Text`
     font-size: 12px;
     font-family: Raleway-Regular;
 `
+
+export const PhotoPreviewContainer = styled.View`
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+`
+
+export const PhotoPreview = styled.Image`
+    width: 100px;
+    height: 100px;
+    resize-mode: cover;
+    border-radius: 5px;
+    margin-right: 5px;
+`

@@ -47,6 +47,10 @@
 	<string>Snugg Neighborhood would like to access your location.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Snugg Neighborhood would like to access your media library.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
+	<key>UIDocumentPickerViewController</key>
+    <string>$(PRODUCT_NAME) would like to access your documents.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Raleway-Bold.ttf</string>

@@ -5,12 +5,13 @@ import {
 	Platform,
 	SafeAreaView
 } from 'react-native'
-import { createPRCRef, uploadPRCID } from 'src/api/imageUpload'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
 import {
 	Row
 } from 'src/components/styledComponents'
+import config from 'src/config'
+import uploadToFirebase from 'src/utils/uploadToFirebase'
 import { 
 	BackContainer,
 	ButtonsContainer,
@@ -30,15 +31,13 @@ export default ({ navigation, route }) => {
     
 	const uploadPhoto = async () => {
 		const uri = route.params.croppedImage
-		const filename = uri.substring(uri.lastIndexOf('/') + 1)
 		const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
-    
 		setLoading(true)
-
 		try {
-			const PRCInstance = createPRCRef(filename)
-			await uploadPRCID(PRCInstance, uploadUri)
-			const url = await PRCInstance.getDownloadURL()
+			const url = await uploadToFirebase({
+				uploadUri,
+				storageName: config.firebase_storage.prc_id,
+			})
 			console.log(url, '[URL]')
 			setLoading(false)
 			navigation.navigate('SelectLocationMap', {
@@ -50,7 +49,6 @@ export default ({ navigation, route }) => {
 		} catch(e) {
 			console.log(e.response, '[UPLOAD PHOTO ERROR]')
 		}
-
 	}
   
 	const LoadingModal = () => {

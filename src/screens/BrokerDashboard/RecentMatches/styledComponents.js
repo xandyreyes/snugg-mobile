@@ -34,6 +34,7 @@ export const Image = styled.Image`
     height: 45px;
     width: 45px;
     border-radius: 22.5px;
-    border: 1px solid #EC7050;
+    border-width: 1px;
+    border-color: #EC7050;
     margin-right: -15px;
 `

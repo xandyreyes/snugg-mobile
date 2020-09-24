@@ -1,12 +1,11 @@
 import storage from '@react-native-firebase/storage'
-import configuration from '../config'
 
-export const createPRCRef = () => {
+export const createRef = (storageName) => {
 	const randomName = `${randomString(9)}-${Date.now()}`
-	return storage().ref(`${configuration.firebase_storage.prc_id}/${randomName}`)
+	return storage().ref(`${storageName}/${randomName}`)
 }
 
-export const uploadPRCID = (instance, uploadUri) => {
+export const uploadToFirebase = (instance, uploadUri) => {
 	return instance.putFile(uploadUri)
 }
 

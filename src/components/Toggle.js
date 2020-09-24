@@ -13,7 +13,7 @@ const width = Dimensions.get('window').width
 export default ({ label, values, onChangeValue }) => {
     
 	const toggleAnimation = useRef(new Animated.Value(0)).current
-	const [selected, select] = useState(values[0])
+	const [selected, select] = useState(values[0].value)
 
 	const select1 = () => {
 		Animated.timing(
@@ -24,7 +24,7 @@ export default ({ label, values, onChangeValue }) => {
 				useNativeDriver: true
 			}
 		).start()
-		select(values[0])
+		select(values[0].value)
 		onChangeValue(selected)
 	}
 
@@ -37,7 +37,7 @@ export default ({ label, values, onChangeValue }) => {
 				useNativeDriver: true
 			}
 		).start()
-		select(values[1])
+		select(values[1].value)
 		onChangeValue(selected)
 	}
 
@@ -58,10 +58,10 @@ export default ({ label, values, onChangeValue }) => {
 					<SelectedContainer/>
 				</Animated.View>
 				<ButtonTouchable onPress={select1}>
-					<ToggleText selected={selected === values[0]}>{values[0]}</ToggleText>
+					<ToggleText selected={selected === values[0].value}>{values[0].label}</ToggleText>
 				</ButtonTouchable>
 				<ButtonTouchable onPress={select2}>
-					<ToggleText selected={selected === values[1]}>{values[1]}</ToggleText>
+					<ToggleText selected={selected === values[1].value}>{values[1].label}</ToggleText>
 				</ButtonTouchable>
 			</ToggleContainer>
 		</>

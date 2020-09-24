@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { remove } from 'lodash'
 import Checkbox from 'src/components/Checkbox'
 import { Features } from 'src/constants'
 import {
@@ -12,7 +13,15 @@ import {
 
 export default ({ selected, onSelect }) => {
 
+	const [features, setSelectedFeatures] = useState(selected)
+
 	const onToggleCheck = val => {
+		if (features.includes(val)) {
+			remove(features, item => item === val)
+		} else {
+			features.push(val)
+		}
+		setSelectedFeatures([...features])
 		onSelect(val)
 	}
 
@@ -25,7 +34,7 @@ export default ({ selected, onSelect }) => {
 						<Checkbox 
 							key={`${val}-${index}`}
 							label={val}
-							checked={selected.includes(val)} 
+							checked={features.includes(val)} 
 							onPress={() => onToggleCheck(val)}
 						/>
 					))}
@@ -35,7 +44,7 @@ export default ({ selected, onSelect }) => {
 						<Checkbox 
 							key={`${val}-${index}`}
 							label={val}
-							checked={selected.includes(val)} 
+							checked={features.includes(val)} 
 							onPress={() => onToggleCheck(val)}
 						/>
 					))}
