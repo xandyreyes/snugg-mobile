@@ -101,19 +101,19 @@ PODS:
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
   - OpenSSL-Universal/Static (1.0.2.19)
-  - Permission-Camera (2.2.0):
+  - Permission-Camera (2.2.1):
     - RNPermissions
-  - Permission-Contacts (2.2.0):
+  - Permission-Contacts (2.2.1):
     - RNPermissions
-  - Permission-LocationAlways (2.2.0):
+  - Permission-LocationAlways (2.2.1):
     - RNPermissions
-  - Permission-LocationWhenInUse (2.2.0):
+  - Permission-LocationWhenInUse (2.2.1):
     - RNPermissions
-  - Permission-MediaLibrary (2.2.0):
+  - Permission-MediaLibrary (2.2.1):
     - RNPermissions
-  - Permission-Motion (2.2.0):
+  - Permission-Motion (2.2.1):
     - RNPermissions
-  - Permission-Notifications (2.2.0):
+  - Permission-Notifications (2.2.1):
     - RNPermissions
   - PromisesObjC (1.2.10)
   - QBImagePickerController (3.4.0)
@@ -291,8 +291,8 @@ PODS:
     - React-Core
   - react-native-maps (0.27.1):
     - React
-  - react-native-safe-area-context (3.1.7):
-    - React
+  - react-native-safe-area-context (3.1.8):
+    - React-Core
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
   - React-RCTAnimation (0.63.2):
@@ -369,19 +369,19 @@ PODS:
     - Firebase/Storage (~> 6.30.0)
     - React
     - RNFBApp
-  - RNGestureHandler (1.7.0):
+  - RNGestureHandler (1.8.0):
     - React
-  - RNPermissions (2.2.0):
-    - React
-  - RNReanimated (1.13.0):
+  - RNPermissions (2.2.1):
+    - React-Core
+  - RNReanimated (1.13.1):
     - React
   - RNRectangleScanner (1.0.10):
     - React
-  - RNScreens (2.10.1):
+  - RNScreens (2.11.0):
     - React
   - RNSVG (12.1.0):
     - React
-  - RNVectorIcons (7.0.0):
+  - RNVectorIcons (7.1.0):
     - React
   - RSKImageCropper (2.3.0)
   - Yoga (1.14.0)
@@ -618,13 +618,13 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
-  Permission-Camera: 9ff12884205fb282b4a22b9e8c358ba53cee7567
-  Permission-Contacts: 2c9a8932f30582ed175551b7baa8d0344837c53b
-  Permission-LocationAlways: 8026796fd0fc8d735adbd84cd1ae28a4fb22ac22
-  Permission-LocationWhenInUse: eba08412fee84a8ac5140472d83aef2427a5befe
-  Permission-MediaLibrary: d8dcc62b06bce4053adcfe53bceef73eef9d483a
-  Permission-Motion: b8f1f0e7baf8fb136fc54aabf6a8669e95265d16
-  Permission-Notifications: 572d4e94121e57dbecc71a0933abd8ed61108e92
+  Permission-Camera: 357e8024a3597a5c0df529a8f87120f1f7e36895
+  Permission-Contacts: 842e5c90da4f14f6ddce430f059ae93337e34a9f
+  Permission-LocationAlways: f67f696820b2ee8a420a049242c96eaaa2cfc0da
+  Permission-LocationWhenInUse: 3d1bd1eeedcf397090e31ffcb4e6b6ff128087ca
+  Permission-MediaLibrary: 67006580556e4fd8d886486348fcf309922cff13
+  Permission-Motion: 584c71294bfc619f7ee6293f95e0904779cf0d6d
+  Permission-Notifications: 68ed977040885caa5c9ace4812ed448c70018e8d
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
@@ -641,7 +641,7 @@ SPEC CHECKSUMS:
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-image-picker: c6d75c4ab2cf46f9289f341242b219cb3c1180d3
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
-  react-native-safe-area-context: 955ecfce672683b495d9294d2f154a9ad1d9796b
+  react-native-safe-area-context: 79fea126c6830c85f65947c223a5e3058a666937
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13
@@ -657,13 +657,13 @@ SPEC CHECKSUMS:
   RNCustomizedImagePicker: e6cf3c057e3ac42d7d97962d4fe7299c3f415c6f
   RNFBApp: a74d8259d827c8bf55100e759cffa2e50ba6fe30
   RNFBStorage: 5a2b16803e784436fb1261806edee98a0397714b
-  RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
-  RNPermissions: 477d88d0be7ecb0a7b344e4d5fbb0352de104626
-  RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
+  RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
+  RNPermissions: 54f83272e3d1961fcbd6aff8fd826014c37fc578
+  RNReanimated: dd8c286ab5dd4ba36d3a7fef8bff7e08711b5476
   RNRectangleScanner: 0bb9b67ed46f3558c8f956968b6c637946c3e78a
-  RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
+  RNScreens: 0e91da98ab26d5d04c7b59a9b6bd694124caf88c
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
-  RNVectorIcons: da6fe858f5a65d7bbc3379540a889b0b12aa5976
+  RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
   RSKImageCropper: c337eacdcbed50e695e5153ff0c2b861b6ebfa84
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

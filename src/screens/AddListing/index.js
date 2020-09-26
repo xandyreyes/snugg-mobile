@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-// import { utils } from '@react-native-firebase/app'
 import { remove, size } from 'lodash'
 import { Alert, FlatList, Platform, TouchableOpacity } from 'react-native'
 import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
+import { postListingAPI } from 'src/api/listing'
 import Back from 'src/components/Back'
+import Loading from 'src/components/Loading'
 import { Label } from 'src/components/styledComponents'
 import TextInput from 'src/components/TextInput'
 import Toggle from 'src/components/Toggle'
-// import config from 'src/config'
-// import uploadToFirebase from 'src/utils/uploadToFirebase'
+import config from 'src/config'
+import uploadToFirebase from 'src/utils/uploadToFirebase'
 import Features from './Features'
 import images from './images'
 import {
@@ -59,47 +60,90 @@ export default ({ navigation }) => {
 		bedroom : null,
 		baths : null,
 		floor_area : null,
-		garage: null,
+		floor: null,
 		notes : '',
+		ats_file_url: null,
+		features: '',
+		images: [],
+		commission_rate: 1,
+		address: '',
+		lat: null,
+		lon: null
 	})
 	const [features, setFeatures] = useState([])
 	const [selectedImages, setImages] = useState([])
 	const [selectedAts, setAts] = useState(null)
+	const [loading, setLoading] = useState(false)
 	
 	const onPressNext = () => {
 		navigation.navigate('SelectLocationMap', {
+			data,
 			title: 'Property Location',
-			onNext: (nav) => {
-				nav.navigate('SelectSubscriptionPlan')
+			onNext: async (nav, location, dataProps) => {
+				const listing = await saveToDatabase(location, dataProps)
+				if (listing) {
+					nav.navigate('SelectSubscriptionPlan')
+				}
 			}
 		})
 	}
 
-	// const saveToDatabase = async () => {
-	// 	const uploadAtsUri = Platform.OS === 'ios' ? selectedAts.uri.replace('file://', '') : selectedAts.uri
-	// 	console.log({ selectedAts })
-	// 	const atsUri = await uploadToFirebase({
-	// 		storageName: config.firebase_storage.listing_ats,
-	// 		uploadUri: uploadAtsUri
-	// 	})
-	// 	// const imagesUri = await Promise.all(selectedImages.map( async (item) => {
-	// 	// 	const uri = await uploadToFirebase({
-	// 	// 		uploadUri: item.path,
-	// 	// 		storageName: config.firebase_storage.listing_ats
-	// 	// 	})
-	// 	// 	return uri
-	// 	// }))
-	// 	console.log({ atsUri })
-	// }
+	const saveToDatabase = async (location, dataProps) => {
+		try {
+			dataProps.address = location.address
+			dataProps.lat = location.latitude
+			dataProps.lon = location.longitude
+			const listing = await postListingAPI(dataProps)
+			return listing
+		} catch (err) {
+			console.log(err.response, '[POST LISTING ERROR]')
+			Alert.alert(
+				'Sorry! Something went wrong',
+				'We cannot process your request right now. Please try again later.',
+				[
+					{
+						text: 'OK'
+					}
+				]
+			)
+		}
+	}
+
+	const uploadFiles = async () => {
+		setLoading(true)
+		try {
+			const uploadAtsUri = Platform.OS === 'ios' ? selectedAts.uri.replace('file://', '') : selectedAts.uri
+			const atsUri = await uploadToFirebase({
+				storageName: config.firebase_storage.listing_ats,
+				uploadUri: uploadAtsUri
+			})
+			const imagesUri = await Promise.all(selectedImages.map( async (item) => {
+				const url = await uploadToFirebase({
+					uploadUri: Platform.OS === 'ios' ? item.path : item.fileCopyUri,
+					storageName: config.firebase_storage.listing_ats
+				})
+				return {url}
+			}))
+			data.ats_file_url = atsUri
+			data.images = imagesUri
+			data.features = features.toString()
+			setData({ ...data })
+			setLoading(false)
+			onPressNext()
+		} catch (err) {
+			setLoading(false)
+			console.log(err, '[UPLOAD ERROR]')
+		}
+	}
 
 	const validate = () => {
-		if (!data.price || !data.bedroom || data.name === '' || !data.floor_area || !data.baths) {
+		if (!data.price || !data.bedroom || data.name === '' || !data.floor_area || !data.baths || !data.floor) {
 			Alert.alert(
-				'All fields are required!',
+				'Some fields are required!',
 				'Please input data for each field to continue.',
-				{
+				[{
 					text: 'OK'
-				}
+				}]
 			)
 			return
 		}
@@ -107,9 +151,9 @@ export default ({ navigation }) => {
 			Alert.alert(
 				'ATS not found',
 				'Please select a .PDF file for the ATS.',
-				{
+				[{
 					text: 'OK'
-				}
+				}]
 			)
 			return
 		}
@@ -117,13 +161,13 @@ export default ({ navigation }) => {
 			Alert.alert(
 				'Requires more photos',
 				'Please select at least 3 photos to continue.',
-				{
+				[{
 					text: 'OK'
-				}
+				}]
 			)
 			return
 		}
-		onPressNext()
+		uploadFiles()
 	}
 
 	const onChangeText = (text, field, type) => {
@@ -145,13 +189,19 @@ export default ({ navigation }) => {
 		setFeatures(features)
 	}
 
-	const selectImage = () => {
-		ImagePicker.openPicker({
-			multiple: true,
-			maxSize: 3
-		}).then(images => {
+	const selectImage = async () => {
+		if (Platform.OS === 'ios') {
+			const images = await ImagePicker.openPicker({
+				multiple: true,
+				maxSize: 3
+			})
 			setImages(images)
-		})
+		} else {
+			const images = await DocumentPicker.pickMultiple({
+				type: [DocumentPicker.types.images],
+			})
+			setImages(images)
+		}
 	}
 
 	const selectDocument = async () => {
@@ -176,6 +226,9 @@ export default ({ navigation }) => {
 
 	return(
 		<Container>
+			{ loading && (
+				<Loading />
+			) }
 			<SafeAreaView>
 				<TopBar>
 					<TouchableOpacity>
@@ -201,7 +254,7 @@ export default ({ navigation }) => {
 								showsHorizontalScrollIndicator={false}
 								data={selectedImages}
 								keyExtractor={(item, index) => `${item.fileName}-${index}`}
-								renderItem={({ item, index }) => <PhotoPreview key={`${item.fileName}-${index}`} source={{ uri: item.path }} />}
+								renderItem={({ item, index }) => <PhotoPreview key={`${Platform.OS === 'ios' ? item.fileName : item.name}-${index}`} source={{ uri: Platform.OS === 'ios' ? item.path : item.fileCopyUri }} />}
 							/>
 							<TouchableOpacity onPress={selectImage} style={{ alignSelf: 'flex-end', marginTop: 5 }}>
 								<Label>Change Photos</Label>
@@ -233,14 +286,14 @@ export default ({ navigation }) => {
 						onChangeText={text => onChangeText(text, 'baths', 'number')}
 					/>
 					<TextInput
-						label="Garage"
-						value={data.garage ? data.garage.toString() : ''} 
-						onChangeText={text => onChangeText(text, 'garage', 'number')}
+						label="Floor"
+						value={data.floor ? data.floor.toString() : ''} 
+						onChangeText={text => onChangeText(text, 'floor', 'number')}
 					/>
 					<TextInput 
 						label="Description (Optional)"
 						value={data.notes} 
-						onChangeText={text => onChangeText(text, 'notes', 'number')}
+						onChangeText={text => onChangeText(text, 'notes', 'text')}
 					/>
 					<Features
 						selected={features}

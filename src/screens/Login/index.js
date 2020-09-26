@@ -22,6 +22,7 @@ export default ({ navigation }) => {
 	const initialData = {
 		email: '',
 		password: '',
+		remember_me: true
 	}
 
 	const [data, setData] = useState(initialData)

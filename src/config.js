@@ -4,6 +4,6 @@ export default {
 	firebase_storage: {
 		prc_id: '/users/PRC-ID',
 		listing_photos: '/listings/uploads',
-		listing_ats: '/listing/ats'
+		listing_ats: '/listings/ats'
 	}
 }

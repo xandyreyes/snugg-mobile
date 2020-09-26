@@ -21,7 +21,7 @@ import TextBox from './TextBox'
 
 export default ({ navigation, route }) => {
 
-	const { title, onNext } = route.params
+	const { title, onNext, data } = route.params
 
 	const [sessionToken, setSessionToken] = useState(null)
 	const [results, setResults] = useState([])
@@ -47,7 +47,12 @@ export default ({ navigation, route }) => {
 	}, [])
 
 	const onPressNext = () => {
-		onNext(navigation)
+		const location = {
+			address: textValue,
+			latitude: region.latitude,
+			longitude: region.longitude
+		}
+		onNext(navigation, location, data)
 	}
 
 	const createSessionToken = () => {
