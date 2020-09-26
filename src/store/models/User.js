@@ -7,6 +7,7 @@ export const User = types
 		expires_at: types.maybeNull(types.string),
 		data: types.maybeNull(
 			types.model({
+				id: types.maybeNull(types.number),
 				firstname: types.maybeNull(types.string),
 				middlename: types.maybeNull(types.string),
 				lastname: types.maybeNull(types.string),
@@ -16,7 +17,22 @@ export const User = types
 				address: types.maybeNull(types.string),
 				lat: types.maybeNull(types.string),
 				lon: types.maybeNull(types.string),
-				device_id: types.maybeNull(types.number)
+				device_id: types.maybeNull(types.number),
+				broker_details: types.maybeNull(
+					types.model({
+						id_status: types.maybeNull(types.string),
+						expiration_date: types.maybeNull(types.string),
+						prc_id: types.maybeNull(types.string),
+						subscription: types.maybeNull(
+							types.model({
+								id: types.maybeNull(types.number),
+								name: types.maybeNull(types.string),
+								no_of_listing: types.maybeNull(types.number),
+								photos_per_listing: types.maybeNull(types.number)
+							})
+						)
+					})
+				)
 			})
 		)
 	})

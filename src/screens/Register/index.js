@@ -122,19 +122,12 @@ export default ({ navigation }) => {
   
 	const checkUserType = async () => {
 		try {
-			// const data = {
-			// 	email: info.email,
-			// 	password: info.password
-			// }
-			// const loginRes = await loginAPI(data)
-			// if (loginRes.accessToken) {
-			// 	Store.User.setUser(loginRes)
-			// }
-			navigation.navigate(
-				info.user_type === UserType.buyer
+			navigation.reset({
+				index: 0,
+				routes: [{ name: info.user_type === UserType.buyer
 					? 'EnableLocation'
-					: 'Capture'
-			)
+					: 'Capture' }]
+			})
 		} catch (err) {
 			console.log(err, '[LOGIN AFTER SIGN UP ERROR]')
 			Alert.alert(

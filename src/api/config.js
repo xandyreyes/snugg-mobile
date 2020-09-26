@@ -11,7 +11,7 @@ backendAPI.interceptors.request.use(
 	config => {
 		const token = get(Store, 'User.access_token', '')
 		if (Store.User.access_token && token.length > 0) {
-			config.headers.Authorization = `Basic ${Store.User.access_token}`
+			config.headers.Authorization = `Bearer ${Store.User.access_token}`
 			config.headers['Content-Type'] = 'application/json'
 		}
 		return config

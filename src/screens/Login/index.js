@@ -42,11 +42,15 @@ export default ({ navigation }) => {
 			setLoading(false)
 			if (res.access_token) {
 				Store.User.setUser(res)
-				navigation.navigate('EnableLocation')
+				navigation.reset({
+					index: 0,
+					routes: [{ name: 'EnableLocation' }]
+				})
 			}
 		} catch (error) {
 			setLoading(false)
 			if (!error.response) {
+				console.log({ error })
 				Alert.alert(
 					'Network Error',
 					'Something went wrong.'

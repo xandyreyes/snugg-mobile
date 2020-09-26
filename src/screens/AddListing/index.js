@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { remove, size } from 'lodash'
+import { get, remove, size } from 'lodash'
 import { Alert, FlatList, Platform, TouchableOpacity } from 'react-native'
 import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
@@ -10,6 +10,7 @@ import { Label } from 'src/components/styledComponents'
 import TextInput from 'src/components/TextInput'
 import Toggle from 'src/components/Toggle'
 import config from 'src/config'
+import { Store } from 'src/store'
 import uploadToFirebase from 'src/utils/uploadToFirebase'
 import Features from './Features'
 import images from './images'
@@ -61,7 +62,7 @@ export default ({ navigation }) => {
 		baths : null,
 		floor_area : null,
 		floor: null,
-		notes : '',
+		notes : null,
 		ats_file_url: null,
 		features: '',
 		images: [],
@@ -82,7 +83,10 @@ export default ({ navigation }) => {
 			onNext: async (nav, location, dataProps) => {
 				const listing = await saveToDatabase(location, dataProps)
 				if (listing) {
-					nav.navigate('SelectSubscriptionPlan')
+					nav.reset({
+						index: 0,
+						routes: [{ name: 'BrokerDashboard' }]
+					})
 				}
 			}
 		})
@@ -118,9 +122,10 @@ export default ({ navigation }) => {
 				uploadUri: uploadAtsUri
 			})
 			const imagesUri = await Promise.all(selectedImages.map( async (item) => {
+				console.log({ item })
 				const url = await uploadToFirebase({
-					uploadUri: Platform.OS === 'ios' ? item.path : item.fileCopyUri,
-					storageName: config.firebase_storage.listing_ats
+					uploadUri: Platform.OS === 'ios' ? item.path : item.uri,
+					storageName: config.firebase_storage.listing_photos
 				})
 				return {url}
 			}))
@@ -137,7 +142,7 @@ export default ({ navigation }) => {
 	}
 
 	const validate = () => {
-		if (!data.price || !data.bedroom || data.name === '' || !data.floor_area || !data.baths || !data.floor) {
+		if (!data.price || !data.bedroom || data.name === '' || !data.floor_area || !data.baths || !data.floor || !data.notes) {
 			Alert.alert(
 				'Some fields are required!',
 				'Please input data for each field to continue.',
@@ -190,17 +195,31 @@ export default ({ navigation }) => {
 	}
 
 	const selectImage = async () => {
+		const { User } = Store
+		const maxSize = get(User, 'data.broker_details.subscription.photos_per_listing', 3)
 		if (Platform.OS === 'ios') {
 			const images = await ImagePicker.openPicker({
+				maxSize,
 				multiple: true,
-				maxSize: 3
 			})
 			setImages(images)
 		} else {
 			const images = await DocumentPicker.pickMultiple({
 				type: [DocumentPicker.types.images],
 			})
-			setImages(images)
+			if (size(images) > maxSize) {
+				Alert.alert(
+					`You can only select up to ${maxSize} images`,
+					`Your current subscription could only upload up to ${maxSize} images per listing. You could upgrade your listing to upload more photos.`,
+					[
+						{
+							text: 'OK'
+						}
+					]
+				)
+			} else {
+				setImages(images)
+			}
 		}
 	}
 
@@ -291,7 +310,7 @@ export default ({ navigation }) => {
 						onChangeText={text => onChangeText(text, 'floor', 'number')}
 					/>
 					<TextInput 
-						label="Description (Optional)"
+						label="Description"
 						value={data.notes} 
 						onChangeText={text => onChangeText(text, 'notes', 'text')}
 					/>

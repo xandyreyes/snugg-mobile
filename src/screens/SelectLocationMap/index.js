@@ -5,6 +5,7 @@ import { Alert } from 'react-native'
 import MapView from 'react-native-maps'
 import { getNearby, getPlaceDetail } from 'src/api/googlePlacesAPI'
 import Back from 'src/components/Back'
+import Loading from 'src/components/Loading'
 import randomString from 'src/utils/randomString'
 import AutocompleteResults from './AutocompleteResults'
 import ButtonContainer from './ButtonContainer'
@@ -27,6 +28,7 @@ export default ({ navigation, route }) => {
 	const [results, setResults] = useState([])
 	const [textValue, setTextValue] = useState('')
 	const [selectedSearch, setSelectedSearch] = useState(false)
+	const [loading, setLoading] = useState(false)
 
 	const [region, setRegion] = useState({
 		latitude: 37.78825,
@@ -47,12 +49,17 @@ export default ({ navigation, route }) => {
 	}, [])
 
 	const onPressNext = () => {
-		const location = {
-			address: textValue,
-			latitude: region.latitude,
-			longitude: region.longitude
+		setLoading(true)
+		try {
+			const location = {
+				address: textValue,
+				latitude: region.latitude,
+				longitude: region.longitude
+			}
+			onNext(navigation, location, data)
+		} catch (err) {
+			setLoading(false)
 		}
-		onNext(navigation, location, data)
 	}
 
 	const createSessionToken = () => {
@@ -138,6 +145,7 @@ export default ({ navigation, route }) => {
 				<AutocompleteResults items={results} onPress={onPress} />
 			) }
 			<ButtonContainer onPress={onPressNext} />
+			{ loading && (<Loading />) }
 		</Container>
 	)
 }
