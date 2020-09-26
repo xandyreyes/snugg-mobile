@@ -34,23 +34,23 @@ const BrokerProfile = ({ navigation }) => {
 					<UserAddressWrapper>
 						<UserAddressIcon source={images.pin_location} />
 						<UserAddressLabel>
-              Greenhills, San Juan City
+							Greenhills, San Juan City
 						</UserAddressLabel>
 					</UserAddressWrapper>
 					<UserSubscriptionWrapper>
 						<UserSubscriptionLabel>
-              Free Trial
+							Free Trial
 						</UserSubscriptionLabel>
 					</UserSubscriptionWrapper>
 				</UserInfoContainer>
 				<ButtonContainer>
 					<UserButton onPress={() => navigation.navigate('BrokerAccountSettings')}>
-            User Account Settings
+						User Account Settings
 					</UserButton>
 					<UserButton>Change Password</UserButton>
 					<UserButton>Subscription</UserButton>
 					<UserButton onPress={() => navigation.navigate('BrokerProperties')}>
-            My Properties
+						My Properties
 					</UserButton>
 				</ButtonContainer>
 				<ButtonContainer>

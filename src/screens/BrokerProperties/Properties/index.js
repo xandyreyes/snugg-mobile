@@ -12,6 +12,7 @@ import {
 	CardHeader,
 	CardHeaderLabel,
 	CardImage,
+	CardImageContainer,
 	CardInfo,
 	CardInfoIcon,
 	CardInfoLabel,
@@ -20,10 +21,9 @@ import {
 	LikesWrapper,
 	OptionButton,
 	OptionIcon,
-	Verified,
-  PriceWrapper,
-  PriceLabel,
-  CardImageContainer
+	PriceLabel,
+	PriceWrapper,
+	Verified
 } from './styledComponents'
 
 const data = [
@@ -70,21 +70,18 @@ const data = [
 	}
 ]
 
-const formatMoney = (amount, decimalCount = 2, decimal = ".", thousands = ",") => {
-  try {
-    decimalCount = Math.abs(decimalCount);
-    decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
-
-    const negativeSign = amount < 0 ? "-" : "";
-
-    let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
-    let j = (i.length > 3) ? i.length % 3 : 0;
-
-    return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
-  } catch (e) {
-    console.log(e)
-  }
-};
+const formatMoney = (amount, decimalCount = 2, decimal = '.', thousands = ',') => {
+	try {
+		decimalCount = Math.abs(decimalCount)
+		decimalCount = isNaN(decimalCount) ? 2 : decimalCount
+		const negativeSign = amount < 0 ? '-' : ''
+		let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString()
+		let j = (i.length > 3) ? i.length % 3 : 0
+		return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : '')
+	} catch (e) {
+		console.log(e)
+	}
+}
 
 const Properties = () => {
 	return data.map((d, index) => 
@@ -94,20 +91,16 @@ const Properties = () => {
 					<HeartIcon />
 					<LikeLabel>{d.likes} Likes</LikeLabel>
 				</LikesWrapper>
-
 				<OptionButton onPress={() => Alert.alert('Options', 'Feature coming soon')}>
 					<OptionIcon />
 				</OptionButton>
 			</CardAbsoluteHeader>
-
-      <CardImageContainer>
-        <PriceWrapper>
-          <PriceLabel>P{formatMoney(d.price, 0)}</PriceLabel>
-        </PriceWrapper>
-
-  			<CardImage source={d.image_url} />
-      </CardImageContainer>
-
+			<CardImageContainer>
+				<PriceWrapper>
+					<PriceLabel>P{formatMoney(d.price, 0)}</PriceLabel>
+				</PriceWrapper>
+				<CardImage source={d.image_url} />
+			</CardImageContainer>
 			<CardContent>
 				<CardHeader>
 					<CardHeaderLabel>{d.name}</CardHeaderLabel>
@@ -115,12 +108,10 @@ const Properties = () => {
 						<Verified />
 					)}
 				</CardHeader>
-        
 				<AddressWrapper>
 					<AddressIcon source={images.pin_location} />
 					<AddressLabel>{d.location}</AddressLabel>
 				</AddressWrapper>
-
 				<AdditionalInfo>
 					{d.info.map((i, idx) =>
 						<CardInfo key={idx}>

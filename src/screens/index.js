@@ -34,7 +34,7 @@ export default () => {
 
 	return(
 		<Provider store={Store}>
-			<Stack.Navigator initialRouteName={'Login'}>
+			<Stack.Navigator initialRouteName={'BrokerProfile'}>
 				<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 				<Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
 				<Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />

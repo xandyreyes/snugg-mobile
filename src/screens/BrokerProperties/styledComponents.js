@@ -11,18 +11,18 @@ export const ContentContainer = styled.ScrollView`
 `
 
 export const Row = styled.View`
-  padding: 0px 25px;
+  padding: 0px 19px;
 `
 
 export const UserInfoContainer = styled.View`
   align-items: center;
   flex-direction: row;
-  padding: 0px 25px;
+  padding: 0px 19px;
 `
 
 export const UserImage = styled.View`
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   background: #c6c6c6;
   border-radius: 8px;
   elevation: 3;
@@ -43,7 +43,7 @@ export const MessageIconReplacement = styled.TouchableOpacity`
   width: 30px;
   height: 30px;
   border-radius: 20px;
-  margin: 7px 0px;
+  margin: 5px 0px;
 `
 
 export const CallIconReplacement = styled.TouchableOpacity`
@@ -51,7 +51,7 @@ export const CallIconReplacement = styled.TouchableOpacity`
   width: 30px;
   height: 30px;
   border-radius: 20px;
-  margin: 7px 0px;
+  margin: 5px 0px;
 `
 
 export const UserAddressWrapper = styled.View`
@@ -61,10 +61,11 @@ export const UserAddressWrapper = styled.View`
 `
 
 export const UserAddressIcon = styled.Image`
-  width: 17px;
-  height: 12px;
+  width: 6.5px;
+  height: 9.64px;
   resize-mode: contain;
-  margin-right: 2px;
+  margin-right: 5.5px;
+  tint-color: #767676;
 `
 
 export const UserAddressLabel = styled.Text`
@@ -75,7 +76,7 @@ export const UserAddressLabel = styled.Text`
 `
 
 export const UserBrokerStatus = styled.View`
-  padding: 5px 15px;
+  padding: 4px 12px;
   background: #E5E5E5;
   border-radius: 5px;
   align-self: flex-start;
@@ -94,33 +95,33 @@ export const ToggleContainer = styled.View`
     background: rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     flex-direction: row;
-    margin: 24px 0;
+    margin: 23px 0;
 `
 
 export const SelectedContainer = styled.View`
     border-radius: 8px;
     background: #17365D;
-    padding: 13px 0;
+    padding: 12px 0;
     text-align: center;
     justify-content: center;
     width: 50%;
-    height: 45px;
+    height: 38px;
     z-index: 1;
     position: absolute;
 `
 
 export const ButtonTouchable = styled.TouchableOpacity`
-    padding: 13px 0;
+    padding: 12px 0;
     text-align: center;
     justify-content: center;
     width: 50%;
-    height: 45px;
+    height: 38px;
     z-index: 2;
 `
 
 export const ToggleText = styled.Text`
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 12px;
     color: ${p => p.selected ? 'white' : '#17365D'};
     text-align: center;
 `

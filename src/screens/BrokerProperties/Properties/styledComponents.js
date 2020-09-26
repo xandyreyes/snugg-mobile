@@ -7,10 +7,10 @@ export const CardContainer = styled.View`
   border-radius: 20px;
   overflow: hidden;
   flex: 1;
-  elevation: 3;
-  margin: ${props => props.first ? '0' : '25'}px 25px 0px;
+  margin: ${props => props.first ? '0' : '21'}px 19px 0px;
   background: #FFFFFF;
   position: relative; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 `
 
 export const CardAbsoluteHeader = styled.View`
@@ -50,31 +50,31 @@ export const OptionButton = styled.TouchableOpacity``
 
 export const OptionIcon = styled.View`
   background: #17365D;
-  width: 8px;
-  height: 22px;
+  width: 5px;
+  height: 19px;
 `
 
 export const PriceWrapper = styled.View`
   background: #17365D;
   border-top-left-radius: 10px;
-  padding: 10px 15px;
+  padding: 8px 15px;
   position: absolute;
   right: 0px;
   bottom: 0px;
   z-index: 1;
-`;
+`
 
 export const PriceLabel = styled.Text`
   font-family: Raleway-Bold;
   font-size: 16px;
   line-height: 19px;
   color: #FFFFFF;
-`;
+`
 
 export const CardImageContainer = styled.View`
   width: 100%;
   height: ${1.8*((width-50)/3)}px;
-`;
+`
 
 export const CardImage = styled.Image`
   width: 100%;
@@ -83,13 +83,12 @@ export const CardImage = styled.Image`
 `
 
 export const CardContent = styled.View`
-  padding: 15px;
+  padding: 9.23px 15px;
 `
 
 export const CardHeader = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-left: 5px;
 `
 
 export const CardHeaderLabel = styled.Text`
@@ -104,7 +103,7 @@ export const Verified = styled.View`
   height: 12px;
   border-radius: 12px;
   background: #EC7050;
-  margin-left: 10px;
+  margin-left: 6px;
 `
 
 export const AddressWrapper = styled.View`
@@ -115,10 +114,10 @@ export const AddressWrapper = styled.View`
 `
 
 export const AddressIcon = styled.Image`
-  width: 17px;
-  height: 12px;
+  width: 6.5px;
+  height: 9.64px;
   resize-mode: contain;
-  margin-right: 2px;
+  margin-right: 5.5px;
 `
 
 export const AddressLabel = styled.Text`
@@ -135,12 +134,13 @@ export const AdditionalInfo = styled.View`
 `
 
 export const CardInfo = styled.View`
-  padding: 5px 7px;
+  padding: 3px 7px;
   background: #EC7050;
   border-radius: 15px;
   flex-direction: row;
   align-items: center;
-  margin: 3px 5px;
+  margin-right: 5px;
+  margin-bottom: 7px;
 `
 
 export const CardInfoIcon = styled.View`

@@ -43,11 +43,10 @@ const BrokerProperties = () => {
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
 				<UserInfoContainer>
 					<UserImage />
-
 					<UserInfoRow>
 						<UserBrokerStatus>
 							<UserBrokerStatusLabel>
-                Licensed Broker
+								Licensed Broker
 							</UserBrokerStatusLabel>
 						</UserBrokerStatus>
 						<Rate rate={3} />
@@ -56,17 +55,14 @@ const BrokerProperties = () => {
 							<UserAddressLabel>Greenhills, San Juan City</UserAddressLabel>
 						</UserAddressWrapper>
 					</UserInfoRow>
-
 					<UserInfoButtonsContainer>
 						<MessageIconReplacement onPress={messageButtonOnPress} />
 						<CallIconReplacement onPress={callButtonOnPress} />
 					</UserInfoButtonsContainer>
 				</UserInfoContainer>
-
 				<Row>
 					<Toggle onChangeToggle={onChangeToggle} defaultAs={activePage} />
 				</Row>
-
 				<ScreenToggle page={activePage} />
 			</ContentContainer>
 		</Container>
