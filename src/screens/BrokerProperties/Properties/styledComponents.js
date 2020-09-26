@@ -54,9 +54,31 @@ export const OptionIcon = styled.View`
   height: 22px;
 `
 
-export const CardImage = styled.Image`
+export const PriceWrapper = styled.View`
+  background: #17365D;
+  border-top-left-radius: 10px;
+  padding: 10px 15px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+`;
+
+export const PriceLabel = styled.Text`
+  font-family: Raleway-Bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+`;
+
+export const CardImageContainer = styled.View`
   width: 100%;
   height: ${1.8*((width-50)/3)}px;
+`;
+
+export const CardImage = styled.Image`
+  width: 100%;
+  height: 100%;
   resize-mode: cover;
 `
 

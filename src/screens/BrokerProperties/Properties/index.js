@@ -20,7 +20,10 @@ import {
 	LikesWrapper,
 	OptionButton,
 	OptionIcon,
-	Verified
+	Verified,
+  PriceWrapper,
+  PriceLabel,
+  CardImageContainer
 } from './styledComponents'
 
 const data = [
@@ -67,6 +70,22 @@ const data = [
 	}
 ]
 
+const formatMoney = (amount, decimalCount = 2, decimal = ".", thousands = ",") => {
+  try {
+    decimalCount = Math.abs(decimalCount);
+    decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+
+    const negativeSign = amount < 0 ? "-" : "";
+
+    let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+    let j = (i.length > 3) ? i.length % 3 : 0;
+
+    return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+  } catch (e) {
+    console.log(e)
+  }
+};
+
 const Properties = () => {
 	return data.map((d, index) => 
 		<CardContainer key={index} first={index === 0}>
@@ -81,7 +100,13 @@ const Properties = () => {
 				</OptionButton>
 			</CardAbsoluteHeader>
 
-			<CardImage source={d.image_url} />
+      <CardImageContainer>
+        <PriceWrapper>
+          <PriceLabel>P{formatMoney(d.price, 0)}</PriceLabel>
+        </PriceWrapper>
+
+  			<CardImage source={d.image_url} />
+      </CardImageContainer>
 
 			<CardContent>
 				<CardHeader>
