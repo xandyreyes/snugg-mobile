@@ -86,8 +86,8 @@ export default ({ navigation }) => {
 						<TouchableOpacity style={{ marginVertical: 22 }} onPress={() => navigation.navigate('ForgotPassword')}>
 							<Text>Forgot Password?</Text>
 						</TouchableOpacity>
-						<TouchableOpacity onPress={() => navigation.navigate('CameraCapture')}>
-							<Text>Camera</Text>
+						<TouchableOpacity onPress={() => navigation.navigate('BrokerProfile')}>
+							<Text>Broker Profile</Text>
 						</TouchableOpacity>
 					</Center>
 					<Center>
