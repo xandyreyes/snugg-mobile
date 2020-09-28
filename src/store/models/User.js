@@ -5,6 +5,7 @@ export const User = types
 	.model('User', {
 		access_token: types.maybeNull(types.string),
 		expires_at: types.maybeNull(types.string),
+		loading: true,
 		data: types.maybeNull(
 			types.model({
 				id: types.maybeNull(types.number),
@@ -52,7 +53,11 @@ export const User = types
 		hydrate: flow(function*() {
 			const data = yield AsyncStorage.getItem('User')
 			if (data) {
-				applySnapshot(self, JSON.parse(data))
+				const userInfo = {
+					...JSON.parse(data),
+					loading: false
+				}
+				applySnapshot(self, userInfo)
 			}
 		}),
 	}))
