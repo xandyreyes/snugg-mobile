@@ -16,6 +16,9 @@ import ResetPassword from './ResetPassword'
 import SelectLocationMap from './SelectLocationMap'
 import SelectSubscriptionPlan from './SelectSubscriptionPlan'
 import Welcome from './Welcome'
+import BrokerProfile from './BrokerProfile'
+import BrokerAccountSettings from './BrokerAccountSettings'
+import BrokerProperties from './BrokerProperties'
 
 const Stack = createStackNavigator()
 // const Tab = createMaterialTopTabNavigator()
@@ -46,6 +49,9 @@ export default () => {
 				<Stack.Screen name="SelectSubscriptionPlan" component={SelectSubscriptionPlan} options={{ headerShown: false }} />
 				<Stack.Screen name="BrokerDashboard" component={BrokerDashboard} options={{ headerShown: false }} />
 				<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
+				<Stack.Screen name="BrokerProfile" component={BrokerProfile} options={{ headerShown: false }} />
+				<Stack.Screen name="BrokerAccountSettings" component={BrokerAccountSettings} options={{ headerShown: false }} />
+				<Stack.Screen name="BrokerProperties" component={BrokerProperties} options={{ headerShown: false }} />
 			</Stack.Navigator>
 		</Provider>
 	)
