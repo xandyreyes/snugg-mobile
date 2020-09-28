@@ -40,7 +40,6 @@ const ScreenToggle = ({ page }) => {
 			<ScreenToggleContainer>
 				<Properties page={page} />
 			</ScreenToggleContainer>
-
 			<ScreenToggleContainer>
 				<Reviews page={page} />
 			</ScreenToggleContainer>

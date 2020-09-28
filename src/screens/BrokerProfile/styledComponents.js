@@ -12,16 +12,15 @@ export const ContentContainer = styled.ScrollView`
 
 export const UserInfoContainer = styled.View`
   align-items: center;
-  padding-bottom: 20px;
+  padding-bottom: 38px;
 `
 
 export const UserImage = styled.View`
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   background: #c6c6c6;
   border-radius: 8px;
   elevation: 3;
-  margin: 5px 0px;
 `
 
 export const UserNameLabel = styled.Text`
@@ -29,20 +28,21 @@ export const UserNameLabel = styled.Text`
   font-size: 20px;
   color: #17365D;
   text-align: center;
-  margin: 5px 0px 0px;
+  margin: 12px 0px 0px;
 `
 
 export const UserAddressWrapper = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 `
 
 export const UserAddressIcon = styled.Image`
-  width: 17px;
-  height: 12px;
+  width: 6.5px;
+  height: 9.64px;
   resize-mode: contain;
-  margin-right: 2px;
+  margin-right: 5.5px;
+  tint-color: #767676;
 `
 
 export const UserAddressLabel = styled.Text`
@@ -55,7 +55,7 @@ export const UserAddressLabel = styled.Text`
 export const UserSubscriptionWrapper = styled.View`
   background: #17365D;
   border-radius: 5px;
-  padding: 7px 25px;
+  padding: 6px 25px;
   align-items: center;
 `
 
@@ -67,20 +67,20 @@ export const UserSubscriptionLabel = styled.Text`
 `
 
 export const ButtonContainer = styled.View`
-  padding: 20px 0px;
+  margin-bottom: 44px;
 `
 
 export const Button = styled.TouchableOpacity`
-  padding: 13px 20px;
+  padding: 12px 18px;
   background-color: #ffffff;
   border: 1px solid #70707026;
   border-radius: 5px;
-  margin: 7px 0px;
+  margin-bottom: 12px;
 `
 
 export const ButtonLabel = styled.Text`
   font-family: Raleway-Regular;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 16px;
   color: #2E3743;
   text-align: left;

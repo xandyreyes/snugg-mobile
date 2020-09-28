@@ -7,13 +7,13 @@ export const Container = styled.View`
 export const Card = styled.View`
   border: 1px solid #7070702E;
   background: #FFFFFF;
-  padding: 15px 20px;
+  padding: 13px 16px;
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 11px;
 `
 
 export const ReviewContainer = styled.View`
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 `
 
 export const LeaveReviewLabel = styled.Text`
@@ -24,25 +24,25 @@ export const LeaveReviewLabel = styled.Text`
 `
 
 export const RatingContainer = styled.View`
-  margin: 10px 0px 5px;
+  margin-top: 4.38px;
   flex-direction: row;
 `
 
 export const RatingButton = styled.TouchableOpacity`
-  margin-left: ${props => props.first ? '0' : '5'}px;
-  margin-right: ${props => props.last ? '0' : '5'}px;
+  margin-right: ${props => props.last ? '0' : '4'}px;
 `
 
-export const RatingIcon = styled.View`
+export const RatingIcon = styled.Image`
   width: 15px;
   height: 15px;
-  border: 1px solid #767676;
+  resize-mode: contain;
 `
 
-export const RatingIconSolid = styled.View`
+export const RatingIconSolid = styled.Image`
   width: 15px;
   height: 15px;
   background: #767676;
+  resize-mode: contain;
 `
 
 export const ReviewInput = styled.TextInput`
@@ -50,11 +50,12 @@ export const ReviewInput = styled.TextInput`
   border: 0.5px solid #70707034;
   padding: 10px;
   text-align-vertical: top;
-  margin: 15px 0px;
+  margin-vertical: 10px;
   font-family: Raleway-Regular;
   font-size: 13px;
   line-height: 14px;
   color: #000000;
+  min-height: 57px;
 `
 
 export const SubmitButton = styled.TouchableOpacity`
@@ -75,9 +76,9 @@ export const Row = styled.View`
 `
 
 export const UserImageWrapper = styled.View`
-  width: 50px;
-  height: 50px;
-  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
   overflow: hidden;
 `
 
@@ -90,12 +91,11 @@ export const UserImage = styled.Image`
 export const UserInfoContainer = styled.View`
   flex: 1;
   flex-direction: row;
-  padding-left: 12px;
+  padding-left: 9px;
 `
 
 export const LeftSection = styled.View`
   flex: 1;
-  padding-right: 10px;
 `
 
 export const UserNameLabel = styled.Text`
@@ -117,5 +117,5 @@ export const ReviewLabel = styled.Text`
   font-size: 12px;
   line-height: 14px;
   color: #2E3743;
-  margin: 10px 0px;
+  margin: 7px 0px;
 `

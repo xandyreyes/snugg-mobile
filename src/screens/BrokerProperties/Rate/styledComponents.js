@@ -6,7 +6,7 @@ export const RateContainer = styled.View`
   margin: 7px 0px 0px;
 `
 
-export const StarSolid = styled.View`
+export const StarSolid = styled.Image`
   width: 15px;
   height: 15px;
   background: #EC7050;
@@ -15,7 +15,7 @@ export const StarSolid = styled.View`
   margin-right: ${props => props.last ? 0 : 3.8}px;
 `
 
-export const StarOutline = styled.View`
+export const StarOutline = styled.Image`
   width: 15px;
   height: 15px;
   border: 1px solid #EC7050;

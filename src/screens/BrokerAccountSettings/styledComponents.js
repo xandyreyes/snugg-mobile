@@ -11,17 +11,18 @@ export const ContentContainer = styled.ScrollView`
 `
 
 export const UserImage = styled.View`
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   background: #c6c6c6;
   border-radius: 8px;
   elevation: 3;
   margin: 15px 0px;
   align-self: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 `
 
 export const FormGroup = styled.View`
-  margin: 10px 0px;
+  margin-top: 15px;
 `
 
 export const FormLabel = styled.Text`
@@ -32,30 +33,31 @@ export const FormLabel = styled.Text`
 `
 
 export const Input = styled.TextInput`
-  padding: 8px 20px;
+  padding: 8px 15px;
   background-color: #ffffff;
   border: 1px solid #70707026;
   border-radius: 8px;
-  font-family: Raleway-Bold;
+  font-family: Raleway-Regular;
   font-size: 14px;
   line-height: 16px;
   color: #2E3743;
-  margin-top: 7px;
+  margin-top: 5px;
 `
 
-export const PRCIDWrapper = styled.View`
+export const PRCIDWrapper = styled.Image`
   background: #E6E6E6;
   width: 100%;
   height: 200px;
-  margin-top: 7px;
+  margin-top: 8px;
+  resize-mode: contain;
 `
 
 export const UpdatePRCButton = styled.TouchableOpacity`
   background: #17365D;
   border-radius: 8px;
-  padding: 15px;
+  padding: 12px;
   align-items: center;
-  margin: 7px 0px;
+  margin-top: 14px;
 `
 
 export const UpdatePRCLabel = styled.Text`

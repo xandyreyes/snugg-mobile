@@ -47,17 +47,14 @@ const Reviews = () => {
 						<UserImageWrapper>
 							<UserImage source={r.image_url} />
 						</UserImageWrapper>
-
 						<UserInfoContainer>
 							<LeftSection>
 								<UserNameLabel>{r.name}</UserNameLabel>
 								<Rate rate={r.rate} />
 							</LeftSection>
-
 							<DateLabel>{r.created_at}</DateLabel>
 						</UserInfoContainer>
 					</Row>
-
 					<ReviewLabel>{r.review}</ReviewLabel>
 				</Card> 
 			)}
