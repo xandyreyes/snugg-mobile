@@ -42,8 +42,8 @@ export default ({ navigation, route }) => {
 			setLoading(false)
 			navigation.navigate('SelectLocationMap', {
 				title: 'Enter your location',
-				onNext: (nav) => {
-					nav.navigate('SelectSubscriptionPlan')
+				onNext: (nav, location) => {
+					nav.navigate('SelectSubscriptionPlan', {location, prc_id: url})
 				}
 			})
 		} catch(e) {

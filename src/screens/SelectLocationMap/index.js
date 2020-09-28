@@ -56,7 +56,7 @@ export default ({ navigation, route }) => {
 				latitude: region.latitude,
 				longitude: region.longitude
 			}
-			onNext(navigation, location, data)
+			onNext(navigation, location)
 		} catch (err) {
 			setLoading(false)
 		}

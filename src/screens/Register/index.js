@@ -69,8 +69,9 @@ export default ({ navigation }) => {
 			}
 			const response = await signUpAPI(info)
 			if (response.data) {
-				const { firstname, middlename, lastname, lat, lon, address, contact_number, device_id, email, type_id } = response.data
+				const { id, firstname, middlename, lastname, lat, lon, address, contact_number, device_id, email, type_id } = response.data
 				const data = {
+					id,
 					firstname,
 					middlename,
 					lastname,
