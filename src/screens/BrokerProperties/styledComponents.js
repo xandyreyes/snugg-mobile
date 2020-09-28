@@ -44,6 +44,8 @@ export const MessageIconReplacement = styled.TouchableOpacity`
   height: 30px;
   border-radius: 20px;
   margin: 5px 0px;
+  justify-content: center;
+  align-items: center;
 `
 
 export const CallIconReplacement = styled.TouchableOpacity`
@@ -52,6 +54,8 @@ export const CallIconReplacement = styled.TouchableOpacity`
   height: 30px;
   border-radius: 20px;
   margin: 5px 0px;
+  justify-content: center;
+  align-items: center;
 `
 
 export const UserAddressWrapper = styled.View`
@@ -124,6 +128,12 @@ export const ToggleText = styled.Text`
     font-size: 12px;
     color: ${p => p.selected ? 'white' : '#17365D'};
     text-align: center;
+`
+
+export const Icon = styled.Image`
+  width: 15px;
+  height: 15px;
+  resize-mode: contain;
 `
 
 /* SCREEN TOGGLE */

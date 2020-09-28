@@ -1,17 +1,17 @@
 import React from 'react'
 import {
 	RateContainer,
-	StarOutline,
-	StarSolid
+	Star,
 } from './styledComponents'
+import images from '../images'
 
 const Rate = ({rate}) => {
 	return (
 		<RateContainer>
 			{Array(5).fill(0).map((data, index) =>
 				index < rate
-					? <StarSolid key={index} last={index === 4} first={index === 0} />
-					: <StarOutline key={index} last={index === 4} first={index === 0} />
+					? <Star source={images.star_filled} key={index} last={index === 4}/>
+					: <Star source={images.star_outlined} key={index} last={index === 4}/>
 			)}
 		</RateContainer>
 	)

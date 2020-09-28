@@ -98,19 +98,18 @@ export const CardHeaderLabel = styled.Text`
   color: #17365D;
 `
 
-export const Verified = styled.View`
+export const Verified = styled.Image`
   width: 12px;
   height: 12px;
-  border-radius: 12px;
-  background: #EC7050;
   margin-left: 6px;
+  resize-mode: contain;
 `
 
 export const AddressWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 `
 
 export const AddressIcon = styled.Image`
@@ -118,6 +117,7 @@ export const AddressIcon = styled.Image`
   height: 9.64px;
   resize-mode: contain;
   margin-right: 5.5px;
+  tint-color: #767676;
 `
 
 export const AddressLabel = styled.Text`
@@ -143,11 +143,11 @@ export const CardInfo = styled.View`
   margin-bottom: 7px;
 `
 
-export const CardInfoIcon = styled.View`
-  background: #FFFFFF;
-  width: 8px;
-  height: 8px;
-  margin-right: 7px;
+export const CardInfoIcon = styled.Image`
+  width: 9px;
+  height: 9px;
+  margin-right: 5px;
+  resize-mode: contain;
 `
 
 export const CardInfoLabel = styled.Text`

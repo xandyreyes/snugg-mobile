@@ -6,6 +6,7 @@ import {
 	CallIconReplacement,
 	Container,
 	ContentContainer,
+	Icon,
 	MessageIconReplacement,
 	Row,
 	UserAddressIcon,
@@ -56,8 +57,12 @@ const BrokerProperties = () => {
 						</UserAddressWrapper>
 					</UserInfoRow>
 					<UserInfoButtonsContainer>
-						<MessageIconReplacement onPress={messageButtonOnPress} />
-						<CallIconReplacement onPress={callButtonOnPress} />
+						<MessageIconReplacement onPress={messageButtonOnPress}>
+							<Icon source={images.message} />
+						</MessageIconReplacement>
+						<CallIconReplacement onPress={callButtonOnPress}>
+							<Icon source={images.cell} />
+						</CallIconReplacement>
 					</UserInfoButtonsContainer>
 				</UserInfoContainer>
 				<Row>

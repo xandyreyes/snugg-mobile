@@ -1,6 +1,6 @@
 import React from 'react'
 import {Alert} from 'react-native'
-import images from './images'
+import images from '../images'
 import {
 	AdditionalInfo,
 	AddressIcon,
@@ -105,7 +105,7 @@ const Properties = () => {
 				<CardHeader>
 					<CardHeaderLabel>{d.name}</CardHeaderLabel>
 					{d.verified && (
-						<Verified />
+						<Verified source={images.verified} />
 					)}
 				</CardHeader>
 				<AddressWrapper>
@@ -115,7 +115,7 @@ const Properties = () => {
 				<AdditionalInfo>
 					{d.info.map((i, idx) =>
 						<CardInfo key={idx}>
-							<CardInfoIcon />
+							<CardInfoIcon source={images.bath} />
 							<CardInfoLabel>
 								{i.description}
 							</CardInfoLabel>
