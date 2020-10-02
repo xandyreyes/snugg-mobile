@@ -22,7 +22,7 @@ import TextBox from './TextBox'
 
 export default ({ navigation, route }) => {
 
-	const { title, onNext, data } = route.params
+	const { title, onNext } = route.params
 
 	const [sessionToken, setSessionToken] = useState(null)
 	const [results, setResults] = useState([])

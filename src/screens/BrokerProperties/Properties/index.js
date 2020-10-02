@@ -1,5 +1,4 @@
 import React from 'react'
-import {Alert} from 'react-native'
 import images from '../images'
 import {
 	AdditionalInfo,
@@ -83,7 +82,7 @@ const formatMoney = (amount, decimalCount = 2, decimal = '.', thousands = ',') =
 	}
 }
 
-const Properties = () => {
+const Properties = ({ propertyOptionOnPress }) => {
 	return data.map((d, index) => 
 		<CardContainer key={index} first={index === 0}>
 			<CardAbsoluteHeader>
@@ -91,7 +90,7 @@ const Properties = () => {
 					<HeartIcon />
 					<LikeLabel>{d.likes} Likes</LikeLabel>
 				</LikesWrapper>
-				<OptionButton onPress={() => Alert.alert('Options', 'Feature coming soon')}>
+				<OptionButton onPress={propertyOptionOnPress(d)}>
 					<OptionIcon />
 				</OptionButton>
 			</CardAbsoluteHeader>
