@@ -58,6 +58,12 @@ export const User = types
 					loading: false
 				}
 				applySnapshot(self, userInfo)
+			} else {
+				const userInfo = {
+					...self,
+					loading: false
+				}
+				applySnapshot(self, userInfo)
 			}
 		}),
 	}))
