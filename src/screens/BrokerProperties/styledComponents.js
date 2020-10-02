@@ -140,3 +140,26 @@ export const Icon = styled.Image`
 export const ScreenToggleContainer = styled.View`
   width: 50%;
 `
+
+/* OPTION MODAL */
+export const ModalContainer = styled.View`
+  background: #fff;
+  border-radius: 15px;
+`
+
+export const ModalWidthBorderBottom = styled.View`
+  border-color: #c6c6c6;
+  border-bottom-width: 1px;
+`
+
+export const ModalButtons = styled.TouchableOpacity`
+  padding: 20px 15px;
+`
+
+export const ModalButtonLabel = styled.Text`
+  font-family: Raleway-Bold;
+  font-size: 15px;
+  line-height: 16px;
+  color: #17365D;
+  text-align: center;
+`

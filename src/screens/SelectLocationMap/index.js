@@ -22,7 +22,7 @@ import TextBox from './TextBox'
 
 export default ({ navigation, route }) => {
 
-	const { title, onNext, data } = route.params
+	const { title, onNext } = route.params
 
 	const [sessionToken, setSessionToken] = useState(null)
 	const [results, setResults] = useState([])
@@ -56,7 +56,7 @@ export default ({ navigation, route }) => {
 				latitude: region.latitude,
 				longitude: region.longitude
 			}
-			onNext(navigation, location, data)
+			onNext(navigation, location)
 		} catch (err) {
 			setLoading(false)
 		}

@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react'
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Observer, Provider } from 'mobx-react'
 import { Store } from 'src/store'
 import AddListing from './AddListing'
-import BrokerDashboard from './BrokerDashboard'
 import CameraCapture from './CameraCapture'
 import CaptureID from './CaptureID'
 import EnableLocation from './EnableLocation'
 import ForgotPassword from './ForgotPassword'
-import LoadingScreen from './LoadingScreen'
 import Login from './Login'
 import PreviewID from './PreviewID'
 import Register from './Register'
@@ -17,12 +14,12 @@ import ResetPassword from './ResetPassword'
 import SelectLocationMap from './SelectLocationMap'
 import SelectSubscriptionPlan from './SelectSubscriptionPlan'
 import Welcome from './Welcome'
-import BrokerProfile from './BrokerProfile'
 import BrokerAccountSettings from './BrokerAccountSettings'
 import BrokerProperties from './BrokerProperties'
 
+import Home from './Tab/Home'
+
 const Stack = createStackNavigator()
-// const Tab = createMaterialTopTabNavigator()
 
 export default () => {
 
@@ -36,14 +33,13 @@ export default () => {
 				{() => {
 					return(
 						<Stack.Navigator>
-							{ Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }
+							{/* { Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) } */}
 							{ Store.User.access_token ? (
 								<>
-									<Stack.Screen name="BrokerDashboard" component={BrokerDashboard} options={{ headerShown: false }} />
+									<Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
 									<Stack.Screen name="EnableLocation" component={EnableLocation} options={{ headerShown: false }} />
 									<Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
 									<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
-									<Stack.Screen name="BrokerProfile" component={BrokerProfile} options={{ headerShown: false }} />
 									<Stack.Screen name="BrokerAccountSettings" component={BrokerAccountSettings} options={{ headerShown: false }} />
 									<Stack.Screen name="BrokerProperties" component={BrokerProperties} options={{ headerShown: false }} />
 									<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />

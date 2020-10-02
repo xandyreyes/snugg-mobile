@@ -69,8 +69,9 @@ export default ({ navigation }) => {
 			}
 			const response = await signUpAPI(info)
 			if (response.data) {
-				const { firstname, middlename, lastname, lat, lon, address, contact_number, device_id, email, type_id } = response.data
+				const { id, firstname, middlename, lastname, lat, lon, address, contact_number, device_id, email, type_id } = response.data
 				const data = {
+					id,
 					firstname,
 					middlename,
 					lastname,
@@ -107,11 +108,11 @@ export default ({ navigation }) => {
 			setLoading(false)
 		} catch (e) {
 			setLoading(false)
+			console.log('[ERROR SIGN UP]', e.response.data)
 			const errData = Object.entries(e.response.data.errors).map(obj => {
 				return obj[1].join('\n')
 			})
 			Alert.alert(e.response.data.message, errData.join('\n'))
-			console.log('[ERROR SIGN UP]', e.response.data)
 		}
 	}
 

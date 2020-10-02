@@ -20,6 +20,16 @@ export const loginAPI = async (body) => {
 	return response.data
 }
 
+export const userUpdateAPI = async (id, body) => {
+	let response = null
+	try {
+		response = await backendAPI.put(`/user/update/${id}`, body)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
 export const forgotPasswordAPI = async (body) => {
 	let response = null
 	try {

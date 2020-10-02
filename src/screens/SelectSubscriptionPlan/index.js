@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Alert} from 'react-native'
 import Back from 'src/components/Back'
 import SelectedModal from './SelectedModal'
 import {
@@ -11,6 +12,8 @@ import {
 	ScrollView
 } from './styledComponents'
 import SubscriptionItem from './SubscriptionItem'
+import { userUpdateAPI } from '../../api/auth'
+import { Store } from 'src/store'
 
 const subscriptions = [
 	{
@@ -45,7 +48,9 @@ const subscriptions = [
 	}
 ]
 
-export default ({ navigation }) => {
+export default ({ navigation, route }) => {
+
+	const { location, prc_id } = route.params
 
 	const [subscription, selectSubscription] = useState(null)
 	const [visible, setModalVisibility] = useState(false)
@@ -55,10 +60,29 @@ export default ({ navigation }) => {
 		setModalVisibility(true)
 	}
 
-	const onPressSubscribe = () => {
+	const onPressSubscribe = async () => {
 		// TODO: Complete register api
-		setModalVisibility(false)
-		navigation.navigate('Welcome')
+		const body = {
+			lat: location.latitude,
+			lon: location.longitude,
+			prc_id,
+			subscription_type: subscription.id
+		}
+		try {
+			// const response = await userUpdateAPI(Store.User.data.id, body);
+			// if(response) {
+			//   const { message } = response;
+			//   console.log('[User update message]', message);
+			//   setModalVisibility(false)
+			//   navigation.navigate('Welcome')
+			// }
+			setModalVisibility(false)
+			navigation.navigate('Welcome')
+		} catch (e) {
+			Alert.alert('Error', e.response.data.message)
+			console.log('[ERROR UPDATING]', e.response.data)
+		}
+    
 	}
 
 	return(
