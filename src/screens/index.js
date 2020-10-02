@@ -36,7 +36,7 @@ export default () => {
 							{/* { Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) } */}
 							{ Store.User.access_token ? (
 								<>
-                  <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+									<Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
 									<Stack.Screen name="EnableLocation" component={EnableLocation} options={{ headerShown: false }} />
 									<Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
 									<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />

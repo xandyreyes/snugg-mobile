@@ -36,7 +36,7 @@ const Home = () => {
 	}
 
 	return (
-		<TabDashboard.Navigator initialRouteName="BrokerDashboard" tabBar={props => <HomeTabBar {...props} />}>
+		<TabDashboard.Navigator initialRouteName="BrokerDashboard" tabBar={props => <HomeTabBar {...props} />} swipeEnabled={false} >
 			<TabDashboard.Screen name="BrokerProfile" component={BrokerProfile} />
 			<TabDashboard.Screen name="BrokerDashboard" component={BrokerDashboard} />
 			<TabDashboard.Screen name="Messages" component={Messages} />
