@@ -34,7 +34,7 @@ export default ({ region, onFocus, sessionToken, setResults, value, onChangeText
 				}
 				setResults(res.predictions)
 			}).catch( e => {
-				console.log(e.response, '[hello]')
+				console.log(e.response, '[GET NEARBY AUTOCOMPLETE ERROR]')
 			})
 		}
 	}

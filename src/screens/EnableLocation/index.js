@@ -28,7 +28,6 @@ export default ({ navigation }) => {
 		}
 		try {
 			const location = await check(permission)
-			console.log({ location })
 			if (location !== 'granted') {
 				await request(permission)
 			}

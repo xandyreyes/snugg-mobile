@@ -122,7 +122,6 @@ export default ({ navigation }) => {
 				uploadUri: uploadAtsUri
 			})
 			const imagesUri = await Promise.all(selectedImages.map( async (item) => {
-				console.log({ item })
 				const url = await uploadToFirebase({
 					uploadUri: Platform.OS === 'ios' ? item.path : item.uri,
 					storageName: config.firebase_storage.listing_photos
