@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import LinearGradient from 'react-native-linear-gradient'
 
 export const Container = styled.View`
     padding: 15px;
@@ -36,4 +37,45 @@ export const Location = styled.Text`
     color: #767676;
     font-size: 12px;
     font-family: Raleway-Regular;
+`
+
+export const DescriptionContainer = styled.View`
+    margin-top: 3px;
+`
+
+export const DescriptionText = styled.Text`
+    font-family: Raleway-Regular;
+    color: #2E3743;
+    font-size: 12px;
+`
+
+export const ReadMoreGradient = styled(LinearGradient)`
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    align-items: center;
+    justify-content: flex-end;
+`
+
+export const ReadMoreButton = styled.View`
+    background: #17365D;
+    border-radius: 30px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+`
+
+export const ReadMoreTouchable = styled.TouchableOpacity`
+    padding: 7px 16px;
+`
+
+export const ReadMoreText = styled.Text`
+    font-family: Raleway-Regular;
+    color: white;
+    font-size: 10px;
+`
+
+export const ReadLessContainer = styled.View`
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
 `
