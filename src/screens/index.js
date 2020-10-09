@@ -8,6 +8,7 @@ import CaptureID from './CaptureID'
 import EnableLocation from './EnableLocation'
 import ForgotPassword from './ForgotPassword'
 import Login from './Login'
+import PropertyProfile from './PropertyProfile'
 import PreviewID from './PreviewID'
 import Register from './Register'
 import ResetPassword from './ResetPassword'
@@ -27,13 +28,18 @@ export default () => {
 		Store.hydrate()
 	}, [])
 
+	useEffect(() => {
+		console.log({ User: Store.User })
+	}, [])
+
 	return(
 		<Provider store={Store}>
 			<Observer>
 				{() => {
 					return(
 						<Stack.Navigator>
-							{/* { Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) } */}
+							<Stack.Screen name="PropertyProfile" component={PropertyProfile} options={{ headerShown: false }} />
+							{ Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }
 							{ Store.User.access_token ? (
 								<>
 									<Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
@@ -46,6 +52,7 @@ export default () => {
 								</>
 							) : (
 								<>
+									
 									<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 									<Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
 									<Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />

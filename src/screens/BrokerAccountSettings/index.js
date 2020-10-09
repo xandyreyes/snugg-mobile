@@ -12,6 +12,7 @@ import {
 	UserImage
 } from './styledComponents'
 import Button from 'src/components/Button'
+import { Store } from 'src/store'
   
 const formDataset = [
 	{
@@ -35,14 +36,17 @@ const formDataset = [
 	}
 ]
 
-const BrokerAccountSettings = () => {
+const BrokerAccountSettings = ({ navigation }) => {
+  
+  const { data } = Store.User;
+  console.log(data)
 	const formData = {
-		fullname: 'John Doe',
-		middlename: 'Augustus',
-		lastname: 'Doe',
-		location: 'Greenhills, San Juan City',
-		contact_number: '0917XXXXXXX',
-		email: 'johndoe@example.com',
+		fullname: data.firstname,
+		middlename: data.middlename,
+		lastname: data.lastname,
+		location: data.address,
+		contact_number: data.contact_number.toString(),
+		email: data.email,
 		prc_id: ''
 	}
 	const [form, setForm] = useState(formData)
@@ -50,7 +54,11 @@ const BrokerAccountSettings = () => {
 	const onChangeText = field => text => {
 		form[field] = text
 		setForm({...form})
-	}
+  }
+  
+  const submitChanges = () => {
+    
+  }
 
 	return (
 		<Container>
@@ -70,7 +78,7 @@ const BrokerAccountSettings = () => {
 					<UpdatePRCLabel>Update PRC ID</UpdatePRCLabel>
 				</UpdatePRCButton>
 				<SaveChangesWrapper>
-					<Button text={'SAVE CHANGES'} width={168} onPress={() => {}} />
+					<Button text={'SAVE CHANGES'} width={168} onPress={submitChanges} />
 				</SaveChangesWrapper>
 			</ContentContainer>
 		</Container>
