@@ -4,14 +4,14 @@ import {
 	BadgeText,
 	BrokerImage,
 	BrokerInfoContainer,
+	CallButton,
+	CallIcon,
 	Container,
 	Header,
 	MainRow,
-	Row,
-  MessageButton,
-  CallButton,
-  MessageIcon,
-  CallIcon
+	MessageButton,
+	MessageIcon,
+	Row
 } from './styledComponents'
 import images from '../images'
 
@@ -29,14 +29,14 @@ export default () => {
 						</BadgeContainer>
 					</BrokerInfoContainer>
 				</Row>
-        <Row>
-          <MessageButton>
-            <MessageIcon source={images.message} />
-          </MessageButton>
-          <CallButton>
-            <CallIcon source={images.cell} />
-          </CallButton>
-        </Row>
+				<Row>
+					<MessageButton>
+						<MessageIcon source={images.message} />
+					</MessageButton>
+					<CallButton>
+						<CallIcon source={images.cell} />
+					</CallButton>
+				</Row>
 			</MainRow>
 		</Container>
 	)

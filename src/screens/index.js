@@ -13,32 +13,32 @@ export default () => {
 
 	useEffect(() => {
 		Store.hydrate()
-  }, [])
+	}, [])
   
-  return(
+	return(
 		<Provider store={Store}>
 			<Observer>
-        {() => {
-          const {loading, access_token} = Store.User;
-          if(loading) {
-            return <LoadingScreen />
-          } else {
-            const initialRouteName = access_token ? "Home" : "Login";
-            return (
-              <Stack.Navigator initialRouteName={initialRouteName}>
-                {[...commonScreens, ...(Store.User.access_token ? userScreens : authScreens)]
-                .map((screen, index) =>
-                  <Stack.Screen
-                    key={index}
-                    name={screen.name}
-                    component={screen.component}
-                    options={screen.options}
-                  /> 
-                )}
-              </Stack.Navigator>
-            )
-          }
-        }}
+				{() => {
+					const {loading, access_token} = Store.User
+					if(loading) {
+						return <LoadingScreen />
+					} else {
+						const initialRouteName = access_token ? 'Home' : 'Login'
+						return (
+							<Stack.Navigator initialRouteName={initialRouteName}>
+								{[...commonScreens, ...(Store.User.access_token ? userScreens : authScreens)]
+									.map((screen, index) =>
+										<Stack.Screen
+											key={index}
+											name={screen.name}
+											component={screen.component}
+											options={screen.options}
+										/> 
+									)}
+							</Stack.Navigator>
+						)
+					}
+				}}
 			</Observer>
 		</Provider>
 	)
