@@ -7,6 +7,7 @@ import CameraCapture from './CameraCapture'
 import CaptureID from './CaptureID'
 import EnableLocation from './EnableLocation'
 import ForgotPassword from './ForgotPassword'
+import LoadingScreen from './LoadingScreen'
 import Login from './Login'
 import PreviewID from './PreviewID'
 import Register from './Register'
@@ -16,8 +17,7 @@ import SelectSubscriptionPlan from './SelectSubscriptionPlan'
 import Welcome from './Welcome'
 import BrokerAccountSettings from './BrokerAccountSettings'
 import BrokerProperties from './BrokerProperties'
-
-import Home from './Tab/Home'
+import BrokerTabs from './BrokerTabs'
 
 const Stack = createStackNavigator()
 
@@ -33,10 +33,10 @@ export default () => {
 				{() => {
 					return(
 						<Stack.Navigator>
-							{/* { Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) } */}
+							{ Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }
 							{ Store.User.access_token ? (
 								<>
-									<Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+									<Stack.Screen name="BrokerTabs" component={BrokerTabs} options={{ headerShown: false }} />
 									<Stack.Screen name="EnableLocation" component={EnableLocation} options={{ headerShown: false }} />
 									<Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
 									<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
