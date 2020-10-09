@@ -11,12 +11,15 @@ import {
 	UpdatePRCLabel,
 	UserImage
 } from './styledComponents'
+import { Alert } from 'react-native'
 import Button from 'src/components/Button'
+import { Store } from 'src/store'
+import { userUpdateAPI } from '../../api/auth'
   
 const formDataset = [
 	{
-		field: 'fullname',
-		label: 'Full Name'
+		field: 'firstname',
+		label: 'First Name'
 	}, {
 		field: 'middlename',
 		label: 'Middle Name'
@@ -24,7 +27,7 @@ const formDataset = [
 		field: 'lastname',
 		label: 'Last Name'
 	}, {
-		field: 'location',
+		field: 'address',
 		label: 'Location'
 	}, {
 		field: 'contact_number',
@@ -35,21 +38,58 @@ const formDataset = [
 	}
 ]
 
-const BrokerAccountSettings = () => {
+const BrokerAccountSettings = ({ navigation }) => {
+  
+	const { data } = Store.User
 	const formData = {
-		fullname: 'John Doe',
-		middlename: 'Augustus',
-		lastname: 'Doe',
-		location: 'Greenhills, San Juan City',
-		contact_number: '0917XXXXXXX',
-		email: 'johndoe@example.com',
-		prc_id: ''
+		firstname: data.firstname,
+		middlename: data.middlename,
+		lastname: data.lastname,
+		address: data.address,
+		contact_number: data.contact_number.toString(),
+		email: data.email
 	}
 	const [form, setForm] = useState(formData)
+	const [formToSend, setFormToSend] = useState({})
+	const [prcId, setPrcId] = useState('')
+	const [updating, setUpdating] = useState(false)
 
 	const onChangeText = field => text => {
 		form[field] = text
 		setForm({...form})
+		checkFormToSend(field, text)
+	}
+
+	const checkFormToSend = (field, text) => {
+		if(data[field]) {
+			if(data[field].toString() === text) {
+				delete formToSend[field]
+				setFormToSend(formToSend)
+			} else {
+				formToSend[field] = text
+				setFormToSend(formToSend)
+			}
+		}
+	}
+  
+	const submitChanges = async () => {
+		if(!updating && Object.entries(formToSend).length !== 0) {
+			setUpdating(true)
+			try {
+				const res = await userUpdateAPI(data.id, formToSend)
+				Store.User.update(res.data)
+				setUpdating(false)
+				Alert.alert('Success', res.message)
+			} catch (error) {
+				const {data} = error.response
+				console.log('[ERROR SIGN UP]', data)
+				const errData = Object.entries(data.errors).map(obj => {
+					return obj[1].join('\n')
+				})
+				setUpdating(false)
+				Alert.alert(data.message, errData.join('\n'))
+			}
+		}
 	}
 
 	return (
@@ -70,7 +110,11 @@ const BrokerAccountSettings = () => {
 					<UpdatePRCLabel>Update PRC ID</UpdatePRCLabel>
 				</UpdatePRCButton>
 				<SaveChangesWrapper>
-					<Button text={'SAVE CHANGES'} width={168} onPress={() => {}} />
+					<Button
+						disabled={updating}
+						text={'SAVE CHANGES'}
+						width={168}
+						onPress={submitChanges} />
 				</SaveChangesWrapper>
 			</ContentContainer>
 		</Container>

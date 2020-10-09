@@ -18,7 +18,7 @@ export const User = types
 				address: types.maybeNull(types.string),
 				lat: types.maybeNull(types.string),
 				lon: types.maybeNull(types.string),
-				device_id: types.maybeNull(types.number),
+				device_id: types.maybeNull(types.string),
 				broker_details: types.maybeNull(
 					types.model({
 						id_status: types.maybeNull(types.string),
@@ -49,6 +49,9 @@ export const User = types
 		setToken: (user) => {
 			self.access_token = user.access_token
 			self.expires_at = user.expires_at
+		},
+		update: (data) => {
+			self.data = Object.assign({}, self.data, data)
 		},
 		hydrate: flow(function*() {
 			const data = yield AsyncStorage.getItem('User')

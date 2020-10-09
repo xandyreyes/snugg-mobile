@@ -26,7 +26,7 @@ export default () => {
 	useEffect(() => {
 		Store.hydrate()
 	}, [])
-
+  
 	return(
 		<Provider store={Store}>
 			<Observer>
