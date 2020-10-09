@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Observer, Provider } from 'mobx-react'
-import { Store } from 'src/store'
+import { Store } from './UserAccountSettings/node_modules/src/store'
 import AddListing from './AddListing'
-import BrokerAccountSettings from './BrokerAccountSettings'
+import UserAccountSettings from './UserAccountSettings'
 import BrokerProfile from './BrokerProfile'
 import BrokerTabs from './BrokerTabs'
 import BuyerTabs from './BuyerTabs'
@@ -42,7 +42,7 @@ export default () => {
 									<Stack.Screen name="EnableLocation" component={EnableLocation} options={{ headerShown: false }} />
 									<Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
 									<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
-									<Stack.Screen name="BrokerAccountSettings" component={BrokerAccountSettings} options={{ headerShown: false }} />
+									<Stack.Screen name="UserAccountSettings" component={UserAccountSettings} options={{ headerShown: false }} />
 									<Stack.Screen name="BrokerProfile" component={BrokerProfile} options={{ headerShown: false }} />
 									<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
 								</>
