@@ -7,8 +7,13 @@ import {
 	Container,
 	Header,
 	MainRow,
-	Row
+	Row,
+  MessageButton,
+  CallButton,
+  MessageIcon,
+  CallIcon
 } from './styledComponents'
+import images from '../images'
 
 export default () => {
 	return(
@@ -24,9 +29,14 @@ export default () => {
 						</BadgeContainer>
 					</BrokerInfoContainer>
 				</Row>
-                <Row>
-                    
-                </Row>
+        <Row>
+          <MessageButton>
+            <MessageIcon source={images.message} />
+          </MessageButton>
+          <CallButton>
+            <CallIcon source={images.cell} />
+          </CallButton>
+        </Row>
 			</MainRow>
 		</Container>
 	)

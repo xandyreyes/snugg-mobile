@@ -6,6 +6,7 @@ export const Button = styled.TouchableOpacity`
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     padding-vertical: 13px;
     align-items: center;
+    justify-content: center;
     padding-horizontal: ${p => !p.width ? '50px' : '0'};
     width: ${p => p.width ? `${p.width}px` : 'auto'};
 `
@@ -17,6 +18,11 @@ export const ButtonText = styled.Text`
     font-size: 14px;
     line-height: 16px;
     color: #FFFFFF;
+    opacity: ${props => props.disabled ? 0 : 1};
+`
+
+export const ButtonLoading = styled.View`
+    position: absolute;
 `
 
 export const ButtonSecondary = styled.TouchableOpacity`

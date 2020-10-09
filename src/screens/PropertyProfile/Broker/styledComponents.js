@@ -7,7 +7,7 @@ export const Header = styled.Text`
 `
 
 export const Container = styled.View`
-    margin-top: 11px;
+    padding: 5px 15px 15px;
 `
 
 export const MainRow = styled.View`
@@ -26,10 +26,11 @@ export const BrokerImage = styled.Image`
     height: 50px;
     width: 50px;
     resize-mode: cover;
+    background: #c6c6c6;
 `
 
 export const BrokerInfoContainer = styled.View`
-    margin-left: 9px;
+    margin: 0px 9px;
 `
 
 export const BadgeContainer = styled.View`
@@ -63,4 +64,16 @@ export const CallButton = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     margin-right: 7px;
+`
+
+export const MessageIcon = styled.Image`
+  width: 15px;
+  height: 15px;
+  resize-mode: contain;
+`
+
+export const CallIcon = styled.Image`
+  width: 15px;
+  height: 15px;
+  resize-mode: contain;
 `

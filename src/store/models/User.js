@@ -49,7 +49,10 @@ export const User = types
 		setToken: (user) => {
 			self.access_token = user.access_token
 			self.expires_at = user.expires_at
-		},
+    },
+    update: (data) => {
+      self.data = Object.assign({}, self.data, data);
+    },
 		hydrate: flow(function*() {
 			const data = yield AsyncStorage.getItem('User')
 			if (data) {
