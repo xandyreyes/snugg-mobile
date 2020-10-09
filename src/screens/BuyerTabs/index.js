@@ -3,7 +3,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { SafeAreaView, TouchableOpacity } from 'react-native'
 import Messages from '../Messages'
 import UserAccount from '../UserAccount'
-import BrokerDashboard from '../BrokerDashboard'
+import BuyerHomepage from '../BuyerHomepage'
 import images from './images'
 import {
 	HomeTapBarContainer,
@@ -24,7 +24,7 @@ const Home = () => {
 							key={index}
 							onPress={() => navigation.navigate(route.name)}
 							activeOpacity={1}>
-							{route.name === 'BrokerDashboard' ? (
+							{route.name === 'BuyerHomepage' ? (
 								<MainIcon source={images.logo} />
 							) : route.name === 'UserAccount' ? (
 								<SubIcon source={images.user} />
@@ -39,9 +39,9 @@ const Home = () => {
 	}
 
 	return (
-		<TabDashboard.Navigator initialRouteName="BrokerDashboard" tabBar={props => <HomeTabBar {...props} />} swipeEnabled={false} >
+		<TabDashboard.Navigator initialRouteName="BuyerHomepage" tabBar={props => <HomeTabBar {...props} />} swipeEnabled={false} >
 			<TabDashboard.Screen name="UserAccount" component={UserAccount} />
-			<TabDashboard.Screen name="BrokerDashboard" component={BrokerDashboard} />
+			<TabDashboard.Screen name="BuyerHomepage" component={BuyerHomepage} />
 			<TabDashboard.Screen name="Messages" component={Messages} />
 		</TabDashboard.Navigator>
 	)
