@@ -3,6 +3,10 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Observer, Provider } from 'mobx-react'
 import { Store } from 'src/store'
 import AddListing from './AddListing'
+import BrokerAccountSettings from './BrokerAccountSettings'
+import BrokerProfile from './BrokerProfile'
+import BrokerTabs from './BrokerTabs'
+import BuyerTabs from './BuyerTabs'
 import CameraCapture from './CameraCapture'
 import CaptureID from './CaptureID'
 import EnableLocation from './EnableLocation'
@@ -15,9 +19,6 @@ import ResetPassword from './ResetPassword'
 import SelectLocationMap from './SelectLocationMap'
 import SelectSubscriptionPlan from './SelectSubscriptionPlan'
 import Welcome from './Welcome'
-import BrokerAccountSettings from './BrokerAccountSettings'
-import BrokerProperties from './BrokerProperties'
-import BrokerTabs from './BrokerTabs'
 
 const Stack = createStackNavigator()
 
@@ -33,6 +34,7 @@ export default () => {
 				{() => {
 					return(
 						<Stack.Navigator>
+							<Stack.Screen name="BuyerTabs" component={BuyerTabs} options={{ headerShown: false }} />
 							{ Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }
 							{ Store.User.access_token ? (
 								<>
@@ -41,7 +43,7 @@ export default () => {
 									<Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
 									<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
 									<Stack.Screen name="BrokerAccountSettings" component={BrokerAccountSettings} options={{ headerShown: false }} />
-									<Stack.Screen name="BrokerProperties" component={BrokerProperties} options={{ headerShown: false }} />
+									<Stack.Screen name="BrokerProfile" component={BrokerProfile} options={{ headerShown: false }} />
 									<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
 								</>
 							) : (
