@@ -34,11 +34,11 @@ export default () => {
 				{() => {
 					return(
 						<Stack.Navigator>
-							<Stack.Screen name="BuyerTabs" component={BuyerTabs} options={{ headerShown: false }} />
 							{ Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }
 							{ Store.User.access_token ? (
 								<>
 									<Stack.Screen name="BrokerTabs" component={BrokerTabs} options={{ headerShown: false }} />
+									<Stack.Screen name="BuyerTabs" component={BuyerTabs} options={{ headerShown: false }} />
 									<Stack.Screen name="EnableLocation" component={EnableLocation} options={{ headerShown: false }} />
 									<Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
 									<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
