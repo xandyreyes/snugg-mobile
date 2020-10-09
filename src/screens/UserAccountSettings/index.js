@@ -38,7 +38,7 @@ const formDataset = [
 	}
 ]
 
-const BrokerAccountSettings = ({ navigation }) => {
+const UserAccountSettings = ({ navigation }) => {
   
 	const { data } = Store.User
 	const formData = {
@@ -121,4 +121,4 @@ const BrokerAccountSettings = ({ navigation }) => {
 	)
 }
 
-export default BrokerAccountSettings
+export default UserAccountSettings

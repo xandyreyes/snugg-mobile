@@ -1,4 +1,4 @@
-import SelectLocationMap from '../SelectLocationMap'
+import SelectLocationMap from '../screens/SelectLocationMap'
 
 export default [
 	{

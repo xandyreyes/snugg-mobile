@@ -1,11 +1,11 @@
-import Login from '../Login'
-import Register from '../Register'
-import CaptureID from '../CaptureID'
-import ForgotPassword from '../ForgotPassword'
-import ResetPassword from '../ResetPassword'
-import CameraCapture from '../CameraCapture'
-import PreviewID from '../PreviewID'
-import SelectSubscriptionPlan from '../SelectSubscriptionPlan'
+import Login from '../screens/Login'
+import Register from '../screens/Register'
+import CaptureID from '../screens/CaptureID'
+import ForgotPassword from '../screens/ForgotPassword'
+import ResetPassword from '../screens/ResetPassword'
+import CameraCapture from '../screens/CameraCapture'
+import PreviewID from '../screens/PreviewID'
+import SelectSubscriptionPlan from '../screens/SelectSubscriptionPlan'
 
 export default [
 	{

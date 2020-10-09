@@ -1,10 +1,10 @@
-import Welcome from '../Welcome'
-import Home from '../Tab/Home'
-import EnableLocation from '../EnableLocation'
-import AddListing from '../AddListing'
-import BrokerAccountSettings from '../BrokerAccountSettings'
-import BrokerProperties from '../BrokerProperties'
-import PropertyProfile from '../PropertyProfile'
+import Welcome from '../screens/Welcome'
+import Home from '../screens/Tab/Home'
+import EnableLocation from '../screens/EnableLocation'
+import AddListing from '../screens/AddListing'
+import UserAccountSettings from '../screens/UserAccountSettings'
+import BrokerProperties from '../screens/BrokerProperties'
+import PropertyProfile from '../screens/PropertyProfile'
 
 export default [
 	{
@@ -32,8 +32,8 @@ export default [
 			headerShown: false
 		}
 	}, {
-		name: 'BrokerAccountSettings',
-		component: BrokerAccountSettings,
+		name: 'UserAccountSettings',
+		component: UserAccountSettings,
 		options: {
 			headerShown: false
 		}

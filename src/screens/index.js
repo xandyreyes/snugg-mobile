@@ -22,6 +22,8 @@ import Welcome from './Welcome'
 
 const Stack = createStackNavigator()
 
+// TODO: Create two different stacks for Broker and Buyer
+
 export default () => {
 
 	useEffect(() => {

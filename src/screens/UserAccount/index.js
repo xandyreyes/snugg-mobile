@@ -44,7 +44,7 @@ const UserAccount = ({ navigation }) => {
 					</UserSubscriptionWrapper>
 				</UserInfoContainer>
 				<ButtonContainer>
-					<UserButton onPress={() => navigation.navigate('BrokerAccountSettings')}>
+					<UserButton onPress={() => navigation.navigate('UserAccountSettings')}>
 						User Account Settings
 					</UserButton>
 					<UserButton>Change Password</UserButton>
