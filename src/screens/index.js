@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Observer, Provider } from 'mobx-react'
-import { Store } from './UserAccountSettings/node_modules/src/store'
+import { Store } from 'src/store'
 import AddListing from './AddListing'
 import UserAccountSettings from './UserAccountSettings'
 import BrokerProfile from './BrokerProfile'
