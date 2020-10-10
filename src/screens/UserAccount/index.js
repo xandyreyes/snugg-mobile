@@ -64,7 +64,7 @@ const UserAccount = ({ navigation }) => {
 					<UserButton onPress={() => navigation.navigate('UserAccountSettings')}>
 						User Account Settings
 					</UserButton>
-					<UserButton>Change Password</UserButton>
+					<UserButton onPress={() => navigation.navigate('UserPasswordUpdate')}>Change Password</UserButton>
 					{ User.data.type_id === UserType.broker && (
 						<>
 							<UserButton>Subscription</UserButton>

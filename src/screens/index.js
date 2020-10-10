@@ -3,7 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Observer, Provider } from 'mobx-react'
 import { Store } from 'src/store'
 import AddListing from './AddListing'
-import UserAccountSettings from './UserAccountSettings'
 import BrokerProfile from './BrokerProfile'
 import BrokerTabs from './BrokerTabs'
 import BuyerTabs from './BuyerTabs'
@@ -18,6 +17,8 @@ import Register from './Register'
 import ResetPassword from './ResetPassword'
 import SelectLocationMap from './SelectLocationMap'
 import SelectSubscriptionPlan from './SelectSubscriptionPlan'
+import UserAccountSettings from './UserAccountSettings'
+import UserPasswordUpdate from './UserPasswordUpdate'
 import Welcome from './Welcome'
 
 const Stack = createStackNavigator()
@@ -47,6 +48,7 @@ export default () => {
 									<Stack.Screen name="UserAccountSettings" component={UserAccountSettings} options={{ headerShown: false }} />
 									<Stack.Screen name="BrokerProfile" component={BrokerProfile} options={{ headerShown: false }} />
 									<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
+									<Stack.Screen name="UserPasswordUpdate" component={UserPasswordUpdate} options={{ headerShown: false }} />
 								</>
 							) : (
 								<>
