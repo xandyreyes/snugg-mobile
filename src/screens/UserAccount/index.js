@@ -80,7 +80,7 @@ const UserAccount = ({ navigation }) => {
 					) }
 				</ButtonContainer>
 				<ButtonContainer>
-					<UserButton>About Snugg Neighborhood</UserButton>
+					<UserButton onPress={() => navigation.navigate('About')}>About Snugg Neighborhood</UserButton>
 					<UserButton>Terms & Condition</UserButton>
 					<UserButton onPress={logout}>Logout</UserButton>
 				</ButtonContainer>

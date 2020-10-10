@@ -1,10 +1,10 @@
-import Welcome from '../screens/Welcome'
-import Home from '../screens/Tab/Home'
-import EnableLocation from '../screens/EnableLocation'
-import AddListing from '../screens/AddListing'
-import UserAccountSettings from '../screens/UserAccountSettings'
-import BrokerProperties from '../screens/BrokerProperties'
-import PropertyProfile from '../screens/PropertyProfile'
+import Welcome from 'src/screens/Welcome'
+import Home from 'src/screens/Tab/Home'
+import EnableLocation from 'src/screens/EnableLocation'
+import AddListing from 'src/screens/AddListing'
+import UserAccountSettings from 'src/screens/UserAccountSettings'
+import BrokerProperties from 'src/screens/BrokerProperties'
+import PropertyProfile from 'src/screens/PropertyProfile'
 
 export default [
 	{

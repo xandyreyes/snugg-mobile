@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Observer, Provider } from 'mobx-react'
+import { UserType } from 'src/constants'
 import { Store } from 'src/store'
+import About from './About'
 import AddListing from './AddListing'
 import BrokerProfile from './BrokerProfile'
 import BrokerTabs from './BrokerTabs'
@@ -35,16 +37,26 @@ export default () => {
 		<Provider store={Store}>
 			<Observer>
 				{() => {
+					const { User } = Store
+					console.log({ User })
 					return(
 						<Stack.Navigator>
-							{ Store.User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }
-							{ Store.User.access_token ? (
+							{ User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }
+							{ User.access_token ? (
 								<>
-									<Stack.Screen name="BrokerTabs" component={BrokerTabs} options={{ headerShown: false }} />
-									<Stack.Screen name="BuyerTabs" component={BuyerTabs} options={{ headerShown: false }} />
+									{ User.data.type_id === UserType.broker && (
+										<>
+											<Stack.Screen name="BrokerTabs" component={BrokerTabs} options={{ headerShown: false }} />
+											<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
+										</>
+									) }
+									{ User.data.type_id === UserType.buyer && (
+										<>
+											<Stack.Screen name="BuyerTabs" component={BuyerTabs} options={{ headerShown: false }} />
+										</>
+									) }
 									<Stack.Screen name="EnableLocation" component={EnableLocation} options={{ headerShown: false }} />
 									<Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
-									<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
 									<Stack.Screen name="UserAccountSettings" component={UserAccountSettings} options={{ headerShown: false }} />
 									<Stack.Screen name="BrokerProfile" component={BrokerProfile} options={{ headerShown: false }} />
 									<Stack.Screen name="UserPasswordUpdate" component={UserPasswordUpdate} options={{ headerShown: false }} />
@@ -62,6 +74,7 @@ export default () => {
 							<Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />
 							<Stack.Screen name="PreviewID" component={PreviewID} options={{ headerShown: false }} />
 							<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
+							<Stack.Screen name="About" component={About} options={{ headerShown: false }} />
 						</Stack.Navigator>
 					)
 				}}

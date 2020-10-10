@@ -16,7 +16,6 @@ export const UserImage = styled.Image`
   height: 80px;
   background: rgba(0,0,0,0.1);
   border-radius: 8px;
-  elevation: 3;
   margin: 15px 0px;
   align-self: center;
 `
