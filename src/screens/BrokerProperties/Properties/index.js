@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { ActivityIndicator, Alert } from 'react-native'
 import images from '../images'
 import {
@@ -19,19 +19,19 @@ import {
 	HeartIcon,
 	LikeLabel,
 	LikesWrapper,
+	LoadingWrapper,
 	OptionButton,
 	OptionIcon,
+	PaginationText,
+	PaginationWrapper,
 	PriceLabel,
 	PriceWrapper,
-	Verified,
-  LoadingWrapper,
-  PaginationWrapper,
-  PaginationText
+	Verified
 } from './styledComponents'
 import Swiper from 'react-native-swiper'
 import {
-  getListingAPI,
-  deleteListingAPI
+	deleteListingAPI,
+	getListingAPI
 } from '../../../api/listing'
 import { Store } from 'src/store'
 import OptionModal from '../OptionModal'
@@ -50,66 +50,51 @@ const formatMoney = (amount, decimalCount = 2, decimal = '.', thousands = ',') =
 }
 
 const infoList = [
-  { key:'bedroom_count', label:'Bed/s' },
-  { key:'toilet_bath_count', label:'T&B' },
-  { key:'floor_area', label:'sqm' },
-  { key:'garage', label:'Garage' },
-  // { key:'listing_type' },
-]
-
-const arr = [
-	{
-    image_url: 'https://static-assets.profiles.hallyulife.com/lalisa-manoban-photo-welcoming-collection.jpg',
-    deleted: 0
-	},
-	{
-		image_url: 'https://i0.wp.com/blackpinkupdate.com/wp-content/uploads/2018/11/cover-BLACKPINK-Rose-Instagram-Photo-26-November-2018-furr-coat.jpg',
-    deleted: 0
-	},
-	{
-		image_url: 'https://www.sbs.com.au/popasia/sites/sbs.com.au.popasia/files/styles/full/public/roseblackpink1.png',
-    deleted: 1
-	}
+	{ key:'bedroom_count', label:'Bed/s' },
+	{ key:'toilet_bath_count', label:'T&B' },
+	{ key:'floor_area', label:'sqm' },
+	{ key:'garage', label:'Garage' },
+	// { key:'listing_type' },
 ]
 
 const Properties = ({ page }) => {
 
-  const { data } = Store.User;
-  const [properties, setProperties] = useState([])
-  const [loading, setLoading] = useState(false)
+	const { data } = Store.User
+	const [properties, setProperties] = useState([])
+	const [loading, setLoading] = useState(false)
 	const [selectedProperty, setSelectedProperty] = useState({})
-  const [modalVisible, setModalVisible] = useState(false)
+	const [modalVisible, setModalVisible] = useState(false)
 
-  useEffect(() => {
-    getListing();
-  }, [])
+	useEffect(() => {
+		getListing()
+	}, [])
 
-  const getListing = async () => {
-    setLoading(true)
-    try {
-      const res = await getListingAPI(data.id);
-      setLoading(false)
-      setProperties(res.data);
-    } catch(e) {
-      console.log(e.response);
-      setLoading(false)
-    }
-  }
+	const getListing = async () => {
+		setLoading(true)
+		try {
+			const res = await getListingAPI(data.id)
+			setLoading(false)
+			setProperties(res.data)
+		} catch(e) {
+			console.log(e.response)
+			setLoading(false)
+		}
+	}
 
-  const renderPagination = (index, total, context) => {
-    return (
-      <PaginationWrapper>
-        <PaginationText>
-          {index + 1}/{total}
-        </PaginationText>
-      </PaginationWrapper>
-    )
-  }
+	const renderPagination = (index, total) => {
+		return (
+			<PaginationWrapper>
+				<PaginationText>
+					{index + 1}/{total}
+				</PaginationText>
+			</PaginationWrapper>
+		)
+	}
 
-  const optionsOnPress = (d) => () => {
-    setSelectedProperty(d);
-    toggleModalVisible();
-  }
+	const optionsOnPress = (d) => () => {
+		setSelectedProperty(d)
+		toggleModalVisible()
+	}
 
 	const toggleModalVisible = () => {
 		setModalVisible(!modalVisible)
@@ -120,98 +105,95 @@ const Properties = ({ page }) => {
 	}
 
 	const deleteOnPress = () => {
-    Alert.alert(
-      'Delete Listing',
-      'Are you sure you want to delete this listing?',
-      [
-        {
-          text: 'OK',
-          onPress: async () => {
-            try {
-              await deleteListingAPI(selectedProperty.id);
-              getListing();
-              toggleModalVisible();
-            } catch(e) {
-              console.log('[ERROR DELETE]', e.response.data);
-              Alert.alert('Error', e.response.data.message ? e.response.data.message : 'Server Error');
-            }
-          }
-        }, {
-          text: 'Cancel'
-        }
-      ],
-      { cancelable: false }
-    )
+		Alert.alert(
+			'Delete Listing',
+			'Are you sure you want to delete this listing?',
+			[
+				{
+					text: 'OK',
+					onPress: async () => {
+						try {
+							await deleteListingAPI(selectedProperty.id)
+							getListing()
+							toggleModalVisible()
+						} catch(e) {
+							console.log('[ERROR DELETE]', e.response.data)
+							Alert.alert('Error', e.response.data.message ? e.response.data.message : 'Server Error')
+						}
+					}
+				}, {
+					text: 'Cancel'
+				}
+			],
+			{ cancelable: false }
+		)
 	}
 
-  return (
-    <>
-      <OptionModal
-        isVisible={modalVisible}
-        toggleModal={toggleModalVisible}
-        editOnPress={editOnPress}
-        deleteOnPress={deleteOnPress}
-      />
+	return (
+		<>
+			<OptionModal
+				isVisible={modalVisible}
+				toggleModal={toggleModalVisible}
+				editOnPress={editOnPress}
+				deleteOnPress={deleteOnPress}
+			/>
 
-      {page === 'Properties' &&
+			{page === 'Properties' &&
         loading ? (
-          <LoadingWrapper>
-            <ActivityIndicator color='#EC7050' size='large' />
-          </LoadingWrapper>
-        ) : properties.map((d, index) =>
-          <CardContainer key={index} first={index === 0}>
-            <CardAbsoluteHeader>
-              <LikesWrapper>
-                <HeartIcon />
-                <LikeLabel>{d.likes} Likes</LikeLabel>
-              </LikesWrapper>
-              <OptionButton onPress={optionsOnPress(d)}>
-                <OptionIcon />
-              </OptionButton>
-            </CardAbsoluteHeader>
-            <CardImageContainer>
-              <PriceWrapper>
-                <PriceLabel>P{formatMoney(d.price, 0)}</PriceLabel>
-              </PriceWrapper>
-              <Swiper
-                autoplay={false}
-                activeDotColor={'#EC7050'}
-                renderPagination={renderPagination}>
-                {/* {d.images.filter(i => i.deleted === 0).map((img, index) =>
-                  <CardImage key={index} source={{ uri: img.image_url }} />
-                )} */}
-                {arr.filter(i => i.deleted === 0).map((img, index) =>
-                  <CardImage key={index} source={{ uri: img.image_url }} />
-                )}
-              </Swiper>
-            </CardImageContainer>
-            <CardContent>
-              <CardHeader>
-                <CardHeaderLabel>{d.name}</CardHeaderLabel>
-                <Verified source={images.verified} />
-              </CardHeader>
-              <AddressWrapper>
-                <AddressIcon source={images.pin_location} />
-                <AddressLabel>{d.address}</AddressLabel>
-              </AddressWrapper>
-              <AdditionalInfo>
-                {infoList.map((info, idx) =>
-                  d[info.key] ? (
-                    <CardInfo key={idx}>
-                      <CardInfoIcon source={images.bath} />
-                      <CardInfoLabel>
-                        {`${d[info.key]} ${info.label}`}
-                      </CardInfoLabel>
-                    </CardInfo>
-                  ) : null
-                )}
-              </AdditionalInfo>
-            </CardContent>
-          </CardContainer>
-        )
-      }
-    </>
-  )
+					<LoadingWrapper>
+						<ActivityIndicator color='#EC7050' size='large' />
+					</LoadingWrapper>
+				) : properties.map((d, index) =>
+					<CardContainer key={index} first={index === 0}>
+						<CardAbsoluteHeader>
+							<LikesWrapper>
+								<HeartIcon />
+								<LikeLabel>{d.likes} Likes</LikeLabel>
+							</LikesWrapper>
+							<OptionButton onPress={optionsOnPress(d)}>
+								<OptionIcon />
+							</OptionButton>
+						</CardAbsoluteHeader>
+						<CardImageContainer>
+							<PriceWrapper>
+								<PriceLabel>P{formatMoney(d.price, 0)}</PriceLabel>
+							</PriceWrapper>
+							<Swiper
+								autoplay={false}
+								activeDotColor={'#EC7050'}
+								renderPagination={renderPagination}>
+								{d.images.filter(i => i.deleted === 0).map((img, index) =>
+									<CardImage key={index} source={{ uri: img.image_url }} />
+								)}
+							</Swiper>
+						</CardImageContainer>
+						<CardContent>
+							<CardHeader>
+								<CardHeaderLabel>{d.name}</CardHeaderLabel>
+								<Verified source={images.verified} />
+							</CardHeader>
+							<AddressWrapper>
+								<AddressIcon source={images.pin_location} />
+								<AddressLabel>{d.address}</AddressLabel>
+							</AddressWrapper>
+							<AdditionalInfo>
+								{infoList.map((info, idx) =>
+									d[info.key] ? (
+										<CardInfo key={idx}>
+											<CardInfoIcon source={images.bath} />
+											<CardInfoLabel>
+												{`${d[info.key]} ${info.label}`}
+											</CardInfoLabel>
+										</CardInfo>
+									) : null
+								)}
+							</AdditionalInfo>
+						</CardContent>
+					</CardContainer>
+				)
+			}
+		</>
+	)
 }
 
 export default Properties

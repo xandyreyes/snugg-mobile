@@ -40,7 +40,7 @@ const formDataset = [
 
 const BrokerAccountSettings = ({ navigation }) => {
   
-  const { data } = Store.User;
+	const { data } = Store.User
 	const formData = {
 		firstname: data.firstname,
 		middlename: data.middlename,
@@ -49,48 +49,48 @@ const BrokerAccountSettings = ({ navigation }) => {
 		contact_number: data.contact_number.toString(),
 		email: data.email
 	}
-  const [form, setForm] = useState(formData)
-  const [formToSend, setFormToSend] = useState({})
-  const [prcId, setPrcId] = useState('')
-  const [updating, setUpdating] = useState(false)
+	const [form, setForm] = useState(formData)
+	const [formToSend, setFormToSend] = useState({})
+	const [prcId, setPrcId] = useState('')
+	const [updating, setUpdating] = useState(false)
 
 	const onChangeText = field => text => {
 		form[field] = text
-    setForm({...form})
-    checkFormToSend(field, text)
-  }
+		setForm({...form})
+		checkFormToSend(field, text)
+	}
 
-  const checkFormToSend = (field, text) => {
-    if(data[field]) {
-      if(data[field].toString() === text) {
-        delete formToSend[field];
-        setFormToSend(formToSend)
-      } else {
-        formToSend[field] = text;
-        setFormToSend(formToSend)
-      }
-    }
-  }
+	const checkFormToSend = (field, text) => {
+		if(data[field]) {
+			if(data[field].toString() === text) {
+				delete formToSend[field]
+				setFormToSend(formToSend)
+			} else {
+				formToSend[field] = text
+				setFormToSend(formToSend)
+			}
+		}
+	}
   
-  const submitChanges = async () => {
-    if(!updating && Object.entries(formToSend).length !== 0) {
-      setUpdating(true)
-      try {
-        const res = await userUpdateAPI(data.id, formToSend)
-        Store.User.update(res.data);
-        setUpdating(false);
-        Alert.alert('Success', res.message);
-      } catch (error) {
-        const {data} = error.response;
-        console.log('[ERROR SIGN UP]', data)
-        const errData = Object.entries(data.errors).map(obj => {
-          return obj[1].join('\n')
-        })
-        setUpdating(false)
-        Alert.alert(data.message, errData.join('\n'))
-      }
-    }
-  }
+	const submitChanges = async () => {
+		if(!updating && Object.entries(formToSend).length !== 0) {
+			setUpdating(true)
+			try {
+				const res = await userUpdateAPI(data.id, formToSend)
+				Store.User.update(res.data)
+				setUpdating(false)
+				Alert.alert('Success', res.message)
+			} catch (error) {
+				const {data} = error.response
+				console.log('[ERROR SIGN UP]', data)
+				const errData = Object.entries(data.errors).map(obj => {
+					return obj[1].join('\n')
+				})
+				setUpdating(false)
+				Alert.alert(data.message, errData.join('\n'))
+			}
+		}
+	}
 
 	return (
 		<Container>
@@ -111,10 +111,10 @@ const BrokerAccountSettings = ({ navigation }) => {
 				</UpdatePRCButton>
 				<SaveChangesWrapper>
 					<Button
-            disabled={updating}
-            text={'SAVE CHANGES'}
-            width={168}
-            onPress={submitChanges} />
+						disabled={updating}
+						text={'SAVE CHANGES'}
+						width={168}
+						onPress={submitChanges} />
 				</SaveChangesWrapper>
 			</ContentContainer>
 		</Container>

@@ -1,22 +1,22 @@
 import React from 'react'
 import {
 	Button,
-	ButtonText,
-  ButtonLoading
+	ButtonLoading,
+	ButtonText
 } from './styledComponents'
 import {
-  ActivityIndicator
+	ActivityIndicator
 } from 'react-native'
 
 export default ({ text, width, onPress, disabled = false }) => {
 	return(
 		<Button activeOpacity={disabled ? 1 : 0.7} width={width} onPress={onPress}>
 			<ButtonText disabled={disabled}>{text}</ButtonText>
-      {disabled && (
-        <ButtonLoading>
-          <ActivityIndicator color="#fff" />
-        </ButtonLoading>
-      )}
+			{disabled && (
+				<ButtonLoading>
+					<ActivityIndicator color="#fff" />
+				</ButtonLoading>
+			)}
 		</Button>
 	)
 }

@@ -19,35 +19,35 @@ import images from './images'
 
 const BrokerProfile = ({ navigation }) => {
 
-  const { data } = Store.User;
-  const buttonSet = [
-    [
-      {
-        path: 'BrokerAccountSettings',
-        label: 'User Account Settings'
-      }, {
-        path: null,
-        label: 'Change Password'
-      }, {
-        path: null,
-        label: 'Subscription'
-      }, {
-        path: 'BrokerProperties',
-        label: 'My Properties'
-      }
-    ], [
-      {
-        path: null,
-        label: 'About Snugg Neighborhood'
-      }, {
-        path: null,
-        label: 'Terms & Condition'
-      }, {
-        path: null,
-        label: 'Logout'
-      }
-    ]
-  ]
+	const { data } = Store.User
+	const buttonSet = [
+		[
+			{
+				path: 'BrokerAccountSettings',
+				label: 'User Account Settings'
+			}, {
+				path: null,
+				label: 'Change Password'
+			}, {
+				path: null,
+				label: 'Subscription'
+			}, {
+				path: 'BrokerProperties',
+				label: 'My Properties'
+			}
+		], [
+			{
+				path: null,
+				label: 'About Snugg Neighborhood'
+			}, {
+				path: null,
+				label: 'Terms & Condition'
+			}, {
+				path: null,
+				label: 'Logout'
+			}
+		]
+	]
 
 	const UserButton = ({children, ...rest}) => {
 		return (
@@ -62,9 +62,9 @@ const BrokerProfile = ({ navigation }) => {
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
 				<UserInfoContainer>
 					<UserImage />
-          <UserNameLabel>
-            {`${data.firstname} ${data.lastname}`}
-          </UserNameLabel>
+					<UserNameLabel>
+						{`${data.firstname} ${data.lastname}`}
+					</UserNameLabel>
 					<UserAddressWrapper>
 						<UserAddressIcon source={images.pin_location} />
 						<UserAddressLabel>
@@ -77,17 +77,17 @@ const BrokerProfile = ({ navigation }) => {
 						</UserSubscriptionLabel>
 					</UserSubscriptionWrapper>
 				</UserInfoContainer>
-        {buttonSet.map((bs, bsIndex) =>
-          <ButtonContainer key={bsIndex}>
-            {bs.map((button, index) =>
-              <UserButton
-                key={index}
-                onPress={() => button.path ? navigation.navigate(button.path) : {}}>
-                {button.label}
-              </UserButton>
-            )}
-          </ButtonContainer>
-        )}
+				{buttonSet.map((bs, bsIndex) =>
+					<ButtonContainer key={bsIndex}>
+						{bs.map((button, index) =>
+							<UserButton
+								key={index}
+								onPress={() => button.path ? navigation.navigate(button.path) : {}}>
+								{button.label}
+							</UserButton>
+						)}
+					</ButtonContainer>
+				)}
 			</ContentContainer>
 		</Container>
 	)

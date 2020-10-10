@@ -26,8 +26,8 @@ export default ({ navigation }) => {
 			// navigation.reset({
 			// 	index: 0,
 			// 	routes: [{ name: 'BrokerDashboard' }]
-      // })
-      navigation.navigate('Home');
+			// })
+			navigation.navigate('Home')
 		} 
 		if (User.data && User.data.type_id === UserType.buyer) {
 			alert('Start as Buyer')

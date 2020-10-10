@@ -13,14 +13,14 @@ import {
 export default ({ navigation }) => {
 	return(
 		<Container>
-      <ScrollView>
-        <Header navigation={navigation} />
-        <PropertyInfo />
-        <Broker />
-        <PropertyDetails />
-        <Features />
-      </ScrollView>
-      <Actions />
+			<ScrollView>
+				<Header navigation={navigation} />
+				<PropertyInfo />
+				<Broker />
+				<PropertyDetails />
+				<Features />
+			</ScrollView>
+			<Actions />
 		</Container>
 	)
 }

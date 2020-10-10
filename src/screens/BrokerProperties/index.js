@@ -27,7 +27,7 @@ import { Store } from 'src/store'
 
 const BrokerProperties = () => {
 
-  const { data } = Store.User;
+	const { data } = Store.User
 	const [activePage, setActivePage] = useState('Properties')
 
 	const messageButtonOnPress = () => {
