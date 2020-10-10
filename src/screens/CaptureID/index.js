@@ -1,4 +1,5 @@
 import React from 'react'
+import { get } from 'lodash'
 import { SafeAreaView, TouchableOpacity } from 'react-native'
 import Button from 'src/components/Button'
 import { Center, Header } from 'src/components/styledComponents'
@@ -15,7 +16,7 @@ import {
 	Paragraph
 } from './styledComponents'
 
-export default ({ navigation }) => {
+export default ({ navigation, route }) => {
 	return(
 		<Container start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#FFF', '#FFF', '#E8E8E8']}>
 			<SafeAreaView style={{ flex: 1 }}>
@@ -35,12 +36,14 @@ export default ({ navigation }) => {
 						</Center>
 						<InstructionContainer>
 							<InstructionText>
-                                Please take a photo of your PRC ID to continue registration
+								{ get(route, 'params.saveImg', null) ? 'Take a photo of your ID to continue updating your details' : 'Please take a photo of your PRC ID to continue registration'}
 							</InstructionText>
 						</InstructionContainer>
 						<ButtonContainer>
 							<Center>
-								<Button text="CAPTURE ID" onPress={() => navigation.navigate('CameraCapture')} />
+								<Button text="CAPTURE ID" onPress={() => navigation.navigate('CameraCapture', {
+									saveImg: get(route, 'params.saveImg', null)
+								})} />
 							</Center>
 						</ButtonContainer>
 					</ContentContainer>

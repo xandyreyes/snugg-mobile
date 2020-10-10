@@ -53,7 +53,7 @@ const UserAccount = ({ navigation }) => {
 							{ get(User, 'data.type_id', 2) === UserType.broker && (
 								<UserSubscriptionWrapper>
 									<UserSubscriptionLabel>
-										Free Trial
+										{get(User, 'data.broker_details.subscription.name', '14 Days Trial')}
 									</UserSubscriptionLabel>
 								</UserSubscriptionWrapper>
 							)}

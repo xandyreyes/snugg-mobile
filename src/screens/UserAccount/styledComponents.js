@@ -55,7 +55,7 @@ export const UserAddressLabel = styled.Text`
 export const UserSubscriptionWrapper = styled.View`
   background: #17365D;
   border-radius: 5px;
-  padding: 6px 25px;
+  padding: 6px 15px;
   align-items: center;
 `
 

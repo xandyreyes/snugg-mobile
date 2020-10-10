@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { get } from 'lodash'
 import { SafeAreaView } from 'react-native'
 import Scanner from 'react-native-rectangle-scanner'
 import Back from 'src/components/Back'
@@ -10,14 +11,14 @@ import {
 	TopBar
 } from './styledComponents'
 
-export default ({ navigation }) => {
+export default ({ navigation, route }) => {
 
 	const camera = useRef(null)
 
-	const handleOnPictureProcessed = ({croppedImage, initialImage}) => {
-		console.log({ croppedImage, initialImage })
+	const handleOnPictureProcessed = ({croppedImage}) => {
 		navigation.navigate('PreviewID', {
-			croppedImage
+			croppedImage,
+			saveImg: get(route, 'params.saveImg', null)
 		})
 	}
 

@@ -68,6 +68,17 @@ export const PRCIDWrapper = styled.Image`
   resize-mode: contain;
 `
 
+export const PRCID = styled.View`
+  width: 100%;
+  height: 150px;
+  margin-top: 8px;
+  resize-mode: contain;
+  border: 1px solid #70707026;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+`
+
 export const UpdatePRCButton = styled.TouchableOpacity`
   background: #17365D;
   border-radius: 8px;

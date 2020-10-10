@@ -47,22 +47,21 @@ export default () => {
 									<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
 									<Stack.Screen name="UserAccountSettings" component={UserAccountSettings} options={{ headerShown: false }} />
 									<Stack.Screen name="BrokerProfile" component={BrokerProfile} options={{ headerShown: false }} />
-									<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
 									<Stack.Screen name="UserPasswordUpdate" component={UserPasswordUpdate} options={{ headerShown: false }} />
 								</>
 							) : (
 								<>
 									<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 									<Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
-									<Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />
 									<Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
 									<Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerShown: false }} />
-									<Stack.Screen name="CameraCapture" component={CameraCapture} options={{ headerShown: false }} />
-									<Stack.Screen name="PreviewID" component={PreviewID} options={{ headerShown: false }} />
-									<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
 									<Stack.Screen name="SelectSubscriptionPlan" component={SelectSubscriptionPlan} options={{ headerShown: false }} />
 								</>
 							) }
+							<Stack.Screen name="CameraCapture" component={CameraCapture} options={{ headerShown: false }} />
+							<Stack.Screen name="Capture" component={CaptureID} options={{ headerShown: false }} />
+							<Stack.Screen name="PreviewID" component={PreviewID} options={{ headerShown: false }} />
+							<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
 						</Stack.Navigator>
 					)
 				}}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { get } from 'lodash'
 import { Alert } from 'react-native'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
@@ -11,6 +12,7 @@ import {
 	FormLabel,
 	Header,
 	Input,
+	PRCID,
 	PRCIDWrapper,
 	Row,
 	SaveChangesWrapper,
@@ -26,18 +28,18 @@ const UserAccountSettings = ({ navigation }) => {
   
 	const { data } = Store.User
 	const formData = {
-		firstname: data.firstname,
-		middlename: data.middlename,
-		lastname: data.lastname,
-		address: data.address,
-		contact_number: data.contact_number.toString(),
-		email: data.email,
-		lat: data.lat,
-		lon: data.lon
+		firstname: get(data, 'firstname', ''),
+		middlename: get(data, 'middlename', ''),
+		lastname: get(data, 'lastname', ''),
+		address: get(data, 'address', 'Select Address'),
+		contact_number: get(data, 'contact_number', null).toString(),
+		email: get(data, 'email', ''),
+		lat: get(data, 'lat', ''),
+		lon: get(data, 'lon', ''),
+		broker_details: get(data, 'broker_details', null)
 	}
 	const [form, setForm] = useState(formData)
 	const [formToSend, setFormToSend] = useState({})
-	const [prcId, setPrcId] = useState('')
 	const [updating, setUpdating] = useState(false)
 
 	const onChangeText = field => text => {
@@ -101,6 +103,19 @@ const UserAccountSettings = ({ navigation }) => {
 		})
 	}
 
+	const saveImg = prc_id => {
+		form.broker_details = {
+			...form.broker_details,
+			prc_id
+		}
+		formToSend.broker_details = {
+			...formToSend.broker_details,
+			prc_id
+		}
+		setForm({...form})
+		setFormToSend({...formToSend})
+	}
+
 	return (
 		<Container>
 			<Row>
@@ -139,9 +154,15 @@ const UserAccountSettings = ({ navigation }) => {
 					<>
 						<FormGroup>
 							<FormLabel>PRC ID</FormLabel>
-							<PRCIDWrapper />
+							{ get(form, 'broker_details.prc_id', null) ? (
+								<PRCIDWrapper source={{ uri: form.broker_details.prc_id }} />
+							) : (
+								<PRCID>
+									<TouchableText>No PRC ID</TouchableText>
+								</PRCID>
+							) }
 						</FormGroup>
-						<UpdatePRCButton>
+						<UpdatePRCButton onPress={() => navigation.navigate('Capture', { saveImg })}>
 							<UpdatePRCLabel>Update PRC ID</UpdatePRCLabel>
 						</UpdatePRCButton>
 					</>

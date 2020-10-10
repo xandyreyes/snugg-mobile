@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
+import { get } from 'lodash'
 import {
 	ActivityIndicator,
 	Modal,
 	Platform,
 	SafeAreaView
 } from 'react-native'
+import { StackActions } from '@react-navigation/native'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
 import {
@@ -38,14 +40,19 @@ export default ({ navigation, route }) => {
 				uploadUri,
 				storageName: config.firebase_storage.prc_id,
 			})
-			console.log(url, '[URL]')
+			const saveImg = get(route, 'params.saveImg', null)
+			if (saveImg) {
+				saveImg(url)
+				navigation.dispatch(StackActions.pop(3))
+			} else {
+				navigation.navigate('SelectLocationMap', {
+					title: 'Enter your location',
+					onNext: (nav, location) => {
+						nav.navigate('SelectSubscriptionPlan', {location, prc_id: url})
+					}
+				})
+			}
 			setLoading(false)
-			navigation.navigate('SelectLocationMap', {
-				title: 'Enter your location',
-				onNext: (nav, location) => {
-					nav.navigate('SelectSubscriptionPlan', {location, prc_id: url})
-				}
-			})
 		} catch(e) {
 			console.log(e.response, '[UPLOAD PHOTO ERROR]')
 		}
