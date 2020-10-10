@@ -23,14 +23,16 @@ export default ({ navigation }) => {
 	const start = () => {
 		const { User } = Store
 		if (User.data && User.data.type_id === UserType.broker) {
-			// navigation.reset({
-			// 	index: 0,
-			// 	routes: [{ name: 'BrokerDashboard' }]
-			// })
-			navigation.navigate('Home')
+			navigation.reset({
+				index: 0,
+				routes: [{ name: 'BrokerTabs' }]
+			})
 		} 
 		if (User.data && User.data.type_id === UserType.buyer) {
-			alert('Start as Buyer')
+			navigation.reset({
+				index: 0,
+				routes: [{ name: 'BuyerTabs' }]
+			})
 		} 
 		if (User.data && User.data.type_id === UserType.admin) {
 			alert('Start as Admin')

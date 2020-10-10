@@ -50,6 +50,15 @@ export const User = types
 			self.access_token = user.access_token
 			self.expires_at = user.expires_at
 		},
+		logout: () => {
+			const initialSnapshot = {
+				access_token: null,
+				expires_at: null,
+				loading: false,
+				data: null
+			}
+			applySnapshot(self, initialSnapshot)
+		},
 		update: (data) => {
 			self.data = Object.assign({}, self.data, data)
 		},

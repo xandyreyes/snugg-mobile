@@ -1,4 +1,7 @@
 import React from 'react'
+import { get } from 'lodash'
+import { UserType } from 'src/constants'
+import { Store } from 'src/store'
 import {
 	Button,
 	ButtonContainer,
@@ -17,6 +20,10 @@ import {
 import images from './images'
 
 const UserAccount = ({ navigation }) => {
+
+	const { User } = Store
+	console.log({ User: User.data })
+
 	const UserButton = ({children, ...rest}) => {
 		return (
 			<Button {...rest}>
@@ -25,38 +32,53 @@ const UserAccount = ({ navigation }) => {
 		)
 	}
 
+	const logout = () => {
+		User.logout()
+	}
+
 	return (
 		<Container>
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
 				<UserInfoContainer>
 					<UserImage />
-					<UserNameLabel>John Doe</UserNameLabel>
+					<UserNameLabel>{`${get(User, 'data.firstname', '')} ${get(User, 'data.middlename', '')} ${get(User, 'data.lastname', '')}`}</UserNameLabel>
 					<UserAddressWrapper>
 						<UserAddressIcon source={images.pin_location} />
 						<UserAddressLabel>
-							Greenhills, San Juan City
+							{get(User, 'data.address', 'Philippines')}
 						</UserAddressLabel>
 					</UserAddressWrapper>
-					<UserSubscriptionWrapper>
-						<UserSubscriptionLabel>
-							Free Trial
-						</UserSubscriptionLabel>
-					</UserSubscriptionWrapper>
+					{ User.data.type_id === UserType.broker && (
+						<UserSubscriptionWrapper>
+							<UserSubscriptionLabel>
+								Free Trial
+							</UserSubscriptionLabel>
+						</UserSubscriptionWrapper>
+					)}
 				</UserInfoContainer>
 				<ButtonContainer>
 					<UserButton onPress={() => navigation.navigate('UserAccountSettings')}>
 						User Account Settings
 					</UserButton>
 					<UserButton>Change Password</UserButton>
-					<UserButton>Subscription</UserButton>
-					<UserButton onPress={() => navigation.navigate('BrokerProfile')}>
-						My Properties
-					</UserButton>
+					{ User.data.type_id === UserType.broker && (
+						<>
+							<UserButton>Subscription</UserButton>
+							<UserButton onPress={() => navigation.navigate('BrokerProfile')}>
+								My Properties
+							</UserButton>
+						</>
+					) }
+					{ User.data.type_id === UserType.buyer && (
+						<>
+							<UserButton>Liked Properties</UserButton>
+						</>
+					) }
 				</ButtonContainer>
 				<ButtonContainer>
 					<UserButton>About Snugg Neighborhood</UserButton>
 					<UserButton>Terms & Condition</UserButton>
-					<UserButton>Logout</UserButton>
+					<UserButton onPress={logout}>Logout</UserButton>
 				</ButtonContainer>
 			</ContentContainer>
 		</Container>
