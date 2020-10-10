@@ -50,7 +50,7 @@ const UserAccount = ({ navigation }) => {
 									{get(User, 'data.address', 'Philippines')}
 								</UserAddressLabel>
 							</UserAddressWrapper>
-							{ User.data.type_id === UserType.broker && (
+							{ get(User, 'data.type_id', 2) === UserType.broker && (
 								<UserSubscriptionWrapper>
 									<UserSubscriptionLabel>
 										Free Trial

@@ -14,33 +14,13 @@ import {
 	PRCIDWrapper,
 	Row,
 	SaveChangesWrapper,
+	Touchable,
+	TouchableText,
 	UpdatePRCButton,
 	UpdatePRCLabel,
 	UserImage
 } from './styledComponents'
 import { userUpdateAPI } from '../../api/auth'
-  
-const formDataset = [
-	{
-		field: 'firstname',
-		label: 'First Name'
-	}, {
-		field: 'middlename',
-		label: 'Middle Name'
-	}, {
-		field: 'lastname',
-		label: 'Last Name'
-	}, {
-		field: 'address',
-		label: 'Location'
-	}, {
-		field: 'contact_number',
-		label: 'Phone Number'
-	}, {
-		field: 'email',
-		label: 'Email'
-	}
-]
 
 const UserAccountSettings = ({ navigation }) => {
   
@@ -51,7 +31,9 @@ const UserAccountSettings = ({ navigation }) => {
 		lastname: data.lastname,
 		address: data.address,
 		contact_number: data.contact_number.toString(),
-		email: data.email
+		email: data.email,
+		lat: data.lat,
+		lon: data.lon
 	}
 	const [form, setForm] = useState(formData)
 	const [formToSend, setFormToSend] = useState({})
@@ -96,6 +78,29 @@ const UserAccountSettings = ({ navigation }) => {
 		}
 	}
 
+	const changeLocation = () => {
+		navigation.navigate('SelectLocationMap', {
+			title: 'Update Address',
+			onNext: (nav, location) => {
+				nav.goBack()
+				const updateLocation = {
+					...form,
+					address: location.address,
+					lat: location.latitude,
+					lon: location.longitude
+				}
+				setForm(updateLocation)
+				const formToSendUpdate = {
+					...formToSend,
+					address: location.address,
+					lat: location.latitude,
+					lon: location.longitude
+				}
+				setFormToSend(formToSendUpdate)
+			}
+		})
+	}
+
 	return (
 		<Container>
 			<Row>
@@ -104,12 +109,32 @@ const UserAccountSettings = ({ navigation }) => {
 			</Row>
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
 				<UserImage />
-				{formDataset.map((data, index) =>
-					<FormGroup key={index}>
-						<FormLabel>{data.label}</FormLabel>
-						<Input onChangeText={onChangeText(data.field)} value={form[data.field]} />
-					</FormGroup>
-				)}
+				<FormGroup>
+					<FormLabel>First Name</FormLabel>
+					<Input onChangeText={onChangeText(data.firstname)} value={form.firstname} />
+				</FormGroup>
+				<FormGroup>
+					<FormLabel>Middle Name</FormLabel>
+					<Input onChangeText={onChangeText(data.middlename)} value={form.middlename} />
+				</FormGroup>
+				<FormGroup>
+					<FormLabel>Last Name</FormLabel>
+					<Input onChangeText={onChangeText(data.lastname)} value={form.lastname} />
+				</FormGroup>
+				<FormGroup>
+					<FormLabel>Address</FormLabel>
+					<Touchable onPress={changeLocation}>
+						<TouchableText>{form.address}</TouchableText>
+					</Touchable>
+				</FormGroup>
+				<FormGroup>
+					<FormLabel>Phone Number</FormLabel>
+					<Input onChangeText={onChangeText(data.contact_number)} value={form.contact_number} />
+				</FormGroup>
+				<FormGroup>
+					<FormLabel>Email</FormLabel>
+					<Input onChangeText={onChangeText(data.email)} value={form.email} />
+				</FormGroup>
 				{ data.type_id === UserType.broker && (
 					<>
 						<FormGroup>

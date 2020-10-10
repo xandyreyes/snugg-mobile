@@ -45,6 +45,21 @@ export const Input = styled.TextInput`
   margin-top: 5px;
 `
 
+export const Touchable = styled.TouchableOpacity`
+  padding: 8px 15px;
+  background-color: #ffffff;
+  border: 1px solid #70707026;
+  border-radius: 8px;
+  margin-top: 5px;
+`
+
+export const TouchableText = styled.Text`
+  font-family: Raleway-Regular;
+  font-size: 14px;
+  color: #2E3743;
+  line-height: 16px;
+`
+
 export const PRCIDWrapper = styled.Image`
   background: #E6E6E6;
   width: 100%;
