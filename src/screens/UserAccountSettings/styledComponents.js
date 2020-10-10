@@ -11,15 +11,14 @@ export const ContentContainer = styled.ScrollView`
     padding: 5px 25px 120px;
 `
 
-export const UserImage = styled.View`
+export const UserImage = styled.Image`
   width: 80px;
   height: 80px;
-  background: #c6c6c6;
+  background: rgba(0,0,0,0.1);
   border-radius: 8px;
   elevation: 3;
   margin: 15px 0px;
   align-self: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 `
 
 export const FormGroup = styled.View`

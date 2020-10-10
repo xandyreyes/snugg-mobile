@@ -42,7 +42,7 @@ const UserAccount = ({ navigation }) => {
 				<Observer>
 					{() => (
 						<UserInfoContainer>
-							<UserImage />
+							<UserImage source={images.default_image} />
 							<UserNameLabel>{`${get(User, 'data.firstname', '')} ${get(User, 'data.middlename', '')} ${get(User, 'data.lastname', '')}`}</UserNameLabel>
 							<UserAddressWrapper>
 								<UserAddressIcon source={images.pin_location} />

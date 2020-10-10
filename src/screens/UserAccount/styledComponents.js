@@ -15,12 +15,12 @@ export const UserInfoContainer = styled.View`
   padding-bottom: 38px;
 `
 
-export const UserImage = styled.View`
+export const UserImage = styled.Image`
   width: 80px;
   height: 80px;
   background: #c6c6c6;
   border-radius: 8px;
-  elevation: 3;
+  background: rgba(0,0,0,0.1);
 `
 
 export const UserNameLabel = styled.Text`

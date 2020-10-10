@@ -24,6 +24,8 @@ import {
 } from './styledComponents'
 import { userUpdateAPI } from '../../api/auth'
 
+const default_image = require('src/assets/images/default_image.png')
+
 const UserAccountSettings = ({ navigation }) => {
   
 	const { data } = Store.User
@@ -123,7 +125,7 @@ const UserAccountSettings = ({ navigation }) => {
 				<Header>User Profile Settings</Header>
 			</Row>
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
-				<UserImage />
+				<UserImage source={default_image} />
 				<FormGroup>
 					<FormLabel>First Name</FormLabel>
 					<Input onChangeText={onChangeText(data.firstname)} value={form.firstname} />
