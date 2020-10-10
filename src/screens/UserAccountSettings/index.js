@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
+import { Alert } from 'react-native'
+import Back from 'src/components/Back'
+import Button from 'src/components/Button'
+import { UserType } from 'src/constants'
+import { Store } from 'src/store'
 import {
 	Container,
 	ContentContainer,
 	FormGroup,
 	FormLabel,
+	Header,
 	Input,
 	PRCIDWrapper,
+	Row,
 	SaveChangesWrapper,
 	UpdatePRCButton,
 	UpdatePRCLabel,
 	UserImage
 } from './styledComponents'
-import { Alert } from 'react-native'
-import Button from 'src/components/Button'
-import { Store } from 'src/store'
 import { userUpdateAPI } from '../../api/auth'
   
 const formDataset = [
@@ -94,6 +98,10 @@ const UserAccountSettings = ({ navigation }) => {
 
 	return (
 		<Container>
+			<Row>
+				<Back navigation={navigation} />
+				<Header>User Profile Settings</Header>
+			</Row>
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
 				<UserImage />
 				{formDataset.map((data, index) =>
@@ -102,13 +110,17 @@ const UserAccountSettings = ({ navigation }) => {
 						<Input onChangeText={onChangeText(data.field)} value={form[data.field]} />
 					</FormGroup>
 				)}
-				<FormGroup>
-					<FormLabel>PRC ID</FormLabel>
-					<PRCIDWrapper />
-				</FormGroup>
-				<UpdatePRCButton>
-					<UpdatePRCLabel>Update PRC ID</UpdatePRCLabel>
-				</UpdatePRCButton>
+				{ data.type_id === UserType.broker && (
+					<>
+						<FormGroup>
+							<FormLabel>PRC ID</FormLabel>
+							<PRCIDWrapper />
+						</FormGroup>
+						<UpdatePRCButton>
+							<UpdatePRCLabel>Update PRC ID</UpdatePRCLabel>
+						</UpdatePRCButton>
+					</>
+				) }
 				<SaveChangesWrapper>
 					<Button
 						disabled={updating}
