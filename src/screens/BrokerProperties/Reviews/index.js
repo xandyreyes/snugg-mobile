@@ -37,8 +37,9 @@ const reviews = [
 	}
 ]
 
-const Reviews = () => {
-	return (
+const Reviews = ({page}) => {
+
+	return page === 'Reviews' && (
 		<Container>
 			<LeaveReview />
 			{reviews.map((r, index) =>

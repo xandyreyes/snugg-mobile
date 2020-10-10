@@ -11,6 +11,7 @@ export const CardContainer = styled.View`
   background: #FFFFFF;
   position: relative; 
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  elevation: 3;
 `
 
 export const CardAbsoluteHeader = styled.View`
@@ -155,4 +156,27 @@ export const CardInfoLabel = styled.Text`
   font-size: 12px;
   line-height: 13px;
   color: #FFFFFF;
+`
+
+export const LoadingWrapper = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+`
+
+export const PaginationWrapper = styled.View`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #FFFFFF90;
+  border-radius: 5px;
+  padding: 5px 8px;
+`
+
+export const PaginationText = styled.Text`
+  font-family: Raleway-Bold;
+  font-size: 14px;
+  line-height: 15px;
+  color: #17365D;
 `

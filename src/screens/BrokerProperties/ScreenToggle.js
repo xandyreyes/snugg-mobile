@@ -6,7 +6,7 @@ import Reviews from './Reviews'
 
 const width = Dimensions.get('window').width
 
-const ScreenToggle = ({ page, propertyOptionOnPress }) => {
+const ScreenToggle = ({ page }) => {
 
 	const toggleAnimation = useRef(new Animated.Value(0)).current
 
@@ -38,7 +38,7 @@ const ScreenToggle = ({ page, propertyOptionOnPress }) => {
 			}]
 		}}>
 			<ScreenToggleContainer>
-				<Properties propertyOptionOnPress={propertyOptionOnPress} page={page} />
+				<Properties page={page} />
 			</ScreenToggleContainer>
 			<ScreenToggleContainer>
 				<Reviews page={page} />

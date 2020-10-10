@@ -19,7 +19,7 @@ import { userUpdateAPI } from '../../api/auth'
 const formDataset = [
 	{
 		field: 'firstname',
-		label: 'Full Name'
+		label: 'First Name'
 	}, {
 		field: 'middlename',
 		label: 'Middle Name'

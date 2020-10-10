@@ -1,5 +1,5 @@
 import Welcome from "../Welcome";
-import Home from "../Tab/Home";
+import Home from "../BrokerTabs";
 import EnableLocation from "../EnableLocation";
 import AddListing from "../AddListing";
 import BrokerAccountSettings from "../BrokerAccountSettings";
