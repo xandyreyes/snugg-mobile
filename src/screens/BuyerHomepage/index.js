@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Browse from './Browse'
 import images from './images'
 import NoLocation from './NoLocation'
@@ -16,8 +16,6 @@ export default ({ navigation }) => {
 
 	const [location, setLocation] = useState(null)
 
-	console.log({ location })
-
 	return(
 		<Container>
 			<RowSpace>
@@ -32,7 +30,7 @@ export default ({ navigation }) => {
 				}
 			})}>
 				<LocationIcon source={images.location_icon} />
-				<SearchText>{location?.address || 'Search Location'}</SearchText>
+				<SearchText numberOfLines={1}>{location?.address || 'Search Location'}</SearchText>
 			</SearchBar>
 			{ location ? (
 				<Browse />

@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { Dimensions } from 'react-native'
+
+const width = Dimensions.get('screen').width
 
 export const Container = styled.View`
     background: white;
@@ -38,4 +41,5 @@ export const SearchText = styled.Text`
     color: rgba(23, 54, 93, 1);
     font-size: 14px;
     font-family: Raleway-Regular;
+    max-width: ${width - 89}
 `
