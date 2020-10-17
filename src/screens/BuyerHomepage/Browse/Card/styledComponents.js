@@ -6,14 +6,15 @@ const width = Dimensions.get('screen').width
 export const Container = styled.View`
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
+    flex: 1;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 `
 
 export const Image = styled.ImageBackground`
     width: 100%;
-    height: 50%;
-    min-height: 180px;
+    flex: 1;
     resize-mode: cover;
     background: #f0f0f0;
     justify-content: flex-end;
