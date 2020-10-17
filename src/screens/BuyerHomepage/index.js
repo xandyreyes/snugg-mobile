@@ -16,9 +16,7 @@ export default ({ navigation }) => {
 
 	const [location, setLocation] = useState(null)
 
-	useEffect(() => {
-
-	}, [])
+	console.log({ location })
 
 	return(
 		<Container>
@@ -26,22 +24,20 @@ export default ({ navigation }) => {
 				<Header>Nearby</Header>
 				<Toggle />
 			</RowSpace>
+			<SearchBar onPress={() => navigation.navigate('SelectLocationMap', {
+				title: 'Change Location',
+				onNext: (nav, location) => {
+					nav.goBack()
+					setLocation(location)
+				}
+			})}>
+				<LocationIcon source={images.location_icon} />
+				<SearchText>{location?.address || 'Search Location'}</SearchText>
+			</SearchBar>
 			{ location ? (
 				<Browse />
 			) : (
-				<>
-					<SearchBar onPress={() => navigation.navigate('SelectLocationMap', {
-						title: 'Change Location',
-						onNext: (nav, location) => {
-							nav.goBack()
-							setLocation(location)
-						}
-					})}>
-						<LocationIcon source={images.location_icon} />
-						<SearchText>Search Location</SearchText>
-					</SearchBar>
-					<NoLocation />
-				</>
+				<NoLocation />
 			) }
 		</Container>
 	)

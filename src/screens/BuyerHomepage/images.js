@@ -3,4 +3,6 @@ export default {
 	list: require('src/assets/images/list.png'),
 	location_icon: require('src/assets/images/location_icon.png'),
 	no_location: require('src/assets/images/no_location_illustration.png'),
+	verified: require('src/assets/images/verified.png'),
+	pin_location: require('src/assets/images/pin_location.png'),
 }
