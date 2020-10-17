@@ -12,6 +12,8 @@ export const Row = styled.View`
     justify-content: space-between;
     width: 150px;
     margin-vertical: 20px;
+    position: absolute;
+    bottom: 0;
 `
 
 export const ButtonContainer = styled.View`
@@ -43,7 +45,8 @@ export const Image = styled.Image`
 `
 
 export const HeartEmpty = styled.Image`
-    height: 27;
+    height: 27px;
     width: 29.25px;
     resize-mode: contain;
 `
+

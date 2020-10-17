@@ -5,11 +5,8 @@ const width = Dimensions.get('screen').width
 
 export const Container = styled.View`
     border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
     flex: 1;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
 `
 
 export const Image = styled.ImageBackground`
@@ -19,6 +16,8 @@ export const Image = styled.ImageBackground`
     background: #f0f0f0;
     justify-content: flex-end;
     align-items: flex-end;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 `
 
 export const PriceContainer = styled.View`
@@ -50,7 +49,7 @@ export const Title = styled.Text`
     color: rgba(23, 54, 93, 1);
     font-family: Raleway-Bold;
     font-size: 16px;
-    max-width: ${width - 92}
+    max-width: ${width - 92}px;
 `
 
 export const Verified = styled.Image`
@@ -87,4 +86,25 @@ export const LocationText = styled.Text`
     font-size: 12px;
     font-family: Raleway-Regular;
     margin-top: 9px;
+`
+
+export const SwipeLabelImage = styled.Image`
+    height: 40px;
+    width: 40px;
+    resize-mode: contain;
+    tint-color: rgba(23, 54, 93, 1);
+`
+
+export const SwipeLabelImageLike = styled.Image`
+    height: 40px;
+    width: 43.7037px;
+    resize-mode: contain;
+    tint-color: rgba(236, 112, 80, 1);
+`
+
+export const SwipeLabelText = styled.Text`
+    color: ${props => props.like ? 'rgba(236, 112, 80, 1)' : 'rgba(23, 54, 93, 1)' };
+    font-family: Raleway-Bold;
+    font-size: 14px;
+    margin-top: 6px;
 `

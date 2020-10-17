@@ -41,5 +41,5 @@ export const SearchText = styled.Text`
     color: rgba(23, 54, 93, 1);
     font-size: 14px;
     font-family: Raleway-Regular;
-    max-width: ${width - 89}
+    max-width: ${width - 89}px;
 `
