@@ -1,6 +1,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { Observer } from 'mobx-react'
+import { TouchableOpacity } from 'react-native'
 import { UserType } from 'src/constants'
 import { Store } from 'src/store'
 import {
@@ -42,7 +43,9 @@ const UserAccount = ({ navigation }) => {
 				<Observer>
 					{() => (
 						<UserInfoContainer>
-							<UserImage source={images.default_image} />
+							<TouchableOpacity onPress={() => navigation.navigate('BrokerProfile')}>
+								<UserImage source={images.default_image} />
+							</TouchableOpacity>
 							<UserNameLabel>{`${get(User, 'data.firstname', '')} ${get(User, 'data.middlename', '')} ${get(User, 'data.lastname', '')}`}</UserNameLabel>
 							<UserAddressWrapper>
 								<UserAddressIcon source={images.pin_location} />
@@ -69,7 +72,7 @@ const UserAccount = ({ navigation }) => {
 						<>
 							<UserButton>Subscription</UserButton>
 							<UserButton onPress={() => navigation.navigate('BrokerProfile')}>
-								My Properties
+								My Profile
 							</UserButton>
 						</>
 					) }

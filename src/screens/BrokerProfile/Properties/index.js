@@ -87,7 +87,7 @@ const Properties = ({ propertyOptionOnPress }) => {
 		<CardContainer key={index} first={index === 0}>
 			<CardAbsoluteHeader>
 				<LikesWrapper>
-					<HeartIcon />
+					<HeartIcon source={images.heart_empty} />
 					<LikeLabel>{d.likes} Likes</LikeLabel>
 				</LikesWrapper>
 				<OptionButton onPress={propertyOptionOnPress(d)}>

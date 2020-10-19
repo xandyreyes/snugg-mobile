@@ -31,7 +31,7 @@ export default ({ onChangeToggle, defaultAs }) => {
 		Animated.timing(
 			toggleAnimation,
 			{
-				toValue: (width - 50) / 2,
+				toValue: (width - 38) / 2,
 				duration: 200,
 				useNativeDriver: true
 			}

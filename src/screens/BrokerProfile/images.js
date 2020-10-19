@@ -12,4 +12,5 @@ export default {
 	condo: require('src/assets/images/condo.png'),
 	garage: require('src/assets/images/garage.png'),
 	area: require('src/assets/images/area.png'),
+	heart_empty: require('src/assets/images/heart_empty.png'),
 }

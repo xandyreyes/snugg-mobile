@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Dimensions } from 'react-native'
 
 export const Container = styled.SafeAreaView`
     flex: 1;
@@ -7,11 +8,27 @@ export const Container = styled.SafeAreaView`
 
 export const ContentContainer = styled.ScrollView`
     z-index: 1;
-    padding: 20px 0px 120px;
+    padding: 0px 0px 120px;
 `
 
 export const Row = styled.View`
   padding: 0px 19px;
+`
+
+export const RowNav = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: 15px;
+`
+
+export const Header = styled.Text`
+  color: #17365D;
+  font-size: 16px;
+  font-family: Raleway-Bold;
+  width: ${Dimensions.get('screen').width}px;
+  position: absolute;
+  text-align: center;
+  z-index: -1;
 `
 
 export const UserInfoContainer = styled.View`

@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import {
 	Alert
 } from 'react-native'
+import Back from 'src/components/Back'
 import {
 	CallIconReplacement,
 	Container,
 	ContentContainer,
+	Header,
 	Icon,
 	MessageIconReplacement,
 	Row,
+	RowNav,
 	UserAddressIcon,
 	UserAddressLabel,
 	UserAddressWrapper,
@@ -25,7 +28,7 @@ import Toggle from './Toggle'
 import ScreenToggle from './ScreenToggle'
 import OptionModal from './OptionModal'
 
-const BrokerProfile = () => {
+const BrokerProfile = ({ navigation }) => {
 
 	const [activePage, setActivePage] = useState('Properties')
 	const [selectedProperty, setSelectedProperty] = useState({})
@@ -68,7 +71,10 @@ const BrokerProfile = () => {
 				editOnPress={editOnPress}
 				deleteOnPress={deleteOnPress}
 			/>
-
+			<RowNav>
+				<Back navigation={navigation} />
+				<Header>John Doe</Header>
+			</RowNav>
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
 				<UserInfoContainer>
 					<UserImage />

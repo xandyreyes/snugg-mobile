@@ -32,11 +32,12 @@ export const LikesWrapper = styled.View`
   align-items: center;
 `
 
-export const HeartIcon = styled.View`
-  width: 15px;
-  height: 15px;
-  background: #EC7050;
+export const HeartIcon = styled.Image`
+  width: 17.2px;
+  height: 16.18px;
+  tint-color: #EC7050;
   margin-right: 5px;
+  resize-mode: contain;
 `
 
 export const LikeLabel = styled.Text`
