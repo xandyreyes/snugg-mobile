@@ -43,7 +43,9 @@ const UserAccount = ({ navigation }) => {
 				<Observer>
 					{() => (
 						<UserInfoContainer>
-							<TouchableOpacity onPress={() => navigation.navigate('BrokerProfile')}>
+							<TouchableOpacity onPress={() => navigation.navigate('BrokerProfile', {
+								userId: get(User, 'data.id', null)
+							})}>
 								<UserImage source={images.default_image} />
 							</TouchableOpacity>
 							<UserNameLabel>{`${get(User, 'data.firstname', '')} ${get(User, 'data.middlename', '')} ${get(User, 'data.lastname', '')}`}</UserNameLabel>
@@ -71,7 +73,9 @@ const UserAccount = ({ navigation }) => {
 					{ User.data.type_id === UserType.broker && (
 						<>
 							<UserButton>Subscription</UserButton>
-							<UserButton onPress={() => navigation.navigate('BrokerProfile')}>
+							<UserButton onPress={() => navigation.navigate('BrokerProfile', {
+								userId: get(User, 'data.id', null)
+							})}>
 								My Profile
 							</UserButton>
 						</>
