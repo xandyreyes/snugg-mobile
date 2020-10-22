@@ -50,10 +50,10 @@ export const LikeLabel = styled.Text`
 
 export const OptionButton = styled.TouchableOpacity``
 
-export const OptionIcon = styled.View`
-  background: #17365D;
+export const OptionIcon = styled.Image`
   width: 5px;
   height: 19px;
+  resize-mode: contain;
 `
 
 export const PriceWrapper = styled.View`

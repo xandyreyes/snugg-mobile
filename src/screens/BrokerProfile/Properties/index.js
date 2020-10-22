@@ -63,7 +63,7 @@ const Properties = ({ propertyOptionOnPress, userId }) => {
 					<LikeLabel>0 Likes</LikeLabel>
 				</LikesWrapper>
 				<OptionButton onPress={propertyOptionOnPress(d)}>
-					<OptionIcon />
+					<OptionIcon source={images.menu} />
 				</OptionButton>
 			</CardAbsoluteHeader>
 			<CardImageContainer>
