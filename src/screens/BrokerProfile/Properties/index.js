@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Alert } from 'react-native'
+import { getUserListingAPI } from 'src/api/user'
 import formatMoney from 'src/utils/formatMoney'
 import {
 	AdditionalInfo,
@@ -26,57 +28,39 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-const data = [
-	{
-		image_url: images.property1,
-		likes: 10,
-		price: '12000000',
-		name: 'Lorem Ipsum',
-		verified: true,
-		location: 'Greenhills, San Juan City',
-		info: [
-			{
-				description: '2 Bed/s'
-			}, {
-				description: '2 T&B'
-			}, {
-				description: '70 sqm'
-			}, {
-				description: '1 Garage'
-			}, {
-				description: 'Condo'
-			}
-		]
-	}, {
-		image_url: images.property2,
-		likes: 10,
-		price: '12000000',
-		name: 'Lorem Ipsum',
-		verified: true,
-		location: 'Greenhills, San Juan City',
-		info: [
-			{
-				description: '2 Bed/s'
-			}, {
-				description: '2 T&B'
-			}, {
-				description: '70 sqm'
-			}, {
-				description: '1 Garage'
-			}, {
-				description: 'Condo'
-			}
-		]
-	}
-]
+// TODO: Other types of card info pls add
+// TODO: Property options change to Menu
 
-const Properties = ({ propertyOptionOnPress }) => {
-	return data.map((d, index) => 
+const Properties = ({ propertyOptionOnPress, userId }) => {
+
+	const [listings, setListings] = useState([])
+
+	useEffect(() => {
+		getListings()
+	}, [])
+
+	const getListings = async () => {
+		try {
+			const listings = await getUserListingAPI(userId)
+			setListings(listings.data)
+		} catch (err) {
+			console.log({ err }, '[ERR RETRIEVE LISTING]')
+			Alert.alert(
+				'Error',
+				'Something went wrong',
+				[
+					{text: 'OK'}
+				]
+			)
+		}
+	}
+
+	return listings.map((d, index) => 
 		<CardContainer key={index} first={index === 0}>
 			<CardAbsoluteHeader>
 				<LikesWrapper>
 					<HeartIcon source={images.heart_empty} />
-					<LikeLabel>{d.likes} Likes</LikeLabel>
+					<LikeLabel>0 Likes</LikeLabel>
 				</LikesWrapper>
 				<OptionButton onPress={propertyOptionOnPress(d)}>
 					<OptionIcon />
@@ -86,25 +70,43 @@ const Properties = ({ propertyOptionOnPress }) => {
 				<PriceWrapper>
 					<PriceLabel>P{formatMoney(d.price, 0)}</PriceLabel>
 				</PriceWrapper>
-				<CardImage source={d.image_url} />
+				<CardImage source={{ uri: d.images[0].image_url }} />
 			</CardImageContainer>
 			<CardContent>
 				<CardHeader>
 					<CardHeaderLabel>{d.name}</CardHeaderLabel>
-					{d.verified && (
+					{d.status === 'approved' && (
 						<Verified source={images.verified} />
 					)}
 				</CardHeader>
 				<AddressWrapper>
 					<AddressIcon source={images.pin_location} />
-					<AddressLabel>{d.location}</AddressLabel>
+					<AddressLabel>{d.address}</AddressLabel>
 				</AddressWrapper>
 				<AdditionalInfo>
-					{d.info.map((i, idx) =>
-						<CardInfo key={idx}>
-							<CardInfoIcon source={images.bath} />
+					<CardInfo>
+						<CardInfoIcon source={images.area} />
+						<CardInfoLabel>
+							{d.floor_area} sqm
+						</CardInfoLabel>
+					</CardInfo>
+					<CardInfo>
+						<CardInfoIcon source={images.bed} />
+						<CardInfoLabel>
+							{d.bedroom_count} bedrooms
+						</CardInfoLabel>
+					</CardInfo>
+					<CardInfo>
+						<CardInfoIcon source={images.bath} />
+						<CardInfoLabel>
+							{d.toilet_bath_count} t&b
+						</CardInfoLabel>
+					</CardInfo>
+					{ d.garage > 0 && (
+						<CardInfo>
+							<CardInfoIcon source={images.garage} />
 							<CardInfoLabel>
-								{i.description}
+								{d.garage} garage
 							</CardInfoLabel>
 						</CardInfo>
 					)}

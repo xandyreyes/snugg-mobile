@@ -134,6 +134,7 @@ const BrokerProfile = ({ navigation, route }) => {
 						<Toggle onChangeToggle={onChangeToggle} defaultAs={activePage} />
 					</Row>
 					<ScreenToggle
+						userId={user.id}
 						page={activePage}
 						propertyOptionOnPress={propertyOptionOnPress} />
 				</ContentContainer>

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Dimensions } from 'react-native'
+import FastImage from 'react-native-fast-image'
 
 const width = Dimensions.get('window').width
 
@@ -77,10 +78,9 @@ export const CardImageContainer = styled.View`
   height: ${1.8*((width-50)/3)}px;
 `
 
-export const CardImage = styled.Image`
+export const CardImage = styled(FastImage)`
   width: 100%;
   height: 100%;
-  resize-mode: cover;
 `
 
 export const CardContent = styled.View`
