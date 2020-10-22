@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Dimensions } from 'react-native'
+import FastImage from 'react-native-fast-image'
 
 export const Container = styled.SafeAreaView`
     flex: 1;
@@ -37,7 +38,7 @@ export const UserInfoContainer = styled.View`
   padding: 0px 19px;
 `
 
-export const UserImage = styled.View`
+export const UserImage = styled(FastImage)`
   width: 80px;
   height: 80px;
   background: #c6c6c6;

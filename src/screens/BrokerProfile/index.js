@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { get } from 'lodash'
+import { get, size, sumBy } from 'lodash'
 import ContentLoader, { Rect } from 'react-content-loader/native'
 import {
 	Alert,
@@ -87,6 +87,12 @@ const BrokerProfile = ({ navigation, route }) => {
 
 	}
 
+	const getRating = (ratings) => {
+		const total = sumBy(ratings, 'rating')
+		const length = size(ratings)
+		return total/length
+	}
+
 	return (
 		<Container>
 			<OptionModal
@@ -106,7 +112,7 @@ const BrokerProfile = ({ navigation, route }) => {
 			{ !user ? (null) : (
 				<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
 					<UserInfoContainer>
-						<UserImage />
+						<UserImage source={user.profile_img ? { uri: user.profile_img}: images.default_image} />
 						<UserInfoRow>
 							{ user.broker_details.id_status === 'approved' && user.broker_details.prc_id !== null && (
 								<UserBrokerStatus>
@@ -115,7 +121,7 @@ const BrokerProfile = ({ navigation, route }) => {
 									</UserBrokerStatusLabel>
 								</UserBrokerStatus>
 							)}
-							<Rate rate={3} />
+							<Rate rate={getRating(get(user, 'broker_details.reviews', []))} />
 							<UserAddressWrapper>
 								<UserAddressIcon source={images.pin_location} />
 								<UserAddressLabel>{user.address}</UserAddressLabel>
@@ -135,6 +141,7 @@ const BrokerProfile = ({ navigation, route }) => {
 					</Row>
 					<ScreenToggle
 						userId={user.id}
+						reviews={get(user, 'broker_details.reviews', [])}
 						page={activePage}
 						propertyOptionOnPress={propertyOptionOnPress} />
 				</ContentContainer>

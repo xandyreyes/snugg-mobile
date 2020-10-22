@@ -41,7 +41,6 @@ export const RatingIcon = styled.Image`
 export const RatingIconSolid = styled.Image`
   width: 15px;
   height: 15px;
-  background: #767676;
   resize-mode: contain;
 `
 
@@ -80,6 +79,7 @@ export const UserImageWrapper = styled.View`
   height: 40px;
   border-radius: 20px;
   overflow: hidden;
+  border: 0.5px solid rgba(0,0,0,0.16);
 `
 
 export const UserImage = styled.Image`

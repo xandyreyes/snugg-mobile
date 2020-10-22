@@ -1,4 +1,7 @@
 import React from 'react'
+import { get } from 'lodash'
+import moment from 'moment'
+import { Store } from 'src/store'
 import {
 	Card,
 	Container,
@@ -12,50 +15,30 @@ import {
 	UserNameLabel
 } from './styledComponents'
 import LeaveReview from './LeaveReview'
-import images from './images'
+import images from '../images'
 import Rate from '../Rate'
 
-const reviews = [
-	{
-		image_url: images.avatar1,
-		name: 'Ryujin',
-		rate: 3,
-		review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id turpis risus.',
-		created_at: '11/22/2019'
-	}, {
-		image_url: images.avatar2,
-		name: 'Irene',
-		rate: 3,
-		review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id turpis risus.',
-		created_at: '11/22/2019'
-	}, {
-		image_url: images.avatar3,
-		name: 'Wendy',
-		rate: 3,
-		review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id turpis risus.',
-		created_at: '11/22/2019'
-	}
-]
-
-const Reviews = () => {
+const Reviews = ({ reviews, userId }) => {
 	return (
 		<Container>
-			<LeaveReview />
+			{ Store.User.data.id !== userId && (
+				<LeaveReview userId={userId} />
+			)}
 			{reviews.map((r, index) =>
 				<Card key={index}>
 					<Row>
 						<UserImageWrapper>
-							<UserImage source={r.image_url} />
+							<UserImage source={r.userImage ? { uri: r.userImage} : images.default_image} />
 						</UserImageWrapper>
 						<UserInfoContainer>
 							<LeftSection>
-								<UserNameLabel>{r.name}</UserNameLabel>
-								<Rate rate={r.rate} />
+								<UserNameLabel>{get(r, 'user.name', 'Anonymous')}</UserNameLabel>
+								<Rate rate={r.rating} />
 							</LeftSection>
-							<DateLabel>{r.created_at}</DateLabel>
+							<DateLabel>{moment(r.created_at).format('MMM DD, YYYY')}</DateLabel>
 						</UserInfoContainer>
 					</Row>
-					<ReviewLabel>{r.review}</ReviewLabel>
+					<ReviewLabel>{r.message}</ReviewLabel>
 				</Card> 
 			)}
 		</Container>

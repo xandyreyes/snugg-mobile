@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { RatingButton, RatingContainer, RatingIcon, RatingIconSolid } from './styledComponents'
+import images from '../images'
 
 const Rating = ({ onChangeRate, defaultRate }) => {
 
@@ -26,8 +27,8 @@ const Rating = ({ onChangeRate, defaultRate }) => {
 					activeOpacity={1}
 					onPress={changeRate(index + 1)}>
 					{index < rate
-						? <RatingIconSolid />
-						: <RatingIcon />
+						? <RatingIconSolid source={images.star_filled} />
+						: <RatingIcon source={images.star_outlined} />
 					}
 				</RatingButton>
 			)}

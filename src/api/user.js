@@ -19,3 +19,13 @@ export const getUserListingAPI = async (id) => {
 	}
 	return response.data
 }
+
+export const postReviewUserAPI = async (data) => {
+	let response = null
+	try {
+		response = await backendAPI.post('/review/create', data)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
