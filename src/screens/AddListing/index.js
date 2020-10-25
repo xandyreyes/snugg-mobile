@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { get, remove, size } from 'lodash'
-import { Alert, FlatList, Platform, TouchableOpacity } from 'react-native'
+import { Alert, FlatList, Linking, Platform, TouchableOpacity } from 'react-native'
 import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
 import { postListingAPI } from 'src/api/listing'
@@ -51,30 +51,50 @@ const propertyType = [
 	}
 ]
 
-export default ({ navigation }) => {
+export default ({ navigation, route }) => {
 
-	const [data, setData] = useState({
-		listing_type_id : 1,
-		offer_type_id : 1,
-		name : '',
-		price : null,
-		bedroom : null,
-		baths : null,
-		floor_area : null,
-		floor: null,
-		notes : null,
-		ats_file_url: null,
-		features: '',
+	const initialData = {
+		listing_type_id: get(route, 'params.type_id', 1),
+		offer_type_id: get(route, 'params.offer_type', 1),
+		name: get(route, 'params.name', ''),
+		price: get(route, 'params.price', null),
+		bedroom: get(route, 'params.bedroom_count', null),
+		baths: get(route, 'params.toilet_bath_count', null),
+		floor_area: get(route, 'params.floor_area', null),
+		floor: get(route, 'params.floor_count', null),
+		notes: get(route, 'params.special_notes', null),
+		ats_file_url: get(route, 'params.ats_file_url', null),
+		features: get(route, 'params.features', null),
 		images: [],
-		commission_rate: 1,
-		address: '',
-		lat: null,
-		lon: null
-	})
+		commission_rate: get(route, 'params.commission', 1),
+		address: get(route, 'params.address', ''),
+		lat: get(route, 'params.lat', null),
+		lon: get(route, 'params.lon', null),
+	}
+
+	const [data, setData] = useState(initialData)
+	const [editing, setEditing] = useState(false)
 	const [features, setFeatures] = useState([])
 	const [selectedImages, setImages] = useState([])
 	const [selectedAts, setAts] = useState(null)
 	const [loading, setLoading] = useState(false)
+
+	useEffect(() => {
+		const listingID = get(route, 'params.id', null)
+		if (listingID) {
+			setEditing(true)
+			setLoading(true)
+			const split = get(route, 'params.features', null).split(',')
+			setFeatures(split)
+			const images = get(route, 'params.images', [])
+			const imgUrls = images.map((img) => { 
+				return {url: img.image_url} 
+			})
+			data.images = imgUrls
+			setData({ ...data })
+			setLoading(false)
+		}
+	}, [])
 	
 	const onPressNext = () => {
 		navigation.navigate('SelectLocationMap', {
@@ -242,6 +262,10 @@ export default ({ navigation }) => {
 		}
 	}
 
+	const openATS = url => {
+		Linking.openURL(url)
+	}
+
 	return(
 		<Container>
 			{ loading && (
@@ -265,7 +289,20 @@ export default ({ navigation }) => {
 						onChangeText={text => onChangeText(text, 'price', 'number')}
 					/>
 					<Header>Photos</Header>
-					{ size(selectedImages) > 0 ? (
+					{ editing ? (
+						<PhotoPreviewContainer>
+							<FlatList
+								horizontal
+								showsHorizontalScrollIndicator={false}
+								data={[...data.images, ...selectedImages]}
+								keyExtractor={(item, index) => `${item.fileName}-${index}`}
+								renderItem={({ item, index }) => <PhotoPreview key={`${Platform.OS === 'ios' ? item.fileName : item.name}-${index}`} source={{ uri: item.url ? item.url : Platform.OS === 'ios' ? item.path : item.fileCopyUri }} />}
+							/>
+							<TouchableOpacity onPress={selectImage} style={{ alignSelf: 'flex-end', marginTop: 5 }}>
+								<Label>Change Photos</Label>
+							</TouchableOpacity>
+						</PhotoPreviewContainer>
+					) : size(selectedImages) > 0 ? (
 						<PhotoPreviewContainer>
 							<FlatList
 								horizontal
@@ -284,7 +321,6 @@ export default ({ navigation }) => {
 							<Label>Select Photos</Label>
 						</UploadPhotosTouchable>
 					) }
-					
 					<Header style={{ marginBottom: 15 }}>Property Details</Header>
 					<Toggle label='Property Status' values={propertyStatus} onChangeValue={val => onChangeText(val, 'offer_type_id', 'number')}/>
 					<Toggle label='Property Type' values={propertyType} onChangeValue={val => onChangeText(val, 'listing_type_id', 'number')}/>
@@ -316,9 +352,15 @@ export default ({ navigation }) => {
 					<Features
 						selected={features}
 						onSelect={onSelectFeature}
+						editSelected={data.features}
 					/>
 					<Header style={{ marginBottom: 5 }}>Upload ATS</Header>
 					<Label>Lorem ipsum dolor sit amet, consectetur adipising elit.</Label>
+					{ editing && (
+						<TouchableOpacity onPress={() => openATS(data.ats_file_url)}>
+							<Label style={{ padding: 5, fontWeight: '600' }} numberOfLines={1}>{data.ats_file_url}</Label>
+						</TouchableOpacity>
+					)}
 					<UploadATS onPress={selectDocument}>
 						<ButtonText>{ selectedAts ? selectedAts.name : 'Upload ATS' }</ButtonText>
 					</UploadATS>

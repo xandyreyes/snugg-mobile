@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { remove } from 'lodash'
 import Checkbox from 'src/components/Checkbox'
 import { Features } from 'src/constants'
@@ -11,9 +11,16 @@ import {
 	Header
 } from '../styledComponents'
 
-export default ({ selected, onSelect }) => {
+export default ({ editSelected, selected, onSelect }) => {
 
 	const [features, setSelectedFeatures] = useState(selected)
+
+	useEffect(() => {
+		if (editSelected) {
+			const split = editSelected.split(',')
+			setSelectedFeatures(split)
+		}
+	}, [])
 
 	const onToggleCheck = val => {
 		if (features.includes(val)) {
