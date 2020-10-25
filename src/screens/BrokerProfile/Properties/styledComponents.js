@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image'
 
 const width = Dimensions.get('window').width
 
-export const CardContainer = styled.View`
+export const CardContainer = styled.TouchableOpacity`
   border-radius: 20px;
   overflow: hidden;
   flex: 1;

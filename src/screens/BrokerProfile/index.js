@@ -143,6 +143,7 @@ const BrokerProfile = ({ navigation, route }) => {
 						<Toggle onChangeToggle={onChangeToggle} defaultAs={activePage} />
 					</Row>
 					<ScreenToggle
+						navigation={navigation}
 						userId={user.id}
 						reviews={get(user, 'broker_details.reviews', [])}
 						page={activePage}

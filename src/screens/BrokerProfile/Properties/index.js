@@ -31,7 +31,7 @@ import images from '../images'
 // TODO: Other types of card info pls add
 // TODO: Property options change to Menu
 
-const Properties = ({ propertyOptionOnPress, userId }) => {
+const Properties = ({ navigation, propertyOptionOnPress, userId }) => {
 
 	const [listings, setListings] = useState([])
 
@@ -56,7 +56,7 @@ const Properties = ({ propertyOptionOnPress, userId }) => {
 	}
 
 	return listings.map((d, index) => 
-		<CardContainer key={index} first={index === 0}>
+		<CardContainer key={index} first={index === 0} onPress={() => navigation.navigate('PropertyProfile')}>
 			<CardAbsoluteHeader>
 				<LikesWrapper>
 					<HeartIcon source={images.heart_empty} />
