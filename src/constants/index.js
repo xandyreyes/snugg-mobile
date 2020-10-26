@@ -13,6 +13,16 @@ export const SubscriptionType = {
 	developer: 5
 }
 
+export const ListingType = {
+	condo: 1,
+	house_and_lot: 2
+}
+
+export const OfferType = {
+	sale: 1,
+	rent: 2
+}
+
 export const Features = [
 	'Air Conditioining',
 	'Concrete Flooring',

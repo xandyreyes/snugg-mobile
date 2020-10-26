@@ -17,6 +17,7 @@ export const CloseButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   elevation: 5;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 `
 
 export const ChatButton = styled.TouchableOpacity`
@@ -28,6 +29,7 @@ export const ChatButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   elevation: 5;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 `
 
 export const HeartButton = styled.TouchableOpacity`
@@ -38,25 +40,26 @@ export const HeartButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   elevation: 5;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 `
 
-export const CloseIcon = styled.View`
+export const CloseIcon = styled.Image`
   width: 18px;
   height: 18px;
   resize-mode: contain;
-  background: #17365D;
+  tint-color: #17365D;
 `
 
-export const ChatIcon = styled.View`
+export const ChatIcon = styled.Image`
   width: 27px;
   height: 27px;
   resize-mode: contain;
-  background: white;
+  tint-color: white;
 `
 
-export const HeartIcon = styled.View`
+export const HeartIcon = styled.Image`
   width: 20px;
   height: 18px;
   resize-mode: contain;
-  background: #EC7050;
+  tint-color: #EC7050;
 `

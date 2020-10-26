@@ -8,6 +8,7 @@ import {
 	HeartIcon,
 	Wrapper
 } from './styledComponents'
+import images from '../images'
 
 const Actions = () => {
 
@@ -26,13 +27,13 @@ const Actions = () => {
 	return (
 		<Wrapper>
 			<CloseButton onPress={closeButtonOnPress}>
-				<CloseIcon />
+				<CloseIcon source={images.close} />
 			</CloseButton>
 			<ChatButton onPress={chatButtonOnPress}>
-				<ChatIcon />
+				<ChatIcon source={images.chat} />
 			</ChatButton>
 			<HeartButton onPress={heartButtonOnPress}>
-				<HeartIcon />
+				<HeartIcon source={images.heart} />
 			</HeartButton>
 		</Wrapper>
 	)

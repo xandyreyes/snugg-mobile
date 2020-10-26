@@ -1,4 +1,5 @@
 import React from 'react'
+import { Linking, TouchableOpacity } from 'react-native'
 import {
 	BadgeContainer,
 	BadgeText,
@@ -15,25 +16,40 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-export default () => {
+export default ({ navigation, broker }) => {
+
+	const goToMessage = () => {
+		alert('message')
+	}
+
+	const callBroker = () => {
+		Linking.openURL(`tel:0${broker.contact_number}`)
+	}
+
 	return(
 		<Container>
 			<Header>Broker</Header>
 			<MainRow>
+				<TouchableOpacity onPress={() => navigation.navigate('BrokerProfile', {
+					userId: broker.id
+				})}>
+					<Row>
+						<BrokerImage source={broker.profile_img ? { uri: broker.profile_img } : images.default_images } />
+						<BrokerInfoContainer>
+							<Header>{broker.firstname} {broker.lastname}</Header>
+							{broker.broker_details.prc_id && broker.broker_details.id_status === 'approved' && (
+								<BadgeContainer>
+									<BadgeText>Licensed Broker</BadgeText>
+								</BadgeContainer>
+							)}
+						</BrokerInfoContainer>
+					</Row>
+				</TouchableOpacity>
 				<Row>
-					<BrokerImage />
-					<BrokerInfoContainer>
-						<Header>John Doe</Header>
-						<BadgeContainer>
-							<BadgeText>Licensed Broker</BadgeText>
-						</BadgeContainer>
-					</BrokerInfoContainer>
-				</Row>
-				<Row>
-					<MessageButton>
+					<MessageButton onPress={goToMessage}>
 						<MessageIcon source={images.message} />
 					</MessageButton>
-					<CallButton>
+					<CallButton onPress={callBroker}>
 						<CallIcon source={images.cell} />
 					</CallButton>
 				</Row>

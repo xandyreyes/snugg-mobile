@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
 	Block,
 	CheckIcon,
@@ -9,18 +9,14 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-const features = [
-	'Air Conditioning',
-	'Balcony',
-	'Concrete Flooring',
-	'Garage',
-	'Appliances',
-	'Bedding',
-	'Fully Furnished',
-	'Heating'
-]
+const Features = ({ data }) => {
 
-const Features = () => {
+	const [features, setFeatures] = useState([])
+
+	useEffect(() => {
+		setFeatures(data.split(','))
+	}, [])
+
 	return (
 		<Container>
 			<Header>Features</Header>
@@ -28,7 +24,7 @@ const Features = () => {
 				{features.map((feat, index) =>
 					<Block key={index}>
 						<CheckIcon source={images.check} />
-						<Label>{feat}</Label>
+						<Label>{`${feat}`}</Label>
 					</Block>
 				)}
 			</Wrapper>

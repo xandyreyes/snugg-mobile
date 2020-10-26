@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import FastImage from 'react-native-fast-image'
 
 export const SafeAreaView = styled.SafeAreaView`
     z-index: 19;
@@ -27,7 +28,7 @@ export const ShareImage = styled.Image`
     tint-color: white;
 `
 
-export const PropertyImage = styled.Image`
+export const PropertyImage = styled(FastImage)`
     width: 100%;
     height: 292px;
     resize-mode: cover;

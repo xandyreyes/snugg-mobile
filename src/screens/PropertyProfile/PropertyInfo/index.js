@@ -17,33 +17,35 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-export default () => {
+export default ({ info }) => {
 
 	const [expandDescription, setExpandDescription] = useState(false)
 
 	return(
 		<Container>
 			<NameContainer>
-				<Name>Lalalalisa Manoban</Name>
+				<Name>{info.name}</Name>
 				<Verified source={images.verified} />
 			</NameContainer>
 			<NameContainer>
 				<PinIcon source={images.pin_location} />
-				<Location>Greenhills, San Juan City</Location>
+				<Location numberOfLines={1}>{info.address}</Location>
 			</NameContainer>
 			<NameContainer>
-				<PropertyInfoBadge label="bedroom" value="2 Bed/s"/>
-				<PropertyInfoBadge label="bedroom" value="2 Bed/s"/>
-				<PropertyInfoBadge label="bedroom" value="2 Bed/s"/>
-				<PropertyInfoBadge label="bedroom" value="2 Bed/s"/>
-				<PropertyInfoBadge label="bedroom" value="2 Bed/s"/>
-				<PropertyInfoBadge label="bedroom" value="2 Bed/s"/>
+				<PropertyInfoBadge label="listing_type" value={info.listing_type}/>
+				<PropertyInfoBadge label="offer_type" value={info.offer_type}/>
+				<PropertyInfoBadge label="floor_count" value={info.floor_count}/>
+				<PropertyInfoBadge label="bedroom" value={info.bedroom_count}/>
+				<PropertyInfoBadge label="baths" value={info.toilet_bath_count}/>
+				<PropertyInfoBadge label="floor_area" value={info.floor_area}/>
+				{ info.garage && (<PropertyInfoBadge label="garage" value={info.garage}/>) }
+				
 			</NameContainer>
 			<DescriptionContainer>
-				<DescriptionText numberOfLines={expandDescription ? undefined : 5}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at hendrerit lorem. Phasellus velit ante, suscipit sed dapibus vel, maximus pulvinar risus. Donec tristique, eros ut gravida ullamcorper, leo sem lobortis nisi, non tincidunt nibh nibh eu diam. Nunc id eros mi. Maecenas in feugiat turpis. Vestibulum placerat tempus orci consequat gravida.
+				<DescriptionText numberOfLines={expandDescription && info.special_notes.length > 300 ? undefined : 5}>
+					{info.special_notes}
 				</DescriptionText>
-				{ expandDescription ? (
+				{ info.special_notes.length > 300 && (expandDescription ? (
 					<ReadLessContainer>
 						<ReadMoreButton>
 							<ReadMoreTouchable onPress={() => setExpandDescription(false)}>
@@ -59,7 +61,7 @@ export default () => {
 							</ReadMoreTouchable>
 						</ReadMoreButton>
 					</ReadMoreGradient>
-				) }
+				)) }
 			</DescriptionContainer>
 		</Container>
 	)

@@ -6,7 +6,7 @@ export const Header = styled.Text`
     font-family: Raleway-Bold;
 `
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
     padding: 5px 15px 15px;
 `
 

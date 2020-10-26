@@ -56,7 +56,9 @@ const Properties = ({ navigation, propertyOptionOnPress, userId }) => {
 	}
 
 	return listings.map((d, index) => 
-		<CardContainer key={index} first={index === 0} onPress={() => navigation.navigate('PropertyProfile')}>
+		<CardContainer key={index} first={index === 0} onPress={() => navigation.navigate('PropertyProfile', {
+			...d
+		})}>
 			<CardAbsoluteHeader>
 				<LikesWrapper>
 					<HeartIcon source={images.heart_empty} />
