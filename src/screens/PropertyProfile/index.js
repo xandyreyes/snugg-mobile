@@ -1,6 +1,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { ScrollView } from 'react-native'
+import { UserType } from 'src/constants'
 import Header from './Header'
 import PropertyInfo from './PropertyInfo'
 import Broker from './Broker'
@@ -12,6 +13,17 @@ import {
 } from './styledComponents'
 
 export default ({ navigation, route }) => {
+
+	const onLike = () => {
+		alert('Liked!')
+	}
+
+	const onDislike = () => {
+		alert('Disliked!')
+	}
+
+	// TODO: onLike and onDislike functions!
+
 	return(
 		<Container>
 			<ScrollView>
@@ -21,7 +33,9 @@ export default ({ navigation, route }) => {
 				<PropertyDetails data={route.params} />
 				<Features data={route.params.features} />
 			</ScrollView>
-			<Actions />
+			{ route.params.user.type_id !== UserType.broker && (
+				<Actions id={route.params.id} onLike={onLike} onDislike={onDislike} />
+			) }
 		</Container>
 	)
 }
