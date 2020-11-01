@@ -43,7 +43,7 @@ const UserAccount = ({ navigation }) => {
 				<Observer>
 					{() => (
 						<UserInfoContainer>
-							<TouchableOpacity onPress={ User.data.type_id === UserType.broker ? () => navigation.navigate('BrokerProfile', {
+							<TouchableOpacity onPress={ get(User, 'data.type_id', null) === UserType.broker ? () => navigation.navigate('BrokerProfile', {
 								userId: get(User, 'data.id', null)
 							}) : () => {}}>
 								<UserImage source={images.default_image} />
@@ -70,7 +70,7 @@ const UserAccount = ({ navigation }) => {
 						User Account Settings
 					</UserButton>
 					<UserButton onPress={() => navigation.navigate('UserPasswordUpdate')}>Change Password</UserButton>
-					{ User.data.type_id === UserType.broker && (
+					{ get(User, 'data.type_id', null) === UserType.broker && (
 						<>
 							<UserButton>Subscription</UserButton>
 							<UserButton onPress={() => navigation.navigate('BrokerProfile', {
@@ -80,7 +80,7 @@ const UserAccount = ({ navigation }) => {
 							</UserButton>
 						</>
 					) }
-					{ User.data.type_id === UserType.buyer && (
+					{ get(User, 'data.type_id', null) === UserType.buyer && (
 						<>
 							<UserButton onPress={() => navigation.navigate('BuyerHomepage', {
 								view: 'Matches'
