@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { get } from 'lodash'
 import Browse from './Browse'
 import images from './images'
 import Matches from './Matches'
@@ -13,10 +14,16 @@ import {
 } from './styledComponents'
 import Toggle from './Toggle'
 
-export default ({ navigation }) => {
+export default ({ navigation, route }) => {
 
 	const [location, setLocation] = useState(null)
 	const [selected, setSelected] = useState('Nearby')
+
+	useEffect(() => {
+		if (get(route, 'params.view', '') === 'Matches') {
+			setSelected('Matches')
+		}
+	}, [route.params])
 
 	return(
 		<Container>

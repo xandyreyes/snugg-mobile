@@ -82,7 +82,9 @@ const UserAccount = ({ navigation }) => {
 					) }
 					{ User.data.type_id === UserType.buyer && (
 						<>
-							<UserButton>Liked Properties</UserButton>
+							<UserButton onPress={() => navigation.navigate('BuyerHomepage', {
+								view: 'Matches'
+							})}>Matched Properties</UserButton>
 						</>
 					) }
 				</ButtonContainer>
