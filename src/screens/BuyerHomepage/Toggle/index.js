@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Animated, View } from 'react-native'
 import {
 	Container,
@@ -9,10 +9,19 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-export default ({ selectMatches, selectNearby }) => {
+export default ({ selectedView, selectMatches, selectNearby }) => {
 
 	const toggleAnimation = useRef(new Animated.Value(0)).current
-	const [selected, setSelected] = useState('nearby')
+	const [selected, setSelected] = useState(selectedView)
+
+	useEffect(() => {
+		if (selectedView === 'Matches') {
+			selectedList()
+		}
+		if (selectedView === 'Nearby') {
+			selectedNearby()
+		}
+	}, [selectedView])
 
 	const selectedNearby = () => {
 		Animated.timing(
@@ -24,7 +33,7 @@ export default ({ selectMatches, selectNearby }) => {
 			}
 		).start()
 		selectNearby()
-		setSelected('nearby')
+		setSelected('Nearby')
 	}
     
 	const selectedList = () => {
@@ -37,7 +46,7 @@ export default ({ selectMatches, selectNearby }) => {
 			}
 		).start()
 		selectMatches()
-		setSelected('list')
+		setSelected('Matches')
 	}
 
 	return(
@@ -55,10 +64,10 @@ export default ({ selectMatches, selectNearby }) => {
 				</Animated.View>
 				<Row>
 					<ItemContainer onPress={selectedNearby}>
-						<ItemImage selected={selected === 'nearby'} source={images.nearby} />
+						<ItemImage selected={selected === 'Nearby'} source={images.nearby} />
 					</ItemContainer>
 					<ItemContainer onPress={selectedList}>
-						<ItemImage selected={selected === 'list'} source={images.list} />
+						<ItemImage selected={selected === 'Matches'} source={images.list} />
 					</ItemContainer>
 				</Row>
 			</Container>

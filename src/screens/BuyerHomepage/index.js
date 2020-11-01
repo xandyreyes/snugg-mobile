@@ -29,7 +29,7 @@ export default ({ navigation, route }) => {
 		<Container>
 			<RowSpace>
 				<Header>{selected}</Header>
-				<Toggle selectMatches={() => setSelected('Matches')} selectNearby={() => setSelected('Nearby')} />
+				<Toggle selectedView={selected} selectMatches={() => setSelected('Matches')} selectNearby={() => setSelected('Nearby')} />
 			</RowSpace>
 			{ selected === 'Nearby' ? (
 				<>
