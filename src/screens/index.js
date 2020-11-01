@@ -20,6 +20,7 @@ import Register from './Register'
 import ResetPassword from './ResetPassword'
 import SelectLocationMap from './SelectLocationMap'
 import SelectSubscriptionPlan from './SelectSubscriptionPlan'
+import TermsAndConditions from './TermsAndConditions'
 import UserAccountSettings from './UserAccountSettings'
 import UserPasswordUpdate from './UserPasswordUpdate'
 import Welcome from './Welcome'
@@ -77,6 +78,7 @@ export default () => {
 							<Stack.Screen name="PreviewID" component={PreviewID} options={{ headerShown: false }} />
 							<Stack.Screen name="SelectLocationMap" component={SelectLocationMap} options={{ headerShown: false }} />
 							<Stack.Screen name="About" component={About} options={{ headerShown: false }} />
+							<Stack.Screen name="TermsAndConditions" component={TermsAndConditions} options={{ headerShown: false }} />
 						</Stack.Navigator>
 					)
 				}}
