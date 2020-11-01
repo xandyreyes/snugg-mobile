@@ -9,7 +9,7 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-export default () => {
+export default ({ selectMatches, selectNearby }) => {
 
 	const toggleAnimation = useRef(new Animated.Value(0)).current
 	const [selected, setSelected] = useState('nearby')
@@ -23,6 +23,7 @@ export default () => {
 				useNativeDriver: true
 			}
 		).start()
+		selectNearby()
 		setSelected('nearby')
 	}
     
@@ -35,6 +36,7 @@ export default () => {
 				useNativeDriver: true
 			}
 		).start()
+		selectMatches()
 		setSelected('list')
 	}
 

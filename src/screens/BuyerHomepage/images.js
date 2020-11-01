@@ -7,4 +7,11 @@ export default {
 	pin_location: require('src/assets/images/pin_location.png'),
 	close: require('src/assets/images/close.png'),
 	heart_empty: require('src/assets/images/heart_empty.png'),
+	bed: require('src/assets/images/bed.png'),
+	bath: require('src/assets/images/bath.png'),
+	condo: require('src/assets/images/condo.png'),
+	garage: require('src/assets/images/garage.png'),
+	area: require('src/assets/images/area.png'),
+	default_image: require('src/assets/images/default_image.png'),
+	menu: require('src/assets/images/menu.png'),
 }

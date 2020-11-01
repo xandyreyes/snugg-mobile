@@ -3,7 +3,7 @@ import { get, remove, size } from 'lodash'
 import { Alert, FlatList, Linking, Platform, TouchableOpacity } from 'react-native'
 import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
-import { postListingAPI } from 'src/api/listing'
+import { listingUpdateAPI, postListingAPI } from 'src/api/listing'
 import Back from 'src/components/Back'
 import Loading from 'src/components/Loading'
 import { Label } from 'src/components/styledComponents'
@@ -73,6 +73,7 @@ export default ({ navigation, route }) => {
 	}
 
 	const [data, setData] = useState(initialData)
+	const [dataEdit, setDataEdit] = useState({})
 	const [editing, setEditing] = useState(false)
 	const [features, setFeatures] = useState([])
 	const [selectedImages, setImages] = useState([])
@@ -136,18 +137,8 @@ export default ({ navigation, route }) => {
 	const uploadFiles = async () => {
 		setLoading(true)
 		try {
-			const uploadAtsUri = Platform.OS === 'ios' ? selectedAts.uri.replace('file://', '') : selectedAts.uri
-			const atsUri = await uploadToFirebase({
-				storageName: config.firebase_storage.listing_ats,
-				uploadUri: uploadAtsUri
-			})
-			const imagesUri = await Promise.all(selectedImages.map( async (item) => {
-				const url = await uploadToFirebase({
-					uploadUri: Platform.OS === 'ios' ? item.path : item.uri,
-					storageName: config.firebase_storage.listing_photos
-				})
-				return {url}
-			}))
+			const atsUri = await uploadATS()
+			const imagesUri = await uploadImages()
 			data.ats_file_url = atsUri
 			data.images = imagesUri
 			data.features = features.toString()
@@ -158,6 +149,26 @@ export default ({ navigation, route }) => {
 			setLoading(false)
 			console.log(err, '[UPLOAD ERROR]')
 		}
+	}
+
+	const uploadATS = async () => {
+		const uploadAtsUri = Platform.OS === 'ios' ? selectedAts.uri.replace('file://', '') : selectedAts.uri
+		const atsUri = await uploadToFirebase({
+			storageName: config.firebase_storage.listing_ats,
+			uploadUri: uploadAtsUri
+		})
+		return atsUri
+	}
+
+	const uploadImages = async () => {
+		const imagesUri = await Promise.all(selectedImages.map( async (item) => {
+			const url = await uploadToFirebase({
+				uploadUri: Platform.OS === 'ios' ? item.path : item.uri,
+				storageName: config.firebase_storage.listing_photos
+			})
+			return {url}
+		}))
+		return imagesUri
 	}
 
 	const validate = () => {
@@ -198,10 +209,26 @@ export default ({ navigation, route }) => {
 		if (type === 'number') {
 			data[field] = parseFloat(text)
 			setData({...data})
+			if (editing) {
+				edit(field, parseFloat(text))
+			}
 		} else {
 			data[field] = text
 			setData({...data})
+			if (editing) {
+				edit(field, text)
+			}
 		}
+	}
+
+	const edit = (field, text) => {
+		if (field === 'notes') {
+			field = 'special_notes'
+		}
+		setDataEdit({
+			...dataEdit,
+			[field]: parseFloat(text)
+		})
 	}
 
 	const onSelectFeature = val => {
@@ -266,6 +293,34 @@ export default ({ navigation, route }) => {
 		Linking.openURL(url)
 	}
 
+	const onPressSave = async () => {
+		setLoading(true)
+		try {
+			// if (size(selectedImages) > 0) {
+			// 	const imagesUri = await uploadImages()
+			// 	data.images.concat(imagesUri)
+			// }
+			// if (selectedAts) {
+			// 	const atsUri = await uploadATS()
+			// 	data.ats_file_url = atsUri
+			// }
+			// data.features = features.toString()
+			setData({ ...data })
+			const update = await listingUpdateAPI(get(route, 'params.id', 1), dataEdit)
+			console.log({ update })
+		} catch (err) {
+			setLoading(false)
+			Alert.alert(
+				'Can\'t save changes',
+				get(err, 'response.data.message', 'Network Error'),
+				[
+					{ text: 'OK' }
+				]
+			)
+			console.log({ err: err.response.data }, '[ERR ONPRESS SAVE]')
+		}
+	}
+
 	return(
 		<Container>
 			{ loading && (
@@ -277,8 +332,8 @@ export default ({ navigation, route }) => {
 						<Back navigation={navigation}/>
 					</TouchableOpacity>
 					<Header>New Listing</Header>
-					<TouchableOpacity onPress={validate}>
-						<Next>Next</Next>
+					<TouchableOpacity onPress={editing ? onPressSave :validate}>
+						<Next>{editing ? 'Save' : 'Next'}</Next>
 					</TouchableOpacity>
 				</TopBar>
 				<ScrollView>
