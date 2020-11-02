@@ -19,6 +19,7 @@ export const User = types
 				lat: types.maybeNull(types.union(types.number, types.string)),
 				lon: types.maybeNull(types.union(types.number, types.string)),
 				device_id: types.maybeNull(types.string),
+				profile_img: types.maybeNull(types.string),
 				broker_details: types.maybeNull(
 					types.model({
 						id_status: types.maybeNull(types.string),

@@ -100,7 +100,7 @@ export default (props) => {
 				>
 					<SwipeLabel like={true} opacity={likeOpacity} />
 					<SwipeLabel like={false} opacity={dislikeOpacity} />
-					<CardContent {...props} />
+					<CardContent index={index} item={item} navigation={props.navigation} location={props.location} />
 				</Animated.View>
 			)
 		}
@@ -114,7 +114,7 @@ export default (props) => {
 					height: SCREEN_HEIGHT - 360
 				}]}
 			>
-				<CardContent {...props} />
+				<CardContent index={index} item={item} navigation={props.navigation} location={props.location} />
 			</Animated.View>
 		)
 	}).reverse()	

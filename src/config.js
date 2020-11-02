@@ -3,6 +3,7 @@ export default {
 	API_KEY: 'AIzaSyAW-znjNcGmS5yc9JjpX-wGS-OlQaZQzFo',
 	firebase_storage: {
 		prc_id: '/users/PRC-ID',
+		user_image: '/users/user-ava',
 		listing_photos: '/listings/uploads',
 		listing_ats: '/listings/ats'
 	}

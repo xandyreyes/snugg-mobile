@@ -7,6 +7,18 @@ export const Container = styled.View`
     border-radius: 30px;
     flex: 1;
     border: 1px solid #e0e0e0;
+    width: ${width - 30}px;
+`
+
+export const TouchableOpacity = styled.TouchableOpacity`
+    width: 100%;
+    flex: 1;
+    resize-mode: cover;
+    background: #f0f0f0;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 `
 
 export const Image = styled.ImageBackground`

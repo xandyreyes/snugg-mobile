@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getDistance } from 'geolib'
 import PropertyInfoBadge from 'src/components/PropertyInfoBadge'
+import formatMoney from 'src/utils/formatMoney'
 import {
 	Container,
 	Description,
@@ -12,36 +14,72 @@ import {
 	Row,
 	RowWrap,
 	Title,
+	TouchableOpacity,
 	Verified
 } from './styledComponents'
 import images from '../../images'
 
-export default ({ index }) => {
-	return(
-		<Container index={index}>
-			<Image>
-				<PriceContainer>
-					<PriceText>P12,000,000.00</PriceText>
-				</PriceContainer>
-			</Image>
-			<InfoContainer>
-				<Row>
-					<Title numberOfLines={1}>Lorem Ipsum</Title>
-					<Verified source={images.verified} />
-				</Row>
-				<Description numberOfLines={3}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec erat ex, convallis ac euismod vitae, iaculis ac justo.
-				</Description>
-				<RowWrap>
-					<PropertyInfoBadge value={'2 Beds'} label="bedroom" />
-					<PropertyInfoBadge value={'2 Baths'} label="baths" />
-					<PropertyInfoBadge value={'2 Floors'} label="floor_area" />
-				</RowWrap>
-				<Row>
-					<LocationIcon source={images.pin_location} />
-					<LocationText>2km away</LocationText>
-				</Row>
-			</InfoContainer>
-		</Container>
-	)
+export default ({ index, item, location, navigation }) => {
+
+	const [dist, setDist] = useState('')
+
+	useEffect(() => {
+		if (item.lat) {
+			const distanceData = getDistance(
+				{
+					latitude: item.lat,
+					longitude: item.lon
+				},
+				{
+					latitude: location.latitude,
+					longitude: location.longitude
+				}
+			)
+			setDist((distanceData * 0.001).toFixed(2))
+		}
+	}, [item])
+
+	if (item) {
+		return(
+			<Container index={index} >
+				<TouchableOpacity onPress={() => navigation.navigate('PropertyProfile', {
+					...item
+				})}>
+					<Image>
+						<PriceContainer>
+							<PriceText>P{formatMoney(item.price)}</PriceText>
+						</PriceContainer>
+					</Image>
+				</TouchableOpacity>
+				<InfoContainer>
+					<Row>
+						<Title numberOfLines={1}>{item.name}</Title>
+						{ item.status === 'approved' && (
+							<Verified source={images.verified} />
+						)}
+					</Row>
+					<Description numberOfLines={3}>
+						{item.special_notes}
+					</Description>
+					<RowWrap>
+						<PropertyInfoBadge label="listing_type" value={item.listing_type}/>
+						<PropertyInfoBadge label="offer_type" value={item.offer_type}/>
+						<PropertyInfoBadge label="floor_count" value={item.floor_count}/>
+						<PropertyInfoBadge label="bedroom" value={item.bedroom_count}/>
+						<PropertyInfoBadge label="baths" value={item.toilet_bath_count}/>
+						<PropertyInfoBadge label="floor_area" value={item.floor_area}/>
+						{ item.garage ? (<PropertyInfoBadge label="garage" value={item.garage}/>) : null }
+					</RowWrap>
+					<Row>
+						<LocationIcon source={images.pin_location} />
+						<LocationText>{dist} km away</LocationText>
+					</Row>
+				</InfoContainer>
+			</Container>
+		)
+	}
+
+	return null
+
+	
 }

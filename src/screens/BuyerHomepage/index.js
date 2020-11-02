@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { get } from 'lodash'
+import Geolocation from 'react-native-geolocation-service'
 import Browse from './Browse'
 import images from './images'
 import Matches from './Matches'
@@ -19,10 +20,28 @@ export default ({ navigation, route }) => {
 	const [location, setLocation] = useState(null)
 	const [selected, setSelected] = useState('Nearby')
 
+	const getUserLocation = () => {
+		Geolocation.getCurrentPosition(
+			(position) => {
+				const data = {
+					address: 'Your location',
+					latitude: position.coords.latitude,
+					longitude: position.coords.longitude
+				}
+				setLocation(data)
+			},
+			(error) => {
+				console.log(error, '[ERR GET CURRENT LOCATION]')
+			},
+			{ enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+		)
+	}
+
 	useEffect(() => {
 		if (get(route, 'params.view', '') === 'Matches') {
 			setSelected('Matches')
 		}
+		getUserLocation()
 	}, [route.params])
 
 	return(
@@ -44,7 +63,7 @@ export default ({ navigation, route }) => {
 						<SearchText numberOfLines={1}>{location?.address || 'Search Location'}</SearchText>
 					</SearchBar>
 					{ location ? (
-						<Browse />
+						<Browse location={location} navigation={navigation} />
 					) : (
 						<NoLocation />
 					) }

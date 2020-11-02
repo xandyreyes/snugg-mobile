@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { get } from 'lodash'
+import { homepageAPI } from 'src/api/homepage'
 import Card from './Card'
 import {
 	ButtonContainer,
@@ -13,9 +15,27 @@ import images from '../images'
 
 const arr = [1, 2, 3, 4, 5, 6]
 
-export default () => {
+export default ({ location, navigation }) => {
 
 	const [stack, setStack] = useState(arr)
+
+	console.log({ location })
+
+	useEffect(() => {
+		retrieveData()
+	}, [])
+
+	const retrieveData = async () => {
+		try {
+			const homepageData = await homepageAPI({ 
+				lat: location.latitude,
+				lon: location.longitude
+			})
+			setStack(get(homepageData, 'data', []))
+		} catch (err) {
+			console.log(err, '[ERR RETRIEVE HOMEPAGE DATA]')
+		}
+	}
 
 	const shiftArray = () => {
 		stack.shift()
@@ -26,7 +46,7 @@ export default () => {
 
 	return(
 		<Container>
-			<Card stack={stack} next={shiftArray} />
+			<Card stack={stack} next={shiftArray} navigation={navigation} location={location} />
 			<Row>
 				<ButtonContainer>
 					<Reject>

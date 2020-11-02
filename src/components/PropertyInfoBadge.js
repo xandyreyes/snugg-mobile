@@ -81,12 +81,16 @@ export default ({ value, label }) => {
 			setText(`${value} Floor/s`)
 			return
 		}
-	}, [])
+	}, [value, label])
 
-	return(
-		<Container>
-			<Icon source={icon} />
-			<Text>{text}</Text>
-		</Container>
-	)
+	if (value && label) {
+		return(
+			<Container>
+				<Icon source={icon} />
+				<Text>{text}</Text>
+			</Container>
+		)
+	}
+
+	return null
 }

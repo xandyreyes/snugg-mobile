@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import { get } from 'lodash'
-import { Alert } from 'react-native'
+import { Alert, TouchableOpacity } from 'react-native'
+import ImagePicker from 'react-native-customized-image-picker'
+import { userUpdateAPI } from 'src/api/auth'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
+import Loading from 'src/components/Loading'
+import config from 'src/config'
 import { UserType } from 'src/constants'
 import { Store } from 'src/store'
+import uploadToFirebase from 'src/utils/uploadToFirebase'
 import {
 	Container,
 	ContentContainer,
@@ -22,7 +27,6 @@ import {
 	UpdatePRCLabel,
 	UserImage
 } from './styledComponents'
-import { userUpdateAPI } from '../../api/auth'
 
 const default_image = require('src/assets/images/default_image.png')
 
@@ -38,11 +42,21 @@ const UserAccountSettings = ({ navigation }) => {
 		email: get(data, 'email', ''),
 		lat: get(data, 'lat', ''),
 		lon: get(data, 'lon', ''),
-		broker_details: get(data, 'broker_details', null)
+		broker_details: get(data, 'broker_details', null),
+		profile_img: get(data, 'profile_img', null)
 	}
 	const [form, setForm] = useState(formData)
 	const [formToSend, setFormToSend] = useState({})
 	const [updating, setUpdating] = useState(false)
+	const [selectedImage, setSelectedImage] = useState(null)
+
+	const openImagePicker = () => {
+		ImagePicker.openPicker({
+			multiple: false
+		}).then(images => {
+			setSelectedImage(images)
+		})
+	}
 
 	const onChangeText = field => text => {
 		form[field] = text
@@ -51,8 +65,8 @@ const UserAccountSettings = ({ navigation }) => {
 	}
 
 	const checkFormToSend = (field, text) => {
-		if(data[field]) {
-			if(data[field].toString() === text) {
+		if(data[field] !== undefined) {
+			if(data[field] && data[field].toString() === text) {
 				delete formToSend[field]
 				setFormToSend(formToSend)
 			} else {
@@ -63,12 +77,16 @@ const UserAccountSettings = ({ navigation }) => {
 	}
   
 	const submitChanges = async () => {
-		if(!updating && Object.entries(formToSend).length !== 0) {
-			setUpdating(true)
+		setUpdating(true)
+		if (selectedImage) {
+			await uploadImage()
+		}
+		console.log({ formToSend })
+		if(Object.entries(formToSend).length !== 0) {
 			try {
 				const res = await userUpdateAPI(data.id, formToSend)
 				Store.User.update(res.data)
-				setUpdating(false)
+				console.log(res.data)
 				Alert.alert('Success', res.message)
 			} catch (error) {
 				const {data} = error.response
@@ -76,10 +94,25 @@ const UserAccountSettings = ({ navigation }) => {
 				const errData = Object.entries(data.errors).map(obj => {
 					return obj[1].join('\n')
 				})
-				setUpdating(false)
 				Alert.alert(data.message, errData.join('\n'))
 			}
 		}
+		setUpdating(false)
+	}
+
+	const uploadImage = async () => {
+		try {
+			const imageUri = await uploadToFirebase({
+				storageName: config.firebase_storage.user_image,
+				uploadUri: selectedImage.path
+			})
+			form.profile_img = imageUri
+			setForm({...form})
+			checkFormToSend('profile_img', imageUri)
+		} catch (err) {
+			console.log(err, '[ERR UPLOAD IMAGE]')
+		}
+		return
 	}
 
 	const changeLocation = () => {
@@ -120,23 +153,26 @@ const UserAccountSettings = ({ navigation }) => {
 
 	return (
 		<Container>
+			{ updating && <Loading /> }
 			<Row>
 				<Back navigation={navigation} />
 				<Header>User Profile Settings</Header>
 			</Row>
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
-				<UserImage source={default_image} />
+				<TouchableOpacity onPress={openImagePicker}>
+					<UserImage source={selectedImage ? { uri: selectedImage.path } : form.profile_img ? { uri: form.profile_img } : default_image} />
+				</TouchableOpacity>
 				<FormGroup>
 					<FormLabel>First Name</FormLabel>
-					<Input onChangeText={onChangeText(data.firstname)} value={form.firstname} />
+					<Input onChangeText={onChangeText('firstname')} value={form.firstname} />
 				</FormGroup>
 				<FormGroup>
 					<FormLabel>Middle Name</FormLabel>
-					<Input onChangeText={onChangeText(data.middlename)} value={form.middlename} />
+					<Input onChangeText={onChangeText('middlename')} value={form.middlename} />
 				</FormGroup>
 				<FormGroup>
 					<FormLabel>Last Name</FormLabel>
-					<Input onChangeText={onChangeText(data.lastname)} value={form.lastname} />
+					<Input onChangeText={onChangeText('lastname')} value={form.lastname} />
 				</FormGroup>
 				<FormGroup>
 					<FormLabel>Address</FormLabel>
@@ -146,11 +182,11 @@ const UserAccountSettings = ({ navigation }) => {
 				</FormGroup>
 				<FormGroup>
 					<FormLabel>Phone Number</FormLabel>
-					<Input onChangeText={onChangeText(data.contact_number)} value={form.contact_number} />
+					<Input onChangeText={onChangeText('contact_number')} value={form.contact_number} />
 				</FormGroup>
 				<FormGroup>
 					<FormLabel>Email</FormLabel>
-					<Input onChangeText={onChangeText(data.email)} value={form.email} />
+					<Input onChangeText={onChangeText('email')} value={form.email} />
 				</FormGroup>
 				{ data.type_id === UserType.broker && (
 					<>
