@@ -53,3 +53,13 @@ export const getLikedListingAPI = async () => {
 	}
 	return response.data
 }
+
+export const deleteListingAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.delete(`/listing/delete/${id}`)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}

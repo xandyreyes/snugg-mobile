@@ -6,7 +6,9 @@ import {
 	Linking
 } from 'react-native'
 import { getUserAPI } from 'src/api/user'
+import { deleteListingAPI } from 'src/api/listing'
 import Back from 'src/components/Back'
+import Loading from 'src/components/Loading'
 import {
 	CallIconReplacement,
 	Container,
@@ -38,6 +40,7 @@ const BrokerProfile = ({ navigation, route }) => {
 	const [selectedProperty, setSelectedProperty] = useState({})
 	const [modalVisible, setModalVisible] = useState(false)
 	const [user, setUserInfo] = useState(null)
+	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
 		getUserInfo()
@@ -86,8 +89,25 @@ const BrokerProfile = ({ navigation, route }) => {
 		})
 	}
 
-	const deleteOnPress = () => {
-
+	const deleteOnPress = async () => {
+		setLoading(true)
+		try {
+			const deleted = await deleteListingAPI(selectedProperty.id)
+			if (deleted) {
+				setModalVisible(false)
+			}
+		} catch (err) {
+			Alert.alert(
+				'Unable to delete property',
+				get(err.response, 'data.message', 'Something went wrong!'),
+				[
+					{
+						text: 'OK'
+					}
+				]
+			)
+		}
+		setLoading(false)
 	}
 
 	const getRating = (ratings) => {
@@ -98,6 +118,7 @@ const BrokerProfile = ({ navigation, route }) => {
 
 	return (
 		<Container>
+			{ loading && <Loading /> }
 			<OptionModal
 				isVisible={modalVisible}
 				toggleModal={toggleModalVisible}
