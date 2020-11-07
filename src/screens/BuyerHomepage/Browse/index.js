@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { get } from 'lodash'
+import { Animated, Dimensions } from 'react-native'
 import { homepageAPI } from 'src/api/homepage'
 import Card from './Card'
 import {
@@ -13,13 +14,12 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-const arr = [1, 2, 3, 4, 5, 6]
+const SCREEN_WIDTH = Dimensions.get('screen').width
 
 export default ({ location, navigation }) => {
 
-	const [stack, setStack] = useState(arr)
-
-	console.log({ location })
+	const pan = useRef(new Animated.ValueXY())
+	const [stack, setStack] = useState([])
 
 	useEffect(() => {
 		retrieveData()
@@ -39,22 +39,45 @@ export default ({ location, navigation }) => {
 
 	const shiftArray = () => {
 		stack.shift()
-		setStack(stack)
+		setStack([...stack])
+	}
+
+	const onLike = () => {
+		Animated.spring(pan.current, {
+			toValue: { x: SCREEN_WIDTH + 100, y: 0 },
+			useNativeDriver: true
+		}).start(() => {
+			shiftArray()
+			pan.current.setValue({ x: 0, y: 0 })
+		})
+		setTimeout(() => {
+			navigation.navigate('Match')
+		}, 500)
+	}
+
+	const onDisLike = () => {
+		Animated.spring(pan.current, {
+			toValue: { x: -SCREEN_WIDTH - 100, y: 0 },
+			useNativeDriver: true
+		}).start(() => {
+			shiftArray()
+			pan.current.setValue({ x: 0, y: 0 })
+		})
 	}
 
 	// TODO: When empty array na, show no more cards
 
 	return(
 		<Container>
-			<Card stack={stack} next={shiftArray} navigation={navigation} location={location} />
+			<Card pan={pan} stack={stack} next={shiftArray} navigation={navigation} location={location} />
 			<Row>
 				<ButtonContainer>
-					<Reject>
+					<Reject onPress={onDisLike}>
 						<Image source={images.close} />
 					</Reject>
 				</ButtonContainer>
-				<ButtonContainer>
-					<Like>
+				<ButtonContainer >
+					<Like onPress={onLike}>
 						<HeartEmpty source={images.heart_empty} />
 					</Like>
 				</ButtonContainer>

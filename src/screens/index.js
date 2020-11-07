@@ -14,6 +14,7 @@ import EnableLocation from './EnableLocation'
 import ForgotPassword from './ForgotPassword'
 import LoadingScreen from './LoadingScreen'
 import Login from './Login'
+import Match from './Match'
 import PreviewID from './PreviewID'
 import PropertyProfile from './PropertyProfile'
 import Register from './Register'
@@ -63,6 +64,7 @@ export default () => {
 									<Stack.Screen name="BrokerProfile" component={BrokerProfile} options={{ headerShown: false }} />
 									<Stack.Screen name="UserPasswordUpdate" component={UserPasswordUpdate} options={{ headerShown: false }} />
 									<Stack.Screen name="PropertyProfile" component={PropertyProfile} options={{ headerShown: false }} />
+									<Stack.Screen name="Match" component={Match} options={{ headerShown: false }} />
 								</>
 							) : (
 								<>

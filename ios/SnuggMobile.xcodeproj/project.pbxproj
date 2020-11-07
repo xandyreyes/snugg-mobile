@@ -12,7 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		190168D0DC7B414CB89A93ED /* libPods-SnuggMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12C22B3B9A830CF07591E75 /* libPods-SnuggMobile-tvOS.a */; };
-		235EE9332516183E00EF76CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235EE9322516183E00EF76CE /* GoogleService-Info.plist */; };
+		231F251225564D4D005B6872 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 231F251125564D4D005B6872 /* GoogleService-Info.plist */; };
+		231F251C25564DBA005B6872 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 231F251B25564DBA005B6872 /* GoogleService-Info.plist */; };
 		239B9DE12550306300E89D16 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239B9DE02550306300E89D16 /* Swift.swift */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -55,7 +56,8 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SnuggMobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SnuggMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SnuggMobile/main.m; sourceTree = "<group>"; };
-		235EE9322516183E00EF76CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		231F251125564D4D005B6872 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		231F251B25564DBA005B6872 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2361DBA3251CC273008F5CE1 /* SnuggMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SnuggMobile.entitlements; path = SnuggMobile/SnuggMobile.entitlements; sourceTree = "<group>"; };
 		239B9DDF2550306300E89D16 /* SnuggMobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SnuggMobile-Bridging-Header.h"; sourceTree = "<group>"; };
 		239B9DE02550306300E89D16 /* Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
@@ -155,9 +157,10 @@
 				2361DBA3251CC273008F5CE1 /* SnuggMobile.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				231F251B25564DBA005B6872 /* GoogleService-Info.plist */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				231F251125564D4D005B6872 /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				235EE9322516183E00EF76CE /* GoogleService-Info.plist */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -373,7 +376,8 @@
 				D187DB43B3BC40ACADB1900D /* Raleway-Bold.ttf in Resources */,
 				7B294CFF7BF747A6B97497B9 /* Raleway-Italic.ttf in Resources */,
 				5D0EBAE53DF84AB09547DB69 /* Raleway-Regular.ttf in Resources */,
-				235EE9332516183E00EF76CE /* GoogleService-Info.plist in Resources */,
+				231F251225564D4D005B6872 /* GoogleService-Info.plist in Resources */,
+				231F251C25564DBA005B6872 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

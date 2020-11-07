@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo } from 'react'
 import { Animated, Dimensions, PanResponder } from 'react-native'
 import CardContent from './CardContent'
 import SwipeLabel from './SwipeLabel'
@@ -6,9 +6,7 @@ import SwipeLabel from './SwipeLabel'
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const SCREEN_WIDTH = Dimensions.get('screen').width
 
-export default (props) => {
-
-	const pan = useRef(new Animated.ValueXY())
+export default ({pan, ...props}) => {
 
 	const panResponder = useMemo(() => PanResponder.create({
 		onStartShouldSetPanResponder: () => true,
