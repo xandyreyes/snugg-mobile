@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { get } from 'lodash'
-import { Animated, Dimensions } from 'react-native'
+import { ActivityIndicator, Alert, Animated, Dimensions } from 'react-native'
 import { homepageAPI } from 'src/api/homepage'
+import { dislikeAPI, likeAPI } from 'src/api/listing'
 import Card from './Card'
 import {
 	ButtonContainer,
@@ -9,6 +10,8 @@ import {
 	HeartEmpty,
 	Image,
 	Like,
+	NoMoreCardText,
+	NoMoreCards,
 	Reject,
 	Row
 } from './styledComponents'
@@ -42,7 +45,7 @@ export default ({ location, navigation }) => {
 		setStack([...stack])
 	}
 
-	const onLike = () => {
+	const onLike = async () => {
 		Animated.spring(pan.current, {
 			toValue: { x: SCREEN_WIDTH + 100, y: 0 },
 			useNativeDriver: true
@@ -50,9 +53,23 @@ export default ({ location, navigation }) => {
 			shiftArray()
 			pan.current.setValue({ x: 0, y: 0 })
 		})
-		setTimeout(() => {
-			navigation.navigate('Match')
-		}, 500)
+		try {
+			const like = await likeAPI(stack[0].id)
+			if (like) {
+				setTimeout(() => {
+					navigation.navigate('Match')
+				}, 500)
+			}
+		} catch (err) {
+			console.log(err, '[ERR LIKE]')
+			Alert.alert(
+				'Failed to Like',
+				'You can\'t do this feature right now.',
+				[
+					{ text: 'OK' }
+				]
+			)
+		}
 	}
 
 	const onDisLike = () => {
@@ -63,12 +80,28 @@ export default ({ location, navigation }) => {
 			shiftArray()
 			pan.current.setValue({ x: 0, y: 0 })
 		})
+		try {
+			dislikeAPI(stack[0].id)
+		}  catch (err) {
+			console.log(err, '[ERR DISLIKE]')
+			Alert.alert(
+				'Failed to Dislike',
+				'You can\'t do this feature right now.',
+				[
+					{ text: 'OK' }
+				]
+			)
+		}
 	}
 
 	// TODO: When empty array na, show no more cards
 
 	return(
 		<Container>
+			<NoMoreCards>
+				<NoMoreCardText>Searching for Nearby Properties...</NoMoreCardText>
+				<ActivityIndicator color='#EC7050' size='large' />
+			</NoMoreCards>
 			<Card pan={pan} stack={stack} next={shiftArray} navigation={navigation} location={location} />
 			<Row>
 				<ButtonContainer>

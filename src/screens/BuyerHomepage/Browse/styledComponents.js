@@ -50,3 +50,18 @@ export const HeartEmpty = styled.Image`
     resize-mode: contain;
 `
 
+export const NoMoreCards = styled.View`
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+`
+
+export const NoMoreCardText = styled.Text`
+    color: rgba(236, 112, 80, 1);
+    font-size: 24px;
+    font-family: Raleway;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: -100px;
+`
