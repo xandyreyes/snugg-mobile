@@ -43,7 +43,7 @@ const UserAccountSettings = ({ navigation }) => {
 		lat: get(data, 'lat', ''),
 		lon: get(data, 'lon', ''),
 		broker_details: get(data, 'broker_details', null),
-		profile_img: get(data, 'profile_img', null)
+		profile_img_path: get(data, 'profile_img', null)
 	}
 	const [form, setForm] = useState(formData)
 	const [formToSend, setFormToSend] = useState({})

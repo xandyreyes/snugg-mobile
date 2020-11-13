@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {Alert} from 'react-native'
+import { userUpdateAPI } from 'src/api/auth'
 import Back from 'src/components/Back'
+import { Store } from 'src/store'
 import SelectedModal from './SelectedModal'
 import {
 	BackContainer,
@@ -12,8 +14,6 @@ import {
 	ScrollView
 } from './styledComponents'
 import SubscriptionItem from './SubscriptionItem'
-import { userUpdateAPI } from '../../api/auth'
-import { Store } from 'src/store'
 
 const subscriptions = [
 	{
@@ -69,15 +69,13 @@ export default ({ navigation, route }) => {
 			subscription_type: subscription.id
 		}
 		try {
-			// const response = await userUpdateAPI(Store.User.data.id, body);
-			// if(response) {
-			//   const { message } = response;
-			//   console.log('[User update message]', message);
-			//   setModalVisibility(false)
-			//   navigation.navigate('Welcome')
-			// }
-			setModalVisibility(false)
-			navigation.navigate('Welcome')
+			const response = await userUpdateAPI(Store.User.data.id, body)
+			if(response) {
+				const { message } = response
+				console.log('[User update message]', message)
+				setModalVisibility(false)
+				navigation.navigate('Welcome')
+			}
 		} catch (e) {
 			Alert.alert('Error', e.response.data.message)
 			console.log('[ERROR UPDATING]', e.response.data)
