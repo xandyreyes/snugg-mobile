@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
 import Button from 'src/components/Button'
 import { UserType } from 'src/constants'
@@ -8,6 +8,7 @@ import {
 	Header,
 	Modal
 } from 'src/components/styledComponents'
+import { getFirebasePermissions } from 'src/utils/fcm'
 import images from './images'
 import {
 	ButtonContainer,
@@ -19,6 +20,10 @@ import {
 } from './styledComponents'
 
 export default ({ navigation }) => {
+
+	useEffect(() => {
+		getFirebasePermissions()
+	}, [])
 
 	const start = () => {
 		const { User } = Store

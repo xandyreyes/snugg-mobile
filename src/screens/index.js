@@ -47,13 +47,13 @@ export default () => {
 							{ User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }
 							{ User.access_token ? (
 								<>
-									{ User.data.type_id === UserType.broker && (
+									{ User.data?.type_id === UserType.broker && (
 										<>
 											<Stack.Screen name="BrokerTabs" component={BrokerTabs} options={{ headerShown: false }} />
 											<Stack.Screen name="AddListing" component={AddListing} options={{ headerShown: false }} />
 										</>
 									) }
-									{ User.data.type_id === UserType.buyer && (
+									{ User.data?.type_id === UserType.buyer && (
 										<>
 											<Stack.Screen name="BuyerTabs" component={BuyerTabs} options={{ headerShown: false }} />
 										</>

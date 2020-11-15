@@ -24,7 +24,7 @@ export const User = types
 					types.model({
 						id_status: types.maybeNull(types.string),
 						expiration_date: types.maybeNull(types.string),
-						prc_id: types.maybeNull(types.string),
+						prc_id: types.maybeNull(types.number),
 						subscription: types.maybeNull(
 							types.model({
 								id: types.maybeNull(types.number),

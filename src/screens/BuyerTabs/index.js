@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { SafeAreaView, TouchableOpacity } from 'react-native'
-import { getFirebasePermissions } from 'src/utils/fcm'
 import Messages from '../Messages'
 import UserAccount from '../UserAccount'
 import BuyerHomepage from '../BuyerHomepage'
@@ -15,10 +14,6 @@ import {
 const TabDashboard = createMaterialTopTabNavigator()
 
 const Home = () => {
-
-	useEffect(() => {
-		getFirebasePermissions()
-	}, [])
 
 	const HomeTabBar = ({ navigationState, navigation }) => {
 		return (
