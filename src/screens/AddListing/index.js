@@ -101,8 +101,9 @@ export default ({ navigation, route }) => {
 		navigation.navigate('SelectLocationMap', {
 			data,
 			title: 'Property Location',
-			onNext: async (nav, location, dataProps) => {
-				const listing = await saveToDatabase(location, dataProps)
+			onNext: async (nav, location) => {
+				const listing = await saveToDatabase(location, data)
+				console.log({ listing }, '[LISTING]')
 				if (listing) {
 					nav.reset({
 						index: 0,
@@ -118,6 +119,7 @@ export default ({ navigation, route }) => {
 			dataProps.address = location.address
 			dataProps.lat = location.latitude
 			dataProps.lon = location.longitude
+			dataProps.features = dataProps.features.toString()
 			const listing = await postListingAPI(dataProps)
 			return listing
 		} catch (err) {
