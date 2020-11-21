@@ -1,3 +1,18 @@
 export default {
-	pin_location: require('src/assets/images/pin_location.png')
+	pin_location: require('src/assets/images/pin_location.png'),
+	verified: require('src/assets/images/verified.png'),
+	star_filled: require('src/assets/images/star-filled.png'),
+	star_outlined: require('src/assets/images/star-outlined.png'),
+	cell: require('src/assets/images/cell.png'),
+	message: require('src/assets/images/message.png'),
+	property1: require('src/assets/images/property-1.jpg'),
+	property2: require('src/assets/images/property-2.jpg'),
+	bed: require('src/assets/images/bed.png'),
+	bath: require('src/assets/images/bath.png'),
+	condo: require('src/assets/images/condo.png'),
+	garage: require('src/assets/images/garage.png'),
+	area: require('src/assets/images/area.png'),
+	heart_empty: require('src/assets/images/heart_empty.png'),
+	default_image: require('src/assets/images/default_image.png'),
+	menu: require('src/assets/images/menu.png'),
 }

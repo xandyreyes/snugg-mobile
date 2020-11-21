@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { get, remove, size } from 'lodash'
-import { Alert, FlatList, Platform, TouchableOpacity } from 'react-native'
+import { Alert, FlatList, Linking, Platform, TouchableOpacity } from 'react-native'
 import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
-import { postListingAPI } from 'src/api/listing'
+import { listingUpdateAPI, postListingAPI } from 'src/api/listing'
 import Back from 'src/components/Back'
 import Loading from 'src/components/Loading'
 import { Label } from 'src/components/styledComponents'
@@ -51,30 +51,51 @@ const propertyType = [
 	}
 ]
 
-export default ({ navigation }) => {
+export default ({ navigation, route }) => {
 
-	const [data, setData] = useState({
-		listing_type_id : 1,
-		offer_type_id : 1,
-		name : '',
-		price : null,
-		bedroom : null,
-		baths : null,
-		floor_area : null,
-		floor: null,
-		notes : null,
-		ats_file_url: null,
-		features: '',
+	const initialData = {
+		listing_type_id: get(route, 'params.type_id', 1),
+		offer_type_id: get(route, 'params.offer_type', 1),
+		name: get(route, 'params.name', ''),
+		price: get(route, 'params.price', null),
+		bedroom: get(route, 'params.bedroom_count', null),
+		baths: get(route, 'params.toilet_bath_count', null),
+		floor_area: get(route, 'params.floor_area', null),
+		floor: get(route, 'params.floor_count', null),
+		notes: get(route, 'params.special_notes', null),
+		ats_file_url: get(route, 'params.ats_file_url', null),
+		features: get(route, 'params.features', null),
 		images: [],
-		commission_rate: 1,
-		address: '',
-		lat: null,
-		lon: null
-	})
+		commission_rate: get(route, 'params.commission', 1),
+		address: get(route, 'params.address', ''),
+		lat: get(route, 'params.lat', null),
+		lon: get(route, 'params.lon', null),
+	}
+
+	const [data, setData] = useState(initialData)
+	const [dataEdit, setDataEdit] = useState({})
+	const [editing, setEditing] = useState(false)
 	const [features, setFeatures] = useState([])
 	const [selectedImages, setImages] = useState([])
 	const [selectedAts, setAts] = useState(null)
 	const [loading, setLoading] = useState(false)
+
+	useEffect(() => {
+		const listingID = get(route, 'params.id', null)
+		if (listingID) {
+			setEditing(true)
+			setLoading(true)
+			const split = get(route, 'params.features', null).split(',')
+			setFeatures(split)
+			const images = get(route, 'params.images', [])
+			const imgUrls = images.map((img) => { 
+				return {url: img.image_url} 
+			})
+			data.images = imgUrls
+			setData({ ...data })
+			setLoading(false)
+		}
+	}, [])
 	
 	const onPressNext = () => {
 		navigation.navigate('SelectLocationMap', {
@@ -116,18 +137,8 @@ export default ({ navigation }) => {
 	const uploadFiles = async () => {
 		setLoading(true)
 		try {
-			const uploadAtsUri = Platform.OS === 'ios' ? selectedAts.uri.replace('file://', '') : selectedAts.uri
-			const atsUri = await uploadToFirebase({
-				storageName: config.firebase_storage.listing_ats,
-				uploadUri: uploadAtsUri
-			})
-			const imagesUri = await Promise.all(selectedImages.map( async (item) => {
-				const url = await uploadToFirebase({
-					uploadUri: Platform.OS === 'ios' ? item.path : item.uri,
-					storageName: config.firebase_storage.listing_photos
-				})
-				return {url}
-			}))
+			const atsUri = await uploadATS()
+			const imagesUri = await uploadImages()
 			data.ats_file_url = atsUri
 			data.images = imagesUri
 			data.features = features.toString()
@@ -138,6 +149,26 @@ export default ({ navigation }) => {
 			setLoading(false)
 			console.log(err, '[UPLOAD ERROR]')
 		}
+	}
+
+	const uploadATS = async () => {
+		const uploadAtsUri = Platform.OS === 'ios' ? selectedAts.uri.replace('file://', '') : selectedAts.uri
+		const atsUri = await uploadToFirebase({
+			storageName: config.firebase_storage.listing_ats,
+			uploadUri: uploadAtsUri
+		})
+		return atsUri
+	}
+
+	const uploadImages = async () => {
+		const imagesUri = await Promise.all(selectedImages.map( async (item) => {
+			const url = await uploadToFirebase({
+				uploadUri: Platform.OS === 'ios' ? item.path : item.uri,
+				storageName: config.firebase_storage.listing_photos
+			})
+			return {url}
+		}))
+		return imagesUri
 	}
 
 	const validate = () => {
@@ -178,10 +209,26 @@ export default ({ navigation }) => {
 		if (type === 'number') {
 			data[field] = parseFloat(text)
 			setData({...data})
+			if (editing) {
+				edit(field, parseFloat(text))
+			}
 		} else {
 			data[field] = text
 			setData({...data})
+			if (editing) {
+				edit(field, text)
+			}
 		}
+	}
+
+	const edit = (field, text) => {
+		if (field === 'notes') {
+			field = 'special_notes'
+		}
+		setDataEdit({
+			...dataEdit,
+			[field]: parseFloat(text)
+		})
 	}
 
 	const onSelectFeature = val => {
@@ -242,6 +289,38 @@ export default ({ navigation }) => {
 		}
 	}
 
+	const openATS = url => {
+		Linking.openURL(url)
+	}
+
+	const onPressSave = async () => {
+		setLoading(true)
+		try {
+			// if (size(selectedImages) > 0) {
+			// 	const imagesUri = await uploadImages()
+			// 	data.images.concat(imagesUri)
+			// }
+			// if (selectedAts) {
+			// 	const atsUri = await uploadATS()
+			// 	data.ats_file_url = atsUri
+			// }
+			// data.features = features.toString()
+			setData({ ...data })
+			const update = await listingUpdateAPI(get(route, 'params.id', 1), dataEdit)
+			console.log({ update })
+		} catch (err) {
+			setLoading(false)
+			Alert.alert(
+				'Can\'t save changes',
+				get(err, 'response.data.message', 'Network Error'),
+				[
+					{ text: 'OK' }
+				]
+			)
+			console.log({ err: err.response.data }, '[ERR ONPRESS SAVE]')
+		}
+	}
+
 	return(
 		<Container>
 			{ loading && (
@@ -253,8 +332,8 @@ export default ({ navigation }) => {
 						<Back navigation={navigation}/>
 					</TouchableOpacity>
 					<Header>New Listing</Header>
-					<TouchableOpacity onPress={validate}>
-						<Next>Next</Next>
+					<TouchableOpacity onPress={editing ? onPressSave :validate}>
+						<Next>{editing ? 'Save' : 'Next'}</Next>
 					</TouchableOpacity>
 				</TopBar>
 				<ScrollView>
@@ -265,7 +344,20 @@ export default ({ navigation }) => {
 						onChangeText={text => onChangeText(text, 'price', 'number')}
 					/>
 					<Header>Photos</Header>
-					{ size(selectedImages) > 0 ? (
+					{ editing ? (
+						<PhotoPreviewContainer>
+							<FlatList
+								horizontal
+								showsHorizontalScrollIndicator={false}
+								data={[...data.images, ...selectedImages]}
+								keyExtractor={(item, index) => `${item.fileName}-${index}`}
+								renderItem={({ item, index }) => <PhotoPreview key={`${Platform.OS === 'ios' ? item.fileName : item.name}-${index}`} source={{ uri: item.url ? item.url : Platform.OS === 'ios' ? item.path : item.fileCopyUri }} />}
+							/>
+							<TouchableOpacity onPress={selectImage} style={{ alignSelf: 'flex-end', marginTop: 5 }}>
+								<Label>Change Photos</Label>
+							</TouchableOpacity>
+						</PhotoPreviewContainer>
+					) : size(selectedImages) > 0 ? (
 						<PhotoPreviewContainer>
 							<FlatList
 								horizontal
@@ -284,7 +376,6 @@ export default ({ navigation }) => {
 							<Label>Select Photos</Label>
 						</UploadPhotosTouchable>
 					) }
-					
 					<Header style={{ marginBottom: 15 }}>Property Details</Header>
 					<Toggle label='Property Status' values={propertyStatus} onChangeValue={val => onChangeText(val, 'offer_type_id', 'number')}/>
 					<Toggle label='Property Type' values={propertyType} onChangeValue={val => onChangeText(val, 'listing_type_id', 'number')}/>
@@ -316,9 +407,15 @@ export default ({ navigation }) => {
 					<Features
 						selected={features}
 						onSelect={onSelectFeature}
+						editSelected={data.features}
 					/>
 					<Header style={{ marginBottom: 5 }}>Upload ATS</Header>
 					<Label>Lorem ipsum dolor sit amet, consectetur adipising elit.</Label>
+					{ editing && (
+						<TouchableOpacity onPress={() => openATS(data.ats_file_url)}>
+							<Label style={{ padding: 5, fontWeight: '600' }} numberOfLines={1}>{data.ats_file_url}</Label>
+						</TouchableOpacity>
+					)}
 					<UploadATS onPress={selectDocument}>
 						<ButtonText>{ selectedAts ? selectedAts.name : 'Upload ATS' }</ButtonText>
 					</UploadATS>

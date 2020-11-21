@@ -1,94 +1,177 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { get, size, sumBy } from 'lodash'
+import ContentLoader, { Rect } from 'react-content-loader/native'
 import {
-	Button,
-	ButtonContainer,
-	ButtonLabel,
+	Alert,
+	Linking
+} from 'react-native'
+import { getUserAPI } from 'src/api/user'
+import { deleteListingAPI } from 'src/api/listing'
+import Back from 'src/components/Back'
+import Loading from 'src/components/Loading'
+import {
+	CallIconReplacement,
 	Container,
 	ContentContainer,
+	Header,
+	Icon,
+	MessageIconReplacement,
+	Row,
+	RowNav,
 	UserAddressIcon,
 	UserAddressLabel,
 	UserAddressWrapper,
+	UserBrokerStatus,
+	UserBrokerStatusLabel,
 	UserImage,
+	UserInfoButtonsContainer,
 	UserInfoContainer,
-	UserNameLabel,
-	UserSubscriptionLabel,
-	UserSubscriptionWrapper
+	UserInfoRow
 } from './styledComponents'
 import { Store } from 'src/store'
 import images from './images'
+import Rate from './Rate'
+import Toggle from './Toggle'
+import ScreenToggle from './ScreenToggle'
+import OptionModal from './OptionModal'
 
-const BrokerProfile = ({ navigation }) => {
+const BrokerProfile = ({ navigation, route }) => {
 
-	const { data } = Store.User
-	const buttonSet = [
-		[
-			{
-				path: 'BrokerAccountSettings',
-				label: 'User Account Settings'
-			}, {
-				path: null,
-				label: 'Change Password'
-			}, {
-				path: null,
-				label: 'Subscription'
-			}, {
-				path: 'BrokerProperties',
-				label: 'My Properties'
+	const [activePage, setActivePage] = useState('Properties')
+	const [selectedProperty, setSelectedProperty] = useState({})
+	const [modalVisible, setModalVisible] = useState(false)
+	const [user, setUserInfo] = useState(null)
+	const [loading, setLoading] = useState(false)
+
+	useEffect(() => {
+		getUserInfo()
+	}, [])
+
+	const getUserInfo = async () => {
+		try {
+			const response = await getUserAPI(route.params.userId)
+			setUserInfo(response.data)
+		} catch (err) {
+			Alert.alert(
+				'Unable to retrieve user',
+				get(err, 'response.data.message', 'Network Error'),
+				[
+					{text: 'Okay'}
+				]
+			)
+		}
+	}
+
+	const messageButtonOnPress = () => {
+		Alert.alert('Button on press', 'Message button on press')
+	}
+
+	const callButtonOnPress = (phoneNumber) => {
+		Linking.openURL(`tel:0${phoneNumber}`)
+	}
+
+	const onChangeToggle = column => {
+		setActivePage(column)
+	}
+  
+	const propertyOptionOnPress = property => () => {
+		setSelectedProperty(property)
+		toggleModalVisible()
+	}
+
+	const toggleModalVisible = () => {
+		setModalVisible(!modalVisible)
+	}
+
+	const editOnPress = () => {
+		setModalVisible(false)
+		navigation.navigate('AddListing', {
+			...selectedProperty
+		})
+	}
+
+	const deleteOnPress = async () => {
+		setLoading(true)
+		try {
+			const deleted = await deleteListingAPI(selectedProperty.id)
+			if (deleted) {
+				setModalVisible(false)
 			}
-		], [
-			{
-				path: null,
-				label: 'About Snugg Neighborhood'
-			}, {
-				path: null,
-				label: 'Terms & Condition'
-			}, {
-				path: null,
-				label: 'Logout'
-			}
-		]
-	]
+		} catch (err) {
+			Alert.alert(
+				'Unable to delete property',
+				get(err.response, 'data.message', 'Something went wrong!'),
+				[
+					{
+						text: 'OK'
+					}
+				]
+			)
+		}
+		setLoading(false)
+	}
 
-	const UserButton = ({children, ...rest}) => {
-		return (
-			<Button {...rest}>
-				<ButtonLabel>{children}</ButtonLabel>
-			</Button>
-		)
+	const getRating = (ratings) => {
+		const total = sumBy(ratings, 'rating')
+		const length = size(ratings)
+		return total/length
 	}
 
 	return (
 		<Container>
-			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
-				<UserInfoContainer>
-					<UserImage />
-					<UserNameLabel>
-						{`${data.firstname} ${data.lastname}`}
-					</UserNameLabel>
-					<UserAddressWrapper>
-						<UserAddressIcon source={images.pin_location} />
-						<UserAddressLabel>
-							{data.address}
-						</UserAddressLabel>
-					</UserAddressWrapper>
-					<UserSubscriptionWrapper>
-						<UserSubscriptionLabel>
-							Free Trial
-						</UserSubscriptionLabel>
-					</UserSubscriptionWrapper>
-				</UserInfoContainer>
-				{buttonSet.map((bs, bsIndex) =>
-					<ButtonContainer key={bsIndex}>
-						{bs.map((button, index) =>
-							<UserButton
-								key={index}
-								onPress={() => button.path ? navigation.navigate(button.path) : {}}>
-								{button.label}
-							</UserButton>
-						)}
-					</ButtonContainer>
-				)}
-			</ContentContainer>
+			{ loading && <Loading /> }
+			<OptionModal
+				isVisible={modalVisible}
+				toggleModal={toggleModalVisible}
+				editOnPress={editOnPress}
+				deleteOnPress={deleteOnPress}
+			/>
+			<RowNav>
+				<Back navigation={navigation} />
+				{ user ? (<Header>{`${user.firstname} ${user.lastname}`}</Header>) : (
+					<ContentLoader viewBox="0 0 380 70">
+						<Rect y="10" rx="5" ry="5" width="300" height="50" />
+					</ContentLoader>
+				) }
+			</RowNav>
+			{ !user ? (null) : (
+				<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
+					<UserInfoContainer>
+						<UserImage source={user.profile_img ? { uri: user.profile_img}: images.default_image} />
+						<UserInfoRow>
+							{ user.broker_details.id_status === 'approved' && user.broker_details.prc_id !== null && (
+								<UserBrokerStatus>
+									<UserBrokerStatusLabel>
+										Licensed Broker
+									</UserBrokerStatusLabel>
+								</UserBrokerStatus>
+							)}
+							<Rate rate={getRating(get(user, 'broker_details.reviews', []))} />
+							<UserAddressWrapper>
+								<UserAddressIcon source={images.pin_location} />
+								<UserAddressLabel>{user.address}</UserAddressLabel>
+							</UserAddressWrapper>
+						</UserInfoRow>
+						<UserInfoButtonsContainer>
+							<MessageIconReplacement onPress={messageButtonOnPress}>
+								<Icon source={images.message} />
+							</MessageIconReplacement>
+							<CallIconReplacement onPress={() =>callButtonOnPress(user.contact_number)}>
+								<Icon source={images.cell} />
+							</CallIconReplacement>
+						</UserInfoButtonsContainer>
+					</UserInfoContainer>
+					<Row>
+						<Toggle onChangeToggle={onChangeToggle} defaultAs={activePage} />
+					</Row>
+					<ScreenToggle
+						navigation={navigation}
+						userId={user.id}
+						reviews={get(user, 'broker_details.reviews', [])}
+						page={activePage}
+						propertyOptionOnPress={propertyOptionOnPress} />
+				</ContentContainer>
+			)}
 		</Container>
 	)
 }

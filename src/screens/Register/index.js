@@ -177,7 +177,7 @@ export default ({ navigation }) => {
 					<TNC>
 						<Center>
 							<Text>By signing up, you agree to the</Text>
-							<Text>Terms and Conditions.</Text>
+							<Text onPress={() => navigation.navigate('TermsAndConditions')}>Terms and Conditions.</Text>
 							<ButtonContainer>
 								<Button text={'SIGN UP'} onPress={signUp}/>
 							</ButtonContainer>

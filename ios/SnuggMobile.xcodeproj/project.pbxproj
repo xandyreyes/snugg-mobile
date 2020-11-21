@@ -12,7 +12,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		190168D0DC7B414CB89A93ED /* libPods-SnuggMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12C22B3B9A830CF07591E75 /* libPods-SnuggMobile-tvOS.a */; };
-		235EE9332516183E00EF76CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235EE9322516183E00EF76CE /* GoogleService-Info.plist */; };
+		231F251225564D4D005B6872 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 231F251125564D4D005B6872 /* GoogleService-Info.plist */; };
+		231F251C25564DBA005B6872 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 231F251B25564DBA005B6872 /* GoogleService-Info.plist */; };
+		239B9DE12550306300E89D16 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239B9DE02550306300E89D16 /* Swift.swift */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -54,8 +56,11 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SnuggMobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SnuggMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SnuggMobile/main.m; sourceTree = "<group>"; };
-		235EE9322516183E00EF76CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		231F251125564D4D005B6872 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		231F251B25564DBA005B6872 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2361DBA3251CC273008F5CE1 /* SnuggMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SnuggMobile.entitlements; path = SnuggMobile/SnuggMobile.entitlements; sourceTree = "<group>"; };
+		239B9DDF2550306300E89D16 /* SnuggMobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SnuggMobile-Bridging-Header.h"; sourceTree = "<group>"; };
+		239B9DE02550306300E89D16 /* Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
 		23B47DC0F2207AC454D3BD1E /* Pods-SnuggMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnuggMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SnuggMobile-tvOSTests/Pods-SnuggMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		25A6228BF44EAE9296572C72 /* Pods-SnuggMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnuggMobile.release.xcconfig"; path = "Target Support Files/Pods-SnuggMobile/Pods-SnuggMobile.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* SnuggMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SnuggMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,9 +157,10 @@
 				2361DBA3251CC273008F5CE1 /* SnuggMobile.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				231F251B25564DBA005B6872 /* GoogleService-Info.plist */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				231F251125564D4D005B6872 /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				235EE9322516183E00EF76CE /* GoogleService-Info.plist */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -185,6 +191,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				239B9DE02550306300E89D16 /* Swift.swift */,
 				13B07FAE1A68108700A75B9A /* SnuggMobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SnuggMobileTests */,
@@ -192,6 +199,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				040871EC7A0961DA6437834F /* Pods */,
 				EBCE55810EDF4BE6AD329AFE /* Resources */,
+				239B9DDF2550306300E89D16 /* SnuggMobile-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -317,7 +325,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 4M59C66MR4;
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1210;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -368,7 +376,8 @@
 				D187DB43B3BC40ACADB1900D /* Raleway-Bold.ttf in Resources */,
 				7B294CFF7BF747A6B97497B9 /* Raleway-Italic.ttf in Resources */,
 				5D0EBAE53DF84AB09547DB69 /* Raleway-Regular.ttf in Resources */,
-				235EE9332516183E00EF76CE /* GoogleService-Info.plist in Resources */,
+				231F251225564D4D005B6872 /* GoogleService-Info.plist in Resources */,
+				231F251C25564DBA005B6872 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +687,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				239B9DE12550306300E89D16 /* Swift.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -719,6 +729,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D6F6793359422736C3A2844 /* Pods-SnuggMobile-SnuggMobileTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -742,6 +753,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A1E06D9685FFA80DE0BEF79 /* Pods-SnuggMobile-SnuggMobileTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = SnuggMobileTests/Info.plist;
@@ -777,6 +789,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.snuggmobile;
 				PRODUCT_NAME = SnuggMobile;
+				SWIFT_OBJC_BRIDGING_HEADER = "SnuggMobile-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -800,6 +813,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.snuggmobile;
 				PRODUCT_NAME = SnuggMobile;
+				SWIFT_OBJC_BRIDGING_HEADER = "SnuggMobile-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

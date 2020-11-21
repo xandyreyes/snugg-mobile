@@ -10,20 +10,54 @@ export const postListingAPI = async (body) => {
 	return response.data
 }
 
-export const getListingAPI = async (id) => {
+export const likeAPI = async (listing_id) => {
 	let response = null
 	try {
-		response = await backendAPI.get(`/listing?broker_id=${id}`)
+		response = await backendAPI.put(`/listing/like?listing_id=${listing_id}`, {
+			listing_id
+		})
 	} catch (e) {
 		return Promise.reject(e)
 	}
 	return response.data
 }
 
-export const deleteListingAPI = async (listingId) => {
+export const dislikeAPI = async (listing_id) => {
 	let response = null
 	try {
-		response = await backendAPI.delete(`/listing/delete/${listingId}`)
+		response = await backendAPI.put(`/listing/dislike?listing_id=${listing_id}`, {
+			listing_id
+		})
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const listingUpdateAPI = async (id, body) => {
+	let response = null
+	try {
+		response = await backendAPI.put(`/listing/update/${id}`, body)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getLikedListingAPI = async () => {
+	let response = null
+	try {
+		response = await backendAPI.get('/listing/like/')
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const deleteListingAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.delete(`/listing/delete/${id}`)
 	} catch (e) {
 		return Promise.reject(e)
 	}

@@ -15,6 +15,9 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.63.2)
   - Firebase/CoreOnly (6.30.0):
     - FirebaseCore (= 6.10.0)
+  - Firebase/Messaging (6.30.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.6.1)
   - Firebase/Storage (6.30.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.9.0)
@@ -27,6 +30,24 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
     - nanopb (~> 1.30906.0)
+  - FirebaseInstallations (1.7.0):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.8.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+  - FirebaseMessaging (4.6.2):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstanceID (~> 4.6)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Reachability (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - Protobuf (>= 3.9.2, ~> 3.9)
   - FirebaseStorage (3.9.0):
     - FirebaseCore (~> 6.10)
     - GTMSessionFetcher/Core (~> 1.1)
@@ -88,10 +109,23 @@ PODS:
   - glog (0.3.5)
   - GoogleDataTransport (7.3.0):
     - nanopb (~> 1.30906.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
   - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
+  - GoogleUtilities/Network (6.7.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.7.2):
+    - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.4.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -116,6 +150,7 @@ PODS:
   - Permission-Notifications (2.2.1):
     - RNPermissions
   - PromisesObjC (1.2.10)
+  - Protobuf (3.13.0)
   - QBImagePickerController (3.4.0)
   - RCTRequired (0.63.2)
   - RCTTypeSafety (0.63.2):
@@ -287,8 +322,8 @@ PODS:
     - React
   - react-native-geolocation (2.0.2):
     - React
-  - react-native-image-picker (2.3.4):
-    - React-Core
+  - react-native-geolocation-service (5.0.0):
+    - React
   - react-native-maps (0.27.1):
     - React
   - react-native-safe-area-context (3.1.8):
@@ -365,6 +400,10 @@ PODS:
   - RNFBApp (8.4.3):
     - Firebase/CoreOnly (~> 6.30.0)
     - React-Core
+  - RNFBMessaging (7.9.2):
+    - Firebase/Messaging (~> 6.30.0)
+    - React-Core
+    - RNFBApp
   - RNFBStorage (7.4.3):
     - Firebase/Storage (~> 6.30.0)
     - React
@@ -435,7 +474,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
-  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
+  - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -452,6 +491,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNCustomizedImagePicker (from `../node_modules/react-native-customized-image-picker`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
@@ -470,6 +510,9 @@ SPEC REPOS:
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
     - FirebaseStorage
     - Flipper
     - Flipper-DoubleConversion
@@ -484,6 +527,7 @@ SPEC REPOS:
     - nanopb
     - OpenSSL-Universal
     - PromisesObjC
+    - Protobuf
     - QBImagePickerController
     - RSKImageCropper
     - YogaKit
@@ -539,8 +583,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-document-picker"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
-  react-native-image-picker:
-    :path: "../node_modules/react-native-image-picker"
+  react-native-geolocation-service:
+    :path: "../node_modules/react-native-geolocation-service"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
@@ -573,6 +617,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-customized-image-picker"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNFBMessaging:
+    :path: "../node_modules/@react-native-firebase/messaging"
   RNFBStorage:
     :path: "../node_modules/@react-native-firebase/storage"
   RNGestureHandler:
@@ -603,6 +649,9 @@ SPEC CHECKSUMS:
   Firebase: 210f41ca352067d83b1ba4fd2e7fb49a0c017397
   FirebaseCore: 9a41e2de78fef10f63cee30ab10e2945266bc1fc
   FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
+  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  FirebaseInstanceID: bd3ffc24367f901a43c063b36c640b345a4a5dd1
+  FirebaseMessaging: 82d75b3770a78bbce470769a6980429608b4c407
   FirebaseStorage: 33b92875a9b556824886cc7a65120c7d2cb3a8d8
   Flipper: 33585e2d9810fe5528346be33bcf71b37bb7ae13
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
@@ -626,6 +675,7 @@ SPEC CHECKSUMS:
   Permission-Motion: 584c71294bfc619f7ee6293f95e0904779cf0d6d
   Permission-Notifications: 68ed977040885caa5c9ace4812ed448c70018e8d
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
@@ -639,7 +689,7 @@ SPEC CHECKSUMS:
   React-jsinspector: b14e62ebe7a66e9231e9581279909f2fc3db6606
   react-native-document-picker: 4921045c5c6c78243010f784eae0a3f4b2af7799
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
-  react-native-image-picker: c6d75c4ab2cf46f9289f341242b219cb3c1180d3
+  react-native-geolocation-service: 141e33bdb179bcba10b216ee13962611e21f2be4
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-safe-area-context: 79fea126c6830c85f65947c223a5e3058a666937
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
@@ -656,6 +706,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNCustomizedImagePicker: e6cf3c057e3ac42d7d97962d4fe7299c3f415c6f
   RNFBApp: a74d8259d827c8bf55100e759cffa2e50ba6fe30
+  RNFBMessaging: 529010210069b299089317e1be3967a1006140c7
   RNFBStorage: 5a2b16803e784436fb1261806edee98a0397714b
   RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
   RNPermissions: 54f83272e3d1961fcbd6aff8fd826014c37fc578

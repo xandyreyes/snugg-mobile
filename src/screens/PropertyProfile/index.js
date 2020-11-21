@@ -1,5 +1,8 @@
 import React from 'react'
+import { get } from 'lodash'
 import { ScrollView } from 'react-native'
+import { UserType } from 'src/constants'
+import { Store } from 'src/store'
 import Header from './Header'
 import PropertyInfo from './PropertyInfo'
 import Broker from './Broker'
@@ -10,17 +13,30 @@ import {
 	Container,
 } from './styledComponents'
 
-export default ({ navigation }) => {
+export default ({ navigation, route }) => {
+
+	const onLike = () => {
+		navigation.navigate('Match')
+	}
+
+	const onDislike = () => {
+		navigation.goBack()
+	}
+
+	// TODO: onLike and onDislike functions!
+
 	return(
 		<Container>
 			<ScrollView>
-				<Header navigation={navigation} />
-				<PropertyInfo />
-				<Broker />
-				<PropertyDetails />
-				<Features />
+				<Header navigation={navigation} propertyImages={get(route, 'params.images', [])} price={get(route, 'params.price', '0')} />
+				<PropertyInfo info={route.params} />
+				<Broker navigation={navigation} broker={route.params.user} />
+				<PropertyDetails data={route.params} />
+				<Features data={route.params.features} />
 			</ScrollView>
-			<Actions />
+			{ Store.User?.data?.type_id === UserType.buyer ? (
+				<Actions id={route.params.id} onLike={onLike} onDislike={onDislike} />
+			) : null }
 		</Container>
 	)
 }

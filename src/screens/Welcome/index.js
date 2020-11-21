@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
 import Button from 'src/components/Button'
 import { UserType } from 'src/constants'
@@ -8,6 +8,7 @@ import {
 	Header,
 	Modal
 } from 'src/components/styledComponents'
+import { getFirebasePermissions } from 'src/utils/fcm'
 import images from './images'
 import {
 	ButtonContainer,
@@ -20,17 +21,31 @@ import {
 
 export default ({ navigation }) => {
 
+	useEffect(() => {
+		getFirebasePermissions()
+	}, [])
+
 	const start = () => {
 		const { User } = Store
 		if (User.data && User.data.type_id === UserType.broker) {
+<<<<<<< HEAD
 			// navigation.reset({
 			// 	index: 0,
 			// 	routes: [{ name: 'BrokerDashboard' }]
 			// })
 			navigation.navigate('Home')
+=======
+			navigation.reset({
+				index: 0,
+				routes: [{ name: 'BrokerTabs' }]
+			})
+>>>>>>> 952db40d4d13a728368848d7682dba1c0b2c324e
 		} 
 		if (User.data && User.data.type_id === UserType.buyer) {
-			alert('Start as Buyer')
+			navigation.reset({
+				index: 0,
+				routes: [{ name: 'BuyerTabs' }]
+			})
 		} 
 		if (User.data && User.data.type_id === UserType.admin) {
 			alert('Start as Admin')

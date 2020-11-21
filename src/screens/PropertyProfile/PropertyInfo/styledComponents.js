@@ -37,6 +37,7 @@ export const Location = styled.Text`
     color: #767676;
     font-size: 12px;
     font-family: Raleway-Regular;
+    max-width: 300px;
 `
 
 export const DescriptionContainer = styled.View`

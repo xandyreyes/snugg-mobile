@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { get } from 'lodash'
 import { Alert, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native'
 import { loginAPI } from 'src/api/auth'
 import Button from 'src/components/Button'
@@ -60,7 +61,7 @@ export default ({ navigation }) => {
 				if (code === 401) {
 					Alert.alert(
 						'Unable to login',
-						'Please make sure your login information are correct.'
+						get(error, 'response.data.message', 'Please make sure your login information are correct.')
 					)
 				}
 			}

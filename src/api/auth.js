@@ -39,3 +39,13 @@ export const forgotPasswordAPI = async (body) => {
 	}
 	return response.data
 }
+
+export const changePasswordAPI = async (body) => {
+	let response = null
+	try {
+		response = await backendAPI.post('/password/change', body)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}

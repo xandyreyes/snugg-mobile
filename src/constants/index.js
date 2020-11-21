@@ -1,6 +1,6 @@
 export const UserType = {
-	buyer: 2,
 	broker: 1,
+	buyer: 2,
 	admin: 0
 }
 
@@ -11,6 +11,16 @@ export const SubscriptionType = {
 	sales: 3,
 	agency: 4,
 	developer: 5
+}
+
+export const ListingType = {
+	condo: 1,
+	house_and_lot: 2
+}
+
+export const OfferType = {
+	sale: 1,
+	rent: 2
 }
 
 export const Features = [

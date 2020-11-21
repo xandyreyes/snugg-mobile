@@ -16,14 +16,15 @@ export const User = types
 				email: types.maybeNull(types.string),
 				contact_number: types.maybeNull(types.number),
 				address: types.maybeNull(types.string),
-				lat: types.maybeNull(types.string),
-				lon: types.maybeNull(types.string),
+				lat: types.maybeNull(types.union(types.number, types.string)),
+				lon: types.maybeNull(types.union(types.number, types.string)),
 				device_id: types.maybeNull(types.string),
+				profile_img: types.maybeNull(types.string),
 				broker_details: types.maybeNull(
 					types.model({
 						id_status: types.maybeNull(types.string),
 						expiration_date: types.maybeNull(types.string),
-						prc_id: types.maybeNull(types.string),
+						prc_id: types.maybeNull(types.number),
 						subscription: types.maybeNull(
 							types.model({
 								id: types.maybeNull(types.number),
@@ -49,6 +50,15 @@ export const User = types
 		setToken: (user) => {
 			self.access_token = user.access_token
 			self.expires_at = user.expires_at
+		},
+		logout: () => {
+			const initialSnapshot = {
+				access_token: null,
+				expires_at: null,
+				loading: false,
+				data: null
+			}
+			applySnapshot(self, initialSnapshot)
 		},
 		update: (data) => {
 			self.data = Object.assign({}, self.data, data)
