@@ -28,18 +28,10 @@ export default ({ navigation }) => {
 	const start = () => {
 		const { User } = Store
 		if (User.data && User.data.type_id === UserType.broker) {
-<<<<<<< HEAD
-			// navigation.reset({
-			// 	index: 0,
-			// 	routes: [{ name: 'BrokerDashboard' }]
-			// })
-			navigation.navigate('Home')
-=======
 			navigation.reset({
 				index: 0,
 				routes: [{ name: 'BrokerTabs' }]
 			})
->>>>>>> 952db40d4d13a728368848d7682dba1c0b2c324e
 		} 
 		if (User.data && User.data.type_id === UserType.buyer) {
 			navigation.reset({

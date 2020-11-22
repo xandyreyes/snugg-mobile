@@ -25,6 +25,7 @@ import TermsAndConditions from './TermsAndConditions'
 import UserAccountSettings from './UserAccountSettings'
 import UserPasswordUpdate from './UserPasswordUpdate'
 import Welcome from './Welcome'
+import Conversation from './Conversation'
 
 const Stack = createStackNavigator()
 
@@ -65,6 +66,7 @@ export default () => {
 									<Stack.Screen name="UserPasswordUpdate" component={UserPasswordUpdate} options={{ headerShown: false }} />
 									<Stack.Screen name="PropertyProfile" component={PropertyProfile} options={{ headerShown: false }} />
 									<Stack.Screen name="Match" component={Match} options={{ headerShown: false }} />
+									<Stack.Screen name="Conversation" component={Conversation} options={{ headerShown: false }} />
 								</>
 							) : (
 								<>
