@@ -2,13 +2,14 @@ import styled from 'styled-components'
 
 export const Button = styled.TouchableOpacity`
     border-radius: 30px;
-    background: #17365D;
+    background: ${p => !p.inverse? '#17365D':'#FFFFFF'};
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     padding-vertical: 13px;
     align-items: center;
     justify-content: center;
     padding-horizontal: ${p => !p.width ? '50px' : '0'};
     width: ${p => p.width ? `${p.width}px` : 'auto'};
+    ${p => p.inverse? 'border: 1px solid #17365D;':''};
 `
 
 export const ButtonText = styled.Text`
@@ -17,7 +18,7 @@ export const ButtonText = styled.Text`
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-    color: #FFFFFF;
+    color: ${p => !p.inverse? '#FFFFFF':'#17365D'};;
     opacity: ${props => props.disabled ? 0 : 1};
 `
 

@@ -24,6 +24,7 @@ import SelectSubscriptionPlan from './SelectSubscriptionPlan'
 import TermsAndConditions from './TermsAndConditions'
 import UserAccountSettings from './UserAccountSettings'
 import UserPasswordUpdate from './UserPasswordUpdate'
+import BrokerSubscription from './BrokerSubscription'
 import Welcome from './Welcome'
 
 const Stack = createStackNavigator()
@@ -65,6 +66,8 @@ export default () => {
 									<Stack.Screen name="UserPasswordUpdate" component={UserPasswordUpdate} options={{ headerShown: false }} />
 									<Stack.Screen name="PropertyProfile" component={PropertyProfile} options={{ headerShown: false }} />
 									<Stack.Screen name="Match" component={Match} options={{ headerShown: false }} />
+									<Stack.Screen name="BrokerSubscription" component={BrokerSubscription} options={{ headerShown: false }} />
+									<Stack.Screen name="SelectSubscriptionPlan" component={SelectSubscriptionPlan} options={{ headerShown: false }} />
 								</>
 							) : (
 								<>
