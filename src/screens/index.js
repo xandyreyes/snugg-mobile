@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import messaging from '@react-native-firebase/messaging'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Observer, Provider } from 'mobx-react'
 import { UserType } from 'src/constants'
@@ -35,6 +36,10 @@ export default () => {
 
 	useEffect(() => {
 		Store.hydrate()
+		const fcmessaging = messaging().onMessage(async message => {
+			console.log('NOTIFICATIONS', message)
+		})
+		return fcmessaging
 	}, [])
   
 	return(
