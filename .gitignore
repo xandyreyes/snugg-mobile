@@ -62,3 +62,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# android
+android/local.properties

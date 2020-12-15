@@ -28,6 +28,7 @@ import {
 	UserInfoContainer,
 	UserInfoRow
 } from './styledComponents'
+import { Store } from 'src/store'
 import images from './images'
 import Rate from './Rate'
 import Toggle from './Toggle'
