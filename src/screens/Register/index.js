@@ -83,7 +83,13 @@ export default ({ navigation }) => {
 					type_id,
 					contact_number: parseInt(contact_number)
 				}
-				Store.User.setData(data)
+				const { access_token, expires_at } = response
+				const info = {
+					access_token,
+					expires_at,
+					data
+				}
+				Store.User.setUser(info)
 				Alert.alert(
 					'Email Confirmation',
 					response.message,
