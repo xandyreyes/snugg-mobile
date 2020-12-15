@@ -1,6 +1,6 @@
 export default {
-	baseURL: 'http://34.126.77.227/api/v01/',
-	API_KEY: 'AIzaSyAW-znjNcGmS5yc9JjpX-wGS-OlQaZQzFo',
+	baseURL: 'http://35.247.137.84/api/v01/',
+	API_KEY: 'AIzaSyCwAkAuvsMxBHJ8obF798TkclzO4YxucGw',
 	firebase_storage: {
 		prc_id: '/users/PRC-ID',
 		user_image: '/users/user-ava',
