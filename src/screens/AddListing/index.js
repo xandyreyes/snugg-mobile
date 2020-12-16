@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { get, remove, size } from 'lodash'
 import { Alert, FlatList, Linking, Platform, TouchableOpacity } from 'react-native'
-import ImagePicker from 'react-native-customized-image-picker'
+// import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
 import { listingUpdateAPI, postListingAPI } from 'src/api/listing'
 import Back from 'src/components/Back'
@@ -246,11 +246,12 @@ export default ({ navigation, route }) => {
 		const { User } = Store
 		const maxSize = get(User, 'data.broker_details.subscription.photos_per_listing', 3)
 		if (Platform.OS === 'ios') {
-			const images = await ImagePicker.openPicker({
-				maxSize,
-				multiple: true,
-			})
-			setImages(images)
+			alert("Select image")
+			// const images = await ImagePicker.openPicker({
+			// 	maxSize,
+			// 	multiple: true,
+			// })
+			// setImages(images)
 		} else {
 			const images = await DocumentPicker.pickMultiple({
 				type: [DocumentPicker.types.images],

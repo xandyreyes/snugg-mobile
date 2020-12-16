@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { get } from 'lodash'
 import { Alert, TouchableOpacity } from 'react-native'
-import ImagePicker from 'react-native-customized-image-picker'
+// import ImagePicker from 'react-native-customized-image-picker'
 import { userUpdateAPI } from 'src/api/auth'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
@@ -51,11 +51,12 @@ const UserAccountSettings = ({ navigation }) => {
 	const [selectedImage, setSelectedImage] = useState(null)
 
 	const openImagePicker = () => {
-		ImagePicker.openPicker({
-			multiple: false
-		}).then(images => {
-			setSelectedImage(images)
-		})
+		alert("ImagePicker")
+		// ImagePicker.openPicker({
+		// 	multiple: false
+		// }).then(images => {
+		// 	setSelectedImage(images)
+		// })
 	}
 
 	const onChangeText = field => text => {

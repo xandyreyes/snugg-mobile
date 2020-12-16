@@ -6306,11 +6306,6 @@ react-native-animatable@1.3.3:
   dependencies:
     prop-types "^15.7.2"
 
-react-native-customized-image-picker@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-customized-image-picker/-/react-native-customized-image-picker-0.2.1.tgz#14218d834a44a187f2f299a262b8ca51d27775ef"
-  integrity sha512-6Un/Ctigo9NHi1WkCozaSs5An3W1PhM9jr/O8Dj0lg7+eu+4J6Yki9YoD0x7ou3X/q2iXqM/I2s0ekDhd4DggQ==
-
 react-native-document-picker@^3.5.4:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.5.4.tgz#4b9f261ea0d52e91d571670caaf55923ceb80f5f"
@@ -6339,6 +6334,11 @@ react-native-google-places-autocomplete@^1.8.3:
     lodash.debounce "^4.0.8"
     prop-types "^15.5.10"
     qs "~6.9.1"
+
+react-native-image-crop-picker@^0.35.2:
+  version "0.35.2"
+  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.35.2.tgz#21e085e40cb5724e1e986b8eba59ef23df19598c"
+  integrity sha512-4nHAYwnemFJLzVJPl5dhNB+WQgNp41MLJjyYCypatMZl2GJD+EVXnu5eSUQE+UOpaIEhSVtqK5Y3OQ93hMhosQ==
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
