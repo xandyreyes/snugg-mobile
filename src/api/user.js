@@ -3,7 +3,7 @@ import backendAPI from './config'
 export const getUserAPI = async (id) => {
 	let response = null
 	try {
-		response = await backendAPI.get(`/user/info/${id}`)
+		response = await backendAPI.get(`/user/${id}`)
 	} catch (e) {
 		return Promise.reject(e)
 	}
@@ -23,7 +23,7 @@ export const getUserListingAPI = async (id) => {
 export const postReviewUserAPI = async (data) => {
 	let response = null
 	try {
-		response = await backendAPI.post('/review/create', data)
+		response = await backendAPI.post('/review', data)
 	} catch (e) {
 		return Promise.reject(e)
 	}

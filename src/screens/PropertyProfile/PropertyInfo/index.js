@@ -32,13 +32,13 @@ export default ({ info }) => {
 				<Location numberOfLines={1}>{info.address}</Location>
 			</NameContainer>
 			<NameContainer>
-				<PropertyInfoBadge label="listing_type" value={info.listing_type}/>
+			  { info.listing_type ? (<PropertyInfoBadge label="listing_type" value={info.listing_type}/>) : null }
 				<PropertyInfoBadge label="offer_type" value={info.offer_type}/>
 				<PropertyInfoBadge label="floor_count" value={info.floor_count}/>
 				<PropertyInfoBadge label="bedroom" value={info.bedroom_count}/>
 				<PropertyInfoBadge label="baths" value={info.toilet_bath_count}/>
 				<PropertyInfoBadge label="floor_area" value={info.floor_area}/>
-				{ info.garage && (<PropertyInfoBadge label="garage" value={info.garage}/>) }
+				{ info.garage ? (<PropertyInfoBadge label="garage" value={info.garage}/>) : null }
 				
 			</NameContainer>
 			<DescriptionContainer>
