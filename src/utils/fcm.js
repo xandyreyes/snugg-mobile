@@ -12,9 +12,11 @@ export const getFirebasePermissions = async () => {
 	try {
 		const fcmToken = await messaging().getToken()
 		console.log({ fcmToken })
-		await userUpdateAPI(Store.User.data?.id, {
-			device_id: fcmToken
-		})
+		if (fcmToken) {
+			await userUpdateAPI(Store.User.data?.id, {
+				device_id: fcmToken
+			})
+		}
 	} catch (err) {
 		console.log(err, '[ERR] FCM TOKEN')
 		console.log(err.response, '[ERR] FCM TOKEN RESPONSE')
