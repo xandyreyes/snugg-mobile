@@ -1,5 +1,6 @@
 import React from 'react'
 import { Alert } from 'react-native'
+import { sendFCM } from 'src/api/fcm'
 import { dislikeAPI, likeAPI } from 'src/api/listing'
 import {
 	ChatButton,
@@ -12,7 +13,7 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-const Actions = ({ id, onDislike, onLike }) => {
+const Actions = ({ listing, id, onDislike, onLike }) => {
 
 	const closeButtonOnPress = async () => {
 		try {
@@ -39,6 +40,21 @@ const Actions = ({ id, onDislike, onLike }) => {
 	const heartButtonOnPress = async () => {
 		try {
 			const like = await likeAPI(id)
+			const { name, user } = listing
+			if (name && user) {
+				const body = {
+					to: user.device_id,
+					notification: {
+						body: `${user.firstname} liked ${name}!`,
+						title: 'You have a new match!'
+					},
+					data: {
+						listing
+					},
+					priority: 'high'
+				}
+				sendFCM(body)
+			}
 			if (like) {
 				onLike()
 			}

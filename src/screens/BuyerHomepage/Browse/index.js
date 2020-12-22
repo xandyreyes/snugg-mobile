@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { get } from 'lodash'
 import { ActivityIndicator, Alert, Animated, Dimensions } from 'react-native'
+import { sendFCM } from 'src/api/fcm'
 import { homepageAPI } from 'src/api/homepage'
 import { dislikeAPI, likeAPI } from 'src/api/listing'
 import Card from './Card'
@@ -55,6 +56,21 @@ export default ({ location, navigation }) => {
 		})
 		try {
 			const like = await likeAPI(stack[0].id)
+			const { name, user } = stack[0]
+			if (name && user) {
+				const body = {
+					to: user.device_id,
+					notification: {
+						body: `${user.firstname} liked ${name}!`,
+						title: 'You have a new match!'
+					},
+					data: {
+						listing: stack[0]
+					},
+					priority: 'high'
+				}
+				sendFCM(body)
+			}
 			if (like) {
 				setTimeout(() => {
 					navigation.navigate('Match')

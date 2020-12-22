@@ -35,7 +35,7 @@ export default ({ navigation, route }) => {
 				<Features data={route.params.features} />
 			</ScrollView>
 			{ Store.User?.data?.type_id === UserType.buyer ? (
-				<Actions id={route.params.id} onLike={onLike} onDislike={onDislike} />
+				<Actions listing={route.params} id={route.params.id} onLike={onLike} onDislike={onDislike} />
 			) : null }
 		</Container>
 	)
