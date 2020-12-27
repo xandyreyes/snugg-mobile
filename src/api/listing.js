@@ -63,3 +63,43 @@ export const deleteListingAPI = async (id) => {
 	}
 	return response.data
 }
+
+export const getPropertyCountAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get(`/listing?broker_id=${id}`)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getMessagesAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get('/message')
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getMostLikedPropertiesAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get('/listing/count')
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getListingByIdAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get(`/listing/${id}`)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}

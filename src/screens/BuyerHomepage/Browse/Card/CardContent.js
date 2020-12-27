@@ -41,9 +41,7 @@ export default ({ index, item, location, navigation }) => {
 
 	if (item) {
 		return(
-			<Container index={index} 
-			onMoveShouldSetResponderCapture={()=>true}
-			>
+			<Container index={index}>
 				<TouchableOpacity onPress={() => navigation.navigate('PropertyProfile', {
 					...item
 				})}>

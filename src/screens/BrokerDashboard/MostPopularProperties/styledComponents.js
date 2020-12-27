@@ -48,11 +48,13 @@ export const Row = styled.View`
     width: 150px;
 `
 
-export const LocationIcon = styled.View`
+export const LocationIcon = styled.Image`
     height: 9.64px;
     width: 6.5px;
     resize-mode: contain;
     margin-right: 5px;
+    margin-top: 3px;
+    tint-color: rgba(118, 118, 118, 1);
 `
 
 export const LocationName = styled.Text`

@@ -37,6 +37,9 @@ export default ({pan, ...props}) => {
 					useNativeDriver: true
 				}).start()
 			}
+		},
+		onMoveShouldSetPanResponder: (evt, gestureState) => {
+			return !(gestureState.dx === 0 && gestureState.dy === 0)                  
 		}
 	}), [])
 
