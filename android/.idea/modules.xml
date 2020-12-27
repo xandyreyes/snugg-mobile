@@ -21,7 +21,30 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/1133842562/SnuggMobile-react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/1133842562/SnuggMobile-react-native-safe-area-context.iml" group="SnuggMobile/react-native-safe-area-context" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-963589350/SnuggMobile-react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/-963589350/SnuggMobile-react-native-screens.iml" group="SnuggMobile/react-native-screens" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1474972643/SnuggMobile-react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/-1474972643/SnuggMobile-react-native-vector-icons.iml" group="SnuggMobile/react-native-vector-icons" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SnuggMobile.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SnuggMobile.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1883163243/SnuggMobile.openCVLibrary310.iml" filepath="$PROJECT_DIR$/.idea/modules/-1883163243/SnuggMobile.openCVLibrary310.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/639811526/SnuggMobile.react-native-community_async-storage.iml" filepath="$PROJECT_DIR$/.idea/modules/639811526/SnuggMobile.react-native-community_async-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/404874402/SnuggMobile.react-native-community_geolocation.iml" filepath="$PROJECT_DIR$/.idea/modules/404874402/SnuggMobile.react-native-community_geolocation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-527869885/SnuggMobile.react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/-527869885/SnuggMobile.react-native-community_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1344177838/SnuggMobile.react-native-document-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/1344177838/SnuggMobile.react-native-document-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2020464087/SnuggMobile.react-native-firebase_app.iml" filepath="$PROJECT_DIR$/.idea/modules/2020464087/SnuggMobile.react-native-firebase_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1416943814/SnuggMobile.react-native-firebase_messaging.iml" filepath="$PROJECT_DIR$/.idea/modules/-1416943814/SnuggMobile.react-native-firebase_messaging.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/128649521/SnuggMobile.react-native-firebase_storage.iml" filepath="$PROJECT_DIR$/.idea/modules/128649521/SnuggMobile.react-native-firebase_storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1572992540/SnuggMobile.react-native-geolocation-service.iml" filepath="$PROJECT_DIR$/.idea/modules/1572992540/SnuggMobile.react-native-geolocation-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1855069708/SnuggMobile.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/-1855069708/SnuggMobile.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1604830631/SnuggMobile.react-native-image-crop-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/1604830631/SnuggMobile.react-native-image-crop-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1235118586/SnuggMobile.react-native-linear-gradient.iml" filepath="$PROJECT_DIR$/.idea/modules/-1235118586/SnuggMobile.react-native-linear-gradient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1240100703/SnuggMobile.react-native-maps.iml" filepath="$PROJECT_DIR$/.idea/modules/1240100703/SnuggMobile.react-native-maps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/180883634/SnuggMobile.react-native-permissions.iml" filepath="$PROJECT_DIR$/.idea/modules/180883634/SnuggMobile.react-native-permissions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-54111320/SnuggMobile.react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/-54111320/SnuggMobile.react-native-reanimated.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1351718222/SnuggMobile.react-native-rectangle-scanner.iml" filepath="$PROJECT_DIR$/.idea/modules/1351718222/SnuggMobile.react-native-rectangle-scanner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/340807005/SnuggMobile.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/340807005/SnuggMobile.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/374230453/SnuggMobile.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/374230453/SnuggMobile.react-native-screens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2031638382/SnuggMobile.react-native-svg.iml" filepath="$PROJECT_DIR$/.idea/modules/-2031638382/SnuggMobile.react-native-svg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2064082334/SnuggMobile.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/-2064082334/SnuggMobile.react-native-vector-icons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2080841557/SnuggMobile.rn-fetch-blob.iml" filepath="$PROJECT_DIR$/.idea/modules/-2080841557/SnuggMobile.rn-fetch-blob.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-SnuggMobile.iml" filepath="$PROJECT_DIR$/.idea/modules/android-SnuggMobile.iml" group="SnuggMobile" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.SnuggMobile.iml" filepath="$PROJECT_DIR$/.idea/modules/android.SnuggMobile.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2042322909/com.swmansion.reanimated-react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/-2042322909/com.swmansion.reanimated-react-native-reanimated.iml" group="SnuggMobile/react-native-reanimated" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-rectangle-scanner/android/openCVLibrary310/openCVLibrary310.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-rectangle-scanner/android/openCVLibrary310/openCVLibrary310.iml" group="SnuggMobile/openCVLibrary310" />
@@ -42,7 +65,6 @@
       <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-rectangle-scanner/android/react-native-rectangle-scanner.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-rectangle-scanner/android/react-native-rectangle-scanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-safe-area-context/android/react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-safe-area-context/android/react-native-safe-area-context.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-screens/android/react-native-screens.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-screens/android/react-native-screens.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-svg/android/react-native-svg.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-svg/android/react-native-svg.iml" group="SnuggMobile/react-native-svg" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/react-native-vector-icons.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/react-native-vector-icons.iml" />
     </modules>
   </component>

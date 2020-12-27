@@ -38,7 +38,7 @@ export default ({ info }) => {
 				<PropertyInfoBadge label="bedroom" value={info.bedroom_count}/>
 				<PropertyInfoBadge label="baths" value={info.toilet_bath_count}/>
 				<PropertyInfoBadge label="floor_area" value={info.floor_area}/>
-				{ info.garage && (<PropertyInfoBadge label="garage" value={info.garage}/>) }
+				{ info.garage ? (<PropertyInfoBadge label="garage" value={info.garage}/>): null }
 				
 			</NameContainer>
 			<DescriptionContainer>
