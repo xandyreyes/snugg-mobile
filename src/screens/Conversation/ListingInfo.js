@@ -1,71 +1,61 @@
 import React from 'react'
 import {
-  ListingWrapper,
-  ListingImage,
-  ListingInfoWrapper,
-  ListingName,
-  ListingAddressWrapper,
-  AddressIcon,
-  AddressLabel,
-  ListingAdditionalInfo,
-  CardInfo,
-  CardInfoIcon,
-  CardInfoLabel,
-  ListingPrice
+	AddressIcon,
+	AddressLabel,
+	CardInfo,
+	CardInfoIcon,
+	CardInfoLabel,
+	ListingAdditionalInfo,
+	ListingAddressWrapper,
+	ListingImage,
+	ListingInfoWrapper,
+	ListingName,
+	ListingPrice,
+	ListingWrapper
 } from './styledComponents'
 import formatMoney from 'src/utils/formatMoney'
-import images from './images';
+import images from './images'
 
-const listingInfo = {
-  name: 'Lorem Ipsum',
-  image: require('src/assets/images/property-1.jpg'),
-  address: 'Bonifacio Global City',
-  floor_area: 70,
-  bedroom_count: 2,
-  toilet_bath_count: 2,
-  price: '9000000000'
-}
-
-const ListingInfo = () => {
-  return (
-    <ListingWrapper>
-      <ListingImage source={listingInfo.image} />
-      <ListingInfoWrapper>
-        <ListingName>{listingInfo.name}</ListingName>
-        <ListingAddressWrapper>
-          <AddressIcon source={images.pin_location} />
-          <AddressLabel>{listingInfo.address}</AddressLabel>
-        </ListingAddressWrapper>
-        <ListingAdditionalInfo>
-          {listingInfo.bedroom_count > 0 && (
-            <CardInfo>
-              <CardInfoIcon source={images.bed} />
-              <CardInfoLabel>
-                {listingInfo.bedroom_count} Bedrooom/s
-              </CardInfoLabel>
-            </CardInfo>
-          )}
-          {listingInfo.toilet_bath_count > 0 && (
-            <CardInfo>
-              <CardInfoIcon source={images.bath} />
-              <CardInfoLabel>
-                {listingInfo.toilet_bath_count} T&B
-              </CardInfoLabel>
-            </CardInfo>
-          )}
-          {listingInfo.floor_area > 0 && (
-            <CardInfo>
-              <CardInfoIcon source={images.area} />
-              <CardInfoLabel>
-                {listingInfo.floor_area} sqm
-              </CardInfoLabel>
-            </CardInfo>
-          )}
-        </ListingAdditionalInfo>
-        <ListingPrice>{formatMoney(listingInfo.price, 0)}</ListingPrice>
-      </ListingInfoWrapper>
-    </ListingWrapper>
-  )
+const ListingInfo = ({ data }) => {
+	return (
+		<ListingWrapper>
+			<ListingImage source={{ uri: data.images[0].image_url}} />
+			<ListingInfoWrapper>
+				<ListingName>{data.name}</ListingName>
+				<ListingAddressWrapper>
+					<AddressIcon source={images.pin_location} />
+					<AddressLabel>{data.address}</AddressLabel>
+				</ListingAddressWrapper>
+				<ListingAdditionalInfo>
+					{data.bedroom > 0 ? (
+						<CardInfo>
+							<CardInfoIcon source={images.bed} />
+							<CardInfoLabel>
+								{data.bedroom} Bedrooom/s
+							</CardInfoLabel>
+						</CardInfo>
+					) : null}
+					{data.baths > 0 ? (
+						<CardInfo>
+							<CardInfoIcon source={images.bath} />
+							<CardInfoLabel>
+								{data.baths} T&B
+							</CardInfoLabel>
+						</CardInfo>
+					) : null}
+					{data.floor_area > 0 ? (
+						<CardInfo>
+							<CardInfoIcon source={images.area} />
+							<CardInfoLabel>
+								{data.floor_area} sqm
+							</CardInfoLabel>
+						</CardInfo>
+					) : null}
+				</ListingAdditionalInfo>
+				<ListingPrice>{formatMoney(data.price, 0)}</ListingPrice>
+			</ListingInfoWrapper>
+		</ListingWrapper>
+	)
 }
 
 export default ListingInfo

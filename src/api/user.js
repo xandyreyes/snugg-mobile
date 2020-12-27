@@ -29,3 +29,33 @@ export const postReviewUserAPI = async (data) => {
 	}
 	return response.data
 }
+
+export const getUserMessages = async () => {
+	let response = null
+	try {
+		response = await backendAPI.get('/message')
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getUserMessagesListing = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get(`/message/${id}`)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const sendNewMessage = async (data) => {
+	let response = null
+	try {
+		response = await backendAPI.post('/message', data)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}

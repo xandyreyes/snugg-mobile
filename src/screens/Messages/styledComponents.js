@@ -71,3 +71,12 @@ export const ChatMessage = styled.Text`
   line-height: 14px;
   color: #17365D;
 `
+
+export const NoMessagesText = styled.Text`
+	font-family: Raleway-Regular;
+	font-style: normal;
+	font-size: 18px;
+	color: #767676;
+	text-align: center;
+	margin-top: 40px;
+`
