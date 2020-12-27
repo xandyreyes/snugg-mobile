@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
 import {
@@ -17,7 +17,15 @@ import {
 	Text
 } from './styledComponents'
 
-export default ({ name, navigation }) => {
+export default ({ route, navigation }) => {
+
+	const { name, user } = route.params
+	const userInfo = useMemo(() => JSON.parse(user), [user])
+
+	const goToUserMessage = () => {
+		alert('User')
+	}
+
 	return(
 		<Container start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#284972', '#17365D', '#0A264A']}>
 			<SafeAreaView>
@@ -28,10 +36,10 @@ export default ({ name, navigation }) => {
 					<Modal>
 						<ContentContainer>
 							<Header>{'It\'s a Match!'}</Header>
-							<Heading2>{`You matched with ${name}!`}</Heading2>
+							<Heading2>{`You matched with ${userInfo.firstname || name}!`}</Heading2>
 							<MatchIllustration source={images.match} />
-							<Text>{`Send ${name} a message to start a deal.`}</Text>
-							<Button text="SEND MESSAGE" width={180}/>
+							<Text>{`Send ${userInfo.firstname || name} a message to start a deal.`}</Text>
+							<Button text="SEND MESSAGE" width={180} onPress={goToUserMessage}/>
 						</ContentContainer>
 					</Modal>
 				</ModalContainer>

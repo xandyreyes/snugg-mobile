@@ -37,10 +37,6 @@ export default () => {
 
 	useEffect(() => {
 		Store.hydrate()
-		const fcmessaging = messaging().onMessage(async message => {
-			console.log('NOTIFICATIONS', message)
-		})
-		return fcmessaging
 	}, [])
   
 	return(

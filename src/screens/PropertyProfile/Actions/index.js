@@ -2,6 +2,7 @@ import React from 'react'
 import { Alert } from 'react-native'
 import { sendFCM } from 'src/api/fcm'
 import { dislikeAPI, likeAPI } from 'src/api/listing'
+import { Store } from 'src/store'
 import {
 	ChatButton,
 	ChatIcon,
@@ -45,11 +46,14 @@ const Actions = ({ listing, id, onDislike, onLike }) => {
 				const body = {
 					to: user.device_id,
 					notification: {
-						body: `${user.firstname} liked ${name}!`,
+						body: `${Store.User.data.firstname || 'Someone'} liked ${name}!`,
 						title: 'You have a new match!'
 					},
 					data: {
-						listing
+						data: {
+							type: 'brokerMatch',
+							user: Store.User.data
+						},
 					},
 					priority: 'high'
 				}

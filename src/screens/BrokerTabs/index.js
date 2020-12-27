@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { SafeAreaView, TouchableOpacity } from 'react-native'
+import { Store } from 'src/store'
+import { onMessage } from 'src/utils/fcm'
 import Messages from '../Messages'
 import UserAccount from '../UserAccount'
 import BrokerDashboard from '../BrokerDashboard'
@@ -13,7 +15,14 @@ import {
 
 const TabDashboard = createMaterialTopTabNavigator()
 
-const Home = () => {
+const Home = ({ navigation }) => {
+
+	console.log(Store.User)
+
+	useEffect(() => {
+		const fcmMessaging = onMessage(navigation)
+		return fcmMessaging
+	}, [])
 
 	const HomeTabBar = ({ navigationState, navigation }) => {
 		return (

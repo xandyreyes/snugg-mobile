@@ -4,6 +4,7 @@ import { ActivityIndicator, Alert, Animated, Dimensions } from 'react-native'
 import { sendFCM } from 'src/api/fcm'
 import { homepageAPI } from 'src/api/homepage'
 import { dislikeAPI, likeAPI } from 'src/api/listing'
+import { Store } from 'src/store'
 import Card from './Card'
 import {
 	ButtonContainer,
@@ -61,11 +62,12 @@ export default ({ location, navigation }) => {
 				const body = {
 					to: user.device_id,
 					notification: {
-						body: `${user.firstname} liked ${name}!`,
+						body: `${Store.User.data.firstname || 'Someone'} liked ${name}!`,
 						title: 'You have a new match!'
 					},
 					data: {
-						listing: stack[0]
+						type: 'brokerMatch',
+						user: Store.User.data
 					},
 					priority: 'high'
 				}

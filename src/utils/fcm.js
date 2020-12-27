@@ -22,3 +22,14 @@ export const getFirebasePermissions = async () => {
 		console.log(err.response, '[ERR] FCM TOKEN RESPONSE')
 	}
 }
+
+export const onMessage = (navigation) => {
+	return messaging().onMessage(async message => {
+		if (message.data.type === 'brokerMatch') {
+			navigation.navigate('Match', {
+				listing: message.data.listing,
+				user: message.data.user
+			})
+		}
+	})
+}
