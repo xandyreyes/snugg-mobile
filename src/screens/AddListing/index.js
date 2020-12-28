@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { get, remove, size } from 'lodash'
-import { Alert, FlatList, Linking, Platform, TouchableOpacity, View, Text } from 'react-native'
+import { Alert, FlatList, Linking, PermissionsAndroid, Platform, Text, TouchableOpacity, View } from 'react-native'
 // import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
 import { listingUpdateAPI, postListingAPI } from 'src/api/listing'
@@ -155,17 +155,18 @@ export default ({ navigation, route }) => {
 	}
 
 	const uploadATS = async () => {
-		const uploadAtsUri = Platform.OS === 'ios' ? selectedAts.uri.replace('file://', '') : selectedAts.uri
+		const stat = await RNFetchBlob.fs.stat(selectedAts.uri)
 		const atsUri = await uploadToFirebase({
 			storageName: config.firebase_storage.listing_ats,
-			uploadUri: uploadAtsUri
+			uploadUri: Platform.OS === 'ios' ? selectedAts.uri.replace('file://', '') : stat.path
 		})
 		return atsUri
 	}
 
 	const uploadImages = async () => {
-		const imagesUri = await Promise.all(selectedImages.map( async (item) => {
+		const imagesUri = await Promise.all(selectedImages.map( async (item, index) => {
 			const stat = await RNFetchBlob.fs.stat(item.uri)
+			console.log(stat, index)
 			const url = await uploadToFirebase({
 				uploadUri: Platform.OS === 'ios' ? item.path : stat.path,
 				storageName: config.firebase_storage.listing_photos
@@ -197,16 +198,16 @@ export default ({ navigation, route }) => {
 			)
 			return
 		}
-		if (size(selectedImages) < 3) {
-			Alert.alert(
-				'Requires more photos',
-				'Please select at least 3 photos to continue.',
-				[{
-					text: 'OK'
-				}]
-			)
-			return
-		}
+		// if (size(selectedImages) < 3) {
+		// 	Alert.alert(
+		// 		'Requires more photos',
+		// 		'Please select at least 3 photos to continue.',
+		// 		[{
+		// 			text: 'OK'
+		// 		}]
+		// 	)
+		// 	return
+		// }
 		uploadFiles()
 	}
 
@@ -249,28 +250,42 @@ export default ({ navigation, route }) => {
 		const { User } = Store
 		const maxSize = get(User, 'data.broker_details.subscription.photos_per_listing', 3)
 		if (Platform.OS === 'ios') {
-			alert("Select image")
+			alert('Select image')
 			// const images = await ImagePicker.openPicker({
 			// 	maxSize,
 			// 	multiple: true,
 			// })
 			// setImages(images)
 		} else {
-			const images = await DocumentPicker.pickMultiple({
-				type: [DocumentPicker.types.allFiles],
-			})
-			if (size(images) > maxSize) {
-				Alert.alert(
-					`You can only select up to ${maxSize} images`,
-					`Your current subscription could only upload up to ${maxSize} images per listing. You could upgrade your listing to upload more photos.`,
-					[
-						{
-							text: 'OK'
-						}
-					]
-				)
-			} else {
-				setImages(images)
+			const granted = await PermissionsAndroid.request(
+				PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+				{
+					title: 'Snugg Neighborhood Storage Permission',
+					message:
+						'Snugg needs access to your storage ' +
+						'so you can upload awesome pictures of your listngs.',
+					buttonNeutral: 'Ask Me Later',
+					buttonNegative: 'Cancel',
+					buttonPositive: 'OK'
+				}
+			)
+			if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+				const images = await DocumentPicker.pickMultiple({
+					type: [DocumentPicker.types.allFiles],
+				})
+				if (size(images) > maxSize) {
+					Alert.alert(
+						`You can only select up to ${maxSize} images`,
+						`Your current subscription could only upload up to ${maxSize} images per listing. You could upgrade your listing to upload more photos.`,
+						[
+							{
+								text: 'OK'
+							}
+						]
+					)
+				} else {
+					setImages(images)
+				}
 			}
 		}
 	}
@@ -332,11 +347,11 @@ export default ({ navigation, route }) => {
 			alert('coming soon')
 		}else {
 		// console.log('Image', selectedImages)
-		let alteredArray = []
-		alteredArray = selectedImages.filter(function(e){
-			return e.uri != item.uri
-		})
-		setImages(alteredArray)
+			let alteredArray = []
+			alteredArray = selectedImages.filter(function(e){
+				return e.uri != item.uri
+			})
+			setImages(alteredArray)
 		}
 	}
 
@@ -376,9 +391,9 @@ export default ({ navigation, route }) => {
 										<TouchableOpacity style={{position: 'absolute', alignSelf: 'flex-end', right: 10}} 
 											onPress={()=>removeImage(item)}
 										>
-										<Text style={{
-											color: 'red', fontSize: 20, fontWeight: 'bold', 
-										}}>X</Text>
+											<Text style={{
+												color: 'red', fontSize: 20, fontWeight: 'bold', 
+											}}>X</Text>
 										</TouchableOpacity>
 									</View>								
 								}

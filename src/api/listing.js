@@ -3,8 +3,7 @@ import backendAPI from './config'
 export const postListingAPI = async (body) => {
 	let response = null
 	try {
-		console.log("BODYYYYYY", body)
-		response = await backendAPI.post('/listing/create', body)
+		response = await backendAPI.post('/listing', body)
 	} catch (e) {
 		return Promise.reject(e)
 	}
@@ -38,7 +37,6 @@ export const dislikeAPI = async (listing_id) => {
 export const listingUpdateAPI = async (id, body) => {
 	let response = null
 	try {
-		console.log("BODY", body)
 		response = await backendAPI.put(`/listing/${id}`, body)
 	} catch (e) {
 		return Promise.reject(e)
@@ -59,7 +57,7 @@ export const getLikedListingAPI = async () => {
 export const deleteListingAPI = async (id) => {
 	let response = null
 	try {
-		response = await backendAPI.delete(`/listing/delete/${id}`)
+		response = await backendAPI.delete(`/listing/${id}`)
 	} catch (e) {
 		return Promise.reject(e)
 	}
