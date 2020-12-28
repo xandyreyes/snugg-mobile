@@ -16,9 +16,9 @@ import UnreadMessages from './UnreadMessages'
 import {
 	getLikedListingAPI,
 	getMessagesAPI,
-	getPropertyCountAPI,
-	getMostLikedPropertiesAPI
-} from '../../api/listing';
+	getMostLikedPropertiesAPI,
+	getPropertyCountAPI
+} from '../../api/listing'
 
 export default ({ navigation }) => {
 	const [propertiesCount, setPropertiesCount] = useState(0)
@@ -76,9 +76,9 @@ export default ({ navigation }) => {
 
 	const getMostLikedProperties = async () => {
 		try{
-		const listings = await getMostLikedPropertiesAPI()
-		const mostLikedListings = get(listings,'data',[])
-		setMostLikedListings(mostLikedListings.slice(0,3))
+			const listings = await getMostLikedPropertiesAPI()
+			const mostLikedListings = get(listings,'data',[])
+			setMostLikedListings(mostLikedListings.slice(0,3))
 		} catch(e){
 			console.log('GET MOST LIKED PROPERTIES ERROR',e)
 		}

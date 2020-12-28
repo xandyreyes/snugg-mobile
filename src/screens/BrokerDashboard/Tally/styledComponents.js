@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { Dimensions } from 'react-native'
+
+const width = Dimensions.get('window').width
 
 export const Row = styled.View`
     flex-direction: row;
@@ -14,12 +17,12 @@ export const Container = styled.View`
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-    width: 154px;
+    width: ${(width - 55)/2};
 `
 
 export const Label = styled.Text`
     color: #2E3743;
-    font-family: Raleway-Regular;
+    font-family: Raleway-Bold;
     font-size: 12px;
 `
 
