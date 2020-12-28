@@ -21,16 +21,16 @@ export const ContentContainer = styled.View`
 `
 
 export const MatchIllustration = styled.Image`
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     resize-mode: contain;
-    margin-vertical: 20px;
+    margin-vertical: 10px;
 `
 
 export const Heading2 = styled.Text`
     color: #EC7050;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     margin-vertical: 4px;
 `
 

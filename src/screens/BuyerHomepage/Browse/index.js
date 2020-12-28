@@ -75,7 +75,10 @@ export default ({ location, navigation }) => {
 			}
 			if (like) {
 				setTimeout(() => {
-					navigation.navigate('Match')
+					navigation.navigate('Match', {
+						listing: stack[0],
+						user
+					})
 				}, 500)
 			}
 		} catch (err) {

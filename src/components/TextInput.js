@@ -5,11 +5,11 @@ import {
 	TextInputContainer
 } from './styledComponents'
 
-export default ({ label, onChangeText, value, secureTextEntry }) => {
+export default ({ label, onChangeText, value, secureTextEntry, placeholder }) => {
 	return(
 		<TextInputContainer>
-			<Label>{label}</Label>
-			<TextInput value={value} onChangeText={onChangeText} secureTextEntry={secureTextEntry} />
+			{ label ? <Label>{label}</Label> : null }
+			<TextInput value={value} onChangeText={onChangeText} secureTextEntry={secureTextEntry} placeholder={placeholder} />
 		</TextInputContainer>
 	)
 }

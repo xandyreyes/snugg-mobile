@@ -16,7 +16,10 @@ import {
 export default ({ navigation, route }) => {
 
 	const onLike = () => {
-		navigation.navigate('Match')
+		navigation.navigate('Match', {
+			listing: route.params,
+			user: route.params.user
+		})
 	}
 
 	const onDislike = () => {
