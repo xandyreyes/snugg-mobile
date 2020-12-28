@@ -2,10 +2,12 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { flow, onSnapshot, types } from 'mobx-state-tree'
 
 import { User } from './models/User'
+import { Listings } from './models/Listings'
 
 export const Store = types
 	.model('Store', {
 		User,
+		Listings,
 		isHydrated: false,
 	})
 	.actions(self => ({
@@ -14,10 +16,14 @@ export const Store = types
 		})
 	}))
 	.create({
-		User: {}
+		User: {},
+		Listings: {},
 	})
 
 // Persist snapshots
 onSnapshot(Store.User, (snapshot) => {
 	AsyncStorage.setItem('User', JSON.stringify(snapshot))
+})
+onSnapshot(Store.Listings, (snapshot) => {
+	AsyncStorage.setItem('Listings', JSON.stringify(snapshot))
 })

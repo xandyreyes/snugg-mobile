@@ -120,6 +120,7 @@ export default ({ location, navigation }) => {
 			})
 			const liked = await getLikedListingAPI()
 			const likedIds = get(liked, 'data', []).map((item) => item.id)
+			Store.Listings.setLiked(likedIds)
 			const stackCards = get(homepageData, 'data', []).filter((item) => !likedIds.includes(item.id))
 			setStack(uniqBy(stackCards, 'id'))
 		} catch (err) {
@@ -163,6 +164,7 @@ export default ({ location, navigation }) => {
 				sendFCM(body)
 			}
 			if (like) {
+				Store.Listings.setLiked([...Store.Listings.liked, stack[0].id])
 				setTimeout(() => {
 					navigation.navigate('Match', {
 						listing: stack[0],
