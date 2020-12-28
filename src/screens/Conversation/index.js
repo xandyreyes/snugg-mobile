@@ -79,11 +79,11 @@ const Conversation = ({navigation, route}) => {
 				listViewScrollToBottom()
 				sendNotif({
 					message: messageToSend,
-					user: Store.User.data.id === conversation[0].to.id ? conversation[0].from : conversation[0].to,
+					user: response.data.to,
 					data: response.data
 				})
 			} catch (err) {
-				console.log(err.response, '[ERR SEND MESSAGE]')
+				console.log(err, '[ERR SEND MESSAGE]')
 				Alert.alert(
 					'Something went wrong!',
 					'Unable to send the message',
@@ -98,7 +98,7 @@ const Conversation = ({navigation, route}) => {
 		}
 	}
 
-	const sendNotif = (message, user, data) => {
+	const sendNotif = ({message, user, data}) => {
 		const body = {
 			to: user.device_id,
 			notification: {

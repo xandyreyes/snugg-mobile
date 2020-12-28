@@ -29,7 +29,8 @@ export const Image = styled.ImageBackground`
     justify-content: flex-end;
     align-items: flex-end;
     border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+		border-top-right-radius: 30px;
+		overflow: hidden;
 `
 
 export const PriceContainer = styled.View`

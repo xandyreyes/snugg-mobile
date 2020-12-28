@@ -39,7 +39,7 @@ export default ({ route, navigation }) => {
 			const response = await sendNewMessage(dataToPush)
 			sendNotif({
 				message: textValue,
-				user: user.id,
+				user: user,
 				data: response.data
 			})
 			navigation.navigate('Conversation', { id: response.data.listing.id })
@@ -57,7 +57,7 @@ export default ({ route, navigation }) => {
 		}
 	}
 
-	const sendNotif = (message, user, data) => {
+	const sendNotif = ({message, user, data}) => {
 		const body = {
 			to: user.device_id,
 			notification: {

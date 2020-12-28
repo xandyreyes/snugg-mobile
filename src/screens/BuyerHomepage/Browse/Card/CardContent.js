@@ -45,7 +45,7 @@ export default ({ index, item, location, navigation }) => {
 				<TouchableOpacity onPress={() => navigation.navigate('PropertyProfile', {
 					...item
 				})}>
-					<Image>
+					<Image source={{ uri: item.images[0].image_url}}>
 						<PriceContainer>
 							<PriceText>P{formatMoney(item.price)}</PriceText>
 						</PriceContainer>
@@ -62,11 +62,11 @@ export default ({ index, item, location, navigation }) => {
 						{item.special_notes}
 					</Description>
 					<RowWrap>
-						<PropertyInfoBadge label="listing_type" value={item.listing_type}/>
-						<PropertyInfoBadge label="offer_type" value={item.offer_type}/>
+						<PropertyInfoBadge label="listing_type" value={item.listing_type.id}/>
+						<PropertyInfoBadge label="offer_type" value={item.offer_type.id}/>
 						<PropertyInfoBadge label="floor_count" value={item.floor_count}/>
-						<PropertyInfoBadge label="bedroom" value={item.bedroom_count}/>
-						<PropertyInfoBadge label="baths" value={item.toilet_bath_count}/>
+						<PropertyInfoBadge label="bedroom" value={item.bedroom}/>
+						<PropertyInfoBadge label="baths" value={item.baths}/>
 						<PropertyInfoBadge label="floor_area" value={item.floor_area}/>
 						{ item.garage ? (<PropertyInfoBadge label="garage" value={item.garage}/>) : null }
 					</RowWrap>
