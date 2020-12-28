@@ -41,7 +41,7 @@ export default ({ index, item, location, navigation }) => {
 
 	if (item) {
 		return(
-			<Container index={index} >
+			<Container index={index}>
 				<TouchableOpacity onPress={() => navigation.navigate('PropertyProfile', {
 					...item
 				})}>

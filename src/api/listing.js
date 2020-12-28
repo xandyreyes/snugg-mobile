@@ -3,7 +3,7 @@ import backendAPI from './config'
 export const postListingAPI = async (body) => {
 	let response = null
 	try {
-		response = await backendAPI.post('/listing/create', body)
+		response = await backendAPI.post('/listing', body)
 	} catch (e) {
 		return Promise.reject(e)
 	}
@@ -37,7 +37,7 @@ export const dislikeAPI = async (listing_id) => {
 export const listingUpdateAPI = async (id, body) => {
 	let response = null
 	try {
-		response = await backendAPI.put(`/listing/update/${id}`, body)
+		response = await backendAPI.put(`/listing/${id}`, body)
 	} catch (e) {
 		return Promise.reject(e)
 	}
@@ -57,7 +57,47 @@ export const getLikedListingAPI = async () => {
 export const deleteListingAPI = async (id) => {
 	let response = null
 	try {
-		response = await backendAPI.delete(`/listing/delete/${id}`)
+		response = await backendAPI.delete(`/listing/${id}`)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getPropertyCountAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get(`/listing?broker_id=${id}`)
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getMessagesAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get('/message')
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getMostLikedPropertiesAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get('/listing/count')
+	} catch (e) {
+		return Promise.reject(e)
+	}
+	return response.data
+}
+
+export const getListingByIdAPI = async (id) => {
+	let response = null
+	try {
+		response = await backendAPI.get(`/listing/${id}`)
 	} catch (e) {
 		return Promise.reject(e)
 	}
