@@ -25,7 +25,7 @@ import {
 export default ({ route, navigation }) => {
 
 	const { name, user, listing } = route.params
-	const userInfo = useMemo(() => JSON.parse(user), [user])
+	const userInfo = useMemo(() => typeof user === 'string' ? JSON.parse(user) : user, [user])
 	const [textValue, setText] = useState('')
 
 	const goToUserMessage = async () => {

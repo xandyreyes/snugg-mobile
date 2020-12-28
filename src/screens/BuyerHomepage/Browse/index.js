@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { get, uniqBy } from 'lodash'
 import { ActivityIndicator, Alert, Animated, Dimensions, PanResponder } from 'react-native'
 import { sendFCM } from 'src/api/fcm'
 import { homepageAPI } from 'src/api/homepage'
-import { dislikeAPI, likeAPI, getLikedListingAPI } from 'src/api/listing'
+import { dislikeAPI, getLikedListingAPI, likeAPI } from 'src/api/listing'
 import { Store } from 'src/store'
 import CardContent from './Card/CardContent'
 import SwipeLabel from './Card/SwipeLabel'
@@ -45,6 +45,7 @@ export default ({ location, navigation }) => {
 					useNativeDriver: true
 				}).start(() => {
 					shiftArray()
+					likeListingAPI()
 					pan.current.setValue({ x: 0, y: 0 })
 				})
 			} else if (gestureState.dx < -140) {
@@ -53,6 +54,7 @@ export default ({ location, navigation }) => {
 					useNativeDriver: true
 				}).start(() => {
 					shiftArray()
+					dislikeListingAPI()
 					pan.current.setValue({ x: 0, y: 0 })
 				})
 			} else {
@@ -130,7 +132,7 @@ export default ({ location, navigation }) => {
 		setStack([...stack])
 	}
 
-	const onLike = async () => {
+	const onLike = () => {
 		Animated.spring(pan.current, {
 			toValue: { x: SCREEN_WIDTH + 100, y: 0 },
 			useNativeDriver: true
@@ -138,42 +140,46 @@ export default ({ location, navigation }) => {
 			shiftArray()
 			pan.current.setValue({ x: 0, y: 0 })
 		})
-		// try {
-		// 	const like = await likeAPI(stack[0].id)
-		// 	const { name, user } = stack[0]
-		// 	if (name && user) {
-		// 		const body = {
-		// 			to: user.device_id,
-		// 			notification: {
-		// 				body: `${Store.User.data.firstname || 'Someone'} liked ${name}!`,
-		// 				title: 'You have a new match!'
-		// 			},
-		// 			data: {
-		// 				type: 'brokerMatch',
-		// 				user: Store.User.data
-		// 			},
-		// 			priority: 'high'
-		// 		}
-		// 		sendFCM(body)
-		// 	}
-		// 	if (like) {
-		// 		setTimeout(() => {
-		// 			navigation.navigate('Match', {
-		// 				listing: stack[0],
-		// 				user
-		// 			})
-		// 		}, 500)
-		// 	}
-		// } catch (err) {
-		// 	console.log(err, '[ERR LIKE]')
-		// 	Alert.alert(
-		// 		'Failed to Like',
-		// 		'You can\'t do this feature right now.',
-		// 		[
-		// 			{ text: 'OK' }
-		// 		]
-		// 	)
-		// }
+		likeListingAPI()
+	}
+
+	const likeListingAPI = async () => {
+		try {
+			const like = await likeAPI(stack[0].id)
+			const { name, user } = stack[0]
+			if (name && user) {
+				const body = {
+					to: user.device_id,
+					notification: {
+						body: `${Store.User.data.firstname || 'Someone'} liked ${name}!`,
+						title: 'You have a new match!'
+					},
+					data: {
+						type: 'brokerMatch',
+						user: Store.User.data
+					},
+					priority: 'high'
+				}
+				sendFCM(body)
+			}
+			if (like) {
+				setTimeout(() => {
+					navigation.navigate('Match', {
+						listing: stack[0],
+						user
+					})
+				}, 500)
+			}
+		} catch (err) {
+			console.log(err, '[ERR LIKE]')
+			Alert.alert(
+				'Failed to Like',
+				'You can\'t do this feature right now.',
+				[
+					{ text: 'OK' }
+				]
+			)
+		}
 	}
 
 	const onDisLike = () => {
@@ -184,6 +190,10 @@ export default ({ location, navigation }) => {
 			shiftArray()
 			pan.current.setValue({ x: 0, y: 0 })
 		})
+		dislikeListingAPI()
+	}
+
+	const dislikeListingAPI = () => {
 		try {
 			dislikeAPI(stack[0].id)
 		}  catch (err) {
