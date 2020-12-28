@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "121332809417",
+    "firebase_url": "https://snugg-neighborhood.firebaseio.com",
+    "project_id": "snugg-neighborhood",
+    "storage_bucket": "snugg-neighborhood.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121332809417:android:a0be24404b52d09fcd9718",
+        "android_client_info": {
+          "package_name": "com.snuggmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121332809417-fihj7c2ouausrp24kud60u9sb68go4pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChSAunU0-auiie-Ew9zKS_w0Ri7k9BKBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121332809417-fihj7c2ouausrp24kud60u9sb68go4pf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "121332809417-rdkmmevc21mh1otbg3s8nkauo2el1gfs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.snuggmobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
