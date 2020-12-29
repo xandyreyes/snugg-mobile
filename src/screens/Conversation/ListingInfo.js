@@ -21,17 +21,17 @@ const ListingInfo = ({ data }) => {
 		<ListingWrapper>
 			<ListingImage source={{ uri: data.images[0].image_url}} />
 			<ListingInfoWrapper>
-				<ListingName>{data.name}</ListingName>
+				<ListingName numberOfLines={1}>{data.name}</ListingName>
 				<ListingAddressWrapper>
 					<AddressIcon source={images.pin_location} />
-					<AddressLabel>{data.address}</AddressLabel>
+					<AddressLabel numberOfLines={1}>{data.address}</AddressLabel>
 				</ListingAddressWrapper>
 				<ListingAdditionalInfo>
 					{data.bedroom > 0 ? (
 						<CardInfo>
 							<CardInfoIcon source={images.bed} />
 							<CardInfoLabel>
-								{data.bedroom} Bedrooom/s
+								{data.bedroom} Bed/s
 							</CardInfoLabel>
 						</CardInfo>
 					) : null}

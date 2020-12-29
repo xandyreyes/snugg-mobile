@@ -32,8 +32,8 @@ export default ({ info }) => {
 				<Location numberOfLines={1}>{info.address}</Location>
 			</NameContainer>
 			<NameContainer>
-			  { info.listing_type ? (<PropertyInfoBadge label="listing_type" value={info.listing_type}/>) : null }
-				<PropertyInfoBadge label="offer_type" value={info.offer_type}/>
+			  { info.listing_type ? (<PropertyInfoBadge label="listing_type" value={info.listing_type.id}/>) : null }
+				<PropertyInfoBadge label="offer_type" value={info.offer_type.id}/>
 				<PropertyInfoBadge label="floor_count" value={info.floor_count}/>
 				<PropertyInfoBadge label="bedroom" value={info.bedroom_count}/>
 				<PropertyInfoBadge label="baths" value={info.toilet_bath_count}/>

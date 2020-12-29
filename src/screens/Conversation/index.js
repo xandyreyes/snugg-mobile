@@ -28,6 +28,8 @@ import {
 	Row
 } from './styledComponents'
 
+const menu = require('src/assets/images/menu.png')
+
 const Conversation = ({navigation, route}) => {
 
 	const [messageToSend, setMessageToSend] = useState('')
@@ -156,10 +158,9 @@ const Conversation = ({navigation, route}) => {
 							{ Store.User.data.id === conversation[0].to.id ? (
 								<HeaderRecipientName>{conversation[0].from.firstname} {conversation[0].from.lastname}</HeaderRecipientName>
 							) : (<HeaderRecipientName>{conversation[0].to.firstname} {conversation[0].to.lastname}</HeaderRecipientName>) }
-							
-							<HeaderRecipientType>Broker</HeaderRecipientType>
+							{/* <HeaderRecipientType>Broker</HeaderRecipientType> */}
 						</HeaderWrapper>
-						<HeaderBurgerMenu />
+						<HeaderBurgerMenu source={menu} />
 					</Row>
 					<ListingInfo data={conversation[0].listing}/>
 				</>

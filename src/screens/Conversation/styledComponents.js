@@ -36,10 +36,11 @@ export const HeaderRecipientType = styled.Text`
   color: #767676;
 `
 
-export const HeaderBurgerMenu = styled.TouchableOpacity`
+export const HeaderBurgerMenu = styled.Image`
   width: 23px;
-  height: 15px;
-  background: #767676;
+	height: 20px;
+	resize-mode: contain;
+  tint-color: #767676;
 `
 
 export const ListingWrapper = styled.View`
@@ -65,7 +66,8 @@ export const ListingName = styled.Text`
   font-family: Raleway-Bold;
   font-size: 16px;
   line-height: 19px;
-  color: #17365D;
+	color: #17365D;
+	max-width: 240px;
 `
 
 export const ListingAddressWrapper = styled.View`
@@ -87,7 +89,8 @@ export const AddressLabel = styled.Text`
   font-family: Raleway-Regular;
   font-size: 12px;
   line-height: 14px;
-  color: #767676;
+	color: #767676;
+	max-width: 200px;
 `
 
 export const ListingAdditionalInfo = styled.View`
