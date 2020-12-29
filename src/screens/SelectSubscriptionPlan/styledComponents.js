@@ -38,7 +38,8 @@ export const ItemContainer = styled.View`
     border-radius: 20px;
     background: white;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16);
-    margin-bottom: 27px;
+		margin-bottom: 27px;
+		elevation: 3;
 `
 
 export const ItemTouchable = styled.TouchableOpacity`

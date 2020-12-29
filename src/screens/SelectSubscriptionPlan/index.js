@@ -50,7 +50,7 @@ const subscriptions = [
 
 export default ({ navigation, route }) => {
 
-	const { location, prc_id } = route.params
+	const { location, prc_id, fromSettings } = route.params
 
 	const [subscription, selectSubscription] = useState(null)
 	const [visible, setModalVisibility] = useState(false)
@@ -61,21 +61,38 @@ export default ({ navigation, route }) => {
 	}
 
 	const onPressSubscribe = async () => {
-		// TODO: Complete register api
-		const body = {
-			lat: location.latitude,
-			lon: location.longitude,
-			prc_id,
-			subscription_type: subscription.id
-		}
 		try {
-			const response = await userUpdateAPI(Store.User.data?.id, body)
-			if(response) {
-				const { message } = response
-				Store.User.setData(response.data)
-				console.log('[User update message]', message)
-				setModalVisibility(false)
-				navigation.navigate('EnableLocation')
+			if (fromSettings) {
+				const body = {
+					subscription_id: subscription.id
+				}
+				const response = await userUpdateAPI(Store.User.data?.id, body)
+				if(response) {
+					const { message } = response
+					Store.User.setData(response.data)
+					console.log('[User update message]', message)
+					console.log(response.data, 'DAta')
+					setModalVisibility(false)
+					navigation.reset({
+						index: 0,
+						routes: [{ name: 'BrokerTabs' }]
+					})
+				}
+			} else {
+				const body = {
+					lat: location.latitude,
+					lon: location.longitude,
+					prc_id,
+					subscription_id: subscription.id
+				}
+				const response = await userUpdateAPI(Store.User.data?.id, body)
+				if(response) {
+					const { message } = response
+					Store.User.setData(response.data)
+					console.log('[User update message]', message)
+					setModalVisibility(false)
+					navigation.navigate('EnableLocation')
+				}
 			}
 		} catch (e) {
 			Alert.alert('Error', e.response?.data?.message)
