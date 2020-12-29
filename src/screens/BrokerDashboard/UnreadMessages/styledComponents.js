@@ -22,11 +22,11 @@ export const IconTouchable = styled.TouchableOpacity`
     border: 1.5px solid #EC7050;
     align-items: center;
     justify-content: center;
-    margin-right: 7px;
+		margin-right: 7px;
 `
 
 export const IconImage = styled.Image`
     height: 60px;
     width: 60px;
-    border-radius: 30px;
+		border-radius: 30px;
 `

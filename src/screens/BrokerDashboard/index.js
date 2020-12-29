@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Store } from 'src/store'
-import { get, size, sortBy } from 'lodash'
+import { get, size, uniqBy } from 'lodash'
 import images from './images'
 import MostPopularProperties from './MostPopularProperties'
 import RecentMatches from './RecentMatches'
@@ -8,8 +8,11 @@ import {
 	AddIcon,
 	AddListingButton,
 	AddListingFloatingContainer,
+	CenterContainer,
 	Container,
-	ContentContainer
+	ContentContainer,
+	Header,
+	ImageLarge
 } from './styledComponents'
 import Tally from './Tally'
 import UnreadMessages from './UnreadMessages'
@@ -67,7 +70,7 @@ export default ({ navigation }) => {
 			const brokerId = get(Store.User,'data.id',0)
 			const data = await getMessagesAPI()
 			const messages = get(data,'data',[])
-			const unread = messages.filter(message=>message.seen===0 && message.to.id === brokerId)
+			const unread = uniqBy(messages.filter(message=>message.seen===0 && message.to.id === brokerId), 'from.id')
 			setUnreadMessages(unread)
 		} catch(e){
 			console.log('GET UNREAD MESSAGES ERROR',e)
@@ -78,7 +81,7 @@ export default ({ navigation }) => {
 		try{
 			const listings = await getMostLikedPropertiesAPI()
 			const mostLikedListings = get(listings,'data',[])
-			setMostLikedListings(mostLikedListings.slice(0,3))
+			setMostLikedListings(mostLikedListings.slice(0,5))
 		} catch(e){
 			console.log('GET MOST LIKED PROPERTIES ERROR',e)
 		}
@@ -91,10 +94,19 @@ export default ({ navigation }) => {
 				</AddListingButton>
 			</AddListingFloatingContainer>
 			<ContentContainer>
-				<RecentMatches />
-				<Tally properties={propertiesCount} matches={matchesCount} />
-				<UnreadMessages messages={unreadMessages}/>
-				<MostPopularProperties listings={mostLikedListings} navigation={navigation}/>
+				{ propertiesCount > 0 ? (
+					<>
+						<RecentMatches />
+						<Tally properties={propertiesCount} matches={matchesCount} navigation={navigation} />
+						{ size(unreadMessages) > 0 ? (<UnreadMessages messages={unreadMessages} navigation={navigation}/>) : null }
+						{ size(mostLikedListings) > 0 ? (<MostPopularProperties listings={mostLikedListings} navigation={navigation}/>) : null }
+					</>
+				) : (
+					<CenterContainer>
+						<ImageLarge source={images.no_listing}/>
+						<Header>Create a listing to start!</Header>
+					</CenterContainer>
+				)}
 			</ContentContainer>
 		</Container>
 	)

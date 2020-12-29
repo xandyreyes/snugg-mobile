@@ -34,3 +34,25 @@ export const AddIcon = styled.Image`
     height: 21px;
     resize-mode: contain;
 `
+
+export const Header = styled.Text`
+    color: #17365D;
+    font-size: 20px;
+    font-family: Raleway-Bold;
+    text-align: center;
+		margin-top: 10px;
+`
+
+export const ImageLarge = styled.Image`
+		height: 200px;
+		width: 200px;
+		resize-mode: contain;
+`
+
+export const CenterContainer = styled.View`
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	margin-top: 40px;
+`

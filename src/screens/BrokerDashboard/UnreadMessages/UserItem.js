@@ -5,7 +5,7 @@ import {
 	IconTouchable
 } from './styledComponents'
 import images from '../images'
-export default ({ item, index }) => {
+export default ({ item, index, navigation }) => {
 	const [url,setImageUrl] = useState(null)
 
 	useEffect(()=>{
@@ -18,7 +18,7 @@ export default ({ item, index }) => {
 	},[item])
 	
 	return(
-		<IconTouchable style={{ marginLeft: index === 0 ? 20 : 0}}>
+		<IconTouchable style={{ marginLeft: index === 0 ? 20 : 0}} onPress={() => navigation.navigate('Conversation', { id: item.listing.id })}>
 			<IconImage source={ url }/>
 		</IconTouchable>
 	)

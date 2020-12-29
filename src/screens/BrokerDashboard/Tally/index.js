@@ -1,4 +1,6 @@
 import React from 'react'
+import { get } from 'lodash'
+import { Store } from 'src/store'
 import {
 	Container,
 	Count,
@@ -6,10 +8,12 @@ import {
 	Row
 } from './styledComponents'
 
-export default ({ properties, matches }) => {
+export default ({ properties, matches, navigation }) => {
 	return(
 		<Row>
-			<Container>
+			<Container onPress={() => navigation.navigate('BrokerProfile', {
+				userId: get(Store.User, 'data.id', null)
+			})}>
 				<Label>PROPERTIES</Label>
 				<Count>{properties}</Count>
 			</Container>

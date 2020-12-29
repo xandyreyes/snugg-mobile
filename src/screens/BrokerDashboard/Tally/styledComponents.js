@@ -10,7 +10,7 @@ export const Row = styled.View`
     margin-horizontal: 20px;
 `
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
     background: white;
     border-radius: 8px;
     padding: 15px;
