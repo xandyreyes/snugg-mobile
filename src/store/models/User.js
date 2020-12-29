@@ -6,6 +6,7 @@ export const User = types
 		access_token: types.maybeNull(types.string),
 		expires_at: types.maybeNull(types.string),
 		loading: true,
+		loggedIn: types.maybeNull(types.boolean),
 		data: types.maybeNull(
 			types.model({
 				id: types.maybeNull(types.number),
@@ -24,7 +25,7 @@ export const User = types
 					types.model({
 						id_status: types.maybeNull(types.string),
 						expiration_date: types.maybeNull(types.string),
-						prc_id: types.maybeNull(types.number),
+						prc_id: types.maybeNull(types.string),
 						subscription: types.maybeNull(
 							types.model({
 								id: types.maybeNull(types.number),
@@ -51,12 +52,16 @@ export const User = types
 			self.access_token = user.access_token
 			self.expires_at = user.expires_at
 		},
+		login: () => {
+			self.loggedIn = true
+		},
 		logout: () => {
 			const initialSnapshot = {
 				access_token: null,
 				expires_at: null,
 				loading: false,
-				data: null
+				data: null,
+				loggedIn: false
 			}
 			applySnapshot(self, initialSnapshot)
 		},

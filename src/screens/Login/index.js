@@ -42,7 +42,11 @@ export default ({ navigation }) => {
 			const res = await loginAPI(data)
 			setLoading(false)
 			if (res.access_token) {
-				Store.User.setUser(res)
+				Store.User.setUser({
+					...res,
+					loggedIn: false
+				})
+				console.log(Store.User, 'Store')
 				navigation.reset({
 					index: 0,
 					routes: [{ name: 'EnableLocation' }]

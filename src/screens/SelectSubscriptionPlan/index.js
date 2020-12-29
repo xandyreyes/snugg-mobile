@@ -69,18 +69,19 @@ export default ({ navigation, route }) => {
 			subscription_type: subscription.id
 		}
 		try {
-			const response = await userUpdateAPI(Store.User.data.id, body)
+			const response = await userUpdateAPI(Store.User.data?.id, body)
 			if(response) {
 				const { message } = response
+				Store.User.setData(response.data)
 				console.log('[User update message]', message)
 				setModalVisibility(false)
-				navigation.navigate('Welcome')
+				navigation.navigate('EnableLocation')
 			}
 		} catch (e) {
-			Alert.alert('Error', e.response.data.message)
-			console.log('[ERROR UPDATING]', e.response.data)
+			Alert.alert('Error', e.response?.data?.message)
+			console.log('[ERROR UPDATING]', e.response?.data)
+			console.log('[ERROR UPDATING]', e)
 		}
-    
 	}
 
 	return(

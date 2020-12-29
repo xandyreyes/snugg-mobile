@@ -22,11 +22,13 @@ import {
 export default ({ navigation }) => {
 
 	useEffect(() => {
+		Store.User.login()
 		getFirebasePermissions()
 	}, [])
 
 	const start = () => {
 		const { User } = Store
+		console.log(User)
 		if (User.data && User.data.type_id === UserType.broker) {
 			navigation.reset({
 				index: 0,

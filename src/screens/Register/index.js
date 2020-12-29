@@ -87,7 +87,7 @@ export default ({ navigation }) => {
 				const info = {
 					access_token,
 					expires_at,
-					data
+					data,
 				}
 				Store.User.setUser(info)
 				Alert.alert(
