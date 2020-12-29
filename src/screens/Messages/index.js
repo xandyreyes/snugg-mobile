@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { compact, find, size } from 'lodash'
+import { compact, find, reverse, size } from 'lodash'
 import moment from 'moment'
 import { Alert } from 'react-native'
 import { getUserMessages } from 'src/api/user'
@@ -19,6 +19,7 @@ import {
 	NoMessagesText
 } from './styledComponents'
 
+const default_img = require('src/assets/images/default_image.png')
 
 const Messages = ({navigation}) => {
 
@@ -34,10 +35,10 @@ const Messages = ({navigation}) => {
 		try {
 			const response = await getUserMessages()
 			let listings = []
-			const msgs = response.data.map(item => {
+			const msgs = reverse(response.data).map(item => {
 				const convo = find(listings, {user: Store.User.data.id === item.to.id ? item.from.id : item.to.id, listing: item.listing.id} )
 				if (!convo) {
-					listings.push({user: Store.User.data.id === item.to.id ? item.from.id : item.to.id, listing: item.listing.id})
+					listings.push({ user: Store.User.data.id === item.to.id ? item.from.id : item.to.id, listing: item.listing.id })
 					return item
 				}
 				return null
@@ -60,27 +61,30 @@ const Messages = ({navigation}) => {
 	return (
 		<Container>
 			<Header>Messages</Header>
-			{size(messages) > 0 ? messages.map(m =>
-				<ChatWrapper
-					key={m.id}
-					unread={Store.User.data.id !== m.from.id && !m.seen}
-					onPress={() => navigation.navigate('Conversation', { id: m.listing.id })}>
-					{ Store.User.data.id === m.to.id ? (
-						<ChatImage source={{ uri: m.from.profile_image }} />
-					) : (
-						<ChatImage source={{ uri: m.to.profile_image }} />
-					) }			
-					<ChatDetailsWrapper>
-						<ChatListingTitle numberOfLines={1}>{m.listing.name}</ChatListingTitle>
-						<ChatRecipientWrapper>
-							{ Store.User.data.id === m.to.id ? (<ChatRecipient>{m.from.firstname} {m.from.lastname}</ChatRecipient>) : (<ChatRecipient>{m.to.firstname} {m.to.lastname}</ChatRecipient>)}
-							<ChatDate>{`• ${moment(m.created_at).format('MMM. DD - hh:mm A')}`}</ChatDate>
-						</ChatRecipientWrapper>
-						<ChatMessage>
-							{m.message}
-						</ChatMessage>
-					</ChatDetailsWrapper>
-				</ChatWrapper>  
+			{size(messages) > 0 ? messages.map(m => {
+				return(
+					<ChatWrapper
+						key={m.id}
+						unread={Store.User.data.id !== m.from.id && !m.seen}
+						onPress={() => navigation.navigate('Conversation', { id: m.listing.id })}>
+						{ Store.User.data.id === m.to.id ? (
+							<ChatImage source={m.from.profile_img ? { uri: m.from.profile_img } : default_img} />
+						) : (
+							<ChatImage source={m.to.profile_img ? { uri: m.to.profile_img } : default_img} />
+						) }			
+						<ChatDetailsWrapper>
+							<ChatListingTitle numberOfLines={1}>{m.listing.name}</ChatListingTitle>
+							<ChatRecipientWrapper>
+								{ Store.User.data.id === m.to.id ? (<ChatRecipient>{m.from.firstname} {m.from.lastname}</ChatRecipient>) : (<ChatRecipient>{m.to.firstname} {m.to.lastname}</ChatRecipient>)}
+								<ChatDate>{`• ${moment(m.created_at).format('MMM. DD - hh:mm A')}`}</ChatDate>
+							</ChatRecipientWrapper>
+							<ChatMessage>
+								{m.message}
+							</ChatMessage>
+						</ChatDetailsWrapper>
+					</ChatWrapper>  
+				)
+			}
 			) : (
 				<NoMessagesText>No Messages</NoMessagesText>
 			)}

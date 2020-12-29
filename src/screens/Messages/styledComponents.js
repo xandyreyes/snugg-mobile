@@ -26,8 +26,8 @@ export const ChatImage = styled.Image`
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  overflow: hidden;
-  resize-mode: cover;
+	resize-mode: cover;
+	border: 1px solid #707070;
 `
 
 export const ChatDetailsWrapper = styled.View`
