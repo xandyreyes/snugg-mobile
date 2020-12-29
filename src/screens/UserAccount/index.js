@@ -46,7 +46,7 @@ const UserAccount = ({ navigation }) => {
 							<TouchableOpacity onPress={ get(User, 'data.type_id', null) === UserType.broker ? () => navigation.navigate('BrokerProfile', {
 								userId: get(User, 'data.id', null)
 							}) : () => {}}>
-								<UserImage source={images.default_image} />
+								<UserImage source={get(User, 'data.profile_img') ? {uri: get(User, 'data.profile_img')} : images.default_image} />
 							</TouchableOpacity>
 							<UserNameLabel>{`${get(User, 'data.firstname', '')} ${get(User, 'data.middlename', '')} ${get(User, 'data.lastname', '')}`}</UserNameLabel>
 							<UserAddressWrapper>

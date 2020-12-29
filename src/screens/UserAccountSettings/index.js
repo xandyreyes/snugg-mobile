@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { get } from 'lodash'
-import { Alert, TouchableOpacity } from 'react-native'
-// import ImagePicker from 'react-native-customized-image-picker'
+import { Alert, TouchableOpacity, PermissionsAndroid } from 'react-native'
+import DocumentPicker from 'react-native-document-picker'
+import RNFetchBlob from 'rn-fetch-blob'
 import { userUpdateAPI } from 'src/api/auth'
 import Back from 'src/components/Back'
 import Button from 'src/components/Button'
@@ -50,13 +51,25 @@ const UserAccountSettings = ({ navigation }) => {
 	const [updating, setUpdating] = useState(false)
 	const [selectedImage, setSelectedImage] = useState(null)
 
-	const openImagePicker = () => {
-		alert("ImagePicker")
-		// ImagePicker.openPicker({
-		// 	multiple: false
-		// }).then(images => {
-		// 	setSelectedImage(images)
-		// })
+	const openImagePicker = async () => {
+		const granted = await PermissionsAndroid.request(
+			PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+			{
+				title: 'Snugg Neighborhood Storage Permission',
+				message:
+					'Snugg needs access to your storage ' +
+					'so you can upload awesome pictures of your listngs.',
+				buttonNeutral: 'Ask Me Later',
+				buttonNegative: 'Cancel',
+				buttonPositive: 'OK'
+			}
+		)
+		if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+			const image = await DocumentPicker.pick({
+				type: [DocumentPicker.types.images],
+			})
+			setSelectedImage(image)
+		}
 	}
 
 	const onChangeText = field => text => {
@@ -66,6 +79,10 @@ const UserAccountSettings = ({ navigation }) => {
 	}
 
 	const checkFormToSend = (field, text) => {
+		if (field === 'profile_img_path') {
+			formToSend[field] = text
+			setFormToSend(formToSend)
+		}
 		if(data[field] !== undefined) {
 			if(data[field] && data[field].toString() === text) {
 				delete formToSend[field]
@@ -103,13 +120,14 @@ const UserAccountSettings = ({ navigation }) => {
 
 	const uploadImage = async () => {
 		try {
+			const stat = await RNFetchBlob.fs.stat(selectedImage.uri)
 			const imageUri = await uploadToFirebase({
 				storageName: config.firebase_storage.user_image,
-				uploadUri: selectedImage.path
+				uploadUri: stat.path
 			})
-			form.profile_img = imageUri
+			form.profile_img_path = imageUri
 			setForm({...form})
-			checkFormToSend('profile_img', imageUri)
+			checkFormToSend('profile_img_path', imageUri)
 		} catch (err) {
 			console.log(err, '[ERR UPLOAD IMAGE]')
 		}
@@ -161,7 +179,7 @@ const UserAccountSettings = ({ navigation }) => {
 			</Row>
 			<ContentContainer contentContainerStyle={{paddingBottom: 50}}>
 				<TouchableOpacity onPress={openImagePicker}>
-					<UserImage source={selectedImage ? { uri: selectedImage.path } : form.profile_img ? { uri: form.profile_img } : default_image} />
+					<UserImage source={selectedImage ? { uri: selectedImage.uri } : form.profile_img_path ? { uri: form.profile_img_path } : default_image} />
 				</TouchableOpacity>
 				<FormGroup>
 					<FormLabel>First Name</FormLabel>
