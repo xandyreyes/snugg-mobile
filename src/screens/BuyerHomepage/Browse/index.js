@@ -28,6 +28,7 @@ export default ({ location, navigation }) => {
 
 	const pan = useRef(new Animated.ValueXY())
 	const [stack, setStack] = useState([])
+	// const [currentCard, setCard] = useState()
 
 	useEffect(() => {
 		retrieveData()
@@ -43,18 +44,18 @@ export default ({ location, navigation }) => {
 				Animated.spring(pan.current, {
 					toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy },
 					useNativeDriver: true
-				}).start(() => {
+				}).start(async () => {
+					await likeListingAPI()
 					shiftArray()
-					likeListingAPI()
 					pan.current.setValue({ x: 0, y: 0 })
 				})
 			} else if (gestureState.dx < -140) {
 				Animated.spring(pan.current, {
 					toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy },
 					useNativeDriver: true
-				}).start(() => {
+				}).start(async () => {
+					await dislikeListingAPI()
 					shiftArray()
-					dislikeListingAPI()
 					pan.current.setValue({ x: 0, y: 0 })
 				})
 			} else {
@@ -137,11 +138,11 @@ export default ({ location, navigation }) => {
 		Animated.spring(pan.current, {
 			toValue: { x: SCREEN_WIDTH + 100, y: 0 },
 			useNativeDriver: true
-		}).start(() => {
+		}).start(async () => {
+			await likeListingAPI()
 			shiftArray()
 			pan.current.setValue({ x: 0, y: 0 })
 		})
-		likeListingAPI()
 	}
 
 	const likeListingAPI = async () => {
@@ -188,11 +189,11 @@ export default ({ location, navigation }) => {
 		Animated.spring(pan.current, {
 			toValue: { x: -SCREEN_WIDTH - 100, y: 0 },
 			useNativeDriver: true
-		}).start(() => {
+		}).start(async () => {
+			await dislikeListingAPI()
 			shiftArray()
 			pan.current.setValue({ x: 0, y: 0 })
 		})
-		dislikeListingAPI()
 	}
 
 	const dislikeListingAPI = () => {
