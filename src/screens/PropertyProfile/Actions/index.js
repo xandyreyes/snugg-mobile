@@ -51,7 +51,8 @@ const Actions = ({ listing, id, onDislike, onLike }) => {
 					},
 					data: {
 						type: 'brokerMatch',
-						user: Store.User.data
+						user: Store.User.data,
+						listing
 					},
 					priority: 'high'
 				}
@@ -77,9 +78,9 @@ const Actions = ({ listing, id, onDislike, onLike }) => {
 			<CloseButton onPress={closeButtonOnPress}>
 				<CloseIcon source={images.close} />
 			</CloseButton>
-			<ChatButton onPress={chatButtonOnPress}>
+			{/* <ChatButton onPress={chatButtonOnPress}>
 				<ChatIcon source={images.chat} />
-			</ChatButton>
+			</ChatButton> */}
 			<HeartButton onPress={heartButtonOnPress}>
 				<HeartIcon source={images.heart} />
 			</HeartButton>

@@ -10,14 +10,15 @@ export const Wrapper = styled.View`
 `
 
 export const CloseButton = styled.TouchableOpacity`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
   background: #FFFFFF;
   justify-content: center;
   align-items: center;
   elevation: 5;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	margin-right: 10px;
 `
 
 export const ChatButton = styled.TouchableOpacity`
@@ -33,14 +34,15 @@ export const ChatButton = styled.TouchableOpacity`
 `
 
 export const HeartButton = styled.TouchableOpacity`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
   background: #FFFFFF;
   justify-content: center;
   align-items: center;
   elevation: 5;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	margin-left: 10px;
 `
 
 export const CloseIcon = styled.Image`

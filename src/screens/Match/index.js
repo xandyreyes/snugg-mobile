@@ -26,25 +26,27 @@ export default ({ route, navigation }) => {
 
 	const { name, user, listing } = route.params
 	const userInfo = useMemo(() => typeof user === 'string' ? JSON.parse(user) : user, [user])
+	const listingInfo = useMemo(() => typeof listing === 'string' ? JSON.parse(listing) : listing, [listing])
 	const [textValue, setText] = useState('')
+
 
 	const goToUserMessage = async () => {
 		try {
 			const dataToPush = {
 				from_id: Store.User.data.id,
-				to_id: user.id,
-				listing_id: listing.id,
+				to_id: userInfo.id,
+				listing_id: listingInfo.id,
 				message: textValue
 			}
 			const response = await sendNewMessage(dataToPush)
 			sendNotif({
 				message: textValue,
-				user: user,
+				user: userInfo,
 				data: response.data
 			})
 			navigation.navigate('Conversation', { id: response.data.listing.id })
 		} catch (err) {
-			console.log(err.response, '[ERR SEND MESSAGE]')
+			console.log(err, '[ERR SEND MESSAGE]')
 			Alert.alert(
 				'Something went wrong!',
 				'Unable to send the message',

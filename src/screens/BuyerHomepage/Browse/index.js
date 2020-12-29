@@ -148,6 +148,7 @@ export default ({ location, navigation }) => {
 	const likeListingAPI = async () => {
 		try {
 			const like = await likeAPI(stack[0].id)
+			const listing  = { ...stack[0] }
 			const { name, user } = stack[0]
 			if (name && user) {
 				const body = {
@@ -158,17 +159,18 @@ export default ({ location, navigation }) => {
 					},
 					data: {
 						type: 'brokerMatch',
-						user: Store.User.data
+						user: Store.User.data,
+						listing
 					},
 					priority: 'high'
 				}
-				sendFCM(body)
+				await sendFCM(body)
 			}
 			if (like) {
-				Store.Listings.setLiked([...Store.Listings.liked, stack[0].id])
+				Store.Listings.setLiked([...Store.Listings.liked, listing.id])
 				setTimeout(() => {
 					navigation.navigate('Match', {
-						listing: stack[0],
+						listing,
 						user
 					})
 				}, 500)
@@ -196,9 +198,9 @@ export default ({ location, navigation }) => {
 		})
 	}
 
-	const dislikeListingAPI = () => {
+	const dislikeListingAPI = async () => {
 		try {
-			dislikeAPI(stack[0].id)
+			await dislikeAPI(stack[0].id)
 		}  catch (err) {
 			console.log(err, '[ERR DISLIKE]')
 			Alert.alert(
