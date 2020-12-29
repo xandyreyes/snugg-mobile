@@ -25,13 +25,14 @@ export const getFirebasePermissions = async () => {
 
 export const onMessage = (navigation, messageReceived) => {
 	return messaging().onMessage(async message => {
+		const parsed = JSON.parse(message.data.data)
 		if (message.data.type === 'brokerMatch') {
 			navigation.navigate('Match', {
 				listing: message.data.listing,
 				user: message.data.user
 			})
 		}
-		if (message.data.type === 'messageReceived') {
+		if (parsed.type === 'messageReceived') {
 			messageReceived()
 		}
 	})

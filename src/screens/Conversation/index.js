@@ -39,9 +39,21 @@ const Conversation = ({navigation, route}) => {
 	useEffect(() => {
 		setLoading(true)
 		getConvos()
-		const fcm = onMessage(navigation, getConvos)
+		const fcm = onMessage(navigation, newMessage)
 		return fcm
 	}, [])
+
+	useEffect(() => {
+		if (listViewRef?.current?.scrollToEnd) {
+			setTimeout(() => {
+				listViewScrollToBottom()
+			}, 1000)
+		}
+	}, [conversation])
+
+	const newMessage = () => {
+		getConvos()
+	}
 
 	const getConvos = async () => {
 		try {
@@ -76,7 +88,6 @@ const Conversation = ({navigation, route}) => {
 				const response = await sendNewMessage(dataToPush)
 				setConversation([...conversation, response.data])
 				setMessageToSend('')
-				listViewScrollToBottom()
 				sendNotif({
 					message: messageToSend,
 					user: response.data.to,
@@ -116,7 +127,7 @@ const Conversation = ({navigation, route}) => {
 		sendFCM(body)
 	}
 
-	const listViewScrollToBottom = () => listViewRef.current.scrollToEnd({animated: true})
+	const listViewScrollToBottom = () => listViewRef?.current?.scrollToEnd({ animated: true })
 
 	const renderItem = ({item, index}) => {
 		return (
@@ -155,6 +166,7 @@ const Conversation = ({navigation, route}) => {
 			) : null }
 			<ConversationContainer>
 				<ConversationWrapper
+					onLayout={() => listViewRef.current.scrollToEnd({animated: true})}
 					ref={listViewRef}
 					data={conversation}
 					renderItem={renderItem}

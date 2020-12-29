@@ -134,7 +134,7 @@ export const ConversationContainer = styled.View`
 
 export const ConversationWrapper = styled.FlatList`
   background: #FFFFFF;
-  flex-grow: 0;
+	flex-grow: 0;
 `
 
 export const MessageWrapper = styled.View`

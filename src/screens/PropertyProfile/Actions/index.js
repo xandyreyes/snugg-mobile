@@ -50,10 +50,8 @@ const Actions = ({ listing, id, onDislike, onLike }) => {
 						title: 'You have a new match!'
 					},
 					data: {
-						data: {
-							type: 'brokerMatch',
-							user: Store.User.data
-						},
+						type: 'brokerMatch',
+						user: Store.User.data
 					},
 					priority: 'high'
 				}
