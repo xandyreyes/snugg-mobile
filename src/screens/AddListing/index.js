@@ -104,11 +104,19 @@ export default ({ navigation, route }) => {
 			title: 'Property Location',
 			onNext: async (nav, location) => {
 				const listing = await saveToDatabase(location, data)
-				console.log({ listing }, '[LISTING]')
 				if (listing) {
+					Alert.alert(
+						'Listing Submitted!',
+						'Please wait for the admin to approve your listing.',
+						[
+							{
+								text: 'OK'
+							}
+						]
+					)
 					nav.reset({
 						index: 0,
-						routes: [{ name: 'BrokerDashboard' }]
+						routes: [{ name: 'BrokerTabs' }]
 					})
 				}
 			}
@@ -126,8 +134,8 @@ export default ({ navigation, route }) => {
 		} catch (err) {
 			console.log(err.response, '[POST LISTING ERROR]')
 			Alert.alert(
-				'Sorry! Something went wrong',
-				'We cannot process your request right now. Please try again later.',
+				'Sorry! We can\'t post your listing!',
+				err.response?.data?.message || 'We cannot process your request right now. Please try again later.',
 				[
 					{
 						text: 'OK'
