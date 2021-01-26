@@ -4,6 +4,7 @@ import { Alert, FlatList, Linking, PermissionsAndroid, Platform, Text, Touchable
 // import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
 import { listingUpdateAPI, postListingAPI } from 'src/api/listing'
+import { saveGeofence } from 'src/api/radario'
 import Back from 'src/components/Back'
 import Loading from 'src/components/Loading'
 import { Label } from 'src/components/styledComponents'
@@ -130,6 +131,14 @@ export default ({ navigation, route }) => {
 			dataProps.lon = location.longitude
 			dataProps.features = dataProps.features.toString()
 			const listing = await postListingAPI(dataProps)
+			if (listing.data) {
+				saveGeofence('properties', listing.data.id, {
+					description: dataProps.name,
+					type: 'circle',
+					coordinates: [location.longitude, location.latitude],
+					radius: 350
+				})
+			}
 			return listing
 		} catch (err) {
 			console.log(err.response, '[POST LISTING ERROR]')

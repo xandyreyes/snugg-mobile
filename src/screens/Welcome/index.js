@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
+import Radar from 'react-native-radar'
 import Button from 'src/components/Button'
 import { UserType } from 'src/constants'
 import { Store } from 'src/store'
@@ -19,6 +20,22 @@ import {
 	Text
 } from './styledComponents'
 
+Radar.on('events', (result) => {
+	console.log('events:', result)
+})
+
+Radar.on('location', (result) => {
+	console.log('location:', result)
+})
+
+Radar.on('clientLocation', (result) => {
+	console.log('clientLocation:', result)
+})
+
+Radar.on('error', (err) => {
+	console.log('error:', err)
+})
+
 export default ({ navigation }) => {
 
 	useEffect(() => {
@@ -36,9 +53,16 @@ export default ({ navigation }) => {
 			})
 		} 
 		if (User.data && User.data.type_id === UserType.buyer) {
-			navigation.reset({
-				index: 0,
-				routes: [{ name: 'BuyerTabs' }]
+			Radar.getPermissionsStatus(true).then((status) => {
+				if (status === 'GRANTED_BACKGROUND' || status === 'GRANTED_FOREGROUND') {
+					Radar.setUserId(User.data.id)
+					Radar.setDescription(`Buyer ${User.data.firstname}`)
+					Radar.startTrackingEfficient()
+				}
+				navigation.reset({
+					index: 0,
+					routes: [{ name: 'BuyerTabs' }]
+				})
 			})
 		} 
 		if (User.data && User.data.type_id === UserType.admin) {
