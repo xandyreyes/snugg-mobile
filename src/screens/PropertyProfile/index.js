@@ -33,7 +33,7 @@ export default ({ navigation, route }) => {
 			<ScrollView>
 				<Header navigation={navigation} propertyImages={get(route, 'params.images', [])} price={get(route, 'params.price', '0')} />
 				<PropertyInfo info={route.params} />
-				<Broker navigation={navigation} broker={route.params.user} />
+				<Broker navigation={navigation} broker={route.params.user} listing={route.params} />
 				<PropertyDetails data={route.params} />
 				<Features data={route.params.features} />
 			</ScrollView>

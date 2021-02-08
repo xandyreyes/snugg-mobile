@@ -46,7 +46,6 @@ export default ({ navigation }) => {
 					...res,
 					loggedIn: false
 				})
-				console.log(Store.User, 'Store')
 				navigation.reset({
 					index: 0,
 					routes: [{ name: 'EnableLocation' }]

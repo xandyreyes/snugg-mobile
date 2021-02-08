@@ -1,5 +1,6 @@
 import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import Radar from 'react-native-radar'
 import { SafeAreaView, TouchableOpacity } from 'react-native'
 import Messages from '../Messages'
 import UserAccount from '../UserAccount'
@@ -12,6 +13,22 @@ import {
 } from './styledComponents'
 
 const TabDashboard = createMaterialTopTabNavigator()
+
+Radar.on('events', (result) => {
+	console.log('ONRADAREVENT', result)
+})
+
+Radar.on('error', (err) => {
+	console.log('error on tracking:', err)
+})
+
+Radar.on('location', (result) => {
+	console.log('location radar io:', result)
+})
+
+Radar.on('log', (result) => {
+  console.log('log:', stringify(result));
+});
 
 const Home = () => {
 

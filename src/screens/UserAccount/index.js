@@ -1,6 +1,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { Observer } from 'mobx-react'
+import Radar from 'react-native-radar'
 import { TouchableOpacity } from 'react-native'
 import { UserType } from 'src/constants'
 import { Store } from 'src/store'
@@ -34,6 +35,7 @@ const UserAccount = ({ navigation }) => {
 	}
 
 	const logout = () => {
+		Radar.stopTracking()
 		User.logout()
 	}
 

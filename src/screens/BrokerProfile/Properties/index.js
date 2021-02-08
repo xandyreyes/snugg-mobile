@@ -95,13 +95,13 @@ const Properties = ({ navigation, propertyOptionOnPress, userId }) => {
 					<CardInfo>
 						<CardInfoIcon source={images.bed} />
 						<CardInfoLabel>
-							{d.bedroom_count} bedrooms
+							{d.bedroom} bedrooms
 						</CardInfoLabel>
 					</CardInfo>
 					<CardInfo>
 						<CardInfoIcon source={images.bath} />
 						<CardInfoLabel>
-							{d.toilet_bath_count} t&b
+							{d.baths} t&b
 						</CardInfoLabel>
 					</CardInfo>
 					{ d.garage > 0 && (

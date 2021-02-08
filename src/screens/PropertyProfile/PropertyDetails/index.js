@@ -22,10 +22,10 @@ const PropertyDetails = ({ data }) => {
 			value: data.offer_type === OfferType.sale ? 'Sale' : 'Rent'
 		}, {
 			label: 'Bedroom/s',
-			value: data.bedroom_count
+			value: data.bedroom
 		}, {
 			label: 'Toilet & Bath',
-			value: data.toilet_bath_count
+			value: data.baths
 		}, {
 			label: 'Area Size',
 			value: data.floor_area ? `${data.floor_area} sqm` : null

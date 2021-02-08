@@ -67,7 +67,6 @@ export default ({ navigation }) => {
 				)
 				return
 			}
-			console.log(res.result)
 			setRegion({
 				latitude: res.result.geometry.location.lat,
 				longitude: res.result.geometry.location.lng,

@@ -59,7 +59,7 @@ export const NoMoreCards = styled.View`
 export const NoMoreCardText = styled.Text`
     color: rgba(236, 112, 80, 1);
     font-size: 24px;
-    font-family: Raleway;
+    font-family: Raleway-Regular;
     font-weight: 600;
     text-align: center;
     margin-bottom: 20px;

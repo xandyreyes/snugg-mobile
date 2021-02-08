@@ -20,22 +20,6 @@ import {
 	Text
 } from './styledComponents'
 
-Radar.on('events', (result) => {
-	console.log('events:', result)
-})
-
-Radar.on('location', (result) => {
-	console.log('location:', result)
-})
-
-Radar.on('clientLocation', (result) => {
-	console.log('clientLocation:', result)
-})
-
-Radar.on('error', (err) => {
-	console.log('error:', err)
-})
-
 export default ({ navigation }) => {
 
 	useEffect(() => {
@@ -54,10 +38,20 @@ export default ({ navigation }) => {
 		} 
 		if (User.data && User.data.type_id === UserType.buyer) {
 			Radar.getPermissionsStatus(true).then((status) => {
+				console.log({ status, User: User.data.id })
 				if (status === 'GRANTED_BACKGROUND' || status === 'GRANTED_FOREGROUND') {
-					Radar.setUserId(User.data.id)
-					Radar.setDescription(`Buyer ${User.data.firstname}`)
-					Radar.startTrackingEfficient()
+					try {
+						Radar.setUserId(typeof User.data.id === 'number' ? User.data.id.toString() : User.data.id)
+						Radar.setDescription(`Buyer ${User.data.firstname}`)
+						Radar.trackOnce().then((result) => {
+							console.log('trackOnce:',result)
+						}).catch((err) => {
+							console.log('trackOnce:', err)
+						})
+						Radar.startTrackingResponsive()
+					} catch (err) {
+						console.log(err, 'ERROR_RADAR')
+					}
 				}
 				navigation.reset({
 					index: 0,

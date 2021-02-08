@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { RefreshControl } from 'react-native'
 import { Store } from 'src/store'
 import { get, size, uniqBy } from 'lodash'
 import images from './images'
@@ -28,12 +29,10 @@ export default ({ navigation }) => {
 	const [matchesCount, setMatchesCount] = useState(0)
 	const [unreadMessages, setUnreadMessages] = useState([])
 	const [mostLikedListings, setMostLikedListings] = useState([])
+	const [isRefreshing, refresh] = useState(true)
 
 	useEffect(()=>{
-		getRecentLikes()
-		getPropertyCount()
-		getUnreadMessages()
-		getMostLikedProperties()
+		onLoad()
 	},[])
 	
 	const getRecentLikes = async () => {
@@ -86,6 +85,16 @@ export default ({ navigation }) => {
 			console.log('GET MOST LIKED PROPERTIES ERROR',e)
 		}
 	}
+
+	const onLoad = async () => {
+		refresh(true)
+		await getRecentLikes()
+		await getPropertyCount()
+		await getUnreadMessages()
+		await getMostLikedProperties()
+		refresh(false)
+	}
+
 	return(
 		<Container>
 			<AddListingFloatingContainer>
@@ -93,7 +102,14 @@ export default ({ navigation }) => {
 					<AddIcon source={images.add} />
 				</AddListingButton>
 			</AddListingFloatingContainer>
-			<ContentContainer>
+			<ContentContainer
+				refreshControl={
+					<RefreshControl
+						refreshing={isRefreshing}
+						onRefresh={onLoad}
+					/>
+				}
+			>
 				{ propertiesCount > 0 ? (
 					<>
 						<RecentMatches />

@@ -62,9 +62,9 @@ const BrokerProfile = ({ navigation, route }) => {
 		}
 	}
 
-	const messageButtonOnPress = () => {
-		Alert.alert('Button on press', 'Message button on press')
-	}
+	// const messageButtonOnPress = async () => {
+	// 	navigation.navigate('Conversation', { id: response.data.listing.id })
+	// }
 
 	const callButtonOnPress = (phoneNumber) => {
 		Linking.openURL(`tel:0${phoneNumber}`)
@@ -152,14 +152,16 @@ const BrokerProfile = ({ navigation, route }) => {
 								<UserAddressLabel>{user.address}</UserAddressLabel>
 							</UserAddressWrapper>
 						</UserInfoRow>
-						<UserInfoButtonsContainer>
-							<MessageIconReplacement onPress={messageButtonOnPress}>
-								<Icon source={images.message} />
-							</MessageIconReplacement>
-							<CallIconReplacement onPress={() =>callButtonOnPress(user.contact_number)}>
-								<Icon source={images.cell} />
-							</CallIconReplacement>
-						</UserInfoButtonsContainer>
+						{/* { user?.broker_details?.id !== Store.User?.data?.id ? (
+							<UserInfoButtonsContainer>
+								<MessageIconReplacement onPress={messageButtonOnPress}>
+									<Icon source={images.message} />
+								</MessageIconReplacement>
+								<CallIconReplacement onPress={() =>callButtonOnPress(user.contact_number)}>
+									<Icon source={images.cell} />
+								</CallIconReplacement>
+							</UserInfoButtonsContainer>
+						) : null } */}
 					</UserInfoContainer>
 					<Row>
 						<Toggle onChangeToggle={onChangeToggle} defaultAs={activePage} />

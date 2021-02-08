@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { compact, find, reverse, size } from 'lodash'
 import moment from 'moment'
-import { Alert } from 'react-native'
+import { Alert, RefreshControl } from 'react-native'
 import { getUserMessages } from 'src/api/user'
 import { Store } from 'src/store'
 import { onMessage } from 'src/utils/fcm'
@@ -24,6 +24,7 @@ const default_img = require('src/assets/images/default_image.png')
 const Messages = ({navigation}) => {
 
 	const [messages, setMessages] = useState([])
+	const [isRefreshing, refresh] = useState(true)
 
 	useEffect(() => {
 		retrieveMessages()
@@ -56,10 +57,17 @@ const Messages = ({navigation}) => {
 				]
 			)
 		}
+		refresh(false)
+	}
+
+	const onLoad = async () => {
+		refresh(true)
+		await retrieveMessages()
 	}
 
 	return (
-		<Container>
+		<Container refreshControl={<RefreshControl refreshing={isRefreshing}
+			onRefresh={onLoad}/>}>
 			<Header>Messages</Header>
 			{size(messages) > 0 ? messages.map(m => {
 				return(

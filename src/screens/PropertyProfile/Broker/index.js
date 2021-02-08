@@ -1,5 +1,6 @@
 import React from 'react'
 import { Linking, TouchableOpacity } from 'react-native'
+import { Store } from 'src/store'
 import {
 	BadgeContainer,
 	BadgeText,
@@ -16,10 +17,10 @@ import {
 } from './styledComponents'
 import images from '../images'
 
-export default ({ navigation, broker }) => {
+export default ({ navigation, broker, listing }) => {
 
 	const goToMessage = () => {
-		alert('message')
+		navigation.navigate('Conversation', { id: listing.id, broker, listing })
 	}
 
 	const callBroker = () => {
@@ -45,14 +46,16 @@ export default ({ navigation, broker }) => {
 						</BrokerInfoContainer>
 					</Row>
 				</TouchableOpacity>
-				<Row>
-					<MessageButton onPress={goToMessage}>
-						<MessageIcon source={images.message} />
-					</MessageButton>
-					<CallButton onPress={callBroker}>
-						<CallIcon source={images.cell} />
-					</CallButton>
-				</Row>
+				{ broker.id !== Store.User?.data?.id ? (
+					<Row>
+						<MessageButton onPress={goToMessage}>
+							<MessageIcon source={images.message} />
+						</MessageButton>
+						<CallButton onPress={callBroker}>
+							<CallIcon source={images.cell} />
+						</CallButton>
+					</Row>
+				) : null }
 			</MainRow>
 		</Container>
 	)

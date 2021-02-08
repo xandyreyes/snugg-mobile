@@ -1,5 +1,5 @@
 import React from 'react'
-import { get } from 'lodash'
+import { get, size  } from 'lodash'
 import moment from 'moment'
 import { Store } from 'src/store'
 import {
@@ -7,6 +7,7 @@ import {
 	Container,
 	DateLabel,
 	LeftSection,
+	NoReviewsText,
 	ReviewLabel,
 	Row,
 	UserImage,
@@ -24,7 +25,7 @@ const Reviews = ({ reviews, userId }) => {
 			{ Store.User.data.id !== userId && (
 				<LeaveReview userId={userId} />
 			)}
-			{reviews.map((r, index) =>
+			{size(reviews) > 0 ? reviews.map((r, index) =>
 				<Card key={index}>
 					<Row>
 						<UserImageWrapper>
@@ -40,7 +41,9 @@ const Reviews = ({ reviews, userId }) => {
 					</Row>
 					<ReviewLabel>{r.message}</ReviewLabel>
 				</Card> 
-			)}
+			) : (
+				<NoReviewsText>No reviews yet!</NoReviewsText>
+			) }
 		</Container>
 	)
 }

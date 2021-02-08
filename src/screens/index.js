@@ -44,7 +44,6 @@ export default () => {
 			<Observer>
 				{() => {
 					const { User } = Store
-					console.log({ User })
 					return(
 						<Stack.Navigator>
 							{ User.loading && (<Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />) }

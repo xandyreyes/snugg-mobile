@@ -17,8 +17,6 @@ const TabDashboard = createMaterialTopTabNavigator()
 
 const Home = ({ navigation }) => {
 
-	console.log(Store.User)
-
 	useEffect(() => {
 		const fcmMessaging = onMessage(navigation)
 		return fcmMessaging

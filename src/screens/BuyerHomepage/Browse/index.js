@@ -232,7 +232,7 @@ export default ({ location, navigation }) => {
 								[rotateAndTranslate, {
 									position: 'absolute',
 									flex: 1,
-									height: SCREEN_HEIGHT - 360,
+									height: SCREEN_HEIGHT - 300,
 								}]
 							}
 						>
@@ -249,14 +249,14 @@ export default ({ location, navigation }) => {
 						style={[nextCard, {
 							position: 'absolute',
 							flex: 1,
-							height: SCREEN_HEIGHT - 360
+							height: SCREEN_HEIGHT - 300
 						}]}
 					>
 						<CardContent index={index} item={item} navigation={navigation} location={location} />
 					</Animated.View>
 				)
 			}).reverse()}
-			<Row>
+			{/* <Row>
 				<ButtonContainer>
 					<Reject onPress={onDisLike}>
 						<Image source={images.close} />
@@ -267,7 +267,7 @@ export default ({ location, navigation }) => {
 						<HeartEmpty source={images.heart_empty} />
 					</Like>
 				</ButtonContainer>
-			</Row>
+			</Row> */}
 		</Container>
 	)
 }

@@ -89,13 +89,13 @@ export default ({ navigation, item }) => {
 					<CardInfo>
 						<CardInfoIcon source={images.bed} />
 						<CardInfoLabel>
-							{item.bedroom_count} bedrooms
+							{item.bedroom} bedrooms
 						</CardInfoLabel>
 					</CardInfo>
 					<CardInfo>
 						<CardInfoIcon source={images.bath} />
 						<CardInfoLabel>
-							{item.toilet_bath_count} t&b
+							{item.baths} t&b
 						</CardInfoLabel>
 					</CardInfo>
 					{ item.garage > 0 && (

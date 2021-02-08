@@ -37,6 +37,7 @@ const Conversation = ({navigation, route}) => {
 	const [loading, setLoading] = useState(false)
 	const [sending, setSending] = useState(true)
 	const listViewRef = useRef(null)
+	const { broker , listing} = route.params
 
 	useEffect(() => {
 		setLoading(true)
@@ -62,16 +63,7 @@ const Conversation = ({navigation, route}) => {
 			const response = await getUserMessagesListing(route.params.id)
 			setConversation(response.data)
 		} catch (err) {
-			console.log(err.response, '[ERR GETMESSAGELISTING]')
-			Alert.alert(
-				'Something went wrong!',
-				'Unable to retrieve messages',
-				[
-					{
-						text: 'OK'
-					}
-				]
-			)
+			console.log(err.response.data, '[ERR GETMESSAGELISTING]')
 		}
 		setSending(false)
 		setLoading(false)
@@ -83,8 +75,8 @@ const Conversation = ({navigation, route}) => {
 			try {
 				const dataToPush = {
 					from_id: Store.User.data.id,
-					to_id: Store.User.data.id === conversation[0].to.id ? conversation[0].from.id : conversation[0].to.id,
-					listing_id: conversation[0].listing.id,
+					to_id: broker ? broker.id : Store.User.data.id === conversation[0].to.id ? conversation[0].from.id : conversation[0].to.id,
+					listing_id: listing ? listing.id : conversation[0].listing.id,
 					message: messageToSend
 				}
 				const response = await sendNewMessage(dataToPush)
@@ -164,7 +156,18 @@ const Conversation = ({navigation, route}) => {
 					</Row>
 					<ListingInfo data={conversation[0].listing}/>
 				</>
-			) : null }
+			) : (
+				<>
+					<Row>
+						<Back navigation={navigation} />
+						<HeaderWrapper>
+							{ broker ? (<HeaderRecipientName>{broker.firstname} {broker.lastname}</HeaderRecipientName>) : null }
+						</HeaderWrapper>
+						<HeaderBurgerMenu source={menu} />
+					</Row>
+					{ listing ? <ListingInfo data={listing}/> : null}
+				</>
+			) }
 			<ConversationContainer>
 				<ConversationWrapper
 					onLayout={() => listViewRef.current.scrollToEnd({animated: true})}

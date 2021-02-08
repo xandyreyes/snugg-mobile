@@ -119,3 +119,12 @@ export const ReviewLabel = styled.Text`
   color: #2E3743;
   margin: 7px 0px;
 `
+
+export const NoReviewsText = styled.Text`
+	font-family: Raleway-Regular;
+	font-style: normal;
+	font-size: 18px;
+	color: #767676;
+	text-align: center;
+	margin-top: 40px;
+`

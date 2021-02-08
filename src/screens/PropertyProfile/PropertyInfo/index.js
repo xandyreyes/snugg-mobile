@@ -32,20 +32,20 @@ export default ({ info }) => {
 				<Location numberOfLines={1}>{info.address}</Location>
 			</NameContainer>
 			<NameContainer>
-			  { info.listing_type ? (<PropertyInfoBadge label="listing_type" value={info.listing_type.id}/>) : null }
+				{ info.listing_type ? (<PropertyInfoBadge label="listing_type" value={info.listing_type.id}/>) : null }
 				<PropertyInfoBadge label="offer_type" value={info.offer_type.id}/>
 				<PropertyInfoBadge label="floor_count" value={info.floor_count}/>
-				<PropertyInfoBadge label="bedroom" value={info.bedroom_count}/>
-				<PropertyInfoBadge label="baths" value={info.toilet_bath_count}/>
+				<PropertyInfoBadge label="bedroom" value={info.bedroom}/>
+				<PropertyInfoBadge label="baths" value={info.baths}/>
 				<PropertyInfoBadge label="floor_area" value={info.floor_area}/>
 				{ info.garage ? (<PropertyInfoBadge label="garage" value={info.garage}/>) : null }
 				
 			</NameContainer>
 			<DescriptionContainer>
-				<DescriptionText numberOfLines={expandDescription && info.special_notes.length > 300 ? undefined : 5}>
+				<DescriptionText numberOfLines={expandDescription && info.special_notes?.length > 300 ? undefined : 5}>
 					{info.special_notes}
 				</DescriptionText>
-				{ info.special_notes.length > 300 && (expandDescription ? (
+				{ info.special_notes?.length > 300 && (expandDescription ? (
 					<ReadLessContainer>
 						<ReadMoreButton>
 							<ReadMoreTouchable onPress={() => setExpandDescription(false)}>

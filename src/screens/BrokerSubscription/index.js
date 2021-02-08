@@ -28,7 +28,6 @@ export default ({ navigation }) => {
 	
 	const cancelOnPress = () => {
 		toggleCancelModalVisible()
-		console.log('cancel subscription')
 	}
 
 	return(
