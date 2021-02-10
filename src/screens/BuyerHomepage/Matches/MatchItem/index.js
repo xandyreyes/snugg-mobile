@@ -45,7 +45,7 @@ export default ({ navigation, item }) => {
 		<CardContainer onPress={() => navigation.navigate('PropertyProfile', {
 			...item
 		})}>
-			<CardAbsoluteHeader>
+			{/* <CardAbsoluteHeader>
 				<LikesWrapper>
 					<HeartIcon source={images.heart_empty} />
 					<LikeLabel>0 Likes</LikeLabel>
@@ -61,7 +61,7 @@ export default ({ navigation, item }) => {
 					<MenuItem onPress={hideMenu}>Share</MenuItem>
 					<MenuItem onPress={hideMenu}>Dislike</MenuItem>
 				</Menu>
-			</CardAbsoluteHeader>
+			</CardAbsoluteHeader> */}
 			<CardImageContainer>
 				<PriceWrapper>
 					<PriceLabel>P{formatMoney(item.price, 0)}</PriceLabel>
@@ -71,9 +71,9 @@ export default ({ navigation, item }) => {
 			<CardContent>
 				<CardHeader>
 					<CardHeaderLabel>{item.name}</CardHeaderLabel>
-					{item.status === 'approved' && (
+					{/* {item.status === 'approved' && (
 						<Verified source={images.verified} />
-					)}
+					)} */}
 				</CardHeader>
 				<AddressWrapper>
 					<AddressIcon source={images.pin_location} />

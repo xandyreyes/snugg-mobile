@@ -62,9 +62,25 @@ export default ({ value, label }) => {
 				setIcon(condo)
 				setText('Condo')
 			}
+			if (value === ListingType.commercial) {
+				setIcon(condo)
+				setText('Commercial')
+			}
 			if (value === ListingType.house_and_lot){
 				setIcon(home)
 				setText('House & Lot')
+			}
+			if (value === ListingType.apartment){
+				setIcon(home)
+				setText('Apartment')
+			}
+			if (value === ListingType.lot){
+				setIcon(home)
+				setText('Lot')
+			}
+			if (value === ListingType.foreclosure){
+				setIcon(home)
+				setText('Foreclosure')
 			}
 			return
 		case 'offer_type':

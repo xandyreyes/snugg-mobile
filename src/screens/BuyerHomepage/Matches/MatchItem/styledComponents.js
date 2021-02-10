@@ -17,7 +17,7 @@ export const CardContainer = styled.TouchableOpacity`
 export const CardAbsoluteHeader = styled.View`
   position: absolute;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   top: 0px;
   width: 100%;
   left: 0px;

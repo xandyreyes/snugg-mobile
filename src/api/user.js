@@ -40,10 +40,10 @@ export const getUserMessages = async () => {
 	return response.data
 }
 
-export const getUserMessagesListing = async (id) => {
+export const getUserMessagesListing = async (id, userId) => {
 	let response = null
 	try {
-		response = await backendAPI.get(`/message/${id}`)
+		response = await backendAPI.get(`/message/${id}?user_id=${userId}`)
 	} catch (e) {
 		return Promise.reject(e)
 	}

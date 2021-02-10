@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { get, remove, size } from 'lodash'
 import { Alert, FlatList, Linking, PermissionsAndroid, Platform, Text, TouchableOpacity, View } from 'react-native'
+import { Picker } from '@react-native-picker/picker'
 // import ImagePicker from 'react-native-customized-image-picker'
 import DocumentPicker from 'react-native-document-picker'
 import { listingUpdateAPI, postListingAPI } from 'src/api/listing'
@@ -11,6 +12,7 @@ import { Label } from 'src/components/styledComponents'
 import TextInput from 'src/components/TextInput'
 import Toggle from 'src/components/Toggle'
 import config from 'src/config'
+import { ListingType } from 'src/constants'
 import { Store } from 'src/store'
 import uploadToFirebase from 'src/utils/uploadToFirebase'
 import Features from './Features'
@@ -19,11 +21,14 @@ import {
 	ButtonText,
 	Container,
 	Header,
+	ItemSelectContainer,
 	Next,
 	PhotoPreview,
 	PhotoPreviewContainer,
 	SafeAreaView,
 	ScrollView,
+	SelectLabel,
+	StyledPicker,
 	TopBar,
 	UploadATS,
 	UploadPhotosIcon,
@@ -393,6 +398,7 @@ export default ({ navigation, route }) => {
 						label="Price" 
 						value={data.price ? data.price.toString() : ''} 
 						onChangeText={text => onChangeText(text, 'price', 'number')}
+						number={true}
 					/>
 					<Header>Photos</Header>
 					{ editing ? (
@@ -451,31 +457,58 @@ export default ({ navigation, route }) => {
 					) }
 					<Header style={{ marginBottom: 15 }}>Property Details</Header>
 					<Toggle label='Property Status' values={propertyStatus} onChangeValue={val => onChangeText(val, 'offer_type_id', 'number')}/>
-					<Toggle label='Property Type' values={propertyType} onChangeValue={val => onChangeText(val, 'listing_type_id', 'number')}/>
+					<ItemSelectContainer>
+						<SelectLabel>Property Type</SelectLabel>
+						<StyledPicker>
+							<Picker 
+								style={{
+									width: '100%',
+									padding: 0,
+									marginTop: -8,
+									fontSize: 12
+								}}
+								selectedValue={data.listing_type_id}
+								onValueChange={(itemValue) =>
+									onChangeText(itemValue, 'listing_type_id', 'number')
+								}>
+								<Picker.Item label="Commercial" value={ListingType.commercial} />
+								<Picker.Item label="Lot" value={ListingType.lot} />
+								<Picker.Item label="House and Lot" value={ListingType.house_and_lot} />
+								<Picker.Item label="Condominium" value={ListingType.condo} />
+								<Picker.Item label="Apartment" value={ListingType.apartment} />
+								<Picker.Item label="Foreclosure" value={ListingType.foreclosure} />
+							</Picker>
+						</StyledPicker>
+					</ItemSelectContainer>
 					<TextInput 
 						label="Area Size (in sqm)"
 						value={data.floor_area ? data.floor_area.toString() : ''} 
 						onChangeText={text => onChangeText(text, 'floor_area', 'number')}
+						number={true}
 					/>
 					<TextInput 
 						label="Bedrooms"
 						value={data.bedroom ? data.bedroom.toString() : ''} 
 						onChangeText={text => onChangeText(text, 'bedroom', 'number')}
+						number={true}
 					/>
 					<TextInput 
 						label="Toilets & Baths"
 						value={data.baths ? data.baths.toString() : ''} 
 						onChangeText={text => onChangeText(text, 'baths', 'number')}
+						number={true}
 					/>
 					<TextInput
 						label="Floor"
 						value={data.floor ? data.floor.toString() : ''} 
 						onChangeText={text => onChangeText(text, 'floor', 'number')}
+						number={true}
 					/>
 					<TextInput 
 						label="Description"
 						value={data.notes} 
 						onChangeText={text => onChangeText(text, 'notes', 'text')}
+						multiline={true}
 					/>
 					<Features
 						selected={features}

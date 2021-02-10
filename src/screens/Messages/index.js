@@ -74,7 +74,7 @@ const Messages = ({navigation}) => {
 					<ChatWrapper
 						key={m.id}
 						unread={Store.User.data.id !== m.from.id && !m.seen}
-						onPress={() => navigation.navigate('Conversation', { id: m.listing.id })}>
+						onPress={() => navigation.navigate('Conversation', { id: m.listing.id, userId: Store.User.data.id === m.to.id ? m.from.id : m.to.id })}>
 						{ Store.User.data.id === m.to.id ? (
 							<ChatImage source={m.from.profile_img ? { uri: m.from.profile_img } : default_img} />
 						) : (

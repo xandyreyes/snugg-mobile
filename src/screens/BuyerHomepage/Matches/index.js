@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert } from 'react-native'
+import { Alert, RefreshControl } from 'react-native'
 import { getLikedListingAPI } from 'src/api/listing'
 import {
 	FlatList
@@ -7,7 +7,7 @@ import {
 import MatchItem from './MatchItem'
 
 export default ({ navigation }) => {
-
+	const [isRefreshing, refresh] = useState(true)
 	const [likedListings, setLikedListings] = useState([])
 
 	useEffect(() => {
@@ -30,6 +30,12 @@ export default ({ navigation }) => {
 				]
 			)
 		}
+		refresh(false)
+	}
+
+	const onRefresh = () => {
+		refresh(true)
+		getLikedListing()
 	}
 
 	return(
@@ -38,6 +44,12 @@ export default ({ navigation }) => {
 			showsVerticalScrollIndicator ={false}
 			keyExtractor = { (item, index) => index.toString() }
 			renderItem={({ item, index }) => (<MatchItem navigation={navigation} index={index} item={item} />)}
+			refreshControl={
+				<RefreshControl 
+					refreshing={isRefreshing}
+					onRefresh={onRefresh}
+				/>
+			}
 		/>
 	)
 }

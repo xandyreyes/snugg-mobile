@@ -44,7 +44,7 @@ export default ({ route, navigation }) => {
 				user: userInfo,
 				data: response.data
 			})
-			navigation.navigate('Conversation', { id: response.data.listing.id })
+			navigation.navigate('Conversation', { id: response.data.listing.id, userId: userInfo.id })
 		} catch (err) {
 			console.log(err, '[ERR SEND MESSAGE]')
 			Alert.alert(

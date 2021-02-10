@@ -14,8 +14,12 @@ export const SubscriptionType = {
 }
 
 export const ListingType = {
-	condo: 1,
-	house_and_lot: 2
+	commercial: 1,
+	lot: 2,
+	house_and_lot: 3,
+	condo: 4,
+	apartment: 5,
+	foreclosure: 6
 }
 
 export const OfferType = {

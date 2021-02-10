@@ -77,9 +77,9 @@ const Properties = ({ navigation, propertyOptionOnPress, userId }) => {
 			<CardContent>
 				<CardHeader>
 					<CardHeaderLabel>{d.name}</CardHeaderLabel>
-					{d.status === 'approved' && (
+					{/* {d.status === 'approved' && (
 						<Verified source={images.verified} />
-					)}
+					)} */}
 				</CardHeader>
 				<AddressWrapper>
 					<AddressIcon source={images.pin_location} />

@@ -25,7 +25,7 @@ export default ({ info }) => {
 		<Container>
 			<NameContainer>
 				<Name>{info.name}</Name>
-				<Verified source={images.verified} />
+				{/* <Verified source={images.verified} /> */}
 			</NameContainer>
 			<NameContainer>
 				<PinIcon source={images.pin_location} />

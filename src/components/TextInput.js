@@ -5,11 +5,11 @@ import {
 	TextInputContainer
 } from './styledComponents'
 
-export default ({ label, onChangeText, value, secureTextEntry, placeholder }) => {
+export default ({ label, onChangeText, value, secureTextEntry, placeholder, multiline, number }) => {
 	return(
 		<TextInputContainer>
 			{ label ? <Label>{label}</Label> : null }
-			<TextInput value={value} onChangeText={onChangeText} secureTextEntry={secureTextEntry} placeholder={placeholder} />
+			<TextInput value={value} onChangeText={onChangeText} secureTextEntry={secureTextEntry} keyboardType={number ? 'decimal-pad' : 'default'} placeholder={placeholder} multiline={multiline} numberOfLines={multiline ? 3 : undefined} />
 		</TextInputContainer>
 	)
 }

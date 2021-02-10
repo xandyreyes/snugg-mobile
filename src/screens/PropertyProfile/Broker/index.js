@@ -20,7 +20,7 @@ import images from '../images'
 export default ({ navigation, broker, listing }) => {
 
 	const goToMessage = () => {
-		navigation.navigate('Conversation', { id: listing.id, broker, listing })
+		navigation.navigate('Conversation', { id: listing.id, broker, listing, userId: broker.id })
 	}
 
 	const callBroker = () => {

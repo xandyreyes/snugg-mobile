@@ -85,9 +85,9 @@ const BrokerProfile = ({ navigation, route }) => {
 
 	const editOnPress = () => {
 		setModalVisible(false)
-		navigation.navigate('AddListing', {
-			...selectedProperty
-		})
+		// navigation.navigate('AddListing', {
+		// 	...selectedProperty
+		// })
 	}
 
 	const deleteOnPress = async () => {
@@ -96,6 +96,7 @@ const BrokerProfile = ({ navigation, route }) => {
 			const deleted = await deleteListingAPI(selectedProperty.id)
 			if (deleted) {
 				setModalVisible(false)
+				await getUserInfo()
 			}
 		} catch (err) {
 			Alert.alert(
@@ -152,16 +153,16 @@ const BrokerProfile = ({ navigation, route }) => {
 								<UserAddressLabel>{user.address}</UserAddressLabel>
 							</UserAddressWrapper>
 						</UserInfoRow>
-						{/* { user?.broker_details?.id !== Store.User?.data?.id ? (
+						{ user?.broker_details?.id !== Store.User?.data?.id ? (
 							<UserInfoButtonsContainer>
-								<MessageIconReplacement onPress={messageButtonOnPress}>
+								{/* <MessageIconReplacement onPress={messageButtonOnPress}>
 									<Icon source={images.message} />
-								</MessageIconReplacement>
-								<CallIconReplacement onPress={() =>callButtonOnPress(user.contact_number)}>
+								</MessageIconReplacement> */}
+								<MessageIconReplacement onPress={() =>callButtonOnPress(user.contact_number)}>
 									<Icon source={images.cell} />
-								</CallIconReplacement>
+								</MessageIconReplacement>
 							</UserInfoButtonsContainer>
-						) : null } */}
+						) : null }
 					</UserInfoContainer>
 					<Row>
 						<Toggle onChangeToggle={onChangeToggle} defaultAs={activePage} />

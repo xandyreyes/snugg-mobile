@@ -83,3 +83,27 @@ export const PhotoPreview = styled.Image`
     border-radius: 5px;
     margin-right: 5px;
 `
+
+export const ItemSelectContainer = styled.View`
+    width: 100%;
+`
+
+export const SelectLabel = styled.Text`
+    color: #17365D;
+    font-family: Raleway-Regular;
+    font-size: 12px;
+    text-align: left;
+`
+
+export const StyledPicker = styled.View`
+		background: white;
+    height: 40px;
+    width: 100%;
+    border: 1px solid #DEDEDE;
+    border-radius: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding-horizontal: 8px;
+		padding-vertical: 2px;
+    font-family: Raleway-Regular;
+`

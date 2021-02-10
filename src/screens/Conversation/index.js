@@ -37,7 +37,7 @@ const Conversation = ({navigation, route}) => {
 	const [loading, setLoading] = useState(false)
 	const [sending, setSending] = useState(true)
 	const listViewRef = useRef(null)
-	const { broker , listing} = route.params
+	const { broker, listing, userId } = route.params
 
 	useEffect(() => {
 		setLoading(true)
@@ -58,9 +58,11 @@ const Conversation = ({navigation, route}) => {
 		getConvos()
 	}
 
+	console.log({ listingId:route.params.id, userId })
+
 	const getConvos = async () => {
 		try {
-			const response = await getUserMessagesListing(route.params.id)
+			const response = await getUserMessagesListing(route.params.id, userId)
 			setConversation(response.data)
 		} catch (err) {
 			console.log(err.response.data, '[ERR GETMESSAGELISTING]')

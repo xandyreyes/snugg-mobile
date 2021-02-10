@@ -10,13 +10,35 @@ import {
 } from './styledComponents'
 
 const PropertyDetails = ({ data }) => {
+	const getListingType = (listingType) => {
+		if (listingType === ListingType.condo) {
+			return 'Condo'
+		}
+		if (listingType === ListingType.house_and_lot) {
+			return 'House & Lot'
+		}
+		if (listingType === ListingType.commercial) {
+			return 'Commercial'
+		}
+		if (listingType === ListingType.lot) {
+			return 'Lot'
+		}
+		if (listingType === ListingType.apartment) {
+			return 'Apartment'
+		}
+		if (listingType === ListingType.foreclosure) {
+			return 'Foreclosure'
+		}
+		return ''
+	}
+
 	const table = [
 		{
 			label: 'Property ID',
 			value: data.id
 		}, {
 			label: 'Property Type',
-			value: data.listing_type === ListingType.condo ? 'Condo' : 'House & Lot'
+			value: getListingType(data.listing_type)
 		}, {
 			label: 'Property Status',
 			value: data.offer_type === OfferType.sale ? 'Sale' : 'Rent'

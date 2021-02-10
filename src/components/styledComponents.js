@@ -117,13 +117,14 @@ export const Label = styled.Text`
 
 export const TextInput = styled.TextInput`
     background: white;
-    height: 40px;
+    min-height: 40px;
     width: 100%;
     border: 1px solid #DEDEDE;
     border-radius: 8px;
     margin-top: 5px;
     margin-bottom: 15px;
     padding-horizontal: 8px;
+		padding-vertical: 2px;
     font-family: Raleway-Regular;
 `
 
