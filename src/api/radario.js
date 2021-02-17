@@ -13,10 +13,10 @@ radarAPI.interceptors.request.use(
 	error => Promise.reject(error),
 )
 
-export const saveGeofence = async (tag, externalId, body) => {
+export const saveGeofence = async (body) => {
 	let response = null
 	try {
-		response = await radarAPI.post(`/${tag}/${externalId}`, body)
+		response = await radarAPI.post('/', body)
 	} catch (e) {
 		return Promise.reject(e)
 	}

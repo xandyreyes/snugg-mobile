@@ -137,11 +137,15 @@ export default ({ navigation, route }) => {
 			dataProps.features = dataProps.features.toString()
 			const listing = await postListingAPI(dataProps)
 			if (listing.data) {
-				saveGeofence('properties', listing.data.id, {
+				await saveGeofence({
 					description: dataProps.name,
 					type: 'circle',
 					coordinates: [location.longitude, location.latitude],
-					radius: 350
+					radius: 350,
+					metadata: {
+						id: listing.data.id,
+						photo: data.images[0].url,
+					}
 				})
 			}
 			return listing

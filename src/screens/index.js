@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import messaging from '@react-native-firebase/messaging'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Observer, Provider } from 'mobx-react'
 import { UserType } from 'src/constants'
@@ -30,8 +29,6 @@ import Welcome from './Welcome'
 import Conversation from './Conversation'
 
 const Stack = createStackNavigator()
-
-// TODO: Create two different stacks for Broker and Buyer
 
 export default () => {
 

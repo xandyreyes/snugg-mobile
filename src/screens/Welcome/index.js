@@ -43,12 +43,6 @@ export default ({ navigation }) => {
 					try {
 						Radar.setUserId(typeof User.data.id === 'number' ? User.data.id.toString() : User.data.id)
 						Radar.setDescription(`Buyer ${User.data.firstname}`)
-						Radar.trackOnce().then((result) => {
-							console.log('trackOnce:',result)
-						}).catch((err) => {
-							console.log('trackOnce:', err)
-						})
-						Radar.startTrackingResponsive()
 					} catch (err) {
 						console.log(err, 'ERROR_RADAR')
 					}

@@ -232,7 +232,7 @@ export default ({ location, navigation }) => {
 								[rotateAndTranslate, {
 									position: 'absolute',
 									flex: 1,
-									height: SCREEN_HEIGHT - 300,
+									height: SCREEN_HEIGHT - 340,
 								}]
 							}
 						>
@@ -249,7 +249,7 @@ export default ({ location, navigation }) => {
 						style={[nextCard, {
 							position: 'absolute',
 							flex: 1,
-							height: SCREEN_HEIGHT - 300
+							height: SCREEN_HEIGHT - 340
 						}]}
 					>
 						<CardContent index={index} item={item} navigation={navigation} location={location} />

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { SafeAreaView, TouchableOpacity } from 'react-native'
-import { Store } from 'src/store'
 import { onMessage } from 'src/utils/fcm'
 import Messages from '../Messages'
 import UserAccount from '../UserAccount'
@@ -12,6 +11,7 @@ import {
 	MainIcon,
 	SubIcon
 } from './styledComponents'
+import PushControl from '../PushControl'
 
 const TabDashboard = createMaterialTopTabNavigator()
 
@@ -46,11 +46,14 @@ const Home = ({ navigation }) => {
 	}
 
 	return (
-		<TabDashboard.Navigator initialRouteName="BrokerDashboard" tabBar={props => <HomeTabBar {...props} />} swipeEnabled={false} >
-			<TabDashboard.Screen name="UserAccount" component={UserAccount} />
-			<TabDashboard.Screen name="BrokerDashboard" component={BrokerDashboard} />
-			<TabDashboard.Screen name="Messages" component={Messages} />
-		</TabDashboard.Navigator>
+		<>
+			<TabDashboard.Navigator initialRouteName="BrokerDashboard" tabBar={props => <HomeTabBar {...props} />} swipeEnabled={false} >
+				<TabDashboard.Screen name="UserAccount" component={UserAccount} />
+				<TabDashboard.Screen name="BrokerDashboard" component={BrokerDashboard} />
+				<TabDashboard.Screen name="Messages" component={Messages} />
+			</TabDashboard.Navigator>
+			<PushControl />
+		</>
 	)
 }
 
