@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { get } from 'lodash'
 import Radar from 'react-native-radar'
 import { SafeAreaView, TouchableOpacity } from 'react-native'
-import PushNotification from 'react-native-push-notification'
 import Messages from '../Messages'
 import UserAccount from '../UserAccount'
 import BuyerHomepage from '../BuyerHomepage'
@@ -46,34 +44,6 @@ const sample = {
 		'userId': '7'
 	}
 }
-
-Radar.on('events', (result) => {
-	if (result.events) {
-		result.events.forEach((event) => {
-			if (event.type === 'user.entered_geofence') {
-				PushNotification.localNotification({
-					title: 'An available property is nearby!', // (optional)
-					message: `${get(event, 'geofence.description', 'A place')} is just a few blocks away from you!`, // (required)
-					userInfo: event.geofence,
-					bigPictureUrl: event.geofence?.metadata?.photo
-				})
-			}
-		})
-	}
-			
-})
-
-Radar.on('error', (err) => {
-	console.log('error on tracking:', err)
-})
-
-Radar.on('location', (result) => {
-	console.log('location radar io:', result)
-})
-
-Radar.on('log', (result) => {
-	console.log('log:', result)
-})
 
 const Home = () => {
 

@@ -41,7 +41,12 @@ export const Location = styled.Text`
 `
 
 export const DescriptionContainer = styled.View`
-    margin-top: 3px;
+    margin-top: 10px;
+`
+
+export const HTMLContainer = styled.View`
+		height: ${({showAll}) => showAll ? 'auto' : '80px'};
+		overflow: hidden;
 `
 
 export const DescriptionText = styled.Text`

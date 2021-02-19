@@ -83,6 +83,7 @@ export const RowWrap = styled.View`
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+		margin-top: 10px;
 `
 
 export const LocationIcon = styled.Image`

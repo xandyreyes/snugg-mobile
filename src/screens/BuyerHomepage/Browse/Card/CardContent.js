@@ -45,7 +45,7 @@ export default ({ index, item, location, navigation }) => {
 				<TouchableOpacity onPress={() => navigation.navigate('PropertyProfile', {
 					...item
 				})}>
-					<Image source={{ uri: item.images[0].image_url}}>
+					<Image source={{ uri: item.images[0]?.image_url}}>
 						<PriceContainer>
 							<PriceText>P{formatMoney(item.price)}</PriceText>
 						</PriceContainer>
@@ -58,9 +58,9 @@ export default ({ index, item, location, navigation }) => {
 							<Verified source={images.verified} />
 						)}
 					</Row>
-					<Description numberOfLines={3}>
+					{/* <Description numberOfLines={3}>
 						{item.special_notes}
-					</Description>
+					</Description> */}
 					<RowWrap>
 						<PropertyInfoBadge label="listing_type" value={item.listing_type.id}/>
 						<PropertyInfoBadge label="offer_type" value={item.offer_type.id}/>

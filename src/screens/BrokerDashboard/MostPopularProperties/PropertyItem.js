@@ -34,7 +34,7 @@ export default ({ item, index, navigation }) => {
 		<PropertyTouchable onPress={() => navigation.navigate('PropertyProfile', {
 			...listing
 		})} style={{ marginLeft: index === 0 ? 20 : 0 }}>
-			<PropertyImage source={{ uri: listing.images[0].image_url }}/>
+			<PropertyImage source={{ uri: listing.images[0]?.image_url }}/>
 			<PropertyDetails>
 				<PropertyName numberOfLines={2}>{listing.name}</PropertyName>
 				<Row>

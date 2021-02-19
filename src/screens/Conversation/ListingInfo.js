@@ -19,7 +19,7 @@ import images from './images'
 const ListingInfo = ({ data }) => {
 	return (
 		<ListingWrapper>
-			<ListingImage source={{ uri: data.images[0].image_url}} />
+			<ListingImage source={{ uri: data.images[0]?.image_url}} />
 			<ListingInfoWrapper>
 				<ListingName numberOfLines={1}>{data.name}</ListingName>
 				<ListingAddressWrapper>

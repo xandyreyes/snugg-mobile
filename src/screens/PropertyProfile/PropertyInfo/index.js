@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import HTML from 'react-native-render-html'
 import PropertyInfoBadge from 'src/components/PropertyInfoBadge'
 import {
 	Container,
 	DescriptionContainer,
 	DescriptionText,
+	HTMLContainer,
 	Location,
 	Name,
 	NameContainer,
@@ -42,9 +44,15 @@ export default ({ info }) => {
 				
 			</NameContainer>
 			<DescriptionContainer>
-				<DescriptionText numberOfLines={expandDescription && info.special_notes?.length > 300 ? undefined : 5}>
+				{ info.special_notes ?
+					<HTMLContainer showAll={expandDescription}>
+						<HTML source={{ html: info.special_notes }} />
+					</HTMLContainer>
+					
+					: null}
+				{/* <DescriptionText numberOfLines={expandDescription && info.special_notes?.length > 300 ? undefined : 5}>
 					{info.special_notes}
-				</DescriptionText>
+				</DescriptionText> */}
 				{ info.special_notes?.length > 300 && (expandDescription ? (
 					<ReadLessContainer>
 						<ReadMoreButton>

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
+import { get } from 'lodash'
 import { Observer, Provider } from 'mobx-react'
+import PushNotification from 'react-native-push-notification'
+import Radar from 'react-native-radar'
 import { UserType } from 'src/constants'
 import { Store } from 'src/store'
 import About from './About'
@@ -29,6 +32,35 @@ import Welcome from './Welcome'
 import Conversation from './Conversation'
 
 const Stack = createStackNavigator()
+
+
+Radar.on('events', (result) => {
+	if (result.events) {
+		result.events.forEach((event) => {
+			if (event.type === 'user.entered_geofence') {
+				PushNotification.localNotification({
+					title: 'An available property is nearby!', // (optional)
+					message: `${get(event, 'geofence.description', 'A place')} is just a few blocks away from you!`, // (required)
+					userInfo: event.geofence,
+					bigPictureUrl: event.geofence?.metadata?.photo
+				})
+			}
+		})
+	}
+			
+})
+
+Radar.on('error', (err) => {
+	console.log('error on tracking:', err)
+})
+
+Radar.on('location', (result) => {
+	console.log('location radar io:', result)
+})
+
+Radar.on('log', (result) => {
+	console.log('log:', result)
+})
 
 export default () => {
 

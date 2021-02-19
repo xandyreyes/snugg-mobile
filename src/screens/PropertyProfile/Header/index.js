@@ -17,7 +17,7 @@ import images from '../images'
 export default ({ navigation, propertyImages, price }) => {
 	return(
 		<Container>
-			<Swiper autoplay={true} autoplayTimeout={5} activeDotColor={'#EC7050'}>
+			<Swiper autoplay={true} autoplayTimeout={5} showsPagination={false}>
 				{ propertyImages.map(
 					(img, index) => <PropertyImage key={index} source={{ uri: img.image_url}} />
 				) }

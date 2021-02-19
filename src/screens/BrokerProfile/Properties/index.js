@@ -72,7 +72,7 @@ const Properties = ({ navigation, propertyOptionOnPress, userId }) => {
 				<PriceWrapper>
 					<PriceLabel>P{formatMoney(d.price, 0)}</PriceLabel>
 				</PriceWrapper>
-				<CardImage source={{ uri: d.images[0].image_url }} />
+				<CardImage source={{ uri: d.images[0]?.image_url }} />
 			</CardImageContainer>
 			<CardContent>
 				<CardHeader>
