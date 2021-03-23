@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {Alert} from 'react-native'
+import { requestSubscription } from 'react-native-iap'
 import { userUpdateAPI } from 'src/api/auth'
 import Back from 'src/components/Back'
 import { Store } from 'src/store'
@@ -66,6 +67,7 @@ export default ({ navigation, route }) => {
 				const body = {
 					subscription_id: subscription.id
 				}
+				// const subs = requestSubscription();
 				const response = await userUpdateAPI(Store.User.data?.id, body)
 				if(response) {
 					const { message } = response

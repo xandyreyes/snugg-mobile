@@ -51,8 +51,8 @@ const Actions = ({ listing, id, onDislike, onLike }) => {
 					},
 					data: {
 						type: 'brokerMatch',
-						user: Store.User.data,
-						listing
+						user: Store.User.data.id,
+						listing: listing.id
 					},
 					priority: 'high'
 				}

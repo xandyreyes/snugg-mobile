@@ -4,6 +4,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios'
 import { Alert } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { getListingByIdAPI } from 'src/api/listing'
+import { getUserAPI } from 'src/api/user'
 
 const PushControl = React.memo(() => {
 	const navigation = useNavigation()
@@ -17,10 +18,29 @@ const PushControl = React.memo(() => {
 			},
 
 			// (required) Called when a remote is received or opened, or local notification is opened
-			onNotification: function (notification) {
+			onNotification: async function (notification) {
 				console.log('NOTIFICATION:', notification)
-				if (notification.data && notification.data.metadata) {
-					redirectToListingProfile(notification.data.metadata.id)
+				if (notification.channelId === 'fcm_fallback_notification_channel') {
+					if (notification.data.type === 'brokerMatch') {
+						const listing = await getListingByIdAPI(notification.data.listing)
+						const user = await getUserAPI(notification.data.user)
+						if (listing && user) {
+							navigation.navigate('Match', {
+								listing: listing.data,
+								user: user.data
+							})
+						}
+					}
+					if (notification.data.data) {
+						const parsed = JSON.parse(notification.data.data)
+						if (parsed.type === 'messageReceived') {
+							redirectToMessage(parsed.userId, parsed.listingId)
+						}
+					}
+				} else {
+					if (notification.data && notification.data.metadata) {
+						redirectToListingProfile(notification.data.metadata.id)
+					}
 				}
 
 				// process the notification
@@ -55,6 +75,19 @@ const PushControl = React.memo(() => {
 			requestPermissions: true,
 		})
 	}, [])
+
+	const redirectToMessage = async (userId, listingId) => {
+		try {
+			navigation.navigate('Conversation', { id: listingId, userId: userId})
+		} catch (e) {
+			Alert.alert(
+				'Error',
+				'Unable to retrieve listing'
+			)
+			console.log(e, 'ON Notification get listing error')
+		}
+		
+	}
 
 	const redirectToListingProfile = async (id) => {
 		try {

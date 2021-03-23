@@ -47,15 +47,6 @@ const Messages = ({navigation}) => {
 			setMessages(compact(msgs))
 		} catch (err) {
 			console.log(err, '[ERR GETUSERMESSAGES]')
-			Alert.alert(
-				'Something went wrong!',
-				'Unable to retrieve the list of messages',
-				[
-					{
-						text: 'OK'
-					}
-				]
-			)
 		}
 		refresh(false)
 	}

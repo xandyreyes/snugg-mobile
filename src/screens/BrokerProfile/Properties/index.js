@@ -24,7 +24,6 @@ import {
 	OptionIcon,
 	PriceLabel,
 	PriceWrapper,
-	Verified
 } from './styledComponents'
 import images from '../images'
 
@@ -42,6 +41,7 @@ const Properties = ({ navigation, propertyOptionOnPress, userId }) => {
 	const getListings = async () => {
 		try {
 			const listings = await getUserListingAPI(userId)
+			console.log('Listings retrieved', listings)
 			setListings(listings.data)
 		} catch (err) {
 			console.log({ err }, '[ERR RETRIEVE LISTING]')

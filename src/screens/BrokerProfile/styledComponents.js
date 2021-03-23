@@ -42,7 +42,6 @@ export const UserImage = styled.Image`
   height: 80px;
   background: #c6c6c6;
   border-radius: 8px;
-  elevation: 3;
 `
 
 export const UserInfoRow = styled.View`

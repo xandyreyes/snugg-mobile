@@ -1,5 +1,6 @@
 import messaging from '@react-native-firebase/messaging'
-import { userUpdateAPI } from 'src/api/auth'
+import { getUserAPI, userUpdateAPI } from 'src/api/auth'
+import { getListingByIdAPI } from 'src/api/listing'
 import { Store } from 'src/store'
 
 export const getFirebasePermissions = async () => {
@@ -26,10 +27,15 @@ export const getFirebasePermissions = async () => {
 export const onMessage = (navigation, messageReceived) => {
 	return messaging().onMessage(async message => {
 		if (message.data.type === 'brokerMatch') {
-			navigation.navigate('Match', {
-				listing: message.data.listing,
-				user: message.data.user
-			})
+			console.log(message.data, 'HELLP')
+			const listing = await getListingByIdAPI(message.data.listing)
+			const user = await getUserAPI(message.data.user)
+			if (listing && user) {
+				navigation.navigate('Match', {
+					listing: listing.data,
+					user: user.data
+				})
+			}
 		}
 		if (message.data.data) {
 			const parsed = JSON.parse(message.data.data)

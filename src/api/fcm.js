@@ -6,7 +6,7 @@ const fcmAPI = axios.create({
 
 fcmAPI.interceptors.request.use(
 	config => {
-		config.headers.Authorization = 'key=AAAAPhzQCX0:APA91bGUgwg3h8NoumsjNFvEGIl9r4-YAhvHUGB9TeeNk26ABcBbTaXmpGAc20mY8fRy_0pMdLBnOzvzKkeqGb8rkJ-Yl-CrIEHxW8h9oXJfgL9H6IzsmYMVb-PC7JGbkC2oSOcguSTU'
+		config.headers.Authorization = 'key=AAAATst3b98:APA91bFuA3jxWIoUuGXJyNGQIrwwRv68lXh2mzovixvuGKp7t-RstGF4SSNwQ3yv_-1O0cBuI3YpP6yGOH3QOj6cEqJeqXQQlXZf2_ElTDtbl3WLd4D3D7NWk3NlPW2O4xeKD_SCncY8'
 		config.headers['Content-Type'] = 'application/json'
 		return config
 	},
@@ -18,6 +18,7 @@ export const sendFCM = async (body) => {
 	try {
 		response = await fcmAPI.post('/send', body)
 	} catch (e) {
+		console.log(e.response, 'SEND FCM ERR')
 		return Promise.reject(e)
 	}
 	return response.data

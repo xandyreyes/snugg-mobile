@@ -87,7 +87,6 @@ const Conversation = ({navigation, route}) => {
 				sendNotif({
 					message: messageToSend,
 					user: response.data.to,
-					data: response.data
 				})
 			} catch (err) {
 				console.log(err, '[ERR SEND MESSAGE]')
@@ -105,7 +104,7 @@ const Conversation = ({navigation, route}) => {
 		}
 	}
 
-	const sendNotif = ({message, user, data}) => {
+	const sendNotif = async ({message, user}) => {
 		const body = {
 			to: user.device_id,
 			notification: {
@@ -115,12 +114,20 @@ const Conversation = ({navigation, route}) => {
 			data: {
 				data: {
 					type: 'messageReceived',
-					data
+					userId: userId,
+					listingId: listing ? listing.id : conversation[0].listing.id
 				},
 			},
 			priority: 'high'
 		}
-		sendFCM(body)
+		try {
+			const response = await sendFCM(body)
+			console.log({ response: response.results })
+		} catch (err) {
+			console.log(err, '[SEND NOTIF ERR]')
+			Alert.alert('Unable to send message!', 'Check logs for the error')
+		}
+		
 	}
 
 	const listViewScrollToBottom = () => listViewRef?.current?.scrollToEnd({ animated: true })

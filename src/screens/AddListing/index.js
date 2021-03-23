@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { get, remove, size } from 'lodash'
+import { get, isEmpty, remove, size } from 'lodash'
 import { Alert, FlatList, Linking, PermissionsAndroid, Platform, Text, TouchableOpacity, View } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 // import ImagePicker from 'react-native-customized-image-picker'
@@ -259,7 +259,7 @@ export default ({ navigation, route }) => {
 		}
 		setDataEdit({
 			...dataEdit,
-			[field]: parseFloat(text)
+			[field]: text
 		})
 	}
 
@@ -341,7 +341,6 @@ export default ({ navigation, route }) => {
 	}
 
 	const onPressSave = async () => {
-		setLoading(true)
 		try {
 			// if (size(selectedImages) > 0) {
 			// 	const imagesUri = await uploadImages()
@@ -352,9 +351,36 @@ export default ({ navigation, route }) => {
 			// 	data.ats_file_url = atsUri
 			// }
 			// data.features = features.toString()
-			setData({ ...data })
-			// const update = await listingUpdateAPI(get(route, 'params.id', 1), data)
-			console.log('data', data)
+			// setData({ ...data })
+			if (!isEmpty(dataEdit)) {
+				const listingId = get(route, 'params.id')
+				if (listingId) {
+					setLoading(true)
+					const update = await listingUpdateAPI(listingId, dataEdit)
+					if (update) {
+						Alert.alert(
+							'Saved!',
+							'Listing is updated',
+							[
+								{
+									text: 'OK',
+									onPress: () => navigation.popToTop(),
+								}
+							]
+						)
+					}
+				}
+			} else {
+				Alert.alert(
+					'No changes',
+					'Please change any of the listing information to continue.',
+					[
+						{
+							text: 'OK',
+						}
+					]
+				)
+			}
 		} catch (err) {
 			setLoading(false)
 			Alert.alert(

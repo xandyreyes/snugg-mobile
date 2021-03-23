@@ -28,7 +28,10 @@ export default ({ location, navigation }) => {
 
 	const pan = useRef(new Animated.ValueXY())
 	const [stack, setStack] = useState([])
+	const [page, setPage] = useState(1)
 	// const [currentCard, setCard] = useState()
+
+	console.log({ stack: stack.length })
 
 	useEffect(() => {
 		retrieveData()
@@ -117,21 +120,29 @@ export default ({ location, navigation }) => {
 		try {
 			const homepageData = await homepageAPI({ 
 				lat: location.latitude,
-				lon: location.longitude
+				lon: location.longitude,
+				page
 			})
 			const liked = await getLikedListingAPI()
 			const likedIds = get(liked, 'data', []).map((item) => item.id)
 			Store.Listings.setLiked(likedIds)
 			const stackCards = get(homepageData, 'data', []).filter((item) => !likedIds.includes(item.id))
-			setStack(uniqBy(stackCards, 'id'))
+			setStack([...stack, ...uniqBy(stackCards, 'id')])
 		} catch (err) {
 			console.log(err, '[ERR RETRIEVE HOMEPAGE DATA]')
 		}
 	}
 
+	useEffect(() => {
+		retrieveData()
+	}, [page])
+
 	const shiftArray = () => {
 		stack.shift()
 		setStack([...stack])
+		if (stack.length < 2) {
+			setPage(page + 1)
+		}
 	}
 
 	const onLike = () => {
@@ -159,12 +170,12 @@ export default ({ location, navigation }) => {
 					},
 					data: {
 						type: 'brokerMatch',
-						user: Store.User.data,
-						listing
+						user: Store.User.data.id,
+						listing: listing.id
 					},
 					priority: 'high'
 				}
-				await sendFCM(body)
+				sendFCM(body)
 			}
 			if (like) {
 				Store.Listings.setLiked([...Store.Listings.liked, listing.id])

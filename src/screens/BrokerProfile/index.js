@@ -85,9 +85,9 @@ const BrokerProfile = ({ navigation, route }) => {
 
 	const editOnPress = () => {
 		setModalVisible(false)
-		// navigation.navigate('AddListing', {
-		// 	...selectedProperty
-		// })
+		navigation.navigate('AddListing', {
+			...selectedProperty
+		})
 	}
 
 	const deleteOnPress = async () => {

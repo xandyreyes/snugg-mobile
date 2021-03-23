@@ -31,21 +31,23 @@ export default ({ navigation, broker, listing }) => {
 		<Container>
 			<Header>Broker</Header>
 			<MainRow>
-				<TouchableOpacity onPress={() => navigation.navigate('BrokerProfile', {
-					userId: broker.id
-				})}>
-					<Row>
-						<BrokerImage source={broker.profile_img ? { uri: broker.profile_img } : images.default_images } />
-						<BrokerInfoContainer>
-							<Header>{broker.firstname} {broker.lastname}</Header>
-							{broker.broker_details.prc_id && broker.broker_details.id_status === 'approved' && (
-								<BadgeContainer>
-									<BadgeText>Licensed Broker</BadgeText>
-								</BadgeContainer>
-							)}
-						</BrokerInfoContainer>
-					</Row>
-				</TouchableOpacity>
+				{ broker ? (
+					<TouchableOpacity onPress={() => navigation.navigate('BrokerProfile', {
+						userId: broker.id
+					})}>
+						<Row>
+							<BrokerImage source={broker.profile_img ? { uri: broker.profile_img } : images.default_images } />
+							<BrokerInfoContainer>
+								<Header>{broker.firstname} {broker.lastname}</Header>
+								{broker.broker_details.prc_id && broker.broker_details.id_status === 'approved' && (
+									<BadgeContainer>
+										<BadgeText>Licensed Broker</BadgeText>
+									</BadgeContainer>
+								)}
+							</BrokerInfoContainer>
+						</Row>
+					</TouchableOpacity>
+				) : null }
 				{ broker.id !== Store.User?.data?.id ? (
 					<Row>
 						<MessageButton onPress={goToMessage}>

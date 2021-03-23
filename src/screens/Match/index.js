@@ -42,7 +42,6 @@ export default ({ route, navigation }) => {
 			sendNotif({
 				message: textValue,
 				user: userInfo,
-				data: response.data
 			})
 			navigation.navigate('Conversation', { id: response.data.listing.id, userId: userInfo.id })
 		} catch (err) {
@@ -59,7 +58,7 @@ export default ({ route, navigation }) => {
 		}
 	}
 
-	const sendNotif = ({message, user, data}) => {
+	const sendNotif = ({message, user}) => {
 		const body = {
 			to: user.device_id,
 			notification: {
@@ -69,7 +68,8 @@ export default ({ route, navigation }) => {
 			data: {
 				data: {
 					type: 'messageReceived',
-					data
+					userId: userInfo.id,
+					listingId: listingInfo.id
 				},
 			},
 			priority: 'high'
