@@ -1,0 +1,26 @@
+{
+    "address": "Rocky Home Safety Services | San Francisco, 2206 Pine Street #222, San Francisco", 
+    "ats_file_url": "https://firebasestorage.googleapis.com/v0/b/snugg-neighborhood.appspot.com/o/listings%2Fats%2ForGY4qnn4-1601114943890?alt=media&token=e30e6af6-c35d-46e0-8a40-84c98501b06a", 
+    "baths": 1, 
+    "bedroom": 1, 
+    "commission_rate": null, 
+    "features": "Concrete Flooring,Internet", 
+    "floor": 1, 
+    "floor_area": 22, 
+    "images": [
+        {
+            "url": "https://firebasestorage.googleapis.com/v0/b/snugg-neighborhood.appspot.com/o/listings%2Fats%2FUgENK9LYN-1601115182284?alt=media&token=3419cd97-e4d7-4273-ae70-bfd25a6f0638"
+        }, {
+            "url": "https://firebasestorage.googleapis.com/v0/b/snugg-neighborhood.appspot.com/o/listings%2Fats%2FjeBXBFdMd-1601115182284?alt=media&token=e7d85e0f-03b1-4762-943b-eba131fc0736"
+        }, {
+            "url": "https://firebasestorage.googleapis.com/v0/b/snugg-neighborhood.appspot.com/o/listings%2Fats%2F4jU9Ynyog-1601115182285?alt=media&token=1dba13c3-99b9-4576-81b4-6ffd473a3263"
+        }
+    ], 
+    "lat": 37.33115792, 
+    "listing_type_id": 1, 
+    "lon": -122.03076853, 
+    "name": "Sample Listing", 
+    "notes": "Ipsum", 
+    "offer_type_id": 1, 
+    "price": 10000000
+}

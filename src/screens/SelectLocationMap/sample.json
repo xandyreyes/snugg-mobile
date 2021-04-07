@@ -1,0 +1,19 @@
+{"res": 
+    [
+        {
+            "description": "Blumentritt Road, Sampaloc, Manila, Metro Manila, Philippines", 
+            "matched_substrings": [Array], 
+            "place_id": "Ej1CbHVtZW50cml0dCBSb2FkLCBTYW1wYWxvYywgTWFuaWxhLCBNZXRybyBNYW5pbGEsIFBoaWxpcHBpbmVzIi4qLAoUChIJd0njOw-2lzMRakIGk4gaRPoSFAoSCUfSB5MdtpczEaUXlyaqaRQo", 
+            "reference": "Ej1CbHVtZW50cml0dCBSb2FkLCBTYW1wYWxvYywgTWFuaWxhLCBNZXRybyBNYW5pbGEsIFBoaWxpcHBpbmVzIi4qLAoUChIJd0njOw-2lzMRakIGk4gaRPoSFAoSCUfSB5MdtpczEaUXlyaqaRQo", 
+            "structured_formatting": [Object], 
+            "terms": [Array], 
+            "types": [Array]
+        }, {
+            "description": "Blumentritt LRT Line 1 Station, Santa Cruz, Manila, Metro Manila, Philippines",
+            "matched_substrings": [Array],
+            "place_id": "ChIJnWYWbuO1lzMRRazrvqLvLwE",
+            "reference": "ChIJnWYWbuO1lzMRRazrvqLvLwE",
+            "structured_formatting": [Object],
+            "terms": [Array],
+            "types": [Array]
+        }, {"description": "Blumentritt, Santa Cruz, Manila, Metro Manila, Philippines", "matched_substrings": [Array], "place_id": "ChIJFwcUbuO1lzMRg_IvPeg2-Fg", "reference": "ChIJFwcUbuO1lzMRg_IvPeg2-Fg", "structured_formatting": [Object], "terms": [Array], "types": [Array]}, {"description": "Blumentritt, Blumentritt Road, Santa Cruz, Manila, Metro Manila, Philippines", "matched_substrings": [Array], "place_id": "ChIJ4ahIAuO1lzMRRQO5OKd8nHs", "reference": "ChIJ4ahIAuO1lzMRRQO5OKd8nHs", "structured_formatting": [Object], "terms": [Array], "types": [Array]}, {"description": "Blumentrit Market, Old Antipolo Street, Santa Cruz, Manila, Metro Manila, Philippines", "matched_substrings": [Array], "place_id": "ChIJYWS1UPC1lzMRSfSTSUpPFw0", "reference": "ChIJYWS1UPC1lzMRSfSTSUpPFw0", "structured_formatting": [Object], "terms": [Array], "types": [Array]}]}
