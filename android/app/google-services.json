@@ -1,33 +1,42 @@
 {
   "project_info": {
-    "project_number": "338421051359",
-    "project_id": "snugg-a292e",
-    "storage_bucket": "snugg-a292e.appspot.com"
+    "project_number": "762511563577",
+    "firebase_url": "https://snugg-312215-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "snugg-312215",
+    "storage_bucket": "snugg-312215.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:338421051359:android:c2c3f44dd01891165a9e6a",
+        "mobilesdk_app_id": "1:762511563577:android:57dc05f769b1af261d66e8",
         "android_client_info": {
           "package_name": "com.snuggmobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "338421051359-bfagcjklkp94ko323cgrifp8kj05casc.apps.googleusercontent.com",
+          "client_id": "762511563577-6fvo9742vmrlacfqipd76shatsul057c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.snuggmobile",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "762511563577-uco8vkpsl2lgollmirrqor9pntqggt3k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZmH_SWyVW_YrDoMV2UBJS2__OS8mk4H0"
+          "current_key": "AIzaSyBWPLxGQdTUaesAOsW9nYFQ1pN8KhOKxw0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "338421051359-bfagcjklkp94ko323cgrifp8kj05casc.apps.googleusercontent.com",
+              "client_id": "762511563577-uco8vkpsl2lgollmirrqor9pntqggt3k.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
